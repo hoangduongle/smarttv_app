@@ -3,6 +3,7 @@
 class AppConstants {
   //general
   static const String title = '5 Men Hotel';
+  static const String birthday = 'Chúc mừng sinh nhật';
 
   // page name
   static const String HomePage = 'Trang chủ';

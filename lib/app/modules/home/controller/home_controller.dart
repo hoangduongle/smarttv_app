@@ -1,8 +1,5 @@
 // ignore_for_file: non_constant_identifier_names, must_call_super, unused_field
 
-
-
-
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 
@@ -13,6 +10,9 @@ class HomeController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
   // List<OverviewContent> overviewList = [];
   Rx<List<OverviewContent>> overviewList = Rx<List<OverviewContent>>([]);
+
+  var currentInt = 0.obs;
+
 
   @override
   void onInit() {

@@ -5,6 +5,7 @@ abstract class Routes {
   Routes._();
 
   static const WELCOME = _Paths.WELCOME;
+  static const BIRTHDAY = _Paths.BIRTHDAY;
   static const MAIN = _Paths.MAIN;
   static const NAVIGATOR = _Paths.NAVIGATOR;
   static const HOME = _Paths.HOME;
@@ -20,6 +21,7 @@ abstract class Routes {
 abstract class _Paths {
   _Paths._();
   static const WELCOME = '/welcome';
+  static const BIRTHDAY = '/birthday';
   static const MAIN = '/mainscreen';
   static const NAVIGATOR = '/navigator';
   static const HOME = '/homepage';

@@ -24,7 +24,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String initiaRoute = AppPages.INITIAL;
+    String initiaRoute = Routes.MAIN;
+
+    bool firstCheckin = false;
+    bool birthday = true;
+    // if (firstCheckin) {
+    //   initiaRoute = AppPages.INITIAL;
+    // }
+
+    if (birthday) {
+      initiaRoute = Routes.BIRTHDAY;
+    }
+    debugPrint(initiaRoute.toString());
     return ScreenUtilInit(
       designSize: const Size(960, 540),
       minTextAdapt: true,

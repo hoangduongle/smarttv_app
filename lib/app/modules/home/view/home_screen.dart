@@ -17,13 +17,10 @@ import 'package:smarttv_app/app/values/app_colors.dart';
 import 'package:smarttv_app/app/values/app_styles.dart';
 
 class HomePage extends GetView<HomeController> {
- 
-
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-     int currentIndex = 0;
     Size size = MediaQuery.of(context).size;
     return Scaffold(body: Obx(
       () {
@@ -56,7 +53,7 @@ class HomePage extends GetView<HomeController> {
                                 child: CarouselSlider.builder(
                                   options: CarouselOptions(
                                     onPageChanged: (index, reason) {
-                                      currentIndex = index;
+                                      controller.currentInt = index.obs;
                                     },
                                     enableInfiniteScroll: true,
                                     autoPlayInterval:
@@ -79,8 +76,8 @@ class HomePage extends GetView<HomeController> {
                               SizedBox(
                                 height: 45.h,
                               ),
-                              buildIndicator(
-                                  controller.overviewList.value, currentIndex)
+                              buildIndicator(controller.overviewList.value,
+                                  controller.currentInt.value),
                             ])),
                   )
                 ],

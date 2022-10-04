@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
@@ -168,7 +169,16 @@ class ServiceController extends BaseController {
                       autofocus: true,
                       focusColor: AppColors.orangeColor,
                       borderRadius: BorderRadius.circular(5.r),
-                      onTap: () {},
+                      onTap: () {
+                        TimeOfDay _time = TimeOfDay(hour: 7, minute: 15);
+
+                        var newTime = showTimePicker(
+                          initialEntryMode: TimePickerEntryMode.inputOnly,
+                          context: Get.context!,
+                          initialTime: _time,
+                          
+                        );
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [

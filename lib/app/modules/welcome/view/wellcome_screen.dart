@@ -19,13 +19,8 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   void initState() {
     super.initState();
-    // _navigateToHomePage();
   }
 
-  // _navigateToHomePage() async {
-  //   await Future.delayed(const Duration(seconds: 4), () {});
-  //   Get.offNamed('/mainscreen');
-  // }
 
   @override
   Widget build(BuildContext context) {
