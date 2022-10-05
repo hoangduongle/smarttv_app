@@ -9,9 +9,11 @@ import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/values/app_assets.dart';
 import 'package:smarttv_app/app/values/app_const.dart';
 
-Device device = Device(
+DeviceContent device = DeviceContent(
     id: "D001",
     roomId: "L001",
+    partNumber: "43W800C",
+    serialNo: "12312321312",
     deviceName: "TV",
     brand: "Sony",
     description: "42inh");

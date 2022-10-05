@@ -36,7 +36,6 @@ class MyApp extends StatelessWidget {
     // if (birthday) {
     //   initiaRoute = Routes.BIRTHDAY;
     // }
-    debugPrint(initiaRoute.toString());
     return ScreenUtilInit(
       designSize: const Size(960, 540),
       minTextAdapt: true,
