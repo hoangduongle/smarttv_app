@@ -1,8 +1,7 @@
-// ignore_for_file: must_call_super, avoid_print
+// ignore_for_file: must_call_super, avoid_print, unused_field
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
@@ -170,14 +169,14 @@ class ServiceController extends BaseController {
                       focusColor: AppColors.orangeColor,
                       borderRadius: BorderRadius.circular(5.r),
                       onTap: () {
-                        TimeOfDay _time = TimeOfDay(hour: 7, minute: 15);
+                        // TimeOfDay _time = TimeOfDay(hour: 7, minute: 15);
 
-                        var newTime = showTimePicker(
-                          initialEntryMode: TimePickerEntryMode.inputOnly,
-                          context: Get.context!,
-                          initialTime: _time,
+                        // var newTime = showTimePicker(
+                        //   initialEntryMode: TimePickerEntryMode.inputOnly,
+                        //   context: Get.context!,
+                        //   initialTime: _time,
                           
-                        );
+                        // );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -259,11 +258,11 @@ class ServiceController extends BaseController {
     // Get.toNamed('/service-component/${serviceCategory.id}');
   }
 
-  @override
-  void onInit() {
+  // @override
+  // void onInit() {
     // fetchServiceCategory();
-    super.onInit();
-  }
+  //   super.onInit();
+  // }
 
   // Future<void> fetchServiceCategory() async {
   //   var servicecate = _repository.getListServiceCate();

@@ -16,6 +16,7 @@ void main() async {
   await TokenManager.instance.init();
   Intl.defaultLocale = 'vi_VN';
   initializeDateFormatting();
+  await ScreenUtil.ensureScreenSize();
   runApp(const MyApp());
 }
 
@@ -26,15 +27,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     String initiaRoute = Routes.MAIN;
 
-    bool firstCheckin = false;
-    bool birthday = true;
+    // bool firstCheckin = true;
+    // bool birthday = false;
     // if (firstCheckin) {
     //   initiaRoute = AppPages.INITIAL;
     // }
 
-    if (birthday) {
-      initiaRoute = Routes.BIRTHDAY;
-    }
+    // if (birthday) {
+    //   initiaRoute = Routes.BIRTHDAY;
+    // }
     debugPrint(initiaRoute.toString());
     return ScreenUtilInit(
       designSize: const Size(960, 540),
