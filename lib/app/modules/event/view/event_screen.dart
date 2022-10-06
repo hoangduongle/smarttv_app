@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
 import 'package:smarttv_app/app/modules/event/widget/build_image_event.dart';
 
-import 'package:smarttv_app/app/values/app_colors.dart';
-import 'package:smarttv_app/app/values/app_styles.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_styles.dart';
 
 class EventScreen extends GetView<EventController> {
   const EventScreen({super.key});

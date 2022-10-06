@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'package:smarttv_app/app/values/app_colors.dart';
-import 'package:smarttv_app/app/values/app_styles.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_styles.dart';
 
 Widget buildNavigationWidget(int index, String title, IconData? icons,
     IconData? iconSelected, int active, Size size) {

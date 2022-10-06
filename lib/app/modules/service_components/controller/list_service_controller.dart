@@ -1,3 +1,6 @@
 import 'package:get/get.dart';
 
-class ListServiceController extends GetxController {}
+class ListServiceController extends GetxController {
+  int? serviceId;
+  
+}

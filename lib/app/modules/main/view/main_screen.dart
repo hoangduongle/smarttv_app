@@ -1,10 +1,11 @@
-// ignore_for_file: dead_code, prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, avoid_print, unused_field
+// ignore_for_file: dead_code, prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, avoid_print, unused_field, unused_local_variable, non_constant_identifier_names
 
 import 'dart:io';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/bill/view/bill_screen.dart';
+import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
 import 'package:smarttv_app/app/modules/home/view/home_screen.dart';
 import 'package:smarttv_app/app/modules/local/view/local_screen.dart';
@@ -12,10 +13,10 @@ import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/widget/widget_navigationslider.dart';
 import 'package:smarttv_app/app/modules/service/view/service_screen.dart';
-import 'package:smarttv_app/app/values/app_assets.dart';
-import 'package:smarttv_app/app/values/app_colors.dart';
-import 'package:smarttv_app/app/values/app_const.dart';
-import 'package:smarttv_app/app/values/app_styles.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_const.dart';
+import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainScreen extends StatefulWidget {
@@ -51,6 +52,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    CartController Cacontroller = Get.find(tag: CartController().toString());
     return WillPopScope(onWillPop: () async {
       return false;
     }, child: GetBuilder<MainController>(
@@ -93,7 +95,7 @@ class _MainScreenState extends State<MainScreen> {
                   child: FloatingActionButton.extended(
                     heroTag: "btn2",
                     label: Text(
-                      "99",
+                      "",
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: AppColors.white),
                     ),

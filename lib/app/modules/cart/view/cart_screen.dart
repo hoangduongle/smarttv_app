@@ -6,8 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 
-import 'package:smarttv_app/app/values/app_colors.dart';
-import 'package:smarttv_app/app/values/app_styles.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_styles.dart';
 
 class CartScreen extends GetView<CartController> {
   const CartScreen({super.key});

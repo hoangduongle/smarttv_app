@@ -27,7 +27,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<List<ServiceCategoryContent>> getListServiceCate() {
-    var endpoint = "${DioProvider.baseUrl}/";
+    var endpoint = "${DioProvider.baseUrl}/serviceCategories";
     var dioCall = dioTokenClient.get(endpoint);
     try {
       return callApi(dioCall).then((response) {

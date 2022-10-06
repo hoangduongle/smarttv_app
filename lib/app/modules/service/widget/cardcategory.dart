@@ -16,8 +16,8 @@ import 'package:smarttv_app/app/modules/service/controller/service_controller.da
 import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
 import 'package:smarttv_app/app/modules/service_components/widget/card_each_service.dart';
-import 'package:smarttv_app/app/values/app_assets.dart';
-import 'package:smarttv_app/app/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class CardCategory extends StatelessWidget {
   int index;
@@ -49,7 +49,9 @@ class CardCategory extends StatelessWidget {
               autofocus: index == 0,
               borderRadius: BorderRadius.circular(15.r),
               onTap: () {
-                controller.serviceComponent(serviceCategory);
+                // controller.serviceComponent(serviceCategory);
+                Get.toNamed('/service-component/${serviceCategory.id}');
+                debugPrint(serviceCategory.id.toString());
               },
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
@@ -62,7 +64,9 @@ class CardCategory extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15.r),
                           child: CachedNetworkImage(
-                            imageUrl: serviceCategory.picture!,
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1551573355-19727699d60a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+                            //serviceCategory.picture!
                             height: naController.select ? 110.h : 90.h,
                             width: naController.select ? 175.w : 148.w,
                             fit: BoxFit.fill,
@@ -75,7 +79,7 @@ class CardCategory extends StatelessWidget {
                         height: naController.select ? 15.h : 10.h,
                       ),
                       Text(
-                        serviceCategory.name!, //<------ set controller
+                        serviceCategory.name!.tr, //<------ set controller
                         style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold,

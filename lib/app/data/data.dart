@@ -6,8 +6,8 @@ import 'package:smarttv_app/app/core/model/navigator_content.dart';
 import 'package:smarttv_app/app/core/model/overview_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
-import 'package:smarttv_app/app/values/app_assets.dart';
-import 'package:smarttv_app/app/values/app_const.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
+import 'package:smarttv_app/app/core/values/app_const.dart';
 
 DeviceContent device = DeviceContent(
     id: "D001",
@@ -70,32 +70,32 @@ const List<NavigationContent> listNavigationContent = [
 //           '+ Colors me run - festival - sea party - concert'),
 // ];
 
-List<ServiceCategoryContent> listCateContent = [
-  ServiceCategoryContent(
-      id: "C001",
-      name: "Thức Ăn",
-      picture:
-          "https://images.unsplash.com/photo-1551573355-19727699d60a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      description: "aaaaa"),
-  ServiceCategoryContent(
-      id: "C002",
-      name: "Thức Uống",
-      picture:
-          "https://images.unsplash.com/photo-1551509134-2f9d4ec80a9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      description: "aaaaa"),
-  ServiceCategoryContent(
-      id: "C003",
-      name: "Giặt Ủi",
-      picture:
-          "https://images.unsplash.com/photo-1553152531-b98a2fc8d3bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
-      description: "aaaaa"),
-  ServiceCategoryContent(
-      id: "C004",
-      name: "Thuê Xe",
-      picture:
-          "https://images.unsplash.com/photo-1552752399-22aa8f97ade0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      description: "aaaaa"),
-];
+// List<ServiceCategoryContent> listCateContent = [
+//   ServiceCategoryContent(
+//       id: "C001",
+//       name: "Thức Ăn",
+//       picture:
+//           "https://images.unsplash.com/photo-1551573355-19727699d60a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+//       description: "aaaaa"),
+//   ServiceCategoryContent(
+//       id: "C002",
+//       name: "Thức Uống",
+//       picture:
+//           "https://images.unsplash.com/photo-1551509134-2f9d4ec80a9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+//       description: "aaaaa"),
+//   ServiceCategoryContent(
+//       id: "C003",
+//       name: "Giặt Ủi",
+//       picture:
+//           "https://images.unsplash.com/photo-1553152531-b98a2fc8d3bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
+//       description: "aaaaa"),
+//   ServiceCategoryContent(
+//       id: "C004",
+//       name: "Thuê Xe",
+//       picture:
+//           "https://images.unsplash.com/photo-1552752399-22aa8f97ade0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+//       description: "aaaaa"),
+// ];
 
 // const List<ServiceContent> listServiceContent = [
 //   ServiceContent(

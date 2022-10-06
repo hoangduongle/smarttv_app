@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/values/app_assets.dart';
-import 'package:smarttv_app/app/values/app_colors.dart';
-import 'package:smarttv_app/app/values/app_const.dart';
-import 'package:smarttv_app/app/values/app_styles.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_const.dart';
+import 'package:smarttv_app/app/core/values/app_styles.dart';
 
 class Birthday extends StatefulWidget {
   const Birthday({super.key});

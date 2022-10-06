@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:smarttv_app/app/core/model/overview_content.dart';
-import 'package:smarttv_app/app/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 Widget buildIndicator(List<OverviewContent> _list, int currentIndex) {

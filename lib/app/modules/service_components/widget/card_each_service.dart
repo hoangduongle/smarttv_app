@@ -5,15 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/service_components/widget/dialog.dart';
-import 'package:smarttv_app/app/values/app_colors.dart';
 
 class CardEachService extends StatelessWidget {
   int index;
+  int componentId;
   CardEachService({
     Key? key,
     required this.index,
+    required this.componentId,
   }) : super(key: key);
 
   @override
@@ -31,7 +33,7 @@ class CardEachService extends StatelessWidget {
         onTap: () {
           DialogWidget(
             index: index,
-          ).showCustomeDialog(context);
+          ).showCustomeDialog(context,componentId);
         },
         child: Center(
           child: Column(

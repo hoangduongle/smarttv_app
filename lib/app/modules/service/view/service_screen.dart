@@ -14,8 +14,8 @@ import 'package:smarttv_app/app/modules/service/loading/skeleton_loading_service
 import 'package:smarttv_app/app/modules/service/binding/service_binding.dart';
 import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
 import 'package:smarttv_app/app/modules/service/widget/cardcategory.dart';
-import 'package:smarttv_app/app/values/app_colors.dart';
-import 'package:smarttv_app/app/values/app_styles.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_styles.dart';
 
 class ServiceScreen extends GetView<ServiceController> {
   const ServiceScreen({super.key});
@@ -46,7 +46,7 @@ class ServiceScreen extends GetView<ServiceController> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      controller.serviceCateList.isEmpty
+                      controller.serviceCateList.value.isEmpty
                           ? SkeletonLoadingServiceScreen()
                           : Expanded(
                               child: SizedBox(
@@ -55,7 +55,7 @@ class ServiceScreen extends GetView<ServiceController> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20.w, vertical: 10.h),
                                 child: GridView.builder(
-                                  itemCount: controller.serviceCateList.length,
+                                  itemCount: controller.serviceCateList.value.length,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: naController.select ? 3 : 4,
@@ -66,7 +66,7 @@ class ServiceScreen extends GetView<ServiceController> {
                                     return CardCategory(
                                         index: index,
                                         serviceCategory:
-                                            controller.serviceCateList[index]);
+                                            controller.serviceCateList.value[index]);
                                   },
                                 ),
                               ),

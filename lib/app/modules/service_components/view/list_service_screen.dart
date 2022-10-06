@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
-import 'package:smarttv_app/app/values/app_colors.dart';
-import 'package:smarttv_app/app/values/app_styles.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/service_components/widget/card_each_service.dart';
 
 class ListSerivceScreen extends GetView<ListServiceController> {
@@ -19,6 +19,7 @@ class ListSerivceScreen extends GetView<ListServiceController> {
   @override
   Widget build(BuildContext context) {
     Size size = Size(960, 540);
+    controller.serviceId = int.parse(cateId);
     return Container(
       color: Colors.white,
       child: Row(
@@ -52,6 +53,7 @@ class ListSerivceScreen extends GetView<ListServiceController> {
                         mainAxisExtent: 210,
                       ),
                       itemBuilder: (context, index) => CardEachService(
+                            componentId: 1,
                             index: index,
                           )),
                 )),

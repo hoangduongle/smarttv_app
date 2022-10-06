@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 
 import 'package:smarttv_app/app/modules/service_components/controller/cart_dialog_controller.dart';
-import 'package:smarttv_app/app/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class DialogWidget extends StatelessWidget {
   int index;
@@ -18,7 +19,8 @@ class DialogWidget extends StatelessWidget {
     return Container();
   }
 
-  void showCustomeDialog(BuildContext context) {
+  void showCustomeDialog(BuildContext context, int componentId) {
+    CartController caController = Get.find(tag: CartController().toString());
     CartdialogController controller = Get.find();
     controller.count = 1.obs;
     showDialog(
@@ -101,7 +103,11 @@ class DialogWidget extends StatelessWidget {
                       onPressed: () {
                         if (controller.count.toInt() > 0) {
                           Get.back();
-                          Get.snackbar("Name $index đã thêm vào giỏ",
+                    
+
+                          Get.snackbar(
+                              "Name $index đã thêm vào giỏ",
+                              colorText: AppColors.white,
                               "số lượng: ${controller.count}", //${controller.count}
                               duration: Duration(milliseconds: 1000));
                         } else {
