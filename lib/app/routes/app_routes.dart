@@ -26,7 +26,7 @@ abstract class _Paths {
   static const NAVIGATOR = '/navigator';
   static const HOME = '/homepage';
   static const SERVICE = '/service';
-  static const SERVICE_COMPONENT = '/service-component/:cateId';
+  static const SERVICE_COMPONENT = '/service-component';
   static const CART = '/cart'; //add customer id to check
   static const EVENT = '/event';
   static const LOCAL = '/local';

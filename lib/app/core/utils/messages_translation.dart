@@ -74,6 +74,8 @@ class Messages extends Translations {
           'namefood': 'Tên món',
           'paylater': 'Thanh toán sau',
           'back': 'Quay lại',
+          'close':'Đóng',
+          'addf&b':'Thêm món',
         },
       };
 }

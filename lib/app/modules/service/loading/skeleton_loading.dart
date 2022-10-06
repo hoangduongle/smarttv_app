@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
 Widget SkeletonLoading(Size size) {
@@ -9,7 +10,7 @@ Widget SkeletonLoading(Size size) {
     highlightColor: Colors.white,
     period: Duration(milliseconds: 1500),
     child: Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15.r)),
       child: Row(
         children: [
           SingleChildScrollView(
@@ -19,7 +20,7 @@ Widget SkeletonLoading(Size size) {
               height: size.height, //300
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(15.r),
                   color: Colors.grey),
             ),
           ),

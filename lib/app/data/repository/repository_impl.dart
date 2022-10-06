@@ -55,24 +55,36 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<List<ServiceContent>> getListServiceContentByCateId() {
-    throw UnimplementedError();
+    var endpoint = "${DioProvider.baseUrl}/services";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <ServiceContent>[];
+
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(ServiceContent.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<BillContent> getBill() {
-    // TODO: implement getBill
+  
     throw UnimplementedError();
   }
 
   @override
   Future<List<AbtractionContent>> getListAbtraction() {
-    // TODO: implement getListAbtraction
+    
     throw UnimplementedError();
   }
 
   @override
   Future<List<EventContent>> getListEvent() {
-    // TODO: implement getListEvent
     throw UnimplementedError();
   }
 }

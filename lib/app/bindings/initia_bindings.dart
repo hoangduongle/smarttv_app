@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/bindings/repository_bindings.dart';
-import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
+
 
 import 'package:smarttv_app/app/modules/main/navigation/navigator_binding.dart';
 

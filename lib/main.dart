@@ -17,6 +17,7 @@ void main() async {
   Intl.defaultLocale = 'vi_VN';
   initializeDateFormatting();
   await ScreenUtil.ensureScreenSize();
+
   runApp(const MyApp());
 }
 

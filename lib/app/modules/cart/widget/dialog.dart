@@ -11,11 +11,9 @@ import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/service_components/controller/cart_dialog_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
-class DialogWidget extends StatelessWidget {
-  int index;
-  DialogWidget({
+class DialogCart extends StatelessWidget {
+  DialogCart({
     Key? key,
-    required this.index,
   }) : super(key: key);
 
   @override
@@ -23,6 +21,21 @@ class DialogWidget extends StatelessWidget {
     return Container();
   }
 
+/*
+lấy dữ liệu   
+  final CartController controller;
+  final ServiceContent serviceContent;
+  final int quantity;
+  final int index;
+
+cho phép người dùng chỉnh số lượng tăng giảm
+khi bấm Lưu sẽ set lại quantity được hiển thị của service đó
+
+nếu người dùng bấm xoá sẽ remove service đó khỏi cart
+
+
+
+*/
   void showCustomeDialog(BuildContext context, ServiceContent serviceContent) {
     CartController caController = Get.find();
     CartdialogController controller = Get.find();

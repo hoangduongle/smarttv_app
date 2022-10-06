@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smarttv_app/app/core/model/service_content.dart';
 
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
@@ -12,9 +13,11 @@ import 'package:smarttv_app/app/modules/service_components/widget/dialog.dart';
 
 class CardEachService extends StatelessWidget {
   int index;
+  ServiceContent serviceContent;
   CardEachService({
     Key? key,
     required this.index,
+    required this.serviceContent,
   }) : super(key: key);
 
   @override
@@ -35,7 +38,7 @@ class CardEachService extends StatelessWidget {
           onTap: () {
             DialogWidget(
               index: index,
-            ).showCustomeDialog(context, 1);
+            ).showCustomeDialog(context, serviceContent);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -55,7 +58,7 @@ class CardEachService extends StatelessWidget {
                         height: 100,
                         fit: BoxFit.fitHeight,
                         placeholder: (context, url) =>
-                            SkeletonLoading(Size(157, 300)),
+                            SkeletonLoading(Size(157, 100)),
                       ),
                     ),
                   ),
@@ -63,7 +66,7 @@ class CardEachService extends StatelessWidget {
                     height: 4,
                   ),
                   Text(
-                    "Name $index", //<------ set controller
+                    serviceContent.name!, //<------ set controller
 
                     style: TextStyle(
                         fontSize: 16,
@@ -82,7 +85,7 @@ class CardEachService extends StatelessWidget {
                   SizedBox(
                     height: 4,
                   ),
-                  Text("100.000 VND", //<------ set controller
+                  Text("${serviceContent.price} VND", //<------ set controller
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,

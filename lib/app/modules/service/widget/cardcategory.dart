@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_print, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import, unnecessary_import, implementation_imports
+// ignore_for_file: prefer_const_constructors, avoid_print, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import, unnecessary_import, implementation_imports, unnecessary_string_interpolations
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +18,7 @@ import 'package:smarttv_app/app/modules/service_components/view/list_service_scr
 import 'package:smarttv_app/app/modules/service_components/widget/card_each_service.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/routes/app_pages.dart';
 
 class CardCategory extends StatelessWidget {
   int index;
@@ -50,8 +51,10 @@ class CardCategory extends StatelessWidget {
               borderRadius: BorderRadius.circular(15.r),
               onTap: () {
                 // controller.serviceComponent(serviceCategory);
-                Get.toNamed('/service-component/${serviceCategory.id}');
-                debugPrint(serviceCategory.id.toString());
+                Get.toNamed('${Routes.SERVICE_COMPONENT}', parameters: {
+                  'cateId': '${serviceCategory.id}',
+                  'cateName': '${serviceCategory.name}'
+                });
               },
               child: Container(
                 decoration: BoxDecoration(

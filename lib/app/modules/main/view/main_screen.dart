@@ -31,7 +31,6 @@ class _MainScreenState extends State<MainScreen> {
   // MainController maController = Get.find();
   NavigatorController naController =
       Get.find(tag: (NavigatorController).toString());
-
   @override
   void initState() {
     super.initState();
@@ -52,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    CartController Cacontroller = Get.find(tag: CartController().toString());
+    CartController Cacontroller = Get.find();
     return WillPopScope(onWillPop: () async {
       return false;
     }, child: GetBuilder<MainController>(
@@ -89,7 +88,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
               Align(
-                  alignment: Alignment(0.97, -0.91),
+                  alignment: Alignment(0.91, -0.92),
                   child: Obx(
                     () {
                       return SizedBox(
@@ -186,6 +185,7 @@ class _MainScreenState extends State<MainScreen> {
                                           });
                                         },
                                         onTap: () {
+                                         
                                           setState(() {
                                             naController.current_index =
                                                 index.obs;

@@ -54,8 +54,9 @@ class AppPages {
     // ),
     GetPage(
       name: _Paths.SERVICE_COMPONENT,
-      page: () =>
-          ListSerivceScreen(cateId: Get.parameters['cateId'].toString()),
+      page: () => ListSerivceScreen(
+          // cateId: Get.parameters['cateId'].toString(),
+          ),
       binding: ListServiceBinding(),
       transition: Transition.noTransition,
     ),
