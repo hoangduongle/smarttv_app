@@ -9,7 +9,5 @@ class InitiaBinding implements Bindings {
   void dependencies() {
     RepositoryBindings().dependencies();
     NavigationBinding().dependencies();
-    Get.lazyPut<CartController>(() => CartController(),
-        fenix: true, tag: CartController().toString());
   }
 }

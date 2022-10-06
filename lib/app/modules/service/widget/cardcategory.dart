@@ -53,39 +53,45 @@ class CardCategory extends StatelessWidget {
                 Get.toNamed('/service-component/${serviceCategory.id}');
                 debugPrint(serviceCategory.id.toString());
               },
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Center(
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(top: 8.h),
-                        margin: EdgeInsets.all(10.r),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15.r),
-                          child: CachedNetworkImage(
-                            imageUrl:
-                                "https://images.unsplash.com/photo-1551573355-19727699d60a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-                            //serviceCategory.picture!
-                            height: naController.select ? 110.h : 90.h,
-                            width: naController.select ? 175.w : 148.w,
-                            fit: BoxFit.fill,
-                            // placeholder: (context, url) =>
-                            //     SkeletonLoading(Size(158, 300)),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0.r),
+                    color: AppColors.navigabackground),
+                margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(top: 2.h),
+                          margin: EdgeInsets.all(10.r),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15.r),
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  "https://images.unsplash.com/photo-1551573355-19727699d60a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+                              //serviceCategory.picture!
+                              height: naController.select ? 110.h : 90.h,
+                              width: naController.select ? 175.w : 148.w,
+                              fit: BoxFit.fill,
+                              // placeholder: (context, url) =>
+                              //     SkeletonLoading(Size(158, 300)),
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: naController.select ? 15.h : 10.h,
-                      ),
-                      Text(
-                        serviceCategory.name!.tr, //<------ set controller
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.white),
-                      ),
-                    ],
+                        SizedBox(
+                          height: naController.select ? 15.h : 10.h,
+                        ),
+                        Text(
+                          serviceCategory.name!.tr, //<------ set controller
+                          style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.title),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

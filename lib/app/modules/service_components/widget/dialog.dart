@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -102,14 +102,9 @@ class DialogWidget extends StatelessWidget {
                   TextButton(
                       onPressed: () {
                         if (controller.count.toInt() > 0) {
+                          
+                          // caController.addService(serviceContent);
                           Get.back();
-                    
-
-                          Get.snackbar(
-                              "Name $index đã thêm vào giỏ",
-                              colorText: AppColors.white,
-                              "số lượng: ${controller.count}", //${controller.count}
-                              duration: Duration(milliseconds: 1000));
                         } else {
                           Get.back();
                         }

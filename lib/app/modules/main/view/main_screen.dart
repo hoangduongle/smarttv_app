@@ -61,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
           floatingActionButton: Stack(
             children: [
               Align(
-                alignment: Alignment(0.50, -0.94),
+                alignment: Alignment(0.63, -0.94),
                 child: SizedBox(
                   height: 35.h,
                   child: FloatingActionButton.extended(
@@ -83,34 +83,6 @@ class _MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         debugPrint("Check Notification!!");
-                      });
-                    },
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment(0.73, -0.94),
-                child: SizedBox(
-                  height: 35.h,
-                  child: FloatingActionButton.extended(
-                    heroTag: "btn2",
-                    label: Text(
-                      "",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: AppColors.white),
-                    ),
-                    icon: Icon(
-                      FluentIcons.cart_20_filled,
-                      size: 25.r,
-                      color: AppColors.white,
-                    ),
-                    backgroundColor: AppColors.focus,
-                    elevation: 1,
-                    focusElevation: 2,
-                    focusColor: AppColors.orangeColor,
-                    onPressed: () {
-                      setState(() {
-                        Get.toNamed("/cart");
                       });
                     },
                   ),

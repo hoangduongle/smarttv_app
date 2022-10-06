@@ -1,10 +1,15 @@
 // ignore_for_file: unused_element, unused_local_variable
 
 import 'package:smarttv_app/app/core/base/base_repository.dart';
+import 'package:smarttv_app/app/core/model/event_content.dart';
+import 'package:smarttv_app/app/core/model/bill_content.dart';
+import 'package:smarttv_app/app/core/model/abtraction_content.dart';
+import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/data/dio/dio_provider.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/overview_content.dart';
+import 'package:smarttv_app/app/modules/service/binding/service_binding.dart';
 
 class RepositoryImpl extends BaseRepository implements Repository {
   @override
@@ -41,5 +46,33 @@ class RepositoryImpl extends BaseRepository implements Repository {
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  Future<ServiceContent> getServiceContentById() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<ServiceContent>> getListServiceContentByCateId() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<BillContent> getBill() {
+    // TODO: implement getBill
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<AbtractionContent>> getListAbtraction() {
+    // TODO: implement getListAbtraction
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<EventContent>> getListEvent() {
+    // TODO: implement getListEvent
+    throw UnimplementedError();
   }
 }

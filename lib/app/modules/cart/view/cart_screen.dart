@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,235 +17,236 @@ class CartScreen extends GetView<CartController> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      color: AppColors.background,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            alignment: Alignment.center,
-            child: Text("cart".tr,
-                style: AppStyles.h4.copyWith(
-                    color: AppColors.header,
-                    fontSize: (size.width * 40 / 1000).sp)),
-          ),
-          SizedBox(
-            height: 38.h,
-          ),
-          Container(
-            child: Column(
+        color: AppColors.background,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              alignment: Alignment.center,
+              child: Text("cart".tr,
+                  style: AppStyles.h4.copyWith(
+                      color: AppColors.header,
+                      fontSize: (size.width * 40 / 1000).sp)),
+            ),
+            SizedBox(
+              height: 38.h,
+            ),
+            Container(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 80.w,
+                      ),
+                      Text(
+                        'namefood'.tr,
+                        style: AppStyles.h4.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.sp,
+                            color: AppColors.title),
+                      ),
+                      SizedBox(
+                        width: 270.w,
+                      ),
+                      Text('unitprice'.tr,
+                          style: AppStyles.h4.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.sp,
+                              color: AppColors.title)),
+                      SizedBox(
+                        width: 110.w,
+                      ),
+                      Text('quantity'.tr,
+                          style: AppStyles.h4.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.sp,
+                              color: AppColors.title)),
+                      SizedBox(
+                        width: 100.w,
+                      ),
+                      Text('totalamout'.tr,
+                          style: AppStyles.h4.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.sp,
+                              color: AppColors.title)),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 70.w,
+              ),
+              child: Divider(
+                color: AppColors.white,
+                height: 20.h,
+                thickness: 1,
+              ),
+            ),
+            SizedBox(
+              width: (size.width * .9).w,
+              height: 180.h,
+              child: ListView.separated(
+                  physics: const ScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  separatorBuilder: (context, index) => SizedBox(
+                        height: 20.h,
+                      ),
+                  itemBuilder: (context, index) => listcart(index)),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 70.w,
+              ),
+              child: Divider(
+                color: AppColors.white,
+                height: 20.h,
+                thickness: 1,
+              ),
+            ),
+            SizedBox(
+              height: 10.w,
+            ),
+            Row(
               children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 80.w,
-                    ),
-                    Text(
-                      'namefood'.tr,
-                      style: AppStyles.h4.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.sp,
-                          color: AppColors.title),
-                    ),
-                    SizedBox(
-                      width: 270.w,
-                    ),
-                    Text('unitprice'.tr,
+                Expanded(
+                  flex: 2,
+                  child: Container(),
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text('totalcost'.tr,
                         style: AppStyles.h4.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.sp,
-                            color: AppColors.title)),
-                    SizedBox(
-                      width: 110.w,
-                    ),
-                    Text('quantity'.tr,
-                        style: AppStyles.h4.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.sp,
-                            color: AppColors.title)),
-                    SizedBox(
-                      width: 100.w,
-                    ),
-                    Text('totalamout'.tr,
-                        style: AppStyles.h4.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.sp,
-                            color: AppColors.title)),
-                  ],
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 70.w,
-            ),
-            child: Divider(
-              color: AppColors.white,
-              height: 20.h,
-              thickness: 1,
-            ),
-          ),
-          SizedBox(
-            width: (size.width * .9).w,
-            height: 180.h,
-            child: ListView.separated(
-                physics: const ScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: 4,
-                separatorBuilder: (context, index) => SizedBox(
-                      height: 20.h,
-                    ),
-                itemBuilder: (context, index) => listcart(index)),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 70.w,
-            ),
-            child: Divider(
-              color: AppColors.white,
-              height: 20.h,
-              thickness: 1,
-            ),
-          ),
-          SizedBox(
-            height: 10.w,
-          ),
-          Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Container(),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text('totalcost'.tr,
-                      style: AppStyles.h4.copyWith(
-                          fontSize: 24.sp,
-                          color: AppColors.focus,
-                          fontWeight: FontWeight.bold)),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Container(),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text('999.999.999 VND',
-                      style: AppStyles.h4
-                          .copyWith(fontSize: 20.sp, color: AppColors.white)),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 30.h),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 60.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                SizedBox(
-                  width: 170.w,
-                  height: 50.h,
-                  child: Material(
-                    color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(10.r),
-                    elevation: 0,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      focusColor: AppColors.orangeColor,
-                      onTap: () {
-                        debugPrint('pay');
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'pay'.tr,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 170.w,
-                  height: 50.h,
-                  child: Material(
-                    color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(10.r),
-                    elevation: 0,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      focusColor: AppColors.orangeColor,
-                      onTap: () {
-                        debugPrint('pay later');
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'paylater'.tr,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.r,
-                                color: AppColors.black),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 170.w,
-                  height: 50.h,
-                  child: Material(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(10.r),
-                    elevation: 0,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      focusColor: AppColors.greenFocus,
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'back'.tr,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ),
+                            fontSize: 24.sp,
+                            color: AppColors.focus,
+                            fontWeight: FontWeight.bold)),
                   ),
                 ),
               ],
             ),
-          )
-        ],
-      ),
-    );
+            SizedBox(
+              height: 5.h,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Container(),
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text('999.999.999 VND',
+                        style: AppStyles.h4
+                            .copyWith(fontSize: 20.sp, color: AppColors.white)),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30.h),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 60.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    width: 170.w,
+                    height: 50.h,
+                    child: Material(
+                      color: AppColors.focus,
+                      borderRadius: BorderRadius.circular(10.r),
+                      elevation: 0,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: InkWell(
+                        focusColor: AppColors.orangeColor,
+                        onTap: () {
+                          debugPrint('pay');
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'pay'.tr,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.sp,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 170.w,
+                    height: 50.h,
+                    child: Material(
+                      color: AppColors.focus,
+                      borderRadius: BorderRadius.circular(10.r),
+                      elevation: 0,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: InkWell(
+                        focusColor: AppColors.orangeColor,
+                        onTap: () {
+                          debugPrint('pay later');
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'paylater'.tr,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.r,
+                                  color: AppColors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 170.w,
+                    height: 50.h,
+                    child: Material(
+                      color: AppColors.green,
+                      borderRadius: BorderRadius.circular(10.r),
+                      elevation: 0,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: InkWell(
+                        focusColor: AppColors.greenFocus,
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'back'.tr,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.sp,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      )
+    ;
   }
 }
 

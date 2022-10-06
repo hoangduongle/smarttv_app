@@ -27,7 +27,7 @@ Widget buildImageEvent(Size size, int index) {
             return Container(
               height: (size.height * 1 / 2).h,
               width: size.width.w,
-              margin:  EdgeInsets.symmetric(horizontal: 4.0.w, vertical: 4.h),
+              margin: EdgeInsets.symmetric(horizontal: 4.0.w, vertical: 4.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0.r),
                 image: DecorationImage(
@@ -42,7 +42,7 @@ Widget buildImageEvent(Size size, int index) {
                     width: size.width.w,
                     decoration: BoxDecoration(
                         color: Colors.black87.withOpacity(0.8),
-                        borderRadius:  BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(15.r),
                             bottomRight: Radius.circular(15.r))),
                     child: Column(
@@ -73,7 +73,7 @@ Widget buildImageEvent(Size size, int index) {
                         // for (var description in arrDescription)
                         //   if (description != '')
                         Padding(
-                          padding:  EdgeInsets.fromLTRB(20.w, 0.h, 10.w, 10.h),
+                          padding: EdgeInsets.fromLTRB(20.w, 0.h, 10.w, 10.h),
                           child: Text(
                             'Day la noi giao luu bay ban cac mat hang cua nhung nguoi dan dia phuong va la mot dia diem tham quan va mua sam nhung mon qua luu niem',
                             style: AppStyles.h4.copyWith(
