@@ -91,7 +91,7 @@ class CardCategory extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
-                              color: AppColors.title),
+                              color: AppColors.white),
                         ),
                       ],
                     ),

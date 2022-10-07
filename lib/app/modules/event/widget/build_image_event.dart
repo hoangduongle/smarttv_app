@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
+import 'package:smarttv_app/app/modules/event/widget/event_dialog.dart';
 
-Widget buildImageEvent(Size size, int index) {
+Widget buildImageEvent(Size size, int index, BuildContext context) {
   return Material(
     color: Colors.transparent,
     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -15,6 +16,7 @@ Widget buildImageEvent(Size size, int index) {
     child: InkWell(
       onTap: () {
         debugPrint(index.toString());
+        const EventDialog().showEventDialog(context, index);
       },
       focusColor: AppColors.focus,
       borderRadius: BorderRadius.circular(15.r),
@@ -70,8 +72,6 @@ Widget buildImageEvent(Size size, int index) {
                                 ),
                               ],
                             )),
-                        // for (var description in arrDescription)
-                        //   if (description != '')
                         Padding(
                           padding: EdgeInsets.fromLTRB(20.w, 0.h, 10.w, 10.h),
                           child: Text(

@@ -1,7 +1,8 @@
 // ignore_for_file: unnecessary_null_comparison
 
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/core/model/bill_content.dart';
+import 'package:smarttv_app/app/core/model/bill_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
@@ -56,4 +57,17 @@ class CartController extends GetxController {
   }
 
   get sizeService => _service.keys.length;
+
+  void addtoBill() {
+    BillContent billContent = BillContent(totalAmount: total);
+    BillDetailContent billdetailContent = BillDetailContent(
+      billId: "",
+      serviceContent: services,
+      price: 0,
+      quantity: 0,
+      amount: 0,
+      billDate: "",
+      status: false,
+    );
+  }
 }

@@ -101,7 +101,7 @@ class CartScreen extends GetView<CartController> {
                         height: 20.h,
                       ),
                   //
-                  itemBuilder: (context, index) => BillDetail(
+                  itemBuilder: (context, index) => CartService(
                       controller: controller,
                       serviceContent: controller.services.keys.toList()[index],
                       quantity: controller.services.values.toList()[index],
@@ -179,7 +179,6 @@ class CartScreen extends GetView<CartController> {
                       focusColor: AppColors.orangeColor,
                       onTap: () {
                         debugPrint('order');
-                        billController.billDetail = controller.services;
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -233,12 +232,12 @@ class CartScreen extends GetView<CartController> {
   }
 }
 
-class BillDetail extends StatelessWidget {
+class CartService extends StatelessWidget {
   final CartController controller;
   final ServiceContent serviceContent;
   final int quantity;
   final int index;
-  const BillDetail(
+  const CartService(
       {super.key,
       required this.controller,
       required this.serviceContent,
@@ -260,7 +259,6 @@ class BillDetail extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.r),
           child: InkWell(
             onTap: () {
-              debugPrint('Cart: $index');
               DialogCart().showCustomeDialog(context, serviceContent, quantity);
             },
             autofocus: index == 0 ? true : false,

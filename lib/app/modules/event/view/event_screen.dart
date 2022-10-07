@@ -50,7 +50,7 @@ class EventScreen extends GetView<EventController> {
                           viewportFraction: .8,
                         ),
                         itemBuilder: (context, index, realIndex) {
-                          return buildImageEvent(size, index);
+                          return buildImageEvent(size, index, context);
                         },
                       ),
                     ),

@@ -3,6 +3,14 @@ class BillContent {
   double? totalAmount;
   String? createDate;
   String? updateDate;
+  String? createBy;
+  String? lastModifyBy;
 
-  BillContent({this.id, this.totalAmount, this.createDate, this.updateDate});
+  BillContent(
+      {this.id,
+      this.totalAmount,
+      this.createDate,
+      this.updateDate,
+      this.createBy,
+      this.lastModifyBy});
 }

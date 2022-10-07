@@ -12,6 +12,7 @@ import 'package:smarttv_app/app/modules/local/view/local_screen.dart';
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/widget/widget_navigationslider.dart';
+import 'package:smarttv_app/app/modules/notification/view/notification_screen.dart';
 import 'package:smarttv_app/app/modules/service/view/service_screen.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
@@ -80,6 +81,7 @@ class _MainScreenState extends State<MainScreen> {
                     focusElevation: 2,
                     focusColor: AppColors.orangeColor,
                     onPressed: () {
+                      NotificationScreen().openDialog(context);
                       setState(() {
                         debugPrint("Check Notification!!");
                       });
@@ -185,7 +187,6 @@ class _MainScreenState extends State<MainScreen> {
                                           });
                                         },
                                         onTap: () {
-                                         
                                           setState(() {
                                             naController.current_index =
                                                 index.obs;

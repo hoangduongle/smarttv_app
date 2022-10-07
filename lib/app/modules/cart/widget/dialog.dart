@@ -12,7 +12,7 @@ import 'package:smarttv_app/app/modules/service_components/controller/cart_dialo
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class DialogCart extends StatelessWidget {
-  DialogCart({
+  const DialogCart({
     Key? key,
   }) : super(key: key);
 

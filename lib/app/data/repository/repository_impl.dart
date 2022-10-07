@@ -9,7 +9,6 @@ import 'package:smarttv_app/app/data/dio/dio_provider.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/overview_content.dart';
-import 'package:smarttv_app/app/modules/service/binding/service_binding.dart';
 
 class RepositoryImpl extends BaseRepository implements Repository {
   @override

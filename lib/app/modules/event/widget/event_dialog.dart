@@ -1,19 +1,17 @@
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
-class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({super.key});
+class EventDialog extends StatelessWidget {
+  const EventDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container();
   }
 
-  void openDialog(
-    BuildContext context,
-  ) {
+  void showEventDialog(BuildContext context, int index) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -24,18 +22,21 @@ class NotificationScreen extends StatelessWidget {
           backgroundColor: AppColors.navigabackground,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-          child: SafeArea(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            width: 800.w,
+            height: 400.h,
             child: Row(
-              mainAxisSize: MainAxisSize.max,
+              // mainAxisSize: MainAxisSize.max,
               children: [
                 Column(
-                  mainAxisSize: MainAxisSize.max,
+                  // mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
                       padding: EdgeInsets.only(top: 20.h),
-                      width: size.width.w - 80.w,
+                      width: 800.w,
                       child: Text(
-                        "Thông báo",
+                        "Hoi cho dia phuong $index",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 20.sp,

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
-import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
+
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 
 class BillScreen extends GetView<BillController> {
