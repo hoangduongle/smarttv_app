@@ -1,12 +1,14 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
+import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
+import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
+import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 
 class BillScreen extends GetView<BillController> {
   const BillScreen({super.key});
@@ -107,11 +109,14 @@ class BillScreen extends GetView<BillController> {
                           physics: ScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
-                          itemCount: 3,
+                          itemCount: controller.billDetail.length,
                           separatorBuilder: (context, index) => SizedBox(
                                 height: 25.h,
                               ),
-                          itemBuilder: (context, index) => listcart(index)),
+                          itemBuilder: (context, index) => ListBill(
+                                billController: controller,
+                                index: index,
+                              )),
                     ),
                     SizedBox(
                       height: 5.h,
@@ -180,7 +185,7 @@ class BillScreen extends GetView<BillController> {
                         child: InkWell(
                           focusColor: AppColors.orangeColor,
                           onTap: () {
-                            debugPrint('pay');
+                            debugPrint('pay bill');
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -208,71 +213,74 @@ class BillScreen extends GetView<BillController> {
   }
 }
 
-Widget listcart(int index) {
-  String name = "Hủ tiếu mì xào giòn";
-  NavigatorController naController =
-      Get.find(tag: (NavigatorController).toString());
-  return Material(
-    color: Colors.transparent,
-    borderRadius: BorderRadius.circular(5.r),
-    child: InkWell(
-      onTap: () {
-        debugPrint('Bill: ${index.toString()}');
-      },
+class ListBill extends StatelessWidget {
+  BillController billController;
+  int index;
+
+  ListBill({
+    Key? key,
+    required this.billController,
+    required this.index,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    String name = "Hủ tiếu mì xào giòn";
+    NavigatorController naController =
+        Get.find(tag: (NavigatorController).toString());
+    return Material(
+      color: Colors.transparent,
       borderRadius: BorderRadius.circular(5.r),
-      focusColor: AppColors.focus,
-      child: Container(
-        height: 45.h,
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Row(
-                children: [
-                  AnimatedPadding(
-                      padding: EdgeInsets.only(
-                          left: naController.select ? 20.w : 10.w),
-                      duration: Duration(milliseconds: 500)),
-                  SizedBox(
-                    width: 110.w,
-                    child: Text(
-                      name.length <= 29 ? name : "${name.substring(0, 26)}...",
-                      maxLines: 2,
-                      textAlign: TextAlign.start,
-                      style: AppStyles.h5.copyWith(
-                          color: AppColors.white, fontWeight: FontWeight.bold),
+      child: InkWell(
+        onTap: () {
+          debugPrint('Bill: ');
+          //${index.toString()}
+        },
+        borderRadius: BorderRadius.circular(5.r),
+        focusColor: AppColors.focus,
+        child: Container(
+          height: 45.h,
+          padding: EdgeInsets.symmetric(horizontal: 8.w),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  children: [
+                    AnimatedPadding(
+                        padding: EdgeInsets.only(
+                            left: naController.select ? 20.w : 10.w),
+                        duration: Duration(milliseconds: 500)),
+                    SizedBox(
+                      width: 110.w,
+                      child: Text(
+                        name.length <= 29
+                            ? name
+                            : "${name.substring(0, 26)}...",
+                        maxLines: 2,
+                        textAlign: TextAlign.start,
+                        style: AppStyles.h5.copyWith(
+                            color: AppColors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
+                  ],
+                ),
+                SizedBox(
+                  width: 45.w,
+                ),
+                SizedBox(
+                  width: 30.w,
+                  child: Text(
+                    '999',
+                    style: AppStyles.h5.copyWith(
+                        color: AppColors.white, fontWeight: FontWeight.bold),
                   ),
-                ],
-              ),
-              SizedBox(
-                width: 45.w,
-              ),
-              SizedBox(
-                width: 30.w,
-                child: Text(
-                  '999',
-                  style: AppStyles.h5.copyWith(
-                      color: AppColors.white, fontWeight: FontWeight.bold),
                 ),
-              ),
-              AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  width: naController.select ? 78.w : 88),
-              SizedBox(
-                width: 92.w,
-                child: Text(
-                  '999.999.000',
-                  textAlign: TextAlign.center,
-                  style: AppStyles.h5.copyWith(
-                      color: AppColors.white, fontWeight: FontWeight.bold),
-                ),
-              ),
-              AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  width: naController.select ? 47.w : 60),
+                AnimatedContainer(
+                    duration: Duration(milliseconds: 500),
+                    width: naController.select ? 78.w : 88),
                 SizedBox(
                   width: 92.w,
                   child: Text(
@@ -282,41 +290,55 @@ Widget listcart(int index) {
                         color: AppColors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
-              AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  width: naController.select ? 0.w : 6),
-              Text(
-                '''
+                AnimatedContainer(
+                    duration: Duration(milliseconds: 500),
+                    width: naController.select ? 47.w : 60),
+                SizedBox(
+                  width: 92.w,
+                  child: Text(
+                    '999.999.000',
+                    textAlign: TextAlign.center,
+                    style: AppStyles.h5.copyWith(
+                        color: AppColors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                AnimatedContainer(
+                    duration: Duration(milliseconds: 500),
+                    width: naController.select ? 0.w : 6),
+                Text(
+                  '''
                 27-09-2022
                 23:59 AM
                 ''',
-                maxLines: 2,
-                textAlign: TextAlign.center,
-                style: AppStyles.h5.copyWith(
-                    color: AppColors.white, fontWeight: FontWeight.bold),
-              ),
-              Container(
-                width: 70.w,
-              ),
-              naController.select
-                  ? Container()
-                  : SizedBox(
-                      width: 90.w,
-                      child: Text(
-                        'paid'.tr,
-                        textAlign: TextAlign.center,
-                        style: AppStyles.h5.copyWith(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: AppStyles.h5.copyWith(
+                      color: AppColors.white, fontWeight: FontWeight.bold),
+                ),
+                Container(
+                  width: 70.w,
+                ),
+                naController.select
+                    ? Container()
+                    : SizedBox(
+                        width: 90.w,
+                        child: Text(
+                          'paid'.tr,
+                          textAlign: TextAlign.center,
+                          style: AppStyles.h5.copyWith(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
+
 /*
  Container(
                   padding: EdgeInsets.only(top: 8.h, left: 15.w),

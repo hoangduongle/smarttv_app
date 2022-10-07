@@ -5,16 +5,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
+import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
+import 'package:smarttv_app/app/modules/cart/widget/dialog.dart';
 
 class CartScreen extends GetView<CartController> {
   const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    BillController billController = Get.find();
     Size size = MediaQuery.of(context).size;
     return Container(
       color: AppColors.background,
@@ -149,9 +152,9 @@ class CartScreen extends GetView<CartController> {
                 child: Align(
                   alignment: Alignment.center,
                   //${controller.total}
-                  child: Text('${controller.total} VND',
+                  child: Obx(() => Text('${controller.total} VND',
                       style: AppStyles.h4
-                          .copyWith(fontSize: 20.sp, color: AppColors.white)),
+                          .copyWith(fontSize: 20.sp, color: AppColors.white))),
                 ),
               ),
             ],
@@ -175,45 +178,18 @@ class CartScreen extends GetView<CartController> {
                     child: InkWell(
                       focusColor: AppColors.orangeColor,
                       onTap: () {
-                        debugPrint('pay');
+                        debugPrint('order');
+                        billController.billDetail = controller.services;
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'pay'.tr,
+                            'orderf&b'.tr,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.sp,
                                 color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 170.w,
-                  height: 50.h,
-                  child: Material(
-                    color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(10.r),
-                    elevation: 0,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      focusColor: AppColors.orangeColor,
-                      onTap: () {
-                        debugPrint('pay later');
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'paylater'.tr,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.r,
-                                color: AppColors.black),
                           ),
                         ],
                       ),
@@ -285,6 +261,7 @@ class BillDetail extends StatelessWidget {
           child: InkWell(
             onTap: () {
               debugPrint('Cart: $index');
+              DialogCart().showCustomeDialog(context, serviceContent, quantity);
             },
             autofocus: index == 0 ? true : false,
             borderRadius: BorderRadius.circular(5.r),

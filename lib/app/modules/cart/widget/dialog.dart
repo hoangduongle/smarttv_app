@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, unrelated_type_equality_checks
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +36,11 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
 
 
 */
-  void showCustomeDialog(BuildContext context, ServiceContent serviceContent) {
+  void showCustomeDialog(
+      BuildContext context, ServiceContent serviceContent, int quantity) {
     CartController caController = Get.find();
     CartdialogController controller = Get.find();
-    controller.count = 1.obs;
+    controller.count = quantity.obs;
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -92,7 +93,9 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
                     splashRadius: 12,
                     color: AppColors.focus,
                     onPressed: () {
-                      if (controller.count > 1) controller.decrement();
+                      if (controller.count >= 1) {
+                        controller.decrement();
+                      }
                     },
                     icon: Icon(Icons.remove_circle),
                     focusColor: AppColors.orangeColor),
@@ -106,7 +109,7 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
                     color: AppColors.focus,
                     splashRadius: 12,
                     onPressed: () {
-                      if (controller.count < 99) controller.increment();
+                      controller.increment();
                     },
                     icon: Icon(Icons.add_circle),
                     focusColor: AppColors.orangeColor)
@@ -158,17 +161,20 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
                       focusColor: AppColors.orangeColor,
                       onTap: () {
                         Get.back();
-                        caController.addService(
+                        caController.updateService(
                             serviceContent, controller.count.value);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'addf&b'.tr,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                          //controller.count
+                          Obx(
+                            () => Text(
+                              controller.count == 0 ? 'delete'.tr : 'save'.tr,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
                           ),
                         ],
                       ),

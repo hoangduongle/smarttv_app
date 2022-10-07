@@ -69,13 +69,16 @@ class Messages extends Translations {
           'unpaid': 'Chưa thanh toán',
           'pay': 'Thanh toán',
           'order': 'Đặt hàng',
+          'orderf&b': 'Đặt món',
           'english': 'Tiếng Anh',
           'vietnamese': 'Tiếng Việt',
           'namefood': 'Tên món',
           'paylater': 'Thanh toán sau',
           'back': 'Quay lại',
-          'close':'Đóng',
-          'addf&b':'Thêm món',
+          'close': 'Đóng',
+          'addf&b': 'Thêm món',
+          'save': 'Lưu',
+          'delete': 'Xoá',
         },
       };
 }

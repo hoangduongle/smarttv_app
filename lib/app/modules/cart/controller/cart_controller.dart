@@ -25,10 +25,14 @@ class CartController extends GetxController {
   }
 
   void removeSerivce(ServiceContent serviceContent) {
-    if (_service.containsKey(serviceContent) && _service[serviceContent] == 1) {
-      _service.removeWhere((key, value) => key == serviceContent);
+    _service.remove(serviceContent);
+  }
+
+  void updateService(ServiceContent serviceContent, int quantity) {
+    if (quantity > 0) {
+      _service[serviceContent] = quantity;
     } else {
-      _service[serContent] -= 1;
+      removeSerivce(serviceContent);
     }
   }
 
