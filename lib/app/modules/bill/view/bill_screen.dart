@@ -162,7 +162,7 @@ class BillScreen extends GetView<BillController> {
                         Expanded(
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text('999.999.999 VND',
+                            child: Text('0 VND',
                                 style: AppStyles.h4.copyWith(
                                     fontSize: 20.sp,
                                     color: AppColors.white,

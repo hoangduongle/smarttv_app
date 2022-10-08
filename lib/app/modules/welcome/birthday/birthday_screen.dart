@@ -77,7 +77,6 @@ class _BirthdayState extends State<Birthday> {
         audioplayed = true;
       });
     } else {
-      
       debugPrint("Error while playing audio.");
     }
   }
@@ -99,6 +98,7 @@ class _BirthdayState extends State<Birthday> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
+                    //(size.height * 3 / 5).h,
                     height: (size.height * 3 / 5).h,
                     width: (size.width * 2 / 3).w,
                     decoration: BoxDecoration(
@@ -112,10 +112,11 @@ class _BirthdayState extends State<Birthday> {
                               vertical: 12.0.h),
                           child: Text(
                             AppConstants.birthday,
+                            textAlign: TextAlign.center,
                             style: AppStyles.h1.copyWith(
                                 color: AppColors.black,
                                 fontWeight: FontWeight.bold,
-                                fontSize: (size.width * 1 / 21).sp),
+                                fontSize: (size.width * 1 / 30).sp),
                           ),
                         ),
                         Container(
@@ -123,7 +124,7 @@ class _BirthdayState extends State<Birthday> {
                             vertical: 20.0.h,
                           ),
                           child: Text(
-                            'Anh Sơn 💛',
+                            '@cus_name',
                             style: AppStyles.h4.copyWith(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -154,7 +155,6 @@ class _BirthdayState extends State<Birthday> {
                                   //seek successful
                                   currentpos = seekval;
                                 } else {
-                                  
                                   debugPrint("Seek unsuccessful.");
                                 }
                               },
@@ -177,7 +177,6 @@ class _BirthdayState extends State<Birthday> {
                                         audioplayed = true;
                                       });
                                     } else {
-                                      
                                       debugPrint("Error while playing audio.");
                                     }
                                   } else if (audioplayed && !isplaying) {
@@ -189,7 +188,6 @@ class _BirthdayState extends State<Birthday> {
                                         audioplayed = true;
                                       });
                                     } else {
-                                      
                                       debugPrint("Error on resume audio.");
                                     }
                                   } else {
@@ -200,7 +198,6 @@ class _BirthdayState extends State<Birthday> {
                                         isplaying = false;
                                       });
                                     } else {
-                                      
                                       debugPrint("Error on pause audio.");
                                     }
                                   }

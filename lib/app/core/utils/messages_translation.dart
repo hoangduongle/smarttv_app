@@ -51,7 +51,7 @@ class Messages extends Translations {
           'services': 'Dịch vụ',
           'cart': 'Giỏ hàng',
           'event': 'Sự kiện',
-          'local': 'Địa điểm',
+          'local': 'Địa điểm giải trí',
           'bill': 'Hoá đơn',
           'exit': 'Thoát ứng dụng',
           'welcome': 'Hân hạnh được phục phụ quý khách',

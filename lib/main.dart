@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     String initiaRoute = Routes.MAIN;
 
-    // bool firstCheckin = true;
-    // bool birthday = false;
+    bool firstCheckin = true;
+    bool birthday = true;
     // if (firstCheckin) {
     //   initiaRoute = AppPages.INITIAL;
     // }

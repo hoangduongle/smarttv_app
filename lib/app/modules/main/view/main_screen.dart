@@ -19,6 +19,8 @@ import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smarttv_app/app/widget/loading.dart';
+import 'package:smarttv_app/app/widget/thankforusing.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -32,6 +34,7 @@ class _MainScreenState extends State<MainScreen> {
   // MainController maController = Get.find();
   NavigatorController naController =
       Get.find(tag: (NavigatorController).toString());
+
   @override
   void initState() {
     super.initState();
@@ -51,6 +54,14 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLoading = true;
+    setState(() {
+      Future.delayed(
+        Duration(milliseconds: 1000),
+        () => isLoading = false,
+      );
+    });
+
     Size size = MediaQuery.of(context).size;
     CartController Cacontroller = Get.find();
     return WillPopScope(onWillPop: () async {
@@ -81,7 +92,8 @@ class _MainScreenState extends State<MainScreen> {
                     focusElevation: 2,
                     focusColor: AppColors.orangeColor,
                     onPressed: () {
-                      NotificationScreen().openDialog(context);
+                      ThankCustomer().showThanksDialog(context);
+                      // NotificationScreen().openDialog(context);
                       setState(() {
                         debugPrint("Check Notification!!");
                       });
