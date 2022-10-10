@@ -42,7 +42,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SERVICE_COMPONENT,
-      page: () => ListSerivceScreen(),
+      page: () => ListServiceScreen(),
       binding: ListServiceBinding(),
       transition: Transition.noTransition,
     ),

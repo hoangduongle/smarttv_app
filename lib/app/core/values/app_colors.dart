@@ -22,4 +22,5 @@ class AppColors {
   static const Color title = Color.fromARGB(255, 173, 133, 75);
   static const Color black = Colors.black;
   static const Color greenFocus = Color(0xFF46EE46);
+  static const Color transparent = Colors.transparent;
 }

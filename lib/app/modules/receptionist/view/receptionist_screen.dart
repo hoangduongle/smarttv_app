@@ -27,8 +27,8 @@ class ReceptionistScreen extends GetView<ReceptionistController> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
           child: SizedBox(
-            width: 700.w,
-            height: 360.h,
+            width: 400.w,
+            height: 250.h,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -36,7 +36,7 @@ class ReceptionistScreen extends GetView<ReceptionistController> {
                   padding: EdgeInsets.only(top: 30.h),
                   width: 800.w,
                   child: Text(
-                    "Lễ tân đang xử lý",
+                    "Đã thông tin đến lễ tân",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 30.sp,
@@ -44,38 +44,32 @@ class ReceptionistScreen extends GetView<ReceptionistController> {
                         color: AppColors.title),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 80.w),
-                  child: InkWell(
-                    focusColor: AppColors.title,
-                    borderRadius: BorderRadius.circular(15.r),
-                    onTap: () {
-                      debugPrint("Payment Method: MoMo");
-                    },
-                    child: Lottie.asset("assets/lotties/loading.json",
-                        height: 200, addRepaintBoundary: false),
+                Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h),
+                  child: Text(
+                    "Cảm ơn bạn đã chọn khách sạn của chúng tôi 💛",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.white),
                   ),
                 ),
-                const Divider(
-                  indent: 150,
-                  endIndent: 150,
-                  thickness: .5,
-                  color: AppColors.white,
-                ),
                 SizedBox(
-                  height: 15.h,
+                  height: 30.h,
                 ),
                 SizedBox(
                   height: 35.h,
                   child: FloatingActionButton.extended(
                     heroTag: "btn2",
                     label: Text(
-                      "back".tr,
+                      "close".tr,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, color: AppColors.black),
                     ),
                     icon: Icon(
-                      Icons.arrow_back,
+                      Icons.close,
                       size: 25.r,
                       color: AppColors.black,
                     ),

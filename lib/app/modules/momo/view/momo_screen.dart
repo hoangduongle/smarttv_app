@@ -27,7 +27,7 @@ class MomoScreen extends GetView<MomoController> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
           child: SizedBox(
-            width: 700.w,
+            width: 380.w,
             height: 360.h,
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -52,12 +52,6 @@ class MomoScreen extends GetView<MomoController> {
                     version: QrVersions.auto,
                     size: 200.0,
                   ),
-                ),
-                const Divider(
-                  indent: 150,
-                  endIndent: 150,
-                  thickness: .5,
-                  color: AppColors.white,
                 ),
                 SizedBox(
                   height: 30.h,

@@ -80,6 +80,7 @@ class Messages extends Translations {
           'addf&b': 'Thêm món',
           'save': 'Lưu',
           'delete': 'Xoá',
+          'f&b': 'Thực đơn',
         },
       };
 }

@@ -50,10 +50,12 @@ class BillDialog extends StatelessWidget {
                   color: AppColors.white,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 80.w),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 80.w, vertical: 10.h),
                   child: Row(
                     children: [
                       InkWell(
+                        autofocus: true,
                         focusColor: AppColors.title,
                         borderRadius: BorderRadius.circular(15.r),
                         onTap: () {
@@ -74,7 +76,7 @@ class BillDialog extends StatelessWidget {
                           debugPrint("Payment Method: MoMo");
                         },
                         child: SvgPicture.asset("assets/svg/momo.svg",
-                            height: 150),
+                            color: AppColors.navigabackground, height: 150),
                       ),
                       SizedBox(
                         width: 40.h,
@@ -88,8 +90,17 @@ class BillDialog extends StatelessWidget {
                           const ReceptionistScreen()
                               .receptionistDialog(context);
                         },
-                        child: SvgPicture.asset("assets/svg/momo.svg",
-                            height: 150),
+                        child: Container(
+                          padding: EdgeInsets.all(2.r),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 4.w, vertical: 4.h),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0.r),
+                              color: AppColors.navigabackground),
+                          child: SvgPicture.asset("assets/svg/receptionist.svg",
+                              color: AppColors.white.withOpacity(.8),
+                              height: 140),
+                        ),
                       ),
                     ],
                   ),
@@ -110,14 +121,14 @@ class BillDialog extends StatelessWidget {
                         width: 135.h,
                       ),
                       Text(
-                        "Momo",
+                        "Banking",
                         style: TextStyle(
                             color: AppColors.title,
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        width: 135.h,
+                        width: 125.h,
                       ),
                       Text(
                         "Lễ tân",
@@ -130,7 +141,7 @@ class BillDialog extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 15.h,
+                  height: 05.h,
                 ),
                 SizedBox(
                   height: 35.h,
