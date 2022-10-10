@@ -13,4 +13,9 @@ class BillContent {
       this.updateDate,
       this.createBy,
       this.lastModifyBy});
+
+  @override
+  String toString() {
+    return 'BillContent(id: $id, totalAmount: $totalAmount, createDate: $createDate, updateDate: $updateDate, createBy: $createBy, lastModifyBy: $lastModifyBy)';
+  }
 }

@@ -1,10 +1,10 @@
 class MessageContent {
   String? id;
-  String? roomId;
+  String? bookingId;
   String? content;
   MessageContent({
     this.id,
-    this.roomId,
+    this.bookingId,
     this.content,
   });
 }

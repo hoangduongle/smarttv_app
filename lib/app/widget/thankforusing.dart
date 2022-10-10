@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class ThankCustomer extends StatelessWidget {
@@ -18,8 +16,7 @@ class ThankCustomer extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        Size size = MediaQuery.of(context).size;
-        final String assetName = 'assets/svgs/thankcustomer.svg';
+        // Size size = MediaQuery.of(context).size;
         return Dialog(
           elevation: 5,
           backgroundColor: AppColors.navigabackground,
@@ -39,12 +36,10 @@ class ThankCustomer extends StatelessWidget {
                     SizedBox(
                       height: 15.h,
                     ),
-                    SvgPicture.asset(
-                      color: AppColors.background,
-                      assetName,
-                      height: 300,
-                      fit: BoxFit.fill,
-                    ),
+                    // SvgPicture.asset(
+
+                    //   "assets/svg/thankcustomer.svg",
+                    // ),
                     Container(
                       padding: EdgeInsets.only(top: 20.h),
                       width: 800.w,

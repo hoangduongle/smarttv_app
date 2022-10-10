@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:smarttv_app/app/bindings/initia_bindings.dart';
 import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
@@ -17,7 +18,7 @@ void main() async {
   Intl.defaultLocale = 'vi_VN';
   initializeDateFormatting();
   await ScreenUtil.ensureScreenSize();
-
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -28,8 +29,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     String initiaRoute = Routes.MAIN;
 
-    bool firstCheckin = true;
-    bool birthday = true;
+    // bool firstCheckin = true;
+    // bool birthday = true;
     // if (firstCheckin) {
     //   initiaRoute = AppPages.INITIAL;
     // }

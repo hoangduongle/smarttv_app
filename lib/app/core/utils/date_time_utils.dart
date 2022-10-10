@@ -1,7 +1,21 @@
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
+/*
+yyyy-MM-dd – kk:mm
+var now = new DateTime.now();
+var formatter = new DateFormat('dd-MM-yyyy');
+String formattedDate = formatter.format(now);
+ */
+
 class DateTimeUtils {
+  static String currentDate() {
+    var now = DateTime.now();
+    var formatter = DateFormat('dd-MM-yyyy');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
+
   static String currentTimeAdd({int? second}) {
     initializeDateFormatting();
     var today = DateTime.now();

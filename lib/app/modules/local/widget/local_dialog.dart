@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
@@ -17,7 +15,7 @@ class LocalDialog extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        Size size = MediaQuery.of(context).size;
+        // Size size = MediaQuery.of(context).size;
         return Dialog(
           elevation: 5,
           backgroundColor: AppColors.navigabackground,

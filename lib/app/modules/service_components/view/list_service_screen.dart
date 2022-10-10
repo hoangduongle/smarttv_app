@@ -64,7 +64,7 @@ class ListSerivceScreen extends GetView<ListServiceController> {
                   child: FloatingActionButton.extended(
                     heroTag: "btn2",
                     label: Text(
-                      "Back",
+                      "back".tr,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: AppColors.black),
                     ),

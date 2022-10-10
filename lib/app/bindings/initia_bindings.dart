@@ -7,7 +7,9 @@ import 'package:smarttv_app/app/modules/home/binding/home_binding.dart';
 import 'package:smarttv_app/app/modules/local/binding/local_binding.dart';
 
 import 'package:smarttv_app/app/modules/main/navigation/navigator_binding.dart';
+import 'package:smarttv_app/app/modules/momo/binding/momo_binding.dart';
 import 'package:smarttv_app/app/modules/notification/binding/notification_binding.dart';
+import 'package:smarttv_app/app/modules/receptionist/binding/receptionist_binding.dart';
 import 'package:smarttv_app/app/modules/service/binding/service_binding.dart';
 import 'package:smarttv_app/app/modules/service_components/binding/list_service_binding.dart';
 
@@ -24,5 +26,7 @@ class InitiaBinding implements Bindings {
     EventBinding().dependencies();
     LocalBinding().dependencies();
     BillBinding().dependencies();
+    MomoBinding().dependencies();
+    ReceptionistBinding().dependencies();
   }
 }

@@ -61,4 +61,9 @@ class ServiceContent {
     data['external'] = this.external;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'ServiceContent(id: $id, name: $name, picture: $picture, price: $price, description: $description, createDate: $createDate, updateDate: $updateDate, createBy: $createBy, updateBy: $updateBy, serviceCategory: $serviceCategory, external: $external)';
+  }
 }

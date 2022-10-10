@@ -17,7 +17,49 @@ class LocalScreen extends GetView<LocalController> {
         body: Column(
           children: [
             Expanded(
-                child: Column(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 42.h, left: 15.w),
+                    child: Text(
+                      "local".tr,
+                      style: AppStyles.h4.copyWith(
+                          color: AppColors.header,
+                          fontSize: (size.width * 25 / 1000).sp,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Container(
+                      padding: EdgeInsets.all(8.r),
+                      width: 750.w,
+                      height: 80.h,
+                      decoration: BoxDecoration(
+                          color: AppColors.white.withOpacity(0.45),
+                          borderRadius: BorderRadius.circular(12.r)),
+                      child: Text(
+                        "Ngoài những dịch vụ sẵn có, khách sạn còn cung cấp cho quý khách các địa điểm được nhiều khách hàng trước đó trãi nghiệm và đánh giá cao. Từ những địa điểm này mong ràng quý khách có được thời gian trải nghiệm tuyệt với tại khách sạn của chúng tôi.",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(fontSize: 18.sp),
+                      ),
+                    ),
+                  ),
+
+                  ////////////////////
+                ],
+              ),
+            ),
+          ],
+        ));
+  }
+}
+/*
+Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -30,7 +72,7 @@ class LocalScreen extends GetView<LocalController> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox( 
+                SizedBox(
                   height: 8.h,
                 ),
                 Padding(
@@ -52,8 +94,5 @@ class LocalScreen extends GetView<LocalController> {
 
                 ////////////////////
               ],
-            ))
-          ],
-        ));
-  }
-}
+            )
+ */

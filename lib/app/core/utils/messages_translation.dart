@@ -52,6 +52,7 @@ class Messages extends Translations {
           'cart': 'Giỏ hàng',
           'event': 'Sự kiện',
           'local': 'Địa điểm giải trí',
+          'abtraction': 'Địa điểm',
           'bill': 'Hoá đơn',
           'exit': 'Thoát ứng dụng',
           'welcome': 'Hân hạnh được phục phụ quý khách',

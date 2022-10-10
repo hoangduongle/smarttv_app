@@ -15,7 +15,6 @@ abstract class Routes {
   static const EVENT = _Paths.EVENT;
   static const LOCAL = _Paths.LOCAL;
   static const BILL = _Paths.BILL;
-  static const FOLIO = _Paths.FOLIO;
 }
 
 abstract class _Paths {
@@ -31,5 +30,4 @@ abstract class _Paths {
   static const EVENT = '/event';
   static const LOCAL = '/local';
   static const BILL = '/bill';
-  static const FOLIO = '/folio';
 }

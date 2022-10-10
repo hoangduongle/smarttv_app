@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
+import 'package:smarttv_app/app/modules/bill/widget/bill_dialog.dart';
 
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 
@@ -20,6 +21,10 @@ class BillScreen extends GetView<BillController> {
     Size size = MediaQuery.of(context).size;
     return GetBuilder<BillController>(
       builder: (controller) {
+        // if (naController.current_index == 4) {
+
+        // }
+
         return Scaffold(
           body: Container(
             color: AppColors.background,
@@ -109,7 +114,7 @@ class BillScreen extends GetView<BillController> {
                           physics: ScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
-                          itemCount: controller.billDetail.length,
+                          itemCount: 0,
                           separatorBuilder: (context, index) => SizedBox(
                                 height: 25.h,
                               ),
@@ -162,7 +167,7 @@ class BillScreen extends GetView<BillController> {
                         Expanded(
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text('0 VND',
+                            child: Text('0 VNĐ',
                                 style: AppStyles.h4.copyWith(
                                     fontSize: 20.sp,
                                     color: AppColors.white,
@@ -185,7 +190,7 @@ class BillScreen extends GetView<BillController> {
                         child: InkWell(
                           focusColor: AppColors.orangeColor,
                           onTap: () {
-                            debugPrint('pay bill');
+                            BillDialog().showBillDialog(context);
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

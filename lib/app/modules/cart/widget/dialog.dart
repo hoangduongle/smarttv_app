@@ -109,7 +109,7 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
                     color: AppColors.focus,
                     splashRadius: 12,
                     onPressed: () {
-                      controller.increment();
+                      if (controller.count < 99) controller.increment();
                     },
                     icon: Icon(Icons.add_circle),
                     focusColor: AppColors.orangeColor)

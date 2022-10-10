@@ -17,4 +17,9 @@ class BillDetailContent {
       this.price,
       this.amount,
       this.status});
+
+  @override
+  String toString() {
+    return 'BillDetailContent(billId: $billId, serviceContent: $serviceContent, billDate: $billDate, quantity: $quantity, price: $price, amount: $amount, status: $status)';
+  }
 }

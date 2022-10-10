@@ -1,10 +1,10 @@
 class AlarmContent {
   String? id;
-  String? roomId;
+  String? bookingId;
   String? dateTime;
   AlarmContent({
     this.id,
-    this.roomId,
+    this.bookingId,
     this.dateTime,
   });
 }

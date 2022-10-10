@@ -40,23 +40,9 @@ class AppPages {
       page: () => Birthday(),
       transition: Transition.noTransition,
     ),
-    // GetPage(
-    //   name: _Paths.HOME,
-    //   page: () => HomePage(),
-    //   binding: HomeBinding(),
-    //   transition: Transition.noTransition,
-    // ),
-    // GetPage(
-    //   name: _Paths.SERVICE,
-    //   page: () => ServiceScreen(),
-    //   binding: ServiceBinding(),
-    //   transition: Transition.noTransition,
-    // ),
     GetPage(
       name: _Paths.SERVICE_COMPONENT,
-      page: () => ListSerivceScreen(
-          // cateId: Get.parameters['cateId'].toString(),
-          ),
+      page: () => ListSerivceScreen(),
       binding: ListServiceBinding(),
       transition: Transition.noTransition,
     ),

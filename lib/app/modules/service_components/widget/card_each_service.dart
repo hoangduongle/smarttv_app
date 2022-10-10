@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
+import 'package:smarttv_app/app/core/utils/number_utils.dart';
 
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
@@ -85,7 +86,9 @@ class CardEachService extends StatelessWidget {
                   SizedBox(
                     height: 4,
                   ),
-                  Text("${serviceContent.price} VND", //<------ set controller
+                  Text(
+                      NumberUtils.vnd(
+                          serviceContent.price), //<------ set controller
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,

@@ -13,14 +13,13 @@ import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/widget/widget_navigationslider.dart';
 import 'package:smarttv_app/app/modules/notification/view/notification_screen.dart';
+
 import 'package:smarttv_app/app/modules/service/view/service_screen.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smarttv_app/app/widget/loading.dart';
-import 'package:smarttv_app/app/widget/thankforusing.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -92,8 +91,7 @@ class _MainScreenState extends State<MainScreen> {
                     focusElevation: 2,
                     focusColor: AppColors.orangeColor,
                     onPressed: () {
-                      ThankCustomer().showThanksDialog(context);
-                      // NotificationScreen().openDialog(context);
+                      NotificationScreen().openDialog(context);
                       setState(() {
                         debugPrint("Check Notification!!");
                       });

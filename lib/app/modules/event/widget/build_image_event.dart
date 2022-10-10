@@ -57,7 +57,7 @@ Widget buildImageEvent(Size size, int index, BuildContext context) {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Hoi cho dia phuong",
+                                  "Hội chợ địa phương",
                                   style: AppStyles.h4.copyWith(
                                       color: AppColors.white,
                                       fontSize: (size.height * 4 / 100).sp,
@@ -75,7 +75,7 @@ Widget buildImageEvent(Size size, int index, BuildContext context) {
                         Padding(
                           padding: EdgeInsets.fromLTRB(20.w, 0.h, 10.w, 10.h),
                           child: Text(
-                            'Day la noi giao luu bay ban cac mat hang cua nhung nguoi dan dia phuong va la mot dia diem tham quan va mua sam nhung mon qua luu niem',
+                            'Đây là nơi giao lưu bày bán các mặt hàng của những người dân địa phương và là một địa điểm tham quan và mua sắm những món quà lưu niệm.',
                             style: AppStyles.h4.copyWith(
                                 color: AppColors.white,
                                 fontSize: (size.height * 3 / 100).sp),

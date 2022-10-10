@@ -2,12 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
-import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
+import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
-
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/cart/widget/dialog.dart';
@@ -17,7 +15,6 @@ class CartScreen extends GetView<CartController> {
 
   @override
   Widget build(BuildContext context) {
-    BillController billController = Get.find();
     Size size = MediaQuery.of(context).size;
     return Container(
       color: AppColors.background,
@@ -152,7 +149,7 @@ class CartScreen extends GetView<CartController> {
                 child: Align(
                   alignment: Alignment.center,
                   //${controller.total}
-                  child: Obx(() => Text('${controller.total} VND',
+                  child: Obx(() => Text(NumberUtils.vnd(controller.total),
                       style: AppStyles.h4
                           .copyWith(fontSize: 20.sp, color: AppColors.white))),
                 ),
@@ -178,7 +175,8 @@ class CartScreen extends GetView<CartController> {
                     child: InkWell(
                       focusColor: AppColors.orangeColor,
                       onTap: () {
-                        debugPrint('order');
+                        //addtobill
+                        controller.addtoBill();
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -287,7 +285,7 @@ class CartService extends StatelessWidget {
                 SizedBox(
                   width: 92.w,
                   child: Text(
-                    serviceContent.price.toString(),
+                    NumberUtils.noVnd(serviceContent.price),
                     textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
@@ -313,7 +311,7 @@ class CartService extends StatelessWidget {
                 SizedBox(
                   width: 92.w,
                   child: Text(
-                    "${price * quantity}",
+                    NumberUtils.noVnd(price * quantity),
                     textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),

@@ -1,12 +1,12 @@
 class RequestService {
   String? id;
-  String? roomId;
+  String? bookingId;
   String? name;
   String? dateTime;
   bool? status;
   RequestService({
     this.id,
-    this.roomId,
+    this.bookingId,
     this.name,
     this.dateTime,
     this.status,

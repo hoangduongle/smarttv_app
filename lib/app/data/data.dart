@@ -16,7 +16,7 @@ DeviceContent device = DeviceContent(
     serialNo: "12312321312",
     deviceName: "TV",
     brand: "Sony",
-    description: "42inh");
+    description: "43inh");
 
 const List<NavigationContent> listNavigationContent = [
   NavigationContent(
@@ -33,7 +33,7 @@ const List<NavigationContent> listNavigationContent = [
       iconData: FluentIcons.calendar_checkmark_24_regular,
       iconSelectedData: FluentIcons.calendar_checkmark_24_filled),
   NavigationContent(
-      title: 'local',
+      title: 'abtraction',
       iconData: FluentIcons.location_24_regular,
       iconSelectedData: FluentIcons.location_24_filled),
   NavigationContent(
