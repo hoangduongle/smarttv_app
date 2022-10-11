@@ -26,7 +26,7 @@ class EventScreen extends GetView<EventController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding:  EdgeInsets.only(top: 42.h, left: 15.w),
+                    padding: EdgeInsets.only(top: 42.h, left: 15.w),
                     child: Text(
                       'event'.tr,
                       style: AppStyles.h4.copyWith(

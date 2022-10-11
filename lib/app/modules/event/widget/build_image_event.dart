@@ -57,7 +57,7 @@ Widget buildImageEvent(Size size, int index, BuildContext context) {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Hội chợ địa phương",
+                                  "Hội chợ địa phương $index",
                                   style: AppStyles.h4.copyWith(
                                       color: AppColors.white,
                                       fontSize: (size.height * 4 / 100).sp,

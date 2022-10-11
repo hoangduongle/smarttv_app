@@ -55,18 +55,19 @@ class ServiceScreen extends GetView<ServiceController> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20.w, vertical: 10.h),
                                 child: GridView.builder(
-                                  itemCount: controller.serviceCateList.value.length,
+                                  itemCount:
+                                      controller.serviceCateList.value.length,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: naController.select ? 3 : 4,
-                                    crossAxisSpacing: 50.w,
+                                    crossAxisSpacing: 45.w,
                                     mainAxisSpacing: 30.h,
                                   ),
                                   itemBuilder: (context, index) {
                                     return CardCategory(
                                         index: index,
-                                        serviceCategory:
-                                            controller.serviceCateList.value[index]);
+                                        serviceCategory: controller
+                                            .serviceCateList.value[index]);
                                   },
                                 ),
                               ),

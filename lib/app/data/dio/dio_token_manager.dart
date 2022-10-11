@@ -20,6 +20,11 @@ class TokenManager extends Interceptor {
     return _token ?? '';
   }
 
+  bool get hasToken {
+    checkTokenValid();
+    return _token != null && _token.toString().isNotEmpty;
+  }
+
   Future<void> saveToken(String? token) async {
     var prefs = await SharedPreferences.getInstance();
     if (_token != token && token != null) {

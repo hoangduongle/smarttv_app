@@ -45,16 +45,14 @@ class MomoScreen extends GetView<MomoController> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 80.w),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 80.w, vertical: 15.h),
                   child: QrImage(
                     foregroundColor: AppColors.white,
                     data: "https://urlgeni.us/facebook/L7AX",
                     version: QrVersions.auto,
                     size: 200.0,
                   ),
-                ),
-                SizedBox(
-                  height: 30.h,
                 ),
                 SizedBox(
                   height: 35.h,

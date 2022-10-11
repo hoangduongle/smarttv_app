@@ -40,15 +40,15 @@ class CardCategory extends StatelessWidget {
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Card(
-            elevation: 1,
+            elevation: 2,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.r),
+              borderRadius: BorderRadius.circular(10.r),
             ),
             color: AppColors.navigabackground,
             child: InkWell(
               focusColor: AppColors.focus,
               autofocus: index == 0,
-              borderRadius: BorderRadius.circular(15.r),
+              borderRadius: BorderRadius.circular(10.r),
               onTap: () {
                 // controller.serviceComponent(serviceCategory);
                 Get.toNamed('${Routes.SERVICE_COMPONENT}', parameters: {
@@ -58,9 +58,9 @@ class CardCategory extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     color: AppColors.navigabackground),
-                margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
+                margin: EdgeInsets.symmetric(horizontal: 3.w, vertical: 3.h),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Center(
@@ -70,7 +70,7 @@ class CardCategory extends StatelessWidget {
                           padding: EdgeInsets.only(top: 2.h),
                           margin: EdgeInsets.all(10.r),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.r),
+                            borderRadius: BorderRadius.circular(10.r),
                             child: CachedNetworkImage(
                               imageUrl:
                                   "https://images.unsplash.com/photo-1551573355-19727699d60a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
@@ -89,7 +89,7 @@ class CardCategory extends StatelessWidget {
                         Text(
                           serviceCategory.name!.tr, //<------ set controller
                           style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 23.sp,
                               fontWeight: FontWeight.bold,
                               color: AppColors.white),
                         ),

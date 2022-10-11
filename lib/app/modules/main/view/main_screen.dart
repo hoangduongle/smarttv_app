@@ -155,7 +155,7 @@ class _MainScreenState extends State<MainScreen> {
                                   AppConstants.title,
                                   style: AppStyles.h5.copyWith(
                                       color: Colors.white,
-                                      fontSize: (size.width * 21 / 1000).sp,
+                                      fontSize: (size.width * 25 / 1000).sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),

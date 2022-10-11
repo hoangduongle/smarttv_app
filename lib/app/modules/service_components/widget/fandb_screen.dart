@@ -1,26 +1,25 @@
-// ignore_for_file: prefer_const_constructors, must_be_immutable, unused_local_variable
-
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
-
-import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
+import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
+import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/service_components/widget/card_each_service.dart';
 
-class ListServiceScreen extends StatefulWidget {
-  const ListServiceScreen({super.key});
+class FandBScreen extends StatefulWidget {
+  const FandBScreen({super.key});
 
   @override
-  State<ListServiceScreen> createState() => _ListServiceScreenState();
+  State<FandBScreen> createState() => _FandBScreenState();
 }
 
-class _ListServiceScreenState extends State<ListServiceScreen> {
+class _FandBScreenState extends State<FandBScreen> {
   final String cateId = Get.parameters['cateId'] ?? '';
   final String cateName = Get.parameters['cateName'] ?? '';
   int num = 0;
@@ -140,7 +139,7 @@ class _ListServiceScreenState extends State<ListServiceScreen> {
                             ),
                           ),
                           SizedBox(
-                            width: 20.w,
+                            width: 20,
                           ),
                           TextButton(
                             onPressed: () {
@@ -173,7 +172,7 @@ class _ListServiceScreenState extends State<ListServiceScreen> {
                                           color: num == 1
                                               ? AppColors.title
                                               : AppColors.greyColor,
-                                          width: 1.w),
+                                          width: 1.0),
                                     ),
                                   ),
                                 )
@@ -215,7 +214,7 @@ class _ListServiceScreenState extends State<ListServiceScreen> {
                                       ),
                                       ExcludeFocus(
                                         excluding: num == 1 ? false : true,
-                                        child: Text(
+                                        child: const Text(
                                           "bb",
                                           style: TextStyle(
                                               color: AppColors.white,

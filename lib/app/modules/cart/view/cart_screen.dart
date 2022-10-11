@@ -9,6 +9,7 @@ import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/cart/widget/dialog.dart';
+import 'package:smarttv_app/app/widget/thankforusing.dart';
 
 class CartScreen extends GetView<CartController> {
   const CartScreen({super.key});
@@ -177,6 +178,12 @@ class CartScreen extends GetView<CartController> {
                       onTap: () {
                         //addtobill
                         controller.addtoBill();
+
+                        ThankCustomer().showThanksDialog(context);
+                        Future.delayed(
+                          Duration(milliseconds: 2000),
+                          () => Get.back(),
+                        );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

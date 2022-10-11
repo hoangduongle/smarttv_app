@@ -5,6 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:smarttv_app/app/core/model/service_category_content.dart';
+import 'package:smarttv_app/app/modules/home/controller/home_controller.dart';
+import 'package:smarttv_app/app/modules/notification/controller/notification_controller.dart';
+import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
+import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 
 class MainController extends GetxController {
   late Timer _timer;
@@ -15,6 +20,7 @@ class MainController extends GetxController {
   @override
   void onInit() {
     timing();
+    timingDependencies();
     super.onInit();
   }
 
@@ -27,11 +33,28 @@ class MainController extends GetxController {
     );
   }
 
+  void timingDependencies() {
+    _timer = Timer.periodic(
+      const Duration(minutes: 30),
+      (timer) {
+        autoReload();
+        debugPrint("5s");
+      },
+    );
+  }
+
   void updateTime() {
     Intl.defaultLocale = 'vi_VN';
     initializeDateFormatting();
     formattedTime = DateFormat('hh:mm a').format(DateTime.now()).obs;
     update();
+  }
+
+  void autoReload() {
+    debugPrint("Time to refesh fetch Api");
+    // HomeController().fetchOverViews();
+    // ServiceController().fetchServiceCategory();
+    // ListServiceController().fetchServices();
   }
 }
   // var language = "vietnamese".obs;

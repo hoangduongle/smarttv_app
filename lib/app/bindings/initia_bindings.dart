@@ -5,7 +5,6 @@ import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';
 import 'package:smarttv_app/app/modules/event/binding/event_binding.dart';
 import 'package:smarttv_app/app/modules/home/binding/home_binding.dart';
 import 'package:smarttv_app/app/modules/local/binding/local_binding.dart';
-
 import 'package:smarttv_app/app/modules/main/navigation/navigator_binding.dart';
 import 'package:smarttv_app/app/modules/momo/binding/momo_binding.dart';
 import 'package:smarttv_app/app/modules/notification/binding/notification_binding.dart';
@@ -18,6 +17,7 @@ class InitiaBinding implements Bindings {
   void dependencies() {
     RepositoryBindings().dependencies();
     NavigationBinding().dependencies();
+
     NotificationBinding().dependencies();
     HomeBinding().dependencies();
     ServiceBinding().dependencies();

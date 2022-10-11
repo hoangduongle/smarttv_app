@@ -29,10 +29,12 @@ Widget buildNavigationWidget(int index, String title, IconData? icons,
           Container(
             width: 120.w,
             padding: EdgeInsets.symmetric(
-                horizontal: 12.0.w, vertical: (size.height * 0.02).w),
+                horizontal: 12.w, vertical: (size.height * 0.02).w),
             child: Text(
               title.tr,
               style: AppStyles.h5.copyWith(
+                fontWeight:
+                    index == active ? FontWeight.bold : FontWeight.normal,
                 fontSize: (size.width * 1 / 48).sp,
                 color: index == active ? AppColors.focus : Colors.white,
               ),

@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
+import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class ListServiceController extends BaseController {
@@ -11,8 +13,15 @@ class ListServiceController extends BaseController {
 
   @override
   void onInit() {
+    _loadDate();
     fetchServices();
     super.onInit();
+  }
+
+  void _loadDate() {
+    if (!TokenManager.instance.hasToken) {
+      TokenManager.instance.init();
+    }
   }
 
   Future<void> fetchServices() async {
