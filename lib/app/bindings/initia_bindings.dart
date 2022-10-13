@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/bindings/repository_bindings.dart';
+import 'package:smarttv_app/app/modules/alarm/binding/alarm_binding.dart';
 import 'package:smarttv_app/app/modules/bill/binding/bill_binding.dart';
 import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';
 import 'package:smarttv_app/app/modules/event/binding/event_binding.dart';
@@ -15,6 +16,7 @@ import 'package:smarttv_app/app/modules/service_components/binding/list_service_
 class InitiaBinding implements Bindings {
   @override
   void dependencies() {
+    AlarmBinding().dependencies();
     RepositoryBindings().dependencies();
     NavigationBinding().dependencies();
 

@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,13 +9,11 @@ import 'package:smarttv_app/app/bindings/initia_bindings.dart';
 import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/core/utils/messages_translation.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await TokenManager.instance.init();
-  Intl.defaultLocale = 'vi_VN';
-  initializeDateFormatting();
+
   await ScreenUtil.ensureScreenSize();
   await GetStorage.init();
   runApp(const MyApp());
@@ -28,16 +25,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String initiaRoute = Routes.MAIN;
-
-    // bool firstCheckin = true;
-    // bool birthday = true;
-    // if (firstCheckin) {
-    //   initiaRoute = AppPages.INITIAL;
-    // }
-
-    // if (birthday) {
-    //   initiaRoute = Routes.BIRTHDAY;
-    // }
     return ScreenUtilInit(
       designSize: const Size(960, 540),
       minTextAdapt: true,
@@ -56,7 +43,6 @@ class MyApp extends StatelessWidget {
             initialBinding: InitiaBinding(),
             initialRoute: initiaRoute,
             getPages: AppPages.routes,
-            theme: ThemeData(),
           ),
         );
       },

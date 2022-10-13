@@ -21,6 +21,7 @@ class MainController extends GetxController {
   void onInit() {
     timing();
     timingDependencies();
+
     super.onInit();
   }
 
@@ -29,6 +30,7 @@ class MainController extends GetxController {
       const Duration(milliseconds: 500),
       (timer) {
         updateTime();
+
       },
     );
   }
@@ -38,7 +40,6 @@ class MainController extends GetxController {
       const Duration(minutes: 30),
       (timer) {
         autoReload();
-        debugPrint("5s");
       },
     );
   }
@@ -47,6 +48,7 @@ class MainController extends GetxController {
     Intl.defaultLocale = 'vi_VN';
     initializeDateFormatting();
     formattedTime = DateFormat('hh:mm a').format(DateTime.now()).obs;
+
     update();
   }
 

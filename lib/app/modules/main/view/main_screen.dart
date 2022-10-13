@@ -1,9 +1,11 @@
 // ignore_for_file: dead_code, prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, avoid_print, unused_field, unused_local_variable, non_constant_identifier_names
 
 import 'dart:io';
+
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/modules/alarm/view/alarm_screen.dart';
 import 'package:smarttv_app/app/modules/bill/view/bill_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
@@ -51,16 +53,20 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
+  void firedAlarm() {
+    debugPrint("Alarm fired at ${DateTime.now()} - 1");
+  }
+
   @override
   Widget build(BuildContext context) {
+    debugPrint("Main Build");
     bool isLoading = true;
-    setState(() {
-      Future.delayed(
-        Duration(milliseconds: 1000),
-        () => isLoading = false,
-      );
-    });
-
+    // setState(() {
+    //   Future.delayed(
+    //     Duration(milliseconds: 1000),
+    //     () => isLoading = false,
+    //   );
+    // });
     Size size = MediaQuery.of(context).size;
     CartController Cacontroller = Get.find();
     return WillPopScope(onWillPop: () async {
