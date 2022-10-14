@@ -4,13 +4,17 @@
 
 class AppAssets {
   // ignore: prefer_const_declarations
-
-  //png file
   static const String imagePath = 'assets/images/';
+  //png file
   static const String logo = imagePath + 'logo.png';
-  static const String home_master = imagePath + 'home_master.png';
-
+  static const String logoforeground = imagePath + 'logo_foreground.png';
+  static const String promotionWelcome = imagePath + 'promotion.png';
+  static const String localWelcome = imagePath + 'local.png';
   // jpg file
+  static const String home_masterWelcome = imagePath + 'home_master.jpg';
+  static const String homepageWelcome = imagePath + 'homepage.jpg';
+  static const String serviceWelcome = imagePath + 'service.jpg';
+  static const String eventWelcome = imagePath + 'event.jpg';
 
   // jpge file
 

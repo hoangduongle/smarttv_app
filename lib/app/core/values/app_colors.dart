@@ -23,4 +23,6 @@ class AppColors {
   static const Color black = Colors.black;
   static const Color greenFocus = Color(0xFF46EE46);
   static const Color transparent = Colors.transparent;
+  static const Color pink = Color(0xffD82D8B);
+  static const Color color1414 = Color(0xff141414);
 }

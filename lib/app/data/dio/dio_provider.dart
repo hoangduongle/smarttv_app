@@ -3,8 +3,10 @@ import 'package:smarttv_app/app/data/dio/dio_debug.dart';
 import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
 
 class DioProvider {
-  static const String baseUrl = "https://hotel-service-v2.herokuapp.com/api/v1";
-
+  
+  static const String version = "v1";
+  static const String baseUrl =
+      "https://hotel-service-$version.herokuapp.com/api/v1";
   static Dio? _instance;
 
   static final BaseOptions _options = BaseOptions(

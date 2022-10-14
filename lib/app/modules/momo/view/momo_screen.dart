@@ -47,11 +47,50 @@ class MomoScreen extends GetView<MomoController> {
                 Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 80.w, vertical: 15.h),
-                  child: QrImage(
-                    foregroundColor: AppColors.white,
-                    data: "https://urlgeni.us/facebook/L7AX",
-                    version: QrVersions.auto,
-                    size: 200.0,
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.pink.withOpacity(.85),
+                              borderRadius: BorderRadius.circular(15.r)),
+                          height: 200.h,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                height: 120.h,
+                                decoration: BoxDecoration(
+                                    color: AppColors.white,
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(15.r),
+                                        bottomRight: Radius.circular(15.r))),
+                              ),
+                            ],
+                            /*
+                          QrImage(
+                                foregroundColor: AppColors.black,
+                                data: "https://urlgeni.us/facebook/L7AX",
+                                version: QrVersions.auto,
+                                size: 190.0,
+                              ),
+                           */
+                          ),
+                        ),
+                      ),
+                      Align(
+                        child: Padding(
+                          padding: EdgeInsets.all(8.r),
+                          child: QrImage(
+                            backgroundColor: AppColors.white,
+                            foregroundColor: AppColors.black,
+                            data: "https://urlgeni.us/facebook/L7AX",
+                            version: QrVersions.auto,
+                            size: 190.0,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 SizedBox(

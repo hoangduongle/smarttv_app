@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:intl/intl.dart';
 import 'package:smarttv_app/app/bindings/initia_bindings.dart';
 import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
@@ -19,12 +18,53 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        debugPrint("app in resumed");
+        break;
+      case AppLifecycleState.inactive:
+        debugPrint("app in inactive");
+        break;
+      case AppLifecycleState.paused:
+        debugPrint("app in paused");
+        break;
+      case AppLifecycleState.detached:
+        debugPrint("app in detached");
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     String initiaRoute = Routes.MAIN;
+
+    bool welcome = true;
+    if (welcome) {
+      initiaRoute = Routes.WELCOME;
+    }
+
     return ScreenUtilInit(
       designSize: const Size(960, 540),
       minTextAdapt: true,

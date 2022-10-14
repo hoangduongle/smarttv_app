@@ -22,22 +22,23 @@ class EventScreen extends GetView<EventController> {
             Expanded(
                 child: Container(
               color: AppColors.background,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 42.h, left: 15.w),
-                    child: Text(
-                      'event'.tr,
-                      style: AppStyles.h4.copyWith(
-                          color: AppColors.header,
-                          fontSize: (size.width * 25 / 1000).sp,
-                          fontWeight: FontWeight.bold),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top: 42.h, left: 15.w),
+                      child: Text(
+                        'event'.tr,
+                        style: AppStyles.h4.copyWith(
+                            color: AppColors.header,
+                            fontSize: (size.width * 25 / 1000).sp,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 25.h),
-                    child: Center(
+                    Padding(padding: EdgeInsets.only(top: 30.h)),
+                    Center(
                       child: CarouselSlider.builder(
                         itemCount: 3,
                         options: CarouselOptions(
@@ -54,8 +55,8 @@ class EventScreen extends GetView<EventController> {
                         },
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             )),
           ],

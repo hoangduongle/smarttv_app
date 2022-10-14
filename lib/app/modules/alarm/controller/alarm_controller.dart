@@ -22,9 +22,9 @@ class AlarmController extends BaseController {
   void fireAlarm() {
     Intl.defaultLocale = 'vi_VN';
     initializeDateFormatting();
-    formattedTime = DateFormat('hh:mm').format(DateTime.now()).obs;
+    formattedTime = DateFormat('hh:mm a').format(DateTime.now()).obs;
     debugPrint(formattedTime.toString());
-    if (formattedTime.toString() == "08:16") {
+    if (formattedTime.toString() == "08:16 CH") {
       // Get.toNamed(Routes.BIRTHDAY);
     }
   }

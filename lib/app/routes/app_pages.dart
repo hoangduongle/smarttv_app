@@ -13,6 +13,7 @@ import 'package:smarttv_app/app/modules/main/binding/main_binding.dart';
 import 'package:smarttv_app/app/modules/main/view/main_screen.dart';
 import 'package:smarttv_app/app/modules/service_components/binding/list_service_binding.dart';
 import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
+import 'package:smarttv_app/app/modules/welcome/binding/wellcome_binding.dart';
 import 'package:smarttv_app/app/modules/welcome/birthday/birthday_screen.dart';
 import 'package:smarttv_app/app/modules/welcome/view/wellcome_screen.dart';
 
@@ -27,6 +28,7 @@ class AppPages {
     GetPage(
       name: _Paths.WELCOME,
       page: () => WelcomePage(),
+      binding: WellconeBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(

@@ -90,7 +90,7 @@ class _BirthdayState extends State<Birthday> {
             width: size.width.w,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppAssets.home_master),
+                image: AssetImage(AppAssets.home_masterWelcome),
                 fit: BoxFit.cover,
               ),
             ),

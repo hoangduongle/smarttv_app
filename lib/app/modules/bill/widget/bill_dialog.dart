@@ -26,7 +26,7 @@ class BillDialog extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
           child: SizedBox(
-            width: 700.w,
+            width: 500.w,
             height: 360.h,
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -76,38 +76,38 @@ class BillDialog extends StatelessWidget {
                           debugPrint("Payment Method: MoMo");
                         },
                         child: SvgPicture.asset("assets/svg/momo.svg",
-                            color: AppColors.navigabackground, height: 150),
+                            height: 150),
                       ),
-                      SizedBox(
-                        width: 40.h,
-                      ),
-                      InkWell(
-                        borderRadius: BorderRadius.circular(15.r),
-                        focusColor: AppColors.title,
-                        onTap: () {
-                          debugPrint("Payment Method: Lễ Tân");
-                          Get.back();
-                          const ReceptionistScreen()
-                              .receptionistDialog(context);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(2.r),
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 4.w, vertical: 4.h),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.0.r),
-                              color: AppColors.navigabackground),
-                          child: SvgPicture.asset("assets/svg/receptionist.svg",
-                              color: AppColors.white.withOpacity(.8),
-                              height: 140),
-                        ),
-                      ),
+                      // SizedBox(
+                      //   width: 40.h,
+                      // ),
+                      // InkWell(
+                      //   borderRadius: BorderRadius.circular(15.r),
+                      //   focusColor: AppColors.title,
+                      //   onTap: () {
+                      //     debugPrint("Payment Method: Lễ Tân");
+                      //     Get.back();
+                      //     const ReceptionistScreen()
+                      //         .receptionistDialog(context);
+                      //   },
+                      //   child: Container(
+                      //     padding: EdgeInsets.all(2.r),
+                      //     margin: EdgeInsets.symmetric(
+                      //         horizontal: 4.w, vertical: 4.h),
+                      //     decoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.circular(15.0.r),
+                      //         color: AppColors.navigabackground),
+                      //     child: SvgPicture.asset("assets/svg/receptionist.svg",
+                      //         color: AppColors.white.withOpacity(.8),
+                      //         height: 140),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 125.w, vertical: 10.h),
+                      EdgeInsets.symmetric(horizontal: 121.w, vertical: 10.h),
                   child: Row(
                     children: [
                       Text(
@@ -118,7 +118,7 @@ class BillDialog extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        width: 135.h,
+                        width: 125.h,
                       ),
                       Text(
                         "Banking",
@@ -127,16 +127,16 @@ class BillDialog extends StatelessWidget {
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        width: 125.h,
-                      ),
-                      Text(
-                        "Lễ tân",
-                        style: TextStyle(
-                            color: AppColors.title,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      // SizedBox(
+                      //   width: 125.h,
+                      // ),
+                      // Text(
+                      //   "Lễ tân",
+                      //   style: TextStyle(
+                      //       color: AppColors.title,
+                      //       fontSize: 20.sp,
+                      //       fontWeight: FontWeight.bold),
+                      // ),
                     ],
                   ),
                 ),

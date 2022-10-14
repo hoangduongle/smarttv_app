@@ -4,8 +4,8 @@ import 'dart:io';
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/modules/alarm/view/alarm_screen.dart';
 import 'package:smarttv_app/app/modules/bill/view/bill_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
@@ -14,8 +14,6 @@ import 'package:smarttv_app/app/modules/local/view/local_screen.dart';
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/widget/widget_navigationslider.dart';
-import 'package:smarttv_app/app/modules/notification/view/notification_screen.dart';
-
 import 'package:smarttv_app/app/modules/service/view/service_screen.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
@@ -59,7 +57,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("Main Build");
     bool isLoading = true;
     // setState(() {
     //   Future.delayed(
@@ -96,8 +93,14 @@ class _MainScreenState extends State<MainScreen> {
                     elevation: 1,
                     focusElevation: 2,
                     focusColor: AppColors.orangeColor,
-                    onPressed: () {
-                      NotificationScreen().openDialog(context);
+                    onPressed: () async {
+                      final TimeOfDay? newTime = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay(hour: 7, minute: 15),
+                        initialEntryMode: TimePickerEntryMode.inputOnly,
+                      );
+
+                      // NotificationScreen().openDialog(context);
                       setState(() {
                         debugPrint("Check Notification!!");
                       });
@@ -242,7 +245,7 @@ class _MainScreenState extends State<MainScreen> {
                               focusColor: AppColors.greyColor,
                               onTap: () {
                                 setState(() {
-                                  exit(0);
+                                  SystemNavigator.pop();
                                 });
                               },
                               child: SingleChildScrollView(

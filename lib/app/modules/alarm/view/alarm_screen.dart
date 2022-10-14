@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:smarttv_app/app/core/values/app_colors.dart';
-
 import 'package:smarttv_app/app/modules/alarm/controller/alarm_controller.dart';
 
 class AlarmScreen extends StatefulWidget {
