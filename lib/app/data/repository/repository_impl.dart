@@ -87,21 +87,20 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<List<AbtractionContent>> getListAbtraction() {
-    var endpoint = "${DioProvider.baseUrl}/";
+    var endpoint = "${DioProvider.baseUrl}/abstractions";
     var dioCall = dioTokenClient.get(endpoint);
-    // try {
-    //   return callApi(dioCall).then((response) {
-    //     var result = <AbtractionContent>[];
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <AbtractionContent>[];
 
-    //     for (var element in (response.data as List<dynamic>)) {
-    //       result.add(AbtractionContent.fromJson(element));
-    //     }
-    //     return result;
-    //   });
-    // } catch (e) {
-    //   rethrow;
-    // }
-    throw UnimplementedError();
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(AbtractionContent.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
@@ -197,3 +196,30 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
   }
 }
+
+/*
+  @override
+  Future<int> busPayment({
+    required String customerId,
+    required String uid,
+    required LatLng location,
+  }) {
+    var endpoint = "${DioProvider.baseUrl}/bus-trip-pay-mobile";
+    var data = {
+      "customerId": customerId,
+      "uid": uid,
+      "latitude": location.latitude,
+      "longitude": location.longitude,
+    };
+    var formData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: formData);
+
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+*/
