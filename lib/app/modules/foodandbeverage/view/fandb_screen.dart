@@ -220,7 +220,7 @@ class _FandBScreenState extends State<FandBScreen> {
                               ),
                               ExcludeFocus(
                                 excluding:
-                                    controller.numberSelected.toInt() == 0
+                                    controller.numberSelected.toInt() == 1
                                         ? false
                                         : true,
                                 child: GridView.builder(
