@@ -1,17 +1,12 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable, must_be_immutable
-
-import 'dart:math';
-
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable, must_be_immutable, deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
-
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
 import 'package:smarttv_app/app/modules/bill/widget/bill_dialog.dart';
-
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 
 class BillScreen extends GetView<BillController> {

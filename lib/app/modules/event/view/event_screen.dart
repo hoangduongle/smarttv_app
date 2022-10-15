@@ -32,13 +32,11 @@ class EventScreen extends GetView<EventController> {
                   ],
                 ),
               ),
-              Container(
-                child: Text("Sắp diễn ra",
-                    style: AppStyles.h4.copyWith(
-                        color: AppColors.header,
-                        fontSize: (size.width * 25 / 1000).sp,
-                        fontWeight: FontWeight.bold)),
-              ),
+              Text("Sắp diễn ra",
+                  style: AppStyles.h4.copyWith(
+                      color: AppColors.header,
+                      fontSize: (size.width * 25 / 1000).sp,
+                      fontWeight: FontWeight.bold)),
               Center(
                 child: CarouselSlider.builder(
                   itemCount: 3,
@@ -56,13 +54,11 @@ class EventScreen extends GetView<EventController> {
                   },
                 ),
               ),
-              Container(
-                child: Text("Đang diễn ra",
-                    style: AppStyles.h4.copyWith(
-                        color: AppColors.header,
-                        fontSize: (size.width * 25 / 1000).sp,
-                        fontWeight: FontWeight.bold)),
-              ),
+              Text("Đang diễn ra",
+                  style: AppStyles.h4.copyWith(
+                      color: AppColors.header,
+                      fontSize: (size.width * 25 / 1000).sp,
+                      fontWeight: FontWeight.bold)),
             ],
           )),
     );

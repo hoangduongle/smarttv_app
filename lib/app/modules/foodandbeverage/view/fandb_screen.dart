@@ -20,7 +20,7 @@ class _FandBScreenState extends State<FandBScreen> {
   // int num = 0;
   @override
   Widget build(BuildContext context) {
-    Size size = Size(960, 540);
+    Size size = const Size(960, 540);
     FoodandBeverageController controller = Get.find();
     CartController caController = Get.find();
     return Obx(

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
@@ -5,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
-import 'package:smarttv_app/app/routes/app_pages.dart';
 
 class AlarmController extends BaseController {
   late Timer _timer;
@@ -13,11 +14,11 @@ class AlarmController extends BaseController {
   int alarmId = 1;
   var formattedTime = "".obs;
 
-  @override
-  void onInit() {
-    // timing();
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   // timing();
+  //   super.onInit();
+  // }
 
   void fireAlarm() {
     Intl.defaultLocale = 'vi_VN';

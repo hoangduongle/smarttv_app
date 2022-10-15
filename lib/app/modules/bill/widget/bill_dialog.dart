@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/momo/view/momo_screen.dart';
-import 'package:smarttv_app/app/modules/receptionist/view/receptionist_screen.dart';
 
 class BillDialog extends StatelessWidget {
   const BillDialog({super.key});

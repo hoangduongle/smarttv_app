@@ -1,10 +1,10 @@
+// ignore_for_file: unused_field
+
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:weather/weather.dart';
 
 class WellcomeController extends GetxController {
@@ -17,7 +17,6 @@ class WellcomeController extends GetxController {
   @override
   void onInit() {
     timing();
-    // getWeather();
     super.onInit();
   }
 
