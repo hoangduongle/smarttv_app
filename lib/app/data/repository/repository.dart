@@ -12,7 +12,7 @@ abstract class Repository {
   Future<List<ServiceCategoryContent>> getListServiceCate();
 
   Future<List<ServiceContent>> getListServiceContentByCateId(int cateId);
-  Future<ServiceContent> getServiceContentById();
+  Future<ServiceContent> getServiceContentById(int serviceId);
 
   Future<List<EventContent>> getListEvent();
   Future<List<AbtractionContent>> getListAbtraction();

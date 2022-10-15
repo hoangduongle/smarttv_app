@@ -54,8 +54,17 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<ServiceContent> getServiceContentById() {
-    throw UnimplementedError();
+  Future<ServiceContent> getServiceContentById(int serviceId) {
+    var endpoint = "${DioProvider.baseUrl}/service?cate_id=$serviceId";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <ServiceContent>[];
+        return ServiceContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
@@ -111,7 +120,6 @@ class RepositoryImpl extends BaseRepository implements Repository {
     } catch (e) {
       rethrow;
     }
-
   }
 
   @override
