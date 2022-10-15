@@ -1,14 +1,47 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/model/bill_content.dart';
+import 'package:smarttv_app/app/core/model/bill_detail_content.dart';
+import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class BillController extends BaseController {
-  var x = 0;
+  final Repository _repository = Get.find(tag: (Repository).toString());
 
-  var cart = GetStorage();
+  Rx<List<BillDetailContent>> billDetails = Rx<List<BillDetailContent>>([]);
+  Rx<BillContent?> bill = Rx<BillContent?>(null);
+  @override
+  void onInit() {
+    fetchBill(1);
+    fetchBillDetails(1);
+    super.onInit();
+  }
 
-  void read() {
-    var listCart = cart.read("cart");
-    debugPrint(listCart.toString());
+  Future<void> fetchBill(int billId) async {
+    var overview = _repository.getBillById(billId);
+    await callDataService(
+      overview,
+      onSuccess: (BillContent response) {
+        bill(response);
+      },
+      onError: ((dioError) {}),
+    );
+  }
+
+  Future<void> fetchBillDetails(int billId) async {
+    var overview = _repository.getBilldetailByBillId(billId);
+    List<BillDetailContent> result = [];
+
+    await callDataService(
+      overview,
+      onSuccess: (List<BillDetailContent> response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+    billDetails(result);
   }
 }

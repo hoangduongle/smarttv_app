@@ -2,7 +2,7 @@
 
 class BillContent {
   int? id;
-  int? totalAmount;
+  double? totalAmount;
   String? createDate;
   String? updateDate;
   String? createBy;

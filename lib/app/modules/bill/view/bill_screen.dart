@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable, must_be_immutable
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/core/utils/number_utils.dart';
 
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
@@ -19,201 +22,197 @@ class BillScreen extends GetView<BillController> {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
-    return GetBuilder<BillController>(
-      builder: (controller) {
-        // if (naController.current_index == 4) {
-
-        // }
-
-        return Scaffold(
-          body: Container(
-            color: AppColors.background,
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 42.h, left: 15.w),
-                  child: Row(
-                    children: [
-                      Text("Mã Hoá Đơn: ",
-                          style: AppStyles.h4.copyWith(
-                              color: AppColors.header,
-                              fontSize: (size.width * 25 / 1000).sp,
-                              fontWeight: FontWeight.bold)),
-                      Text("#121000",
-                          style: AppStyles.h4.copyWith(
-                              color: AppColors.header,
-                              fontSize: (size.width * 20 / 1000).sp))
-                    ],
+    return Scaffold(
+      body: controller.bill.value.isNull
+          ? Container()
+          : Container(
+              color: AppColors.background,
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 42.h, left: 15.w),
+                    child: Row(
+                      children: [
+                        Text("Mã Hoá Đơn: ",
+                            style: AppStyles.h4.copyWith(
+                                color: AppColors.header,
+                                fontSize: (size.width * 25 / 1000).sp,
+                                fontWeight: FontWeight.bold)),
+                        Text("#${controller.bill.value?.id}",
+                            style: AppStyles.h4.copyWith(
+                                color: AppColors.header,
+                                fontSize: (size.width * 20 / 1000).sp))
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          'service'.tr,
-                          style: AppStyles.h4.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.sp,
-                            color: AppColors.title,
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'service'.tr,
+                            style: AppStyles.h4.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.sp,
+                              color: AppColors.title,
+                            ),
                           ),
-                        ),
-                        Text('quantity'.tr,
-                            style: AppStyles.h4.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.sp,
-                              color: AppColors.title,
-                            )),
-                        Text('unitprice'.tr,
-                            style: AppStyles.h4.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.sp,
-                              color: AppColors.title,
-                            )),
-                        Text('totalamout'.tr,
-                            style: AppStyles.h4.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.sp,
-                              color: AppColors.title,
-                            )),
-                        Text('Ngày/Giờ',
-                            style: AppStyles.h4.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.sp,
-                              color: AppColors.title,
-                            )),
-                        naController.select
-                            ? Container()
-                            : Text('status'.tr,
-                                style: AppStyles.h4.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.sp,
-                                  color: AppColors.title,
-                                )),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 25.w,
-                      ),
-                      child: Divider(
-                        color: AppColors.white,
-                        height: 20.h,
-                        thickness: 1,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 870.w,
-                      height: 185.h,
-                      child: ListView.separated(
-                          physics: ScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: 0,
-                          separatorBuilder: (context, index) => SizedBox(
-                                height: 25.h,
-                              ),
-                          itemBuilder: (context, index) => ListBill(
-                                billController: controller,
-                                index: index,
+                          Text('quantity'.tr,
+                              style: AppStyles.h4.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.sp,
+                                color: AppColors.title,
                               )),
-                    ),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25.w),
-                      child: Divider(
-                        color: AppColors.white,
-                        height: 20.h,
-                        thickness: 1,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Container(),
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text('totalcost'.tr,
-                                style: AppStyles.h4.copyWith(
-                                    fontSize: 20.sp,
-                                    color: AppColors.title,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Container(),
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text('0 VNĐ',
-                                style: AppStyles.h4.copyWith(
-                                    fontSize: 20.sp,
-                                    color: AppColors.white,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10.h),
-                    ),
-                    SizedBox(
-                      width: 170.w,
-                      height: 50.h,
-                      child: Material(
-                        color: AppColors.focus,
-                        borderRadius: BorderRadius.circular(10.r),
-                        elevation: 0,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        child: InkWell(
-                          focusColor: AppColors.orangeColor,
-                          onTap: () {
-                            BillDialog().showBillDialog(context);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'pay'.tr,
-                                style: TextStyle(
+                          Text('unitprice'.tr,
+                              style: AppStyles.h4.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.sp,
+                                color: AppColors.title,
+                              )),
+                          Text('totalamout'.tr,
+                              style: AppStyles.h4.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.sp,
+                                color: AppColors.title,
+                              )),
+                          Text('Ngày/Giờ',
+                              style: AppStyles.h4.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.sp,
+                                color: AppColors.title,
+                              )),
+                          naController.select
+                              ? Container()
+                              : Text('status'.tr,
+                                  style: AppStyles.h4.copyWith(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.sp,
-                                    color: AppColors.black),
-                              ),
-                            ],
+                                    color: AppColors.title,
+                                  )),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 25.w,
+                        ),
+                        child: Divider(
+                          color: AppColors.white,
+                          height: 20.h,
+                          thickness: 1,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 870.w,
+                        height: 185.h,
+                        child: ListView.separated(
+                            physics: ScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: 1,
+                            separatorBuilder: (context, index) => SizedBox(
+                                  height: 25.h,
+                                ),
+                            itemBuilder: (context, index) => ListBill(
+                                  billController: controller,
+                                  index: index,
+                                )),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25.w),
+                        child: Divider(
+                          color: AppColors.white,
+                          height: 20.h,
+                          thickness: 1,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Container(),
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text('totalcost'.tr,
+                                  style: AppStyles.h4.copyWith(
+                                      fontSize: 20.sp,
+                                      color: AppColors.title,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Container(),
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                  NumberUtils.vnd(
+                                      controller.bill.value!.totalAmount),
+                                  style: AppStyles.h4.copyWith(
+                                      fontSize: 20.sp,
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 10.h),
+                      ),
+                      SizedBox(
+                        width: 170.w,
+                        height: 50.h,
+                        child: Material(
+                          color: AppColors.focus,
+                          borderRadius: BorderRadius.circular(10.r),
+                          elevation: 0,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: InkWell(
+                            focusColor: AppColors.orangeColor,
+                            onTap: () {
+                              BillDialog().showBillDialog(context);
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'pay'.tr,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.sp,
+                                      color: AppColors.black),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      },
     );
   }
 }
@@ -230,7 +229,7 @@ class ListBill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String name = "Hủ tiếu mì xào giòn";
+    String name = billController.billDetails.value[index].serviceId.toString();
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     return Material(
@@ -278,7 +277,7 @@ class ListBill extends StatelessWidget {
                 SizedBox(
                   width: 30.w,
                   child: Text(
-                    '999',
+                    "${billController.billDetails.value[index].quantity}", //QUANTITY
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
                   ),
@@ -289,7 +288,8 @@ class ListBill extends StatelessWidget {
                 SizedBox(
                   width: 92.w,
                   child: Text(
-                    '999.999.000',
+                    NumberUtils.noVnd(
+                        billController.billDetails.value[index].price), //PRICE
                     textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
@@ -301,7 +301,8 @@ class ListBill extends StatelessWidget {
                 SizedBox(
                   width: 92.w,
                   child: Text(
-                    '999.999.000',
+                    NumberUtils.noVnd(billController
+                        .billDetails.value[index].amount), //AMOUNT
                     textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
@@ -328,7 +329,9 @@ class ListBill extends StatelessWidget {
                     : SizedBox(
                         width: 90.w,
                         child: Text(
-                          'paid'.tr,
+                          billController.billDetails.value[index].status == 0
+                              ? 'paid'.tr
+                              : 'unpaid'.tr,
                           textAlign: TextAlign.center,
                           style: AppStyles.h5.copyWith(
                               color: AppColors.white,

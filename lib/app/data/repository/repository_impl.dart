@@ -125,7 +125,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<BillContent> getBillById(int billId) {
-    var endpoint = "${DioProvider.baseUrl}/bills/$billId";
+    var endpoint = "${DioProvider.baseUrl}/bill/$billId";
     var dioCall = dioTokenClient.get(endpoint);
     try {
       return callApi(dioCall).then((response) {
@@ -162,7 +162,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<List<BillDetailContent>> getBilldetailByBillId(int billId) {
-    var endpoint = "${DioProvider.baseUrl}/billDetail?bill_id=$billId";
+    var endpoint = "https://hotelservice-v5.herokuapp.com/api/v1/billDetail?bill_id=1";
     var dioCall = dioTokenClient.get(endpoint);
     try {
       return callApi(dioCall).then((response) {

@@ -14,7 +14,7 @@ class ServiceController extends BaseController {
       Rx<List<ServiceCategoryContent>>([]);
   @override
   void onInit() {
-    fetchServiceCategory();
+    // fetchServiceCategory();
     super.onInit();
   }
 

@@ -5,8 +5,8 @@ class BillDetailContent {
   int? serviceId;
   int? billId;
   int? quantity;
-  int? price;
-  int? amount;
+  double? price;
+  double? amount;
   int? status;
 
   BillDetailContent(
