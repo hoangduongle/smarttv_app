@@ -4,18 +4,13 @@ class ServiceCategoryContent {
   int? id;
   String? name;
   String? description;
-  bool? status;
 
-
-  ServiceCategoryContent(
-      {this.id, this.name, this.description, this.status});
+  ServiceCategoryContent({this.id, this.name, this.description});
 
   ServiceCategoryContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
-    status = json['status'];
-
   }
 
   Map<String, dynamic> toJson() {
@@ -23,7 +18,11 @@ class ServiceCategoryContent {
     data['id'] = this.id;
     data['name'] = this.name;
     data['description'] = this.description;
-    data['status'] = this.status;
+
     return data;
   }
+
+  @override
+  String toString() =>
+      'ServiceCategoryContent(id: $id, name: $name, description: $description)';
 }

@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
@@ -15,7 +16,7 @@ import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
-import 'package:smarttv_app/app/modules/service_components/widget/card_each_service.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
@@ -49,12 +50,15 @@ class CardCategory extends StatelessWidget {
               focusColor: AppColors.focus,
               autofocus: index == 0,
               borderRadius: BorderRadius.circular(10.r),
-              onTap: () {
-                // controller.serviceComponent(serviceCategory);
-                Get.toNamed('${Routes.SERVICE_COMPONENT}', parameters: {
-                  'cateId': '${serviceCategory.id}',
-                  'cateName': '${serviceCategory.name}'
-                });
+              onTap: () async {
+                final prefs = await SharedPreferences.getInstance();
+                prefs.setInt('cateId', serviceCategory.id!);
+                if (serviceCategory.id == 1) {
+                  Get.toNamed('${Routes.FANDB}');
+                } else {
+                  Get.toNamed('${Routes.SERVICE_COMPONENT}',
+                      parameters: {'cateName': '${serviceCategory.name}'});
+                }
               },
               child: Container(
                 decoration: BoxDecoration(

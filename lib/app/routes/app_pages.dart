@@ -7,6 +7,8 @@ import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';
 import 'package:smarttv_app/app/modules/cart/view/cart_screen.dart';
 import 'package:smarttv_app/app/modules/event/binding/event_binding.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/binding/foodandbeverage_binding.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/view/fandb_screen.dart';
 import 'package:smarttv_app/app/modules/local/binding/local_binding.dart';
 import 'package:smarttv_app/app/modules/local/view/local_screen.dart';
 import 'package:smarttv_app/app/modules/main/binding/main_binding.dart';
@@ -44,8 +46,14 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SERVICE_COMPONENT,
-      page: () => ListServiceScreen(),
+      page: () => ListServiceScreen(cateName: Get.parameters['cateName']!),
       binding: ListServiceBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.FANDB,
+      page: () => FandBScreen(),
+      binding: FoodandBeverageBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(

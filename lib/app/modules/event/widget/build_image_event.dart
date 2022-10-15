@@ -63,19 +63,19 @@ Widget buildImageEvent(Size size, int index, BuildContext context) {
                                       fontSize: (size.height * 4 / 100).sp,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(
-                                  "16:00 - 20:00",
-                                  style: AppStyles.h4.copyWith(
-                                    color: AppColors.white,
-                                    fontSize: (size.height * 4 / 120).sp,
-                                  ),
-                                ),
+                                // Text(
+                                //   "16:00 - 20:00",
+                                //   style: AppStyles.h4.copyWith(
+                                //     color: AppColors.white,
+                                //     fontSize: (size.height * 4 / 120).sp,
+                                //   ),
+                                // ),
                               ],
                             )),
                         Padding(
                           padding: EdgeInsets.fromLTRB(20.w, 0.h, 10.w, 10.h),
                           child: Text(
-                            'Đây là nơi giao lưu bày bán các mặt hàng của những người dân địa phương và là một địa điểm tham quan và mua sắm những món quà lưu niệm.',
+                            '',
                             style: AppStyles.h4.copyWith(
                                 color: AppColors.white,
                                 fontSize: (size.height * 3 / 100).sp),
@@ -94,3 +94,6 @@ Widget buildImageEvent(Size size, int index, BuildContext context) {
     ),
   );
 }
+/*
+Đây là nơi giao lưu bày bán các mặt hàng của những người dân địa phương và là một địa điểm tham quan và mua sắm những món quà lưu niệm.
+ */

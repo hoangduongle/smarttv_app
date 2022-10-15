@@ -9,8 +9,8 @@ import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/widget/dialog.dart';
 import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
-import 'package:smarttv_app/app/modules/service_components/widget/dialog.dart';
 
 class CardEachService extends StatelessWidget {
   int index;
@@ -68,7 +68,6 @@ class CardEachService extends StatelessWidget {
                   ),
                   Text(
                     serviceContent.name!, //<------ set controller
-
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

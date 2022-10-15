@@ -11,24 +11,24 @@ import 'package:smarttv_app/app/modules/service_components/controller/list_servi
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
-import 'package:smarttv_app/app/modules/service_components/widget/card_each_service.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
 
 class ListServiceScreen extends StatefulWidget {
-  const ListServiceScreen({super.key});
+  final String cateName;
+  const ListServiceScreen({super.key, required this.cateName});
 
   @override
   State<ListServiceScreen> createState() => _ListServiceScreenState();
 }
 
 class _ListServiceScreenState extends State<ListServiceScreen> {
-  final String cateId = Get.parameters['cateId'] ?? '';
-  final String cateName = Get.parameters['cateName'] ?? '';
   int num = 0;
+  ListServiceController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     Size size = Size(960, 540);
-    ListServiceController controller = Get.find();
-    controller.serviceCateId = int.parse(cateId);
+
     CartController caController = Get.find();
     return Obx(
       () {
@@ -115,7 +115,7 @@ class _ListServiceScreenState extends State<ListServiceScreen> {
                             child: Column(
                               children: [
                                 Text(
-                                  "Thức ăn",
+                                  widget.cateName,
                                   style: AppStyles.h4.copyWith(
                                       //title
                                       color: num == 0
@@ -136,47 +136,6 @@ class _ListServiceScreenState extends State<ListServiceScreen> {
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20.w,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              debugPrint("list do uong");
-
-                              setState(() {
-                                num = 1;
-                              });
-                            },
-                            style: ButtonStyle(
-                                overlayColor: MaterialStateProperty.all(
-                                    AppColors.navigabackground)),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Đồ uống",
-                                  style: AppStyles.h4.copyWith(
-                                      //title
-                                      color: num == 1
-                                          ? AppColors.title
-                                          : AppColors.greyColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 25 / 1000.sp),
-                                ),
-                                Container(
-                                  width: 110,
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                          color: num == 1
-                                              ? AppColors.title
-                                              : AppColors.greyColor,
-                                          width: 1.w),
-                                    ),
-                                  ),
-                                )
                               ],
                             ),
                           ),
@@ -202,27 +161,10 @@ class _ListServiceScreenState extends State<ListServiceScreen> {
                                   mainAxisExtent: 210.h,
                                 ),
                                 itemBuilder: (context, index) {
-                                  return IndexedStack(
-                                    index: num,
-                                    children: [
-                                      ExcludeFocus(
-                                        excluding: num == 0 ? false : true,
-                                        child: CardEachService(
-                                          index: index,
-                                          serviceContent: controller
-                                              .serviceList.value[index],
-                                        ),
-                                      ),
-                                      ExcludeFocus(
-                                        excluding: num == 1 ? false : true,
-                                        child: Text(
-                                          "bb",
-                                          style: TextStyle(
-                                              color: AppColors.white,
-                                              fontSize: 20),
-                                        ),
-                                      ),
-                                    ],
+                                  return CardEachService(
+                                    index: index,
+                                    serviceContent:
+                                        controller.serviceList.value[index],
                                   );
                                 }),
                           )),

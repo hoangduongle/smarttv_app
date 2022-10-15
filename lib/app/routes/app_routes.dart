@@ -11,6 +11,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const SERVICE = _Paths.SERVICE;
   static const SERVICE_COMPONENT = _Paths.SERVICE_COMPONENT;
+  static const FANDB = _Paths.FANDB;
   static const CART = _Paths.CART;
   static const EVENT = _Paths.EVENT;
   static const LOCAL = _Paths.LOCAL;
@@ -26,6 +27,7 @@ abstract class _Paths {
   static const HOME = '/homepage';
   static const SERVICE = '/service';
   static const SERVICE_COMPONENT = '/service-component';
+  static const FANDB = '/fandb';
   static const CART = '/cart'; //add customer id to check
   static const EVENT = '/event';
   static const LOCAL = '/local';

@@ -10,9 +10,10 @@ class TokenManager extends Interceptor {
   static TokenManager get instance => _instance;
   TokenManager._internal();
 
-  static const username = 'admin';
-  static const password = 'admin';
-  static const baseURL = "https://hotel-service-v2.herokuapp.com/api/v1/login?";
+  static const username = 'duong';
+  static const password = '123';
+  static const baseURL = "https://hotelservice-v5.herokuapp.com/api/v1/login?";
+
   String? _token;
 
   String get token {

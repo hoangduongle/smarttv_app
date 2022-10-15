@@ -1,16 +1,14 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
-import 'package:smarttv_app/app/modules/service_components/widget/card_each_service.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
 
 class FandBScreen extends StatefulWidget {
   const FandBScreen({super.key});
@@ -20,14 +18,11 @@ class FandBScreen extends StatefulWidget {
 }
 
 class _FandBScreenState extends State<FandBScreen> {
-  final String cateId = Get.parameters['cateId'] ?? '';
-  final String cateName = Get.parameters['cateName'] ?? '';
   int num = 0;
   @override
   Widget build(BuildContext context) {
     Size size = Size(960, 540);
-    ListServiceController controller = Get.find();
-    controller.serviceCateId = int.parse(cateId);
+    FoodandBeverageController controller = Get.find();
     CartController caController = Get.find();
     return Obx(
       () {
@@ -43,7 +38,7 @@ class _FandBScreenState extends State<FandBScreen> {
                     heroTag: "btn1",
                     label: Text(
                       caController.sizeService.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold, color: AppColors.black),
                     ),
                     icon: Icon(
@@ -69,7 +64,7 @@ class _FandBScreenState extends State<FandBScreen> {
                     heroTag: "btn2",
                     label: Text(
                       "back".tr,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold, color: AppColors.black),
                     ),
                     icon: Icon(
@@ -105,7 +100,7 @@ class _FandBScreenState extends State<FandBScreen> {
                           TextButton(
                             style: ButtonStyle(
                                 overlayColor: MaterialStateProperty.all(
-                                    AppColors.navigabackground)),
+                                    AppColors.greyColor.withOpacity(.5))),
                             onPressed: () {
                               setState(() {
                                 num = 0;
@@ -119,7 +114,7 @@ class _FandBScreenState extends State<FandBScreen> {
                                       //title
                                       color: num == 0
                                           ? AppColors.title
-                                          : AppColors.greyColor,
+                                          : AppColors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: size.width * 25 / 1000.sp),
                                 ),
@@ -130,7 +125,7 @@ class _FandBScreenState extends State<FandBScreen> {
                                       bottom: BorderSide(
                                           color: num == 0
                                               ? AppColors.title
-                                              : AppColors.greyColor,
+                                              : AppColors.white,
                                           width: 1.0),
                                     ),
                                   ),
@@ -139,19 +134,17 @@ class _FandBScreenState extends State<FandBScreen> {
                             ),
                           ),
                           SizedBox(
-                            width: 20,
+                            width: 20.w,
                           ),
                           TextButton(
                             onPressed: () {
-                              debugPrint("list do uong");
-
                               setState(() {
                                 num = 1;
                               });
                             },
                             style: ButtonStyle(
                                 overlayColor: MaterialStateProperty.all(
-                                    AppColors.navigabackground)),
+                                    AppColors.greyColor.withOpacity(.5))),
                             child: Column(
                               children: [
                                 Text(
@@ -160,7 +153,7 @@ class _FandBScreenState extends State<FandBScreen> {
                                       //title
                                       color: num == 1
                                           ? AppColors.title
-                                          : AppColors.greyColor,
+                                          : AppColors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: size.width * 25 / 1000.sp),
                                 ),
@@ -183,16 +176,19 @@ class _FandBScreenState extends State<FandBScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
-                    controller.serviceList.value.isEmpty
+                    controller.serviceListFood.value.isEmpty &&
+                            controller.serviceListDrink.value.isEmpty
                         ? SkeletonLoadingServiceConponentScreen()
                         : Expanded(
                             child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20.w, vertical: 10.h),
                             child: GridView.builder(
-                                itemCount: controller.serviceList.value.length,
+                                itemCount: num == 0
+                                    ? controller.serviceListFood.value.length
+                                    : controller.serviceListDrink.value.length,
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 4,
@@ -209,16 +205,15 @@ class _FandBScreenState extends State<FandBScreen> {
                                         child: CardEachService(
                                           index: index,
                                           serviceContent: controller
-                                              .serviceList.value[index],
+                                              .serviceListFood.value[index],
                                         ),
                                       ),
                                       ExcludeFocus(
                                         excluding: num == 1 ? false : true,
-                                        child: const Text(
-                                          "bb",
-                                          style: TextStyle(
-                                              color: AppColors.white,
-                                              fontSize: 20),
+                                        child: CardEachService(
+                                          index: index,
+                                          serviceContent: controller
+                                              .serviceListDrink.value[index],
                                         ),
                                       ),
                                     ],

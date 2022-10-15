@@ -15,52 +15,57 @@ class EventScreen extends GetView<EventController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-        color: AppColors.background,
-        child: Column(
-          children: [
-            Expanded(
-                child: Container(
-              color: AppColors.background,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      body: Container(
+          color: AppColors.background,
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 42.h, left: 15.w),
+                child: Row(
                   children: [
-                    Container(
-                      padding: EdgeInsets.only(top: 42.h, left: 15.w),
-                      child: Text(
-                        'event'.tr,
+                    Text("event".tr,
                         style: AppStyles.h4.copyWith(
                             color: AppColors.header,
                             fontSize: (size.width * 25 / 1000).sp,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.only(top: 30.h)),
-                    Center(
-                      child: CarouselSlider.builder(
-                        itemCount: 3,
-                        options: CarouselOptions(
-                          onPageChanged: (index, reason) {},
-                          enableInfiniteScroll: false,
-                          initialPage: 0,
-                          height: (size.height * 7 / 10).h,
-                          enlargeCenterPage: true,
-                          scrollDirection: Axis.horizontal,
-                          viewportFraction: .8,
-                        ),
-                        itemBuilder: (context, index, realIndex) {
-                          return buildImageEvent(size, index, context);
-                        },
-                      ),
-                    ),
+                            fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
-            )),
-          ],
-        ));
+              Container(
+                child: Text("Sắp diễn ra",
+                    style: AppStyles.h4.copyWith(
+                        color: AppColors.header,
+                        fontSize: (size.width * 25 / 1000).sp,
+                        fontWeight: FontWeight.bold)),
+              ),
+              Center(
+                child: CarouselSlider.builder(
+                  itemCount: 3,
+                  options: CarouselOptions(
+                    onPageChanged: (index, reason) {},
+                    enableInfiniteScroll: false,
+                    initialPage: 0,
+                    height: (size.height * 7 / 20).h,
+                    enlargeCenterPage: true,
+                    scrollDirection: Axis.horizontal,
+                    viewportFraction: .7,
+                  ),
+                  itemBuilder: (context, index, realIndex) {
+                    return buildImageEvent(size, index, context);
+                  },
+                ),
+              ),
+              Container(
+                child: Text("Đang diễn ra",
+                    style: AppStyles.h4.copyWith(
+                        color: AppColors.header,
+                        fontSize: (size.width * 25 / 1000).sp,
+                        fontWeight: FontWeight.bold)),
+              ),
+            ],
+          )),
+    );
   }
 }
 /*

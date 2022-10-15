@@ -57,7 +57,7 @@ class DialogWidget extends StatelessWidget {
               height: 12,
             ),
             SizedBox(
-              width: 120,
+              width: 220,
               child: Text(
                 serviceContent.name!, //<------ set controller
                 textAlign: TextAlign.center,
