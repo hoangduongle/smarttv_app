@@ -14,7 +14,7 @@ abstract class Routes {
   static const FANDB = _Paths.FANDB;
   static const CART = _Paths.CART;
   static const EVENT = _Paths.EVENT;
-  static const LOCAL = _Paths.LOCAL;
+  static const ABTRACTION = _Paths.ABTRACTION;
   static const BILL = _Paths.BILL;
 }
 
@@ -30,6 +30,6 @@ abstract class _Paths {
   static const FANDB = '/fandb';
   static const CART = '/cart'; //add customer id to check
   static const EVENT = '/event';
-  static const LOCAL = '/local';
+  static const ABTRACTION = '/abtraction';
   static const BILL = '/bill';
 }

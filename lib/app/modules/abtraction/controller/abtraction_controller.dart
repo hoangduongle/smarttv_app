@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:smarttv_app/app/core/model/bill_content.dart';
 
-class LocalController extends GetxController {
+class AbtractionController extends GetxController {
   void writeStorage() async {
     GetStorage cart = GetStorage('CART');
     BillContent b = BillContent(

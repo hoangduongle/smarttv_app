@@ -6,9 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
-import 'package:smarttv_app/app/modules/local/controller/local_controller.dart';
+import 'package:smarttv_app/app/modules/abtraction/controller/abtraction_controller.dart';
 
-class LocalScreen extends GetView<LocalController> {
+class AbtractionScreen extends GetView<AbtractionController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

@@ -10,7 +10,7 @@ import 'package:smarttv_app/app/modules/bill/view/bill_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
 import 'package:smarttv_app/app/modules/home/view/home_screen.dart';
-import 'package:smarttv_app/app/modules/local/view/local_screen.dart';
+import 'package:smarttv_app/app/modules/abtraction/view/abtraction_screen.dart';
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/widget/widget_navigationslider.dart';
@@ -317,7 +317,7 @@ class _MainScreenState extends State<MainScreen> {
                           ? false
                           : true,
                       // excluding: true,
-                      child: LocalScreen(),
+                      child: AbtractionScreen(),
                     ),
                     ExcludeFocus(
                       // excluding: focusNodes[1].hasFocus ? false : true,

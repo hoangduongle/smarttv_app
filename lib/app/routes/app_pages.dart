@@ -9,8 +9,8 @@ import 'package:smarttv_app/app/modules/event/binding/event_binding.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/binding/foodandbeverage_binding.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/view/fandb_screen.dart';
-import 'package:smarttv_app/app/modules/local/binding/local_binding.dart';
-import 'package:smarttv_app/app/modules/local/view/local_screen.dart';
+import 'package:smarttv_app/app/modules/abtraction/binding/abtraction_binding.dart';
+import 'package:smarttv_app/app/modules/abtraction/view/abtraction_screen.dart';
 import 'package:smarttv_app/app/modules/main/binding/main_binding.dart';
 import 'package:smarttv_app/app/modules/main/view/main_screen.dart';
 import 'package:smarttv_app/app/modules/service_components/binding/list_service_binding.dart';
@@ -69,9 +69,9 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.LOCAL,
-      page: () => LocalScreen(),
-      binding: LocalBinding(),
+      name: _Paths.ABTRACTION,
+      page: () => AbtractionScreen(),
+      binding: AbtractionBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(

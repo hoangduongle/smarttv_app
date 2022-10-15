@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
-class LocalDialog extends StatelessWidget {
-  const LocalDialog({super.key});
+class AbtractionDialog extends StatelessWidget {
+  const AbtractionDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container();
   }
 
-  void showLocalDialog(BuildContext context) {
+  void showAbtractionDialog(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
