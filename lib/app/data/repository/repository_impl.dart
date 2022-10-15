@@ -1,7 +1,9 @@
 // ignore_for_file: unused_element, unused_local_variable
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
+import 'package:smarttv_app/app/core/model/bill_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
 import 'package:smarttv_app/app/core/model/event_content.dart';
 import 'package:smarttv_app/app/core/model/bill_content.dart';
@@ -122,41 +124,57 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<BillContent> getBillByRoomId() {
-    var endpoint = "${DioProvider.baseUrl}/";
+  Future<BillContent> getBillById(int billId) {
+    var endpoint = "${DioProvider.baseUrl}/bills/$billId";
     var dioCall = dioTokenClient.get(endpoint);
-    // try {
-    //   return callApi(dioCall).then((response) {
-    //     var result = <BillContent>[];
-
-    //     for (var element in (response.data as List<dynamic>)) {
-    //       result.add(BillContent.fromJson(element));
-    //     }
-    //     return result;
-    //   });
-    // } catch (e) {
-    //   rethrow;
-    // }
-    throw UnimplementedError();
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <BillContent>[];
+        return BillContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
-  Future<BillContent> updateBillByBillId(int billId) {
-    var endpoint = "${DioProvider.baseUrl}/";
-    var dioCall = dioTokenClient.get(endpoint);
-    // try {
-    //   return callApi(dioCall).then((response) {
-    //     var result = <BillContent>[];
+  Future<int> updateBillByBillId(String createBy, String createDate, int billId,
+      String lastModifyBy, double totalAmount, String updateDate) {
+    var endpoint = "${DioProvider.baseUrl}/bill";
+    var data = {
+      "id": billId,
+      "totalAmount": totalAmount,
+      "createDate": createDate,
+      "updateDate": updateDate,
+      "createBy": createBy,
+      "lastModifyBy": lastModifyBy
+    };
+    var formData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: formData);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
 
-    //     for (var element in (response.data as List<dynamic>)) {
-    //       result.add(BillContent.fromJson(element));
-    //     }
-    //     return result;
-    //   });
-    // } catch (e) {
-    //   rethrow;
-    // }
-    throw UnimplementedError();
+  @override
+  Future<List<BillDetailContent>> getBilldetailByBillId(int billId) {
+    var endpoint = "${DioProvider.baseUrl}/billDetail?bill_id=$billId";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <BillDetailContent>[];
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(BillDetailContent.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
