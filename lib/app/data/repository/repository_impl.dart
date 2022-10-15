@@ -97,21 +97,21 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<List<EventContent>> getListEvent() {
-    var endpoint = "${DioProvider.baseUrl}/";
+    var endpoint = "${DioProvider.baseUrl}/events";
     var dioCall = dioTokenClient.get(endpoint);
-    // try {
-    //   return callApi(dioCall).then((response) {
-    //     var result = <EventContent>[];
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <EventContent>[];
 
-    //     for (var element in (response.data as List<dynamic>)) {
-    //       result.add(EventContent.fromJson(element));
-    //     }
-    //     return result;
-    //   });
-    // } catch (e) {
-    //   rethrow;
-    // }
-    throw UnimplementedError();
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(EventContent.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
+
   }
 
   @override
