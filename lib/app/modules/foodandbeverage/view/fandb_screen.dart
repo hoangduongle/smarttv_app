@@ -6,7 +6,6 @@ import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
-import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
 
@@ -18,7 +17,7 @@ class FandBScreen extends StatefulWidget {
 }
 
 class _FandBScreenState extends State<FandBScreen> {
-  int num = 0;
+  // int num = 0;
   @override
   Widget build(BuildContext context) {
     Size size = Size(960, 540);
@@ -103,7 +102,7 @@ class _FandBScreenState extends State<FandBScreen> {
                                     AppColors.greyColor.withOpacity(.5))),
                             onPressed: () {
                               setState(() {
-                                num = 0;
+                                controller.numberSelected = 0.obs;
                               });
                             },
                             child: Column(
@@ -112,9 +111,10 @@ class _FandBScreenState extends State<FandBScreen> {
                                   "Thức ăn",
                                   style: AppStyles.h4.copyWith(
                                       //title
-                                      color: num == 0
-                                          ? AppColors.title
-                                          : AppColors.white,
+                                      color:
+                                          controller.numberSelected.toInt() == 0
+                                              ? AppColors.title
+                                              : AppColors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: size.width * 25 / 1000.sp),
                                 ),
@@ -123,7 +123,9 @@ class _FandBScreenState extends State<FandBScreen> {
                                   decoration: BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(
-                                          color: num == 0
+                                          color: controller.numberSelected
+                                                      .toInt() ==
+                                                  0
                                               ? AppColors.title
                                               : AppColors.white,
                                           width: 1.0),
@@ -139,7 +141,7 @@ class _FandBScreenState extends State<FandBScreen> {
                           TextButton(
                             onPressed: () {
                               setState(() {
-                                num = 1;
+                                controller.numberSelected = 1.obs;
                               });
                             },
                             style: ButtonStyle(
@@ -151,9 +153,10 @@ class _FandBScreenState extends State<FandBScreen> {
                                   "Đồ uống",
                                   style: AppStyles.h4.copyWith(
                                       //title
-                                      color: num == 1
-                                          ? AppColors.title
-                                          : AppColors.white,
+                                      color:
+                                          controller.numberSelected.toInt() == 1
+                                              ? AppColors.title
+                                              : AppColors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: size.width * 25 / 1000.sp),
                                 ),
@@ -162,7 +165,9 @@ class _FandBScreenState extends State<FandBScreen> {
                                   decoration: BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(
-                                          color: num == 1
+                                          color: controller.numberSelected
+                                                      .toInt() ==
+                                                  1
                                               ? AppColors.title
                                               : AppColors.greyColor,
                                           width: 1.0),
@@ -178,48 +183,69 @@ class _FandBScreenState extends State<FandBScreen> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    controller.serviceListFood.value.isEmpty &&
-                            controller.serviceListDrink.value.isEmpty
-                        ? SkeletonLoadingServiceConponentScreen()
-                        : Expanded(
-                            child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20.w, vertical: 10.h),
-                            child: GridView.builder(
-                                itemCount: num == 0
-                                    ? controller.serviceListFood.value.length
-                                    : controller.serviceListDrink.value.length,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4,
-                                  crossAxisSpacing: 60.w,
-                                  mainAxisSpacing: 36,
-                                  mainAxisExtent: 210.h,
+                    if (controller.serviceListFood.value.isEmpty &&
+                        controller.serviceListDrink.value.isEmpty)
+                      SkeletonLoadingServiceConponentScreen()
+                    else
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.w, vertical: 10.h),
+                          child: IndexedStack(
+                            index: controller.numberSelected.toInt(),
+                            children: [
+                              ExcludeFocus(
+                                excluding:
+                                    controller.numberSelected.toInt() == 0
+                                        ? false
+                                        : true,
+                                child: GridView.builder(
+                                  itemCount:
+                                      controller.serviceListFood.value.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    crossAxisSpacing: 60.w,
+                                    mainAxisSpacing: 36,
+                                    mainAxisExtent: 210.h,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    return CardEachService(
+                                      index: index,
+                                      serviceContent: controller
+                                          .serviceListFood.value[index],
+                                    );
+                                  },
                                 ),
-                                itemBuilder: (context, index) {
-                                  return IndexedStack(
-                                    index: num,
-                                    children: [
-                                      ExcludeFocus(
-                                        excluding: num == 0 ? false : true,
-                                        child: CardEachService(
-                                          index: index,
-                                          serviceContent: controller
-                                              .serviceListFood.value[index],
-                                        ),
-                                      ),
-                                      ExcludeFocus(
-                                        excluding: num == 1 ? false : true,
-                                        child: CardEachService(
-                                          index: index,
-                                          serviceContent: controller
-                                              .serviceListDrink.value[index],
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                }),
-                          )),
+                              ),
+                              ExcludeFocus(
+                                excluding:
+                                    controller.numberSelected.toInt() == 0
+                                        ? false
+                                        : true,
+                                child: GridView.builder(
+                                  itemCount:
+                                      controller.serviceListDrink.value.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    crossAxisSpacing: 60.w,
+                                    mainAxisSpacing: 36,
+                                    mainAxisExtent: 210.h,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    return CardEachService(
+                                      index: index,
+                                      serviceContent: controller
+                                          .serviceListDrink.value[index],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
                   ],
                 ),
               )),

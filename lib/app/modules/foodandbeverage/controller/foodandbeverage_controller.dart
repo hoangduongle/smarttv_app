@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
@@ -10,15 +11,18 @@ class FoodandBeverageController extends BaseController {
   Rx<List<ServiceContent>> serviceListFood = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceListDrink = Rx<List<ServiceContent>>([]);
 
+  var numberSelected = 0.obs;
+
   @override
-  void onInit() {
-    _loadDate();
-    fetchServicesFood();
-    fetchServicesDrink();
+  void onInit() async {
+    _loadData();
+    await fetchServicesFood();
+    await fetchServicesDrink();
+    debugPrint(serviceListDrink.value.toString());
     super.onInit();
   }
 
-  void _loadDate() {
+  void _loadData() {
     if (!TokenManager.instance.hasToken) {
       TokenManager.instance.init();
     }
