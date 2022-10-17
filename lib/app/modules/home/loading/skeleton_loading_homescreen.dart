@@ -31,6 +31,7 @@ Widget SkeletonLoadingHomeScreen() {
 }
 
 Widget buildImageSkeleton() {
+  Size size = MediaQuery.of(Get.context!).size;
   return Container(
     padding: EdgeInsets.only(top: 8.h),
     child: Shimmer.fromColors(
@@ -38,13 +39,12 @@ Widget buildImageSkeleton() {
       highlightColor: Colors.white,
       period: Duration(milliseconds: 1500),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 8.h),
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(15.r)),
         child: Row(
           children: [
             Container(
-              width: 720.w,
-              height: 540,
+              width: (735).w,
+              height: 540.h,
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(15.r),

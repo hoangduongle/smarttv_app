@@ -84,7 +84,9 @@ class MomoScreen extends GetView<MomoController> {
                           child: QrImage(
                             backgroundColor: AppColors.white,
                             foregroundColor: AppColors.black,
-                            data: "https://urlgeni.us/facebook/L7AX",
+                            data:
+                                "https://test-payment.momo.vn/gw_payment/s/zoVKZd",
+                            // data: "https://urlgeni.us/facebook/L7AX",
                             version: QrVersions.auto,
                             size: 190.0,
                           ),

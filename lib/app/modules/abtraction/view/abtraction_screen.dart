@@ -37,10 +37,10 @@ class AbtractionScreen extends GetView<AbtractionController> {
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Container(
                       padding: EdgeInsets.all(8.r),
-                      width: 750.w,
+                      width: size.width.w,
                       height: 80.h,
                       decoration: BoxDecoration(
-                          color: AppColors.white.withOpacity(0.45),
+                          color: AppColors.white.withOpacity(0.45.r),
                           borderRadius: BorderRadius.circular(12.r)),
                       child: Text(
                         "Ngoài những dịch vụ sẵn có, khách sạn còn cung cấp cho quý khách các địa điểm được nhiều khách hàng trước đó trãi nghiệm và đánh giá cao. Từ những địa điểm này mong ràng quý khách có được thời gian trải nghiệm tuyệt với tại khách sạn của chúng tôi.",
