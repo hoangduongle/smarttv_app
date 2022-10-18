@@ -46,6 +46,7 @@ class Messages extends Translations {
           'back': 'Back',
         },
         'vi_Vi': {
+          'overview': 'Tổng quan',
           'home': 'Trang Chủ',
           'service': 'Dịch vụ',
           'services': 'Dịch vụ',

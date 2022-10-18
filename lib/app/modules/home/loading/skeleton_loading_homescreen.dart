@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 Widget SkeletonLoadingHomeScreen() {
   Size size = MediaQuery.of(Get.context!).size;
@@ -15,7 +17,7 @@ Widget SkeletonLoadingHomeScreen() {
           Center(
             child: CarouselSlider.builder(
               options: CarouselOptions(
-                height: (size.height * 7 / 10).h,
+                height: (size.height * 7 / 9).h,
                 viewportFraction: 1,
                 initialPage: 0,
                 autoPlay: false,
@@ -25,6 +27,10 @@ Widget SkeletonLoadingHomeScreen() {
                 return buildImageSkeleton();
               },
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20.h),
+            child: buildIndicatorSkeleton(0),
           ),
         ])),
   );
@@ -54,5 +60,17 @@ Widget buildImageSkeleton() {
         ),
       ),
     ),
+  );
+}
+
+Widget buildIndicatorSkeleton(int currentIndex) {
+  return AnimatedSmoothIndicator(
+    curve: Curves.easeInOut,
+    activeIndex: currentIndex,
+    count: 4,
+    effect: const SlideEffect(
+        spacing: 30,
+        dotColor: AppColors.greyColor,
+        activeDotColor: AppColors.focus),
   );
 }

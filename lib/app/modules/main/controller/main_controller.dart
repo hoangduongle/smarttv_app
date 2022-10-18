@@ -30,7 +30,6 @@ class MainController extends GetxController {
       const Duration(milliseconds: 500),
       (timer) {
         updateTime();
-
       },
     );
   }
@@ -45,7 +44,8 @@ class MainController extends GetxController {
   }
 
   void updateTime() {
-    Intl.defaultLocale = 'vi_VN';
+    // Intl.defaultLocale = 'vi_VN';
+    Intl.defaultLocale = 'en_US';
     initializeDateFormatting();
     formattedTime = DateFormat('hh:mm a').format(DateTime.now()).obs;
 

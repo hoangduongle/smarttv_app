@@ -31,10 +31,12 @@ class WellcomeController extends GetxController {
   }
 
   void updateTime() {
-    Intl.defaultLocale = 'vi_VN';
+    // Intl.defaultLocale = 'vi_VN';
+    Intl.defaultLocale = 'en_US';
     initializeDateFormatting();
     formattedTime = DateFormat('hh:mm a').format(DateTime.now()).obs;
-    formattedDate = DateFormat('EEEE, dd - MM - y').format(DateTime.now()).obs;
+    Intl.defaultLocale = 'vi_VN';
+    formattedDate = DateFormat('EEEE, dd/MM/y').format(DateTime.now()).obs;
 
     update();
   }
@@ -53,10 +55,14 @@ class WellcomeController extends GetxController {
   }
 
   var image = [
+    "https://i.ibb.co/L69PWnr/local.png",
+    "https://i.ibb.co/F3FN8vx/promotion.png",
     "https://i.ibb.co/hCf5LTX/homepage.jpg",
     "https://i.ibb.co/pxdphfN/service.jpg",
     "https://i.ibb.co/NKzWxKQ/event.jpg",
-    "https://i.ibb.co/L69PWnr/local.png",
-    "https://i.ibb.co/F3FN8vx/promotion.png",
   ];
+
+  var name = ["Địa điểm", "Khuyến mãi", "Trang chủ", "Dịch vụ", "Sự kiện"];
+
+  var isFocus = [false, false, false, false, false];
 }

@@ -19,7 +19,6 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -70,23 +69,20 @@ class _WelcomePageState extends State<WelcomePage> {
                                   Text(
                                     controller.formattedDate.toString(),
                                     style: TextStyle(
-                                        fontSize: 20.sp,
-                                        color: AppColors.white,
-                                        fontWeight: FontWeight.normal,
-                                        fontFamily: FontFamily.Arvo),
+                                      fontSize: 20.sp,
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                                   ),
                                 ],
                               ),
                               Row(
                                 children: [
-                                  Image.network(controller.url, height: 50),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
+                                  Image.network(controller.url, height: 55),
                                   Text(
                                     "${controller.weatherCelsius!.toStringAsFixed(0)} \u2103",
                                     style: TextStyle(
-                                        fontSize: 30.sp,
+                                        fontSize: 25.sp,
                                         color: AppColors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: FontFamily.Arvo),
@@ -131,78 +127,23 @@ class _WelcomePageState extends State<WelcomePage> {
                           ),
                         ),
                         SizedBox(
-                          height: 70.h,
+                          height: 50.h,
                         ),
-                        Center(
-                          child: CarouselSlider.builder(
-                            itemCount: 5,
-                            options: CarouselOptions(
-                              onPageChanged: (index, reason) {},
-                              enableInfiniteScroll: true,
-                              initialPage: 0,
-                              disableCenter: true,
-                              height: (size.height * 7 / 30).h,
-                              enlargeCenterPage: true,
+                        SizedBox(
+                          width: size.width.w,
+                          height: 200.h,
+                          child: ListView.separated(
                               scrollDirection: Axis.horizontal,
-                              viewportFraction: .2,
-                            ),
-                            itemBuilder: (context, index, realIndex) {
-                              return buildImageWelcome(size, index, context);
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 15.r),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 60.w,
-                              ),
-                              Text(
-                                'Địa điểm'.tr,
-                                style: AppStyles.h4.copyWith(
-                                    color: AppColors.white,
-                                    fontSize: (size.width * 1 / 45).sp),
-                              ),
-                              SizedBox(
-                                width: 80.w,
-                              ),
-                              Text(
-                                'Khuyến mãi'.tr,
-                                style: AppStyles.h4.copyWith(
-                                    color: AppColors.white,
-                                    fontSize: (size.width * 1 / 45).sp),
-                              ),
-                              SizedBox(
-                                width: 95.w,
-                              ),
-                              Text(
-                                'Trang chủ'.tr,
-                                style: AppStyles.h4.copyWith(
-                                    color: AppColors.white,
-                                    fontSize: (size.width * 1 / 45).sp),
-                              ),
-                              SizedBox(
-                                width: 110.w,
-                              ),
-                              Text(
-                                'Dịch vụ'.tr,
-                                style: AppStyles.h4.copyWith(
-                                    color: AppColors.white,
-                                    fontSize: (size.width * 1 / 45).sp),
-                              ),
-                              SizedBox(
-                                width: 125.w,
-                              ),
-                              Text(
-                                'Sự kiện'.tr,
-                                style: AppStyles.h4.copyWith(
-                                    color: AppColors.white,
-                                    fontSize: (size.width * 1 / 45).sp),
-                              ),
-                            ],
-                          ),
-                        ),
+                              shrinkWrap: true,
+                              padding: EdgeInsets.symmetric(horizontal: 85.w),
+                              itemBuilder: (context, index) {
+                                return buildImageWelcome(size, index, context);
+                              },
+                              separatorBuilder: (context, index) => SizedBox(
+                                    width: 40.w,
+                                  ),
+                              itemCount: 5),
+                        )
                       ],
                     )),
               );

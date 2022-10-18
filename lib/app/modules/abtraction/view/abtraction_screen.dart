@@ -21,14 +21,19 @@ class AbtractionScreen extends GetView<AbtractionController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(top: 42.h, left: 15.w),
+                    padding: EdgeInsets.only(top: 25.h, left: 30.w),
                     child: Text(
                       "local".tr,
                       style: AppStyles.h4.copyWith(
                           color: AppColors.header,
-                          fontSize: (size.width * 25 / 1000).sp,
+                          fontSize: (size.width * 0.02).sp,
                           fontWeight: FontWeight.bold),
                     ),
+                  ),
+                  const Divider(
+                    color: AppColors.greyColor,
+                    indent: 20,
+                    endIndent: 20,
                   ),
                   SizedBox(
                     height: 8.h,

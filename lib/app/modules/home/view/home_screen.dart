@@ -34,14 +34,19 @@ class HomePage extends GetView<HomeController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(top: 42.h, left: 15.w),
+                    padding: EdgeInsets.only(top: 25.h, left: 30.w),
                     child: Text(
-                      "home".tr,
+                      "overview".tr,
                       style: AppStyles.h4.copyWith(
                           color: AppColors.header,
-                          fontSize: (size.width * 25 / 1000).sp,
+                          fontSize: (size.width * 0.02).sp,
                           fontWeight: FontWeight.bold),
                     ),
+                  ),
+                  Divider(
+                    color: AppColors.greyColor,
+                    indent: 20,
+                    endIndent: 20,
                   ),
                   Container(
                     child: controller.overviewList.value.isEmpty
@@ -60,7 +65,7 @@ class HomePage extends GetView<HomeController> {
                                         const Duration(milliseconds: 3500),
                                     autoPlay: true,
                                     initialPage: 0,
-                                    height: (size.height * 7 / 10).h,
+                                    height: (size.height * 7 / 9).h,
                                     viewportFraction: 1,
                                   ),
                                   itemCount:

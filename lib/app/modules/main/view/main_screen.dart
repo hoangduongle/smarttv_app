@@ -49,10 +49,6 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
-  void firedAlarm() {
-    debugPrint("Alarm fired at ${DateTime.now()} - 1");
-  }
-
   @override
   Widget build(BuildContext context) {
     bool isLoading = true;
@@ -71,43 +67,43 @@ class _MainScreenState extends State<MainScreen> {
         return Scaffold(
           floatingActionButton: Stack(
             children: [
-              Align(
-                alignment: Alignment(0.63, -0.94),
-                child: SizedBox(
-                  height: 35.h,
-                  child: FloatingActionButton.extended(
-                    heroTag: "btn1",
-                    label: Text(
-                      "0",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: AppColors.white),
-                    ),
-                    icon: Icon(
-                      FluentIcons.alert_20_filled,
-                      size: 25.r,
-                      color: AppColors.white,
-                    ),
-                    backgroundColor: AppColors.focus,
-                    elevation: 1,
-                    focusElevation: 2,
-                    focusColor: AppColors.orangeColor,
-                    onPressed: () async {
-                      final TimeOfDay? newTime = await showTimePicker(
-                        context: context,
-                        initialTime: TimeOfDay(hour: 7, minute: 15),
-                        initialEntryMode: TimePickerEntryMode.inputOnly,
-                      );
+              // Align(
+              //   alignment: Alignment(0.63, -0.94),
+              //   child: SizedBox(
+              //     height: 35.h,
+              //     child: FloatingActionButton.extended(
+              //       heroTag: "btn1",
+              //       label: Text(
+              //         "0",
+              //         style: TextStyle(
+              //             fontWeight: FontWeight.bold, color: AppColors.white),
+              //       ),
+              //       icon: Icon(
+              //         FluentIcons.alert_20_filled,
+              //         size: 25.r,
+              //         color: AppColors.white,
+              //       ),
+              //       backgroundColor: AppColors.focus,
+              //       elevation: 1,
+              //       focusElevation: 2,
+              //       focusColor: AppColors.orangeColor,
+              //       onPressed: () async {
+              //         final TimeOfDay? newTime = await showTimePicker(
+              //           context: context,
+              //           initialTime: TimeOfDay(hour: 7, minute: 15),
+              //           initialEntryMode: TimePickerEntryMode.inputOnly,
+              //         );
 
-                      // NotificationScreen().openDialog(context);
-                      setState(() {
-                        debugPrint("Check Notification!!");
-                      });
-                    },
-                  ),
-                ),
-              ),
+              //         // NotificationScreen().openDialog(context);
+              //         setState(() {
+              //           debugPrint("Check Notification!!");
+              //         });
+              //       },
+              //     ),
+              //   ),
+              // ),
               Align(
-                  alignment: Alignment(0.91, -0.92),
+                  alignment: Alignment(0.95, -0.90),
                   child: Obx(
                     () {
                       return SizedBox(
@@ -117,6 +113,7 @@ class _MainScreenState extends State<MainScreen> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.white,
+                                fontFamily: FontFamily.Arvo,
                                 fontSize: 20.sp),
                           ));
                     },
@@ -136,9 +133,6 @@ class _MainScreenState extends State<MainScreen> {
                     color: AppColors.navigabackground,
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: (size.height * 1 / 30).h,
-                        ),
                         Expanded(
                             child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -162,7 +156,7 @@ class _MainScreenState extends State<MainScreen> {
                                   AppConstants.title,
                                   style: AppStyles.h5.copyWith(
                                       color: Colors.white,
-                                      fontSize: (size.width * 25 / 1000).sp,
+                                      fontSize: (size.width * 0.022).sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),

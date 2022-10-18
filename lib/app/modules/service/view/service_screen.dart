@@ -37,14 +37,19 @@ class ServiceScreen extends GetView<ServiceController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 42.h, left: 15.w),
+                        padding: EdgeInsets.only(top: 25.h, left: 30.w),
                         child: Text(
                           'services'.tr,
                           style: AppStyles.h4.copyWith(
                               color: AppColors.header,
-                              fontSize: (size.width * 25 / 1000).sp,
+                              fontSize: (size.width * 0.02).sp,
                               fontWeight: FontWeight.bold),
                         ),
+                      ),
+                      Divider(
+                        color: AppColors.greyColor,
+                        indent: 20.w,
+                        endIndent: 20.w,
                       ),
                       controller.serviceCateList.value.isEmpty
                           ? SkeletonLoadingServiceScreen()

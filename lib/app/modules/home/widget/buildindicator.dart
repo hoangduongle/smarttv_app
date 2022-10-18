@@ -11,6 +11,8 @@ Widget buildIndicator(List<OverviewContent> _list, int currentIndex) {
     activeIndex: currentIndex,
     count: _list.length,
     effect: const SlideEffect(
-        dotColor: AppColors.greyColor, activeDotColor: AppColors.focus),
+        spacing: 30,
+        dotColor: AppColors.greyColor,
+        activeDotColor: AppColors.focus),
   );
 }
