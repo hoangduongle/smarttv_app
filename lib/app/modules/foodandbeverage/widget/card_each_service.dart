@@ -1,103 +1,88 @@
-// ignore_for_file: unnecessary_import, implementation_imports, prefer_const_constructors, must_be_immutable
+// ignore_for_file: prefer_const_constructors, avoid_print, prefer_const_literals_to_create_immutables, must_be_immutable, unused_import, unnecessary_import, implementation_imports, unnecessary_string_interpolations, sort_child_properties_last
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smarttv_app/app/core/model/service_content.dart';
-import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 
-import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/model/service_category_content.dart';
+import 'package:smarttv_app/app/core/model/service_content.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/view/fandb_majorgroud.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/dialog.dart';
+import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
+import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
+import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
+import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/routes/app_pages.dart';
 
 class CardEachService extends StatelessWidget {
   int index;
-  ServiceContent serviceContent;
+  MayjorContent mayjorContent;
+
   CardEachService({
     Key? key,
     required this.index,
-    required this.serviceContent,
+    required this.mayjorContent,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.r),
-      ),
-      color: AppColors.navigabackground,
-      child: Material(
-        color: Colors.transparent,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: InkWell(
-          focusColor: AppColors.focus,
-          // autofocus: true,
-          borderRadius: BorderRadius.circular(15.r),
-          onTap: () {
-            DialogWidget(
-              index: index,
-            ).showCustomeDialog(context, serviceContent);
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0.r),
-                color: AppColors.navigabackground),
-            margin: EdgeInsets.symmetric(horizontal: 2.w, vertical: 2.h),
-            child: Center(
-              child: Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.all(8.sp),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15.r),
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQlO_2ts2YDGtpdafB8JDZzGVfyKlmFCn7paIJmTsKhfbev0I3O-OoMwgHJUDjSTc-KbjZge4_FgB2BUqVblVM',
-                        height: 100,
-                        fit: BoxFit.fitHeight,
-                        placeholder: (context, url) =>
-                            SkeletonLoading(Size(157, 100)),
-                      ),
+    NavigatorController naController =
+        Get.find(tag: (NavigatorController).toString());
+
+    return GetBuilder<ServiceController>(
+      builder: (controller) {
+        return Material(
+          color: AppColors.transparent,
+          child: InkWell(
+            autofocus: index == 0,
+            focusColor: AppColors.title,
+            borderRadius: BorderRadius.circular(5.r),
+            onTap: () {
+              Get.to(() => FandBMayjorScreen(
+                  mayjorId: mayjorContent.id, mayjorName: mayjorContent.name));
+            },
+            child: Stack(
+              children: [
+                Container(
+                  color: AppColors.transparent,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Text(
+                      mayjorContent.name, //<------ set controller
+                      style: TextStyle(
+                          fontSize: naController.select ? 20.sp : 17.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.white),
                     ),
                   ),
-                  SizedBox(
-                    height: 4,
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5.r),
+                    child: Image.network(
+                      "https://statics.vinpearl.com/dia-diem-ngam-hoang-hon-nha-trang-01_1635591021.jpg",
+                      width: 200.w,
+                      height: 155.h,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  Text(
-                    serviceContent.name!, //<------ set controller
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.title),
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Divider(
-                    indent: 40,
-                    endIndent: 40,
-                    thickness: .5,
-                    color: AppColors.white,
-                  ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                      NumberUtils.vnd(
-                          serviceContent.price), //<------ set controller
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.title)),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

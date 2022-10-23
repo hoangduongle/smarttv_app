@@ -78,6 +78,7 @@ class AppPages {
       name: _Paths.BILL,
       page: () => BillScreen(),
       binding: BillBinding(),
+      
       transition: Transition.noTransition,
     ),
   ];

@@ -8,6 +8,10 @@ class EventController extends BaseController {
 
   Rx<List<EventContent>> eventList = Rx<List<EventContent>>([]);
 
+  Rx<List<EventContent>> eventListOn = Rx<List<EventContent>>([]);
+  Rx<List<EventContent>> eventListReady = Rx<List<EventContent>>([]);
+  Rx<List<EventContent>> eventListDone = Rx<List<EventContent>>([]);
+
   @override
   void onInit() {
     fetchEvents();
@@ -25,6 +29,9 @@ class EventController extends BaseController {
       },
       onError: ((dioError) {}),
     );
-    EventContent(result);
+    eventList(result);
+    eventList.value.add(EventContent(result));
   }
+
+  var isFocus = [false, false, false];
 }

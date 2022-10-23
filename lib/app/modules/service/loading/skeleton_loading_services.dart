@@ -6,100 +6,98 @@ import 'package:shimmer/shimmer.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
-Widget SkeletonLoadingServiceScreen() {
-  NavigatorController naController =
-      Get.find(tag: (NavigatorController).toString());
-  Size size = MediaQuery.of(Get.context!).size;
-  return Expanded(
-    child: SizedBox(
-      width: size.width,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-        child: GridView.builder(
-          itemCount: 8,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: naController.select ? 3 : 4,
-            crossAxisSpacing: 50,
-            mainAxisSpacing: 30,
+class SkeletonCategoryService extends StatelessWidget {
+  const SkeletonCategoryService({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    NavigatorController naController =
+        Get.find(tag: (NavigatorController).toString());
+    Size size = MediaQuery.of(context).size;
+    return Expanded(
+      child: SizedBox(
+        width: size.width,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: naController.select ? 15.w : 30.w, vertical: 0.h),
+          child: GridView.builder(
+            itemCount: 8,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: naController.select ? 3 : 4,
+              crossAxisSpacing: naController.select ? 50.w : 30.w,
+              mainAxisSpacing: 30.h,
+            ),
+            itemBuilder: (context, index) {
+              return CardCategorySkeleton();
+            },
           ),
-          itemBuilder: (context, index) {
-            return CardCategorySkeleton();
-          },
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
-Widget CardCategorySkeleton() {
-  NavigatorController naController =
-      Get.find(tag: (NavigatorController).toString());
-  return SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    child: Card(
-      color: AppColors.navigabackground,
-      elevation: 1,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.only(top: 8),
-                margin: EdgeInsets.all(10),
-                child: Shimmer.fromColors(
-                  baseColor: Colors.grey.shade300,
-                  highlightColor: Colors.white,
-                  period: Duration(milliseconds: 1500),
-                  child: Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(15)),
+class CardCategorySkeleton extends StatelessWidget {
+  const CardCategorySkeleton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    NavigatorController naController =
+        Get.find(tag: (NavigatorController).toString());
+    return Material(
+      color: AppColors.transparent,
+      child: Container(
+        padding: EdgeInsets.only(bottom: 0.h),
+        child: Stack(
+          children: [
+            SizedBox(
+              height: (size.height).h,
+              width: size.width.w,
+              child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Shimmer.fromColors(
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.white,
+                    period: Duration(milliseconds: 1500),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: naController.select ? 175 : 148, //150 //178
-                          height: naController.select ? 110 : 90, //90 //110
+                          width: 150.w,
+                          height: 25.h,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(5.r),
                               color: Colors.grey),
                         ),
                       ],
                     ),
+                  )),
+            ),
+            Align(
+                alignment: Alignment.topCenter,
+                child: Shimmer.fromColors(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: Colors.white,
+                  period: Duration(milliseconds: 1500),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 200.w,
+                        height: naController.select ? 180.h : 160.h,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(5.r),
+                            color: Colors.grey),
+                      ),
+                    ],
                   ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Shimmer.fromColors(
-                baseColor: Colors.grey.shade300,
-                highlightColor: Colors.white,
-                period: Duration(milliseconds: 1500),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 120,
-                      height: 25,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.grey),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-            ],
-          ),
+                )),
+          ],
         ),
       ),
-    ),
-  );
+    );
+  }
 }

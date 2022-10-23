@@ -1,15 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class FoodandBeverageController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
+//=============================================================================
   Rx<List<ServiceContent>> serviceListFood = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceListDrink = Rx<List<ServiceContent>>([]);
-
+//=============================================================================
+  Rx<List<ServiceContent>> serviceKhaivi = Rx<List<ServiceContent>>([]);
+  Rx<List<ServiceContent>> serviceMonchinh = Rx<List<ServiceContent>>([]);
+  Rx<List<ServiceContent>> serviceTrangmieng = Rx<List<ServiceContent>>([]);
+//=============================================================================
+  Rx<List<ServiceContent>> serviceNuoctra = Rx<List<ServiceContent>>([]);
+  Rx<List<ServiceContent>> serviceNuocsuoi = Rx<List<ServiceContent>>([]);
+  Rx<List<ServiceContent>> serviceBia = Rx<List<ServiceContent>>([]);
+  Rx<List<ServiceContent>> serviceNuocmocktails = Rx<List<ServiceContent>>([]);
+//=============================================================================
   var numberSelected = 0.obs;
 
   @override
@@ -17,7 +29,7 @@ class FoodandBeverageController extends BaseController {
     _loadData();
     await fetchServicesFood();
     await fetchServicesDrink();
-    debugPrint(serviceListDrink.value.toString());
+    filter();
     super.onInit();
   }
 
@@ -51,5 +63,53 @@ class FoodandBeverageController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceListDrink(result);
+  }
+
+  List<MayjorContent> mayjorFood = [
+    MayjorContent(id: 0, name: "Món khai vị", image: ""),
+    MayjorContent(id: 1, name: "Món chính", image: ""),
+    MayjorContent(id: 2, name: "Món tráng miệng", image: ""),
+  ];
+  List<MayjorContent> mayjorDrink = [
+    MayjorContent(id: 3, name: "Nước trà", image: ""),
+    MayjorContent(id: 4, name: "Nước suối và nước ngọt", image: ""),
+    MayjorContent(id: 5, name: "Bia", image: ""),
+    MayjorContent(id: 6, name: "Nước mocktails", image: ""),
+  ];
+
+  void filter() {
+    String food = "";
+    for (var element in serviceListFood.value) {
+      food = element.majorGroup.toString();
+      switch (food) {
+        case "khai_vi":
+          serviceKhaivi.value.add(element);
+          break;
+        case "Mon_chinh":
+          serviceMonchinh.value.add(element);
+          break;
+        case "Trang_mieng":
+          serviceTrangmieng.value.add(element);
+          break;
+      }
+    }
+    String drink = "";
+    for (var element in serviceListDrink.value) {
+      drink = element.majorGroup.toString();
+      switch (drink) {
+        case "Nuoc_tra":
+          serviceNuoctra.value.add(element);
+          break;
+        case "Nuoc_suoi":
+          serviceNuocsuoi.value.add(element);
+          break;
+        case "Bia":
+          serviceBia.value.add(element);
+          break;
+        case "Nuoc_mocktails":
+          serviceNuocmocktails.value.add(element);
+          break;
+      }
+    }
   }
 }

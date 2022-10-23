@@ -3,6 +3,7 @@ import 'package:smarttv_app/app/modules/abtraction/binding/abtraction_binding.da
 import 'package:smarttv_app/app/modules/bill/binding/bill_binding.dart';
 import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';
 import 'package:smarttv_app/app/modules/event/binding/event_binding.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/binding/foodandbeverage_binding.dart';
 import 'package:smarttv_app/app/modules/home/binding/home_binding.dart';
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/momo/binding/momo_binding.dart';
@@ -11,16 +12,21 @@ import 'package:smarttv_app/app/modules/receptionist/binding/receptionist_bindin
 import 'package:smarttv_app/app/modules/service/binding/service_binding.dart';
 import 'package:smarttv_app/app/modules/service_components/binding/list_service_binding.dart';
 
-
 class MainBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MainController>(() => MainController());
-        NotificationBinding().dependencies();
+
+    NotificationBinding().dependencies();
     HomeBinding().dependencies();
+
     ServiceBinding().dependencies();
     ListServiceBinding().dependencies();
+
+    FoodandBeverageBinding().dependencies();
+
     CartBinding().dependencies();
+
     EventBinding().dependencies();
     AbtractionBinding().dependencies();
     BillBinding().dependencies();

@@ -11,11 +11,11 @@ import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/model/promotion_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/data/dio/dio_provider.dart';
+import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 
 class RepositoryImpl extends BaseRepository implements Repository {
-
   @override
   Future<List<ServiceCategoryContent>> getListServiceCate() {
     var endpoint = "${DioProvider.baseUrl}/serviceCategories";
@@ -23,7 +23,6 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
     try {
       return callApi(dioCall).then((response) {
-        debugPrint("RESPONE DATA: ${response.data}");
         var result = <ServiceCategoryContent>[];
 
         for (var element in (response.data as List<dynamic>)) {
@@ -132,7 +131,36 @@ class RepositoryImpl extends BaseRepository implements Repository {
       "lastModifyBy": lastModifyBy
     };
     var formData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: formData);
+    var dioCall = dioTokenClient.put(endpoint, data: formData);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//amount=20000&bill_Id=1&billDate=23%2F10%2F2022&id=0&
+//price=10000&quantity=2&service_Id=55&status=1
+  @override
+  Future<int> insertBilldetail(BillDetailContent billDetailContent) {
+    if (!TokenManager.instance.hasToken) {
+      TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/billDetail";
+    var data = {
+      'id': 0,
+      "service_Id": billDetailContent.service?.serviceCategory?.id,
+      "bill_Id": billDetailContent.billId,
+      "quantity": billDetailContent.quantity,
+      "price": billDetailContent.price,
+      "amount": billDetailContent.amount,
+      "status": billDetailContent.status,
+      "billDate": billDetailContent.billDate,
+    };
+    var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: fromData);
     try {
       return callApi(dioCall).then((response) {
         return response.statusCode ?? 0;
@@ -144,7 +172,8 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<List<BillDetailContent>> getBilldetailByBillId(int billId) {
-    var endpoint = "https://hotelservice-v5.herokuapp.com/api/v1/billDetail?bill_id=1";
+    var endpoint =
+        "https://hotelservice-v5.herokuapp.com/api/v1/billDetail?bill_id=1";
     var dioCall = dioTokenClient.get(endpoint);
     try {
       return callApi(dioCall).then((response) {

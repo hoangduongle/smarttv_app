@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/material.dart';
 import 'package:smarttv_app/app/core/model/device_content.dart';
 import 'package:smarttv_app/app/core/model/navigator_content.dart';
 import 'package:smarttv_app/app/core/model/overview_content.dart';
@@ -37,9 +38,17 @@ const List<NavigationContent> listNavigationContent = [
       iconData: FluentIcons.location_24_regular,
       iconSelectedData: FluentIcons.location_24_filled),
   NavigationContent(
+      title: 'Khuyến mãi',
+      iconData: FluentIcons.ticket_diagonal_16_regular,
+      iconSelectedData: FluentIcons.ticket_diagonal_16_filled),
+  NavigationContent(
       title: 'bill',
       iconData: FluentIcons.receipt_24_regular,
       iconSelectedData: FluentIcons.receipt_24_filled),
+  NavigationContent(
+      title: 'Đánh giá',
+      iconData: FluentIcons.person_feedback_16_regular,
+      iconSelectedData: FluentIcons.person_feedback_16_filled),
 ];
 
 // const List<OverviewContent> listOverviewContent = [

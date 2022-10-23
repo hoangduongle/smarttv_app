@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_new, prefer_collection_literals, unnecessary_this
+// ignore_for_file: unnecessary_this, unnecessary_new, prefer_collection_literals
 
 class EventContent {
   int? id;
@@ -10,7 +10,7 @@ class EventContent {
   String? endDate;
   String? startTime;
   String? endTime;
-  bool? status;
+  String? status;
   int? numberOfView;
 
   EventContent(List<EventContent> result, {

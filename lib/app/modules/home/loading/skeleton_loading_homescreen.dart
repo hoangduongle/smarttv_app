@@ -37,7 +37,7 @@ Widget SkeletonLoadingHomeScreen() {
 }
 
 Widget buildImageSkeleton() {
-  Size size = MediaQuery.of(Get.context!).size;
+  // Size size = MediaQuery.of(Get.context!).size;
   return Container(
     padding: EdgeInsets.only(top: 8.h),
     child: Shimmer.fromColors(

@@ -1,6 +1,5 @@
 // ignore_for_file: must_call_super, avoid_print, unused_field
 
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
@@ -34,13 +33,23 @@ class ServiceController extends BaseController {
 
   void fandB() {
     serviceCateList.value.add(ServiceCategoryContent(
-        id: 1, description: "thuc don", name: "Thực đơn"));
+        id: 1, description: "thuc an va do ung", name: "Thức ăn và đồ uống"));
     for (var element in serviceCateListTMP.value) {
       if (element.id != 1 && element.id != 2) {
         serviceCateList.value.add(element);
       }
     }
-    debugPrint(serviceCateList.value.toString());
+    // serviceCateList.value.add(
+    //     (ServiceCategoryContent(id: 4, description: "thuc don", name: "Taxi")));
+    // serviceCateList.value.add((ServiceCategoryContent(
+    //     id: 5, description: "thuc don", name: "Massage thư giản")));
+    // serviceCateList.value.add((ServiceCategoryContent(
+    //     id: 6, description: "thuc don", name: "Dọn phòng nhanh")));
+    // serviceCateList.value.add((ServiceCategoryContent(
+    //     id: 7, description: "thuc don", name: "Check-out tại phòng")));
+    // serviceCateList.value.add((ServiceCategoryContent(
+    //     id: 8, description: "thuc don", name: "Hồ bơi")));
+    // debugPrint(serviceCateList.value.toString());
     // debugPrint(serviceCateList.value[0].toString());
   }
 }

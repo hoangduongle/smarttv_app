@@ -54,6 +54,7 @@ class MainController extends GetxController {
 
   void autoReload() {
     debugPrint("Time to refesh fetch Api");
+    // Get.reloadAll();
     // HomeController().fetchOverViews();
     // ServiceController().fetchServiceCategory();
     // ListServiceController().fetchServices();

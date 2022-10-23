@@ -25,7 +25,7 @@ class MomoScreen extends GetView<MomoController> {
           elevation: 5,
           backgroundColor: AppColors.navigabackground,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
           child: SizedBox(
             width: 380.w,
             height: 360.h,
@@ -53,7 +53,7 @@ class MomoScreen extends GetView<MomoController> {
                         child: Container(
                           decoration: BoxDecoration(
                               color: AppColors.pink.withOpacity(.85),
-                              borderRadius: BorderRadius.circular(15.r)),
+                              borderRadius: BorderRadius.circular(5.r)),
                           height: 200.h,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -63,8 +63,8 @@ class MomoScreen extends GetView<MomoController> {
                                 decoration: BoxDecoration(
                                     color: AppColors.white,
                                     borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(15.r),
-                                        bottomRight: Radius.circular(15.r))),
+                                        bottomLeft: Radius.circular(5.r),
+                                        bottomRight: Radius.circular(5.r))),
                               ),
                             ],
                             /*
@@ -97,25 +97,37 @@ class MomoScreen extends GetView<MomoController> {
                 ),
                 SizedBox(
                   height: 35.h,
-                  child: FloatingActionButton.extended(
-                    heroTag: "btn2",
-                    label: Text(
-                      "back".tr,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, color: AppColors.black),
+                  width: 120.w,
+                  child: Material(
+                    color: AppColors.green,
+                    borderRadius: BorderRadius.circular(5.r),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(5.r),
+                      focusColor: AppColors.greenFocus,
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.arrow_back,
+                            size: 20.r,
+                            color: AppColors.black,
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Text(
+                            'back'.tr,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.sp,
+                                color: AppColors.black),
+                          ),
+                        ],
+                      ),
                     ),
-                    icon: Icon(
-                      Icons.arrow_back,
-                      size: 25.r,
-                      color: AppColors.black,
-                    ),
-                    backgroundColor: AppColors.green,
-                    elevation: 1,
-                    focusElevation: 2,
-                    focusColor: AppColors.greenFocus,
-                    onPressed: () {
-                      Get.back();
-                    },
                   ),
                 ),
               ],

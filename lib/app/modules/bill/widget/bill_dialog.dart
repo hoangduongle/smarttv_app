@@ -55,7 +55,7 @@ class BillDialog extends StatelessWidget {
                     children: [
                       InkWell(
                         autofocus: true,
-                        focusColor: AppColors.title,
+                        focusColor: AppColors.orangeColor,
                         borderRadius: BorderRadius.circular(15.r),
                         onTap: () {
                           debugPrint("Payment Method: MoMo");
@@ -69,7 +69,7 @@ class BillDialog extends StatelessWidget {
                         width: 40.h,
                       ),
                       InkWell(
-                        focusColor: AppColors.title,
+                        focusColor: AppColors.orangeColor,
                         borderRadius: BorderRadius.circular(15.r),
                         onTap: () {
                           debugPrint("Payment Method: MoMo");
@@ -77,52 +77,28 @@ class BillDialog extends StatelessWidget {
                         child: SvgPicture.asset("assets/svg/momo.svg",
                             height: 150),
                       ),
-                      // SizedBox(
-                      //   width: 40.h,
-                      // ),
-                      // InkWell(
-                      //   borderRadius: BorderRadius.circular(15.r),
-                      //   focusColor: AppColors.title,
-                      //   onTap: () {
-                      //     debugPrint("Payment Method: Lễ Tân");
-                      //     Get.back();
-                      //     const ReceptionistScreen()
-                      //         .receptionistDialog(context);
-                      //   },
-                      //   child: Container(
-                      //     padding: EdgeInsets.all(2.r),
-                      //     margin: EdgeInsets.symmetric(
-                      //         horizontal: 4.w, vertical: 4.h),
-                      //     decoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(15.0.r),
-                      //         color: AppColors.navigabackground),
-                      //     child: SvgPicture.asset("assets/svg/receptionist.svg",
-                      //         color: AppColors.white.withOpacity(.8),
-                      //         height: 140),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 121.w, vertical: 10.h),
+                      EdgeInsets.symmetric(horizontal: 125.w, vertical: 8.h),
                   child: Row(
                     children: [
                       Text(
                         "Momo",
                         style: TextStyle(
-                            color: AppColors.title,
+                            color: AppColors.white,
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        width: 125.h,
+                        width: 130.h,
                       ),
                       Text(
-                        "Banking",
+                        "VNPay",
                         style: TextStyle(
-                            color: AppColors.title,
+                            color: AppColors.white,
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold),
                       ),
@@ -144,25 +120,37 @@ class BillDialog extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 35.h,
-                  child: FloatingActionButton.extended(
-                    heroTag: "btn2",
-                    label: Text(
-                      "back".tr,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, color: AppColors.black),
+                  width: 120.w,
+                  child: Material(
+                    color: AppColors.green,
+                    borderRadius: BorderRadius.circular(5.r),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(5.r),
+                      focusColor: AppColors.greenFocus,
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.arrow_back,
+                            size: 20.r,
+                            color: AppColors.black,
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Text(
+                            'back'.tr,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.sp,
+                                color: AppColors.black),
+                          ),
+                        ],
+                      ),
                     ),
-                    icon: Icon(
-                      Icons.arrow_back,
-                      size: 25.r,
-                      color: AppColors.black,
-                    ),
-                    backgroundColor: AppColors.green,
-                    elevation: 1,
-                    focusElevation: 2,
-                    focusColor: AppColors.greenFocus,
-                    onPressed: () {
-                      Get.back();
-                    },
                   ),
                 ),
               ],

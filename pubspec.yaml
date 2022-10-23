@@ -49,7 +49,6 @@ dependencies:
   jwt_decode: ^0.3.1
   intl: ^0.17.0
   flutter_launcher_icons: ^0.10.0
-  flutter_native_splash: ^2.2.10+1
   audioplayers: ^0.20.1
   get_storage: ^2.0.3
   lottie: ^1.4.3
@@ -65,9 +64,9 @@ flutter_icons:
   min_sdk_android: 21 # android min sdk min:16, default 21
 
 
-flutter_native_splash:
-  color: "#1E1E1E"
-  image: "assets/images/splash.png"
+# flutter_native_splash:
+#   color: "#1E1E1E"
+#   image: "assets/images/splash.png"
 dev_dependencies:
   flutter_test:
     sdk: flutter

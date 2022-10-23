@@ -1,3 +1,4 @@
+// ignore_for_file: unused_local_variable
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,8 +7,11 @@ import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
+import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
+import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
+import 'package:smarttv_app/app/routes/app_pages.dart';
 
 class FandBScreen extends StatefulWidget {
   const FandBScreen({super.key});
@@ -18,69 +22,75 @@ class FandBScreen extends StatefulWidget {
 
 class _FandBScreenState extends State<FandBScreen> {
   // int num = 0;
+  final List<FocusNode> focusNodes = [];
   @override
   Widget build(BuildContext context) {
-    Size size = const Size(960, 540);
     FoodandBeverageController controller = Get.find();
     CartController caController = Get.find();
+    NavigatorController naController =
+        Get.find(tag: (NavigatorController).toString());
+    MainController maController = Get.find();
+
     return Obx(
       () {
         return Scaffold(
           floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
           floatingActionButton: Stack(
+            // ignore: prefer_const_literals_to_create_immutables
             children: [
+              caController.sizeService <= 0
+                  ? Stack()
+                  : Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment(0.72.w, -0.92.h),
+                          child: Material(
+                            color: AppColors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(100.r),
+                              focusColor: AppColors.orangeColor,
+                              onTap: () {
+                                Get.toNamed(Routes.CART);
+                              },
+                              child: Icon(
+                                FluentIcons.cart_20_regular,
+                                size: 30.r,
+                                color: AppColors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment(0.725.w, -0.905.h), //0.74 -0.945
+                          child: Container(
+                            width: 12,
+                            height: 9,
+                            decoration: BoxDecoration(
+                                color: AppColors.red,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: AppColors.background,
+                                    width: 2,
+                                    strokeAlign: StrokeAlign.center)),
+                          ),
+                        ),
+                      ],
+                    ),
               Align(
-                alignment: Alignment(0.63.w, -0.94.h),
-                child: SizedBox(
-                  height: 35.h,
-                  child: FloatingActionButton.extended(
-                    heroTag: "btn1",
-                    label: Text(
-                      caController.sizeService.toString(),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, color: AppColors.black),
-                    ),
-                    icon: Icon(
-                      FluentIcons.cart_20_filled,
-                      size: 25.r,
-                      color: AppColors.black,
-                    ),
-                    backgroundColor: AppColors.focus,
-                    elevation: 1,
-                    focusElevation: 2,
-                    focusColor: AppColors.orangeColor,
-                    onPressed: () {
-                      Get.toNamed("/cart");
+                  alignment: Alignment(0.95.w, -0.90.h),
+                  child: Obx(
+                    () {
+                      return SizedBox(
+                          height: 35.h,
+                          child: Text(
+                            maController.formattedTime.string,
+                            style: TextStyle(
+                                color: AppColors.white,
+                                fontFamily: FontFamily.Arvo,
+                                fontSize: 20.sp),
+                          ));
                     },
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment(0.95.w, -0.94.h),
-                child: SizedBox(
-                  height: 35.h,
-                  child: FloatingActionButton.extended(
-                    heroTag: "btn2",
-                    label: Text(
-                      "back".tr,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, color: AppColors.black),
-                    ),
-                    icon: Icon(
-                      Icons.arrow_back,
-                      size: 25.r,
-                      color: AppColors.black,
-                    ),
-                    backgroundColor: AppColors.green,
-                    elevation: 1,
-                    focusElevation: 2,
-                    focusColor: AppColors.greenFocus,
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                ),
-              ),
+                  )),
             ],
           ),
           body: Row(
@@ -92,97 +102,110 @@ class _FandBScreenState extends State<FandBScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(top: 60.h, left: 25.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextButton(
-                            style: ButtonStyle(
-                                overlayColor: MaterialStateProperty.all(
-                                    AppColors.greyColor.withOpacity(.5))),
-                            onPressed: () {
-                              setState(() {
-                                controller.numberSelected = 0.obs;
-                              });
-                            },
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Thức ăn",
-                                  style: AppStyles.h4.copyWith(
-                                      //title
-                                      color:
-                                          controller.numberSelected.toInt() == 0
-                                              ? AppColors.title
-                                              : AppColors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 25 / 1000.sp),
-                                ),
-                                Container(
-                                  width: 110,
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                          color: controller.numberSelected
-                                                      .toInt() ==
-                                                  0
-                                              ? AppColors.title
-                                              : AppColors.white,
-                                          width: 1.0),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20.w,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              setState(() {
-                                controller.numberSelected = 1.obs;
-                              });
-                            },
-                            style: ButtonStyle(
-                                overlayColor: MaterialStateProperty.all(
-                                    AppColors.greyColor.withOpacity(.5))),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Đồ uống",
-                                  style: AppStyles.h4.copyWith(
-                                      //title
-                                      color:
-                                          controller.numberSelected.toInt() == 1
-                                              ? AppColors.title
-                                              : AppColors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 25 / 1000.sp),
-                                ),
-                                Container(
-                                  width: 110,
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                          color: controller.numberSelected
-                                                      .toInt() ==
-                                                  1
-                                              ? AppColors.title
-                                              : AppColors.greyColor,
-                                          width: 1.0),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
+                      padding: EdgeInsets.only(top: 25.h, left: 30.w),
+                      child: Text(
+                        'Thức ăn và đồ uống',
+                        style: AppStyles.h4.copyWith(
+                            color: AppColors.header,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(
-                      height: 10.h,
+                    Divider(
+                      color: AppColors.greyColor,
+                      indent: 20.w,
+                      endIndent: 20.w,
                     ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Align(
+                      // alignment: Alignment.center,
+                      child: Container(
+                        height: 35.h,
+                        width: 262.w,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.r),
+                            border:
+                                Border.all(width: 1, color: AppColors.white)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            TextButton(
+                              style: ButtonStyle(
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(3.r),
+                                        bottomLeft: Radius.circular(3.r)),
+                                  )),
+                                  fixedSize: MaterialStateProperty.all(
+                                      Size(130.w, 0.h)),
+                                  backgroundColor: MaterialStateProperty.all(
+                                    controller.numberSelected.toInt() == 0
+                                        ? AppColors.orangeColor
+                                        : AppColors.transparent,
+                                  ),
+                                  overlayColor: MaterialStateProperty.all(
+                                      AppColors.greyColor)),
+                              onPressed: () {
+                                setState(() {
+                                  controller.numberSelected = 0.obs;
+                                });
+                              },
+                              child: Text(
+                                "Thức ăn",
+                                style: AppStyles.h4.copyWith(
+                                    //title
+                                    color:
+                                        controller.numberSelected.toInt() == 0
+                                            ? AppColors.black
+                                            : AppColors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.sp),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  controller.numberSelected = 1.obs;
+                                });
+                              },
+                              style: ButtonStyle(
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(3.r),
+                                        bottomRight: Radius.circular(3.r)),
+                                  )),
+                                  fixedSize: MaterialStateProperty.all(
+                                      Size(130.w, 0.h)),
+                                  backgroundColor: MaterialStateProperty.all(
+                                    controller.numberSelected.toInt() == 1
+                                        ? AppColors.orangeColor
+                                        : AppColors.transparent,
+                                  ),
+                                  overlayColor: MaterialStateProperty.all(
+                                      AppColors.greyColor)),
+                              child: Text(
+                                "Đồ uống",
+                                style: AppStyles.h4.copyWith(
+                                    //title
+                                    color:
+                                        controller.numberSelected.toInt() == 1
+                                            ? AppColors.black
+                                            : AppColors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.sp),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.symmetric(vertical: 5.h)),
                     if (controller.serviceListFood.value.isEmpty &&
                         controller.serviceListDrink.value.isEmpty)
                       SkeletonLoadingServiceConponentScreen()
@@ -199,23 +222,27 @@ class _FandBScreenState extends State<FandBScreen> {
                                     controller.numberSelected.toInt() == 0
                                         ? false
                                         : true,
-                                child: GridView.builder(
-                                  itemCount:
-                                      controller.serviceListFood.value.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4,
-                                    crossAxisSpacing: 60.w,
-                                    mainAxisSpacing: 36,
-                                    mainAxisExtent: 210.h,
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 140.w),
+                                  child: GridView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: controller.mayjorFood.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      mainAxisExtent: 180,
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: 30.w,
+                                      mainAxisSpacing: 20.h,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return CardEachService(
+                                        index: index,
+                                        mayjorContent:
+                                            controller.mayjorFood[index],
+                                      );
+                                    },
                                   ),
-                                  itemBuilder: (context, index) {
-                                    return CardEachService(
-                                      index: index,
-                                      serviceContent: controller
-                                          .serviceListFood.value[index],
-                                    );
-                                  },
                                 ),
                               ),
                               ExcludeFocus(
@@ -223,23 +250,27 @@ class _FandBScreenState extends State<FandBScreen> {
                                     controller.numberSelected.toInt() == 1
                                         ? false
                                         : true,
-                                child: GridView.builder(
-                                  itemCount:
-                                      controller.serviceListDrink.value.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4,
-                                    crossAxisSpacing: 60.w,
-                                    mainAxisSpacing: 36,
-                                    mainAxisExtent: 210.h,
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 140.w),
+                                  child: GridView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: controller.mayjorDrink.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      mainAxisExtent: 180,
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: 30.w,
+                                      mainAxisSpacing: 20.h,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return CardEachService(
+                                        index: index,
+                                        mayjorContent:
+                                            controller.mayjorDrink[index],
+                                      );
+                                    },
                                   ),
-                                  itemBuilder: (context, index) {
-                                    return CardEachService(
-                                      index: index,
-                                      serviceContent: controller
-                                          .serviceListDrink.value[index],
-                                    );
-                                  },
                                 ),
                               ),
                             ],

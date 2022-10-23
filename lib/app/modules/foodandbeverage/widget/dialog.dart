@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
+import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
 
@@ -23,7 +24,7 @@ class DialogWidget extends StatelessWidget {
     return Container();
   }
 
-  void showCustomeDialog(BuildContext context, ServiceContent serviceContent) {
+  void showServiceDialog(BuildContext context, ServiceContent serviceContent) {
     CartController caController = Get.find();
     CartdialogController controller = Get.find();
     controller.count = 1.obs;
@@ -40,16 +41,16 @@ class DialogWidget extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.only(top: 20.h),
-              width: 220.w,
+              width: 180.w,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(5.r),
                 child: CachedNetworkImage(
                   imageUrl:
                       'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcSxLr0EfOo_znMX-DYtQVeYFvNzAF4Xw3Ny8nm9RZqlS0QdgFMCBN81LtQxXfqj_1EviZSW9_zWBuBi6wLLtjA',
-                  height: 130,
-                  fit: BoxFit.fill,
-                  placeholder: (context, url) =>
-                      SkeletonLoading(Size(220, 130)),
+                  height: 150,
+                  fit: BoxFit.cover,
+                  // placeholder: (context, url) =>
+                  //     SkeletonLoading(Size(220, 130)),
                 ),
               ),
             ),
@@ -63,9 +64,24 @@ class DialogWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.title),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.normal,
+                    color: AppColors.white),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            SizedBox(
+              width: 200,
+              child: Text(
+                NumberUtils.vnd(serviceContent.price), //<------ set controller
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.normal,
+                    color: AppColors.white),
               ),
             ),
             SizedBox(
@@ -107,12 +123,12 @@ class DialogWidget extends StatelessWidget {
                   width: 80.w,
                   height: 30.h,
                   child: Material(
-                    color: AppColors.focus,
+                    color: AppColors.green,
                     borderRadius: BorderRadius.circular(5.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
-                      focusColor: AppColors.orangeColor,
+                      focusColor: AppColors.greenFocus,
                       onTap: () {
                         Get.back();
                       },

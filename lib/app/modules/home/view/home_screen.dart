@@ -39,7 +39,7 @@ class HomePage extends GetView<HomeController> {
                       "overview".tr,
                       style: AppStyles.h4.copyWith(
                           color: AppColors.header,
-                          fontSize: (size.width * 0.02).sp,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.bold),
                     ),
                   ),

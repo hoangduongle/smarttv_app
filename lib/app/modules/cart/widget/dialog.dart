@@ -56,7 +56,7 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
               padding: EdgeInsets.only(top: 20.h),
               width: 220.w,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(5.r),
                 child: CachedNetworkImage(
                   imageUrl:
                       'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcSxLr0EfOo_znMX-DYtQVeYFvNzAF4Xw3Ny8nm9RZqlS0QdgFMCBN81LtQxXfqj_1EviZSW9_zWBuBi6wLLtjA',

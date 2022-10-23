@@ -42,7 +42,7 @@ class ServiceScreen extends GetView<ServiceController> {
                           'services'.tr,
                           style: AppStyles.h4.copyWith(
                               color: AppColors.header,
-                              fontSize: (size.width * 0.02).sp,
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -52,20 +52,23 @@ class ServiceScreen extends GetView<ServiceController> {
                         endIndent: 20.w,
                       ),
                       controller.serviceCateList.value.isEmpty
-                          ? SkeletonLoadingServiceScreen()
+                          ? SkeletonCategoryService()
                           : Expanded(
                               child: SizedBox(
                               width: size.width,
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 20.w, vertical: 10.h),
+                                    horizontal:
+                                        naController.select ? 15.w : 30.w,
+                                    vertical: 0.h),
                                 child: GridView.builder(
                                   itemCount:
                                       controller.serviceCateList.value.length,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: naController.select ? 3 : 4,
-                                    crossAxisSpacing: 45.w,
+                                    crossAxisSpacing:
+                                        naController.select ? 50.w : 30.w,
                                     mainAxisSpacing: 30.h,
                                   ),
                                   itemBuilder: (context, index) {

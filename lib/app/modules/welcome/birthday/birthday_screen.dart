@@ -221,7 +221,7 @@ class _BirthdayState extends State<Birthday> {
                   height: 50.h,
                   child: Material(
                     color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(10.r),
+                    borderRadius: BorderRadius.circular(5.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(

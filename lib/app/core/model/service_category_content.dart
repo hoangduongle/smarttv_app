@@ -1,16 +1,27 @@
-// ignore_for_file: unnecessary_this, unnecessary_new, prefer_collection_literals
+// ignore_for_file: unnecessary_this, prefer_collection_literals, unnecessary_new
 
 class ServiceCategoryContent {
   int? id;
   String? name;
   String? description;
+  bool? status;
 
-  ServiceCategoryContent({this.id, this.name, this.description});
+  bool? foodAndBeverage;
+
+  ServiceCategoryContent(
+      {this.id,
+      this.name,
+      this.description,
+      this.status,
+      this.foodAndBeverage});
 
   ServiceCategoryContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
+    status = json['status'];
+
+    foodAndBeverage = json['foodAndBeverage'];
   }
 
   Map<String, dynamic> toJson() {
@@ -18,11 +29,14 @@ class ServiceCategoryContent {
     data['id'] = this.id;
     data['name'] = this.name;
     data['description'] = this.description;
+    data['status'] = this.status;
 
+    data['foodAndBeverage'] = this.foodAndBeverage;
     return data;
   }
 
   @override
-  String toString() =>
-      'ServiceCategoryContent(id: $id, name: $name, description: $description)';
+  String toString() {
+    return 'ServiceCategoryContent(id: $id, name: $name, description: $description, status: $status, foodAndBeverage: $foodAndBeverage)';
+  }
 }

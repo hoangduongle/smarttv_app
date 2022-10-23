@@ -7,6 +7,7 @@ import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
 import 'package:smarttv_app/app/modules/bill/widget/bill_dialog.dart';
+import 'package:smarttv_app/app/modules/bill/widget/listbill.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 
 class BillScreen extends GetView<BillController> {
@@ -29,7 +30,7 @@ class BillScreen extends GetView<BillController> {
                   Text("Mã Hoá Đơn: ",
                       style: AppStyles.h4.copyWith(
                           color: AppColors.header,
-                          fontSize: (size.width * 0.02).sp,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.bold)),
                   Text(
                       "#${controller.bill.value?.id ?? '00000'}", //${controller.bill.value?.id}
@@ -79,7 +80,7 @@ class BillScreen extends GetView<BillController> {
                           fontSize: 20.sp,
                           color: AppColors.title,
                         )),
-                    Text('Ngày/Giờ',
+                    Text('Ngày',
                         style: AppStyles.h4.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.sp,
@@ -117,6 +118,8 @@ class BillScreen extends GetView<BillController> {
                             height: 25.h,
                           ),
                       itemBuilder: (context, index) => ListBill(
+                            billDetailContent:
+                                controller.billDetails.value[index],
                             billController: controller,
                             index: index,
                           )),
@@ -184,11 +187,10 @@ class BillScreen extends GetView<BillController> {
                   height: 50.h,
                   child: Material(
                     color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(10.r),
-                    elevation: 0,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    borderRadius: BorderRadius.circular(5.r),
                     child: InkWell(
                       focusColor: AppColors.orangeColor,
+                      borderRadius: BorderRadius.circular(5.r),
                       onTap: () {
                         BillDialog().showBillDialog(context);
                       },
@@ -213,140 +215,5 @@ class BillScreen extends GetView<BillController> {
         ),
       ),
     );
-  }
-}
-
-class ListBill extends StatelessWidget {
-  BillController billController;
-  int index;
-
-  ListBill({
-    Key? key,
-    required this.billController,
-    required this.index,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    NavigatorController naController =
-        Get.find(tag: (NavigatorController).toString());
-    return billController.bill.value.isNull
-        ? Container()
-        : Material(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(5.r),
-            child: InkWell(
-              onTap: () {
-                debugPrint('Bill: ');
-                //${index.toString()}
-              },
-              borderRadius: BorderRadius.circular(5.r),
-              focusColor: AppColors.focus,
-              child: Container(
-                height: 45.h,
-                padding: EdgeInsets.symmetric(horizontal: 8.w),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        children: [
-                          AnimatedPadding(
-                              padding: EdgeInsets.only(
-                                  left: naController.select ? 20.w : 10.w),
-                              duration: Duration(milliseconds: 500)),
-                          SizedBox(
-                            width: 110.w,
-                            child: Text(
-                              "${billController.billDetails.value[index].serviceId}",
-                              maxLines: 2,
-                              textAlign: TextAlign.start,
-                              style: AppStyles.h5.copyWith(
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 45.w,
-                      ),
-                      SizedBox(
-                        width: 30.w,
-                        child: Text(
-                          "${billController.billDetails.value[index].quantity}", //QUANTITY
-                          style: AppStyles.h5.copyWith(
-                              color: AppColors.white,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      AnimatedContainer(
-                          duration: Duration(milliseconds: 500),
-                          width: naController.select ? 78.w : 88),
-                      SizedBox(
-                        width: 92.w,
-                        child: Text(
-                          NumberUtils.noVnd(billController
-                              .billDetails.value[index].price), //PRICE
-                          textAlign: TextAlign.center,
-                          style: AppStyles.h5.copyWith(
-                              color: AppColors.white,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      AnimatedContainer(
-                          duration: Duration(milliseconds: 500),
-                          width: naController.select ? 47.w : 60),
-                      SizedBox(
-                        width: 92.w,
-                        child: Text(
-                          NumberUtils.noVnd(billController
-                              .billDetails.value[index].amount), //AMOUNT
-                          textAlign: TextAlign.center,
-                          style: AppStyles.h5.copyWith(
-                              color: AppColors.white,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      AnimatedContainer(
-                          duration: Duration(milliseconds: 500),
-                          width: naController.select ? 0.w : 6),
-                      Text(
-                        '''
-                27-09-2022
-                23:59 AM
-                ''',
-                        maxLines: 2,
-                        textAlign: TextAlign.center,
-                        style: AppStyles.h5.copyWith(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Container(
-                        width: 70.w,
-                      ),
-                      naController.select
-                          ? Container()
-                          : SizedBox(
-                              width: 90.w,
-                              child: Text(
-                                billController
-                                            .billDetails.value[index].status ==
-                                        0
-                                    ? 'paid'.tr
-                                    : 'unpaid'.tr,
-                                textAlign: TextAlign.center,
-                                style: AppStyles.h5.copyWith(
-                                    color: AppColors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
   }
 }

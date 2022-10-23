@@ -61,7 +61,7 @@ class ReceptionistScreen extends GetView<ReceptionistController> {
                 SizedBox(
                   height: 35.h,
                   child: FloatingActionButton.extended(
-                    heroTag: "btn2",
+                    heroTag: "btn6",
                     label: Text(
                       "close".tr,
                       style: const TextStyle(

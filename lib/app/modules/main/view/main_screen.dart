@@ -1,12 +1,13 @@
-// ignore_for_file: dead_code, prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, avoid_print, unused_field, unused_local_variable, non_constant_identifier_names
+// ignore_for_file: dead_code, prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, avoid_print, unused_field, unused_local_variable, non_constant_identifier_names, unrelated_type_equality_checks
 
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/bill/view/bill_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/view/fandb_screen.dart';
 import 'package:smarttv_app/app/modules/home/view/home_screen.dart';
 import 'package:smarttv_app/app/modules/abtraction/view/abtraction_screen.dart';
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
@@ -18,6 +19,7 @@ import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -51,57 +53,127 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLoading = true;
-    // setState(() {
-    //   Future.delayed(
-    //     Duration(milliseconds: 1000),
-    //     () => isLoading = false,
-    //   );
-    // });
     Size size = MediaQuery.of(context).size;
     CartController Cacontroller = Get.find();
     return WillPopScope(onWillPop: () async {
-      return false;
+      bool result = false;
+      switch (naController.current_index.toInt()) {
+        case 0:
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(
+                  "Thoát ứng dụng ?",
+                  style: TextStyle(
+                    color: AppColors.title,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                content: Text(
+                  "Bạn có muốn thoát ứng dụng không?",
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    color: AppColors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                backgroundColor: AppColors.navigabackground,
+                actionsAlignment: MainAxisAlignment.center,
+                elevation: 24,
+                actions: [
+                  SizedBox(
+                    width: 80.w,
+                    height: 30.h,
+                    child: Material(
+                      color: AppColors.green,
+                      borderRadius: BorderRadius.circular(5.r),
+                      elevation: 0,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: InkWell(
+                        focusColor: AppColors.greenFocus,
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Không',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15.sp,
+                                  color: AppColors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 80.w,
+                    height: 30.h,
+                    child: Material(
+                      color: AppColors.title,
+                      borderRadius: BorderRadius.circular(5.r),
+                      elevation: 0,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: InkWell(
+                        focusColor: AppColors.orangeColor,
+                        onTap: () {
+                          SystemNavigator.pop();
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Có',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15.sp,
+                                  color: AppColors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+          result = false;
+          break;
+        case 1:
+          naController.current_index = 0.obs;
+          break;
+        case 2:
+          naController.current_index = 0.obs;
+          break;
+        case 3:
+          naController.current_index = 0.obs;
+          break;
+        case 4:
+          naController.current_index = 0.obs;
+          break;
+        case 5:
+          naController.current_index = 0.obs;
+          break;
+        case 6:
+          naController.current_index = 0.obs;
+          break;
+        case 7:
+          naController.current_index = 1.obs;
+          break;
+        default:
+      }
+      return result;
     }, child: GetBuilder<MainController>(
       builder: (maController) {
         return Scaffold(
           floatingActionButton: Stack(
             children: [
-              // Align(
-              //   alignment: Alignment(0.63, -0.94),
-              //   child: SizedBox(
-              //     height: 35.h,
-              //     child: FloatingActionButton.extended(
-              //       heroTag: "btn1",
-              //       label: Text(
-              //         "0",
-              //         style: TextStyle(
-              //             fontWeight: FontWeight.bold, color: AppColors.white),
-              //       ),
-              //       icon: Icon(
-              //         FluentIcons.alert_20_filled,
-              //         size: 25.r,
-              //         color: AppColors.white,
-              //       ),
-              //       backgroundColor: AppColors.focus,
-              //       elevation: 1,
-              //       focusElevation: 2,
-              //       focusColor: AppColors.orangeColor,
-              //       onPressed: () async {
-              //         final TimeOfDay? newTime = await showTimePicker(
-              //           context: context,
-              //           initialTime: TimeOfDay(hour: 7, minute: 15),
-              //           initialEntryMode: TimePickerEntryMode.inputOnly,
-              //         );
-
-              //         // NotificationScreen().openDialog(context);
-              //         setState(() {
-              //           debugPrint("Check Notification!!");
-              //         });
-              //       },
-              //     ),
-              //   ),
-              // ),
               Align(
                   alignment: Alignment(0.95, -0.90),
                   child: Obx(
@@ -111,7 +183,6 @@ class _MainScreenState extends State<MainScreen> {
                           child: Text(
                             maController.formattedTime.string,
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
                                 color: AppColors.white,
                                 fontFamily: FontFamily.Arvo,
                                 fontSize: 20.sp),
@@ -168,9 +239,9 @@ class _MainScreenState extends State<MainScreen> {
                           child: Container(
                             child: ListView.separated(
                               separatorBuilder: (context, index) => SizedBox(
-                                height: 30,
+                                height: 15,
                               ),
-                              itemCount: 5,
+                              itemCount: naController.navigation_list.length,
                               itemBuilder: (context, index) {
                                 return AnimatedContainer(
                                   duration: Duration(milliseconds: 500),
@@ -201,7 +272,6 @@ class _MainScreenState extends State<MainScreen> {
                                           setState(() {
                                             naController.current_index =
                                                 index.obs;
-                                            // naController.select =!naController.select;
                                           });
                                         },
                                         child: buildNavigationWidget(
@@ -222,61 +292,6 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ),
                         ),
-                        Divider(
-                          indent: 25.w,
-                          endIndent: 25.w,
-                          thickness: 1,
-                          color: AppColors.white,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: Material(
-                            color: AppColors.navigabackground,
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(15),
-                              focusColor: AppColors.greyColor,
-                              onTap: () {
-                                setState(() {
-                                  SystemNavigator.pop();
-                                });
-                              },
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Icon(
-                                      Icons.logout,
-                                      color: AppColors.white,
-                                      size: size.width * 1 / 40,
-                                    ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    SizedBox(
-                                      // color: Colors.green,
-                                      width: 129,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12.0, vertical: 0),
-                                        child: Text(
-                                          "exit".tr,
-                                          style: TextStyle(
-                                            fontSize: size.width * 1 / 70,
-                                            color: AppColors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   )),
@@ -293,6 +308,7 @@ class _MainScreenState extends State<MainScreen> {
                           : true,
                       // excluding: true,
                       child: ServiceScreen(),
+                      //  ServiceScreen()
                     ),
                     ExcludeFocus(
                       // excluding: focusNodes[2].hasFocus ? false : true,
@@ -317,7 +333,37 @@ class _MainScreenState extends State<MainScreen> {
                           ? false
                           : true,
                       // excluding: true,
+                      child: Container(
+                        color: AppColors.background,
+                      ),
+                    ),
+                    ExcludeFocus(
+                      // excluding: focusNodes[1].hasFocus ? false : true,
+                      excluding: naController.current_index.toInt() == 5
+                          ? false
+                          : true,
+                      // excluding: true,
                       child: BillScreen(),
+                    ),
+                    ExcludeFocus(
+                      // excluding: focusNodes[1].hasFocus ? false : true,
+                      excluding: naController.current_index.toInt() == 6
+                          ? false
+                          : true,
+                      // excluding: true,
+                      child: Container(
+                        color: AppColors.background,
+                      ),
+                    ),
+                    ExcludeFocus(
+                      // excluding: focusNodes[1].hasFocus ? false : true,
+                      excluding: naController.current_index.toInt() == 7
+                          ? false
+                          : true,
+                      // excluding: true,
+                      child: ListServiceScreen(
+                        cateName: '',
+                      ),
                     ),
                   ],
                 ),

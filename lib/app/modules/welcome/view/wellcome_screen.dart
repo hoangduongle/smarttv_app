@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api
 
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

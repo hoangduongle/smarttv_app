@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/bill_content.dart';
@@ -10,9 +11,9 @@ class BillController extends BaseController {
   Rx<List<BillDetailContent>> billDetails = Rx<List<BillDetailContent>>([]);
   Rx<BillContent?> bill = Rx<BillContent?>(null);
   @override
-  void onInit() {
-    fetchBill(1);
-    fetchBillDetails(1);
+  void onInit() async {
+    await fetchBill(1);
+    await fetchBillDetails(1);
     super.onInit();
   }
 

@@ -11,7 +11,7 @@ String formattedDate = formatter.format(now);
 class DateTimeUtils {
   static String currentDate() {
     var now = DateTime.now();
-    var formatter = DateFormat('dd-MM-yyyy');
+    var formatter = DateFormat('dd/MM/yyyy');
     String formattedDate = formatter.format(now);
     return formattedDate;
   }

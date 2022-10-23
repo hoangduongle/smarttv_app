@@ -27,6 +27,7 @@ abstract class Repository {
   Future<BillContent> getBillById(int billId);
   Future<int> updateBillByBillId(String createBy, String createDate, int billId,
       String lastModifyBy, double totalAmount, String updateDate);
+  Future<int> insertBilldetail(BillDetailContent billDetailContent);
   Future<List<BillDetailContent>> getBilldetailByBillId(int billId);
 
 //===============================Booking========================================

@@ -170,20 +170,18 @@ class CartScreen extends GetView<CartController> {
                   height: 50.h,
                   child: Material(
                     color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(10.r),
+                    borderRadius: BorderRadius.circular(5.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
                       focusColor: AppColors.orangeColor,
                       onTap: () {
                         //addtobill
-                        controller.addtoBill();
-
-                        ThankCustomer().showThanksDialog(context);
-                        Future.delayed(
-                          Duration(milliseconds: 2000),
-                          () => Get.back(),
-                        );
+                        if (controller.sizeService > 0) {
+                          controller.addtoBill();
+                        } else {
+                          Get.back();
+                        }
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -205,7 +203,7 @@ class CartScreen extends GetView<CartController> {
                   height: 50.h,
                   child: Material(
                     color: AppColors.green,
-                    borderRadius: BorderRadius.circular(10.r),
+                    borderRadius: BorderRadius.circular(5.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(

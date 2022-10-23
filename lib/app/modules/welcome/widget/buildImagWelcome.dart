@@ -9,7 +9,7 @@ import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dar
 import 'package:smarttv_app/app/modules/welcome/controller/wellcome_controller.dart';
 
 Widget buildImageWelcome(Size size, int index, BuildContext context) {
-  double setWidth = size.width.w;
+  // double setWidth = size.width.w;
   NavigatorController naController =
       Get.find(tag: (NavigatorController).toString());
   WellcomeController controller = Get.find();
@@ -24,27 +24,27 @@ Widget buildImageWelcome(Size size, int index, BuildContext context) {
       switch (index) {
         case 0: // abtraction
           naController.current_index = 3.obs;
-          Get.offNamed('/mainscreen');
+          Get.toNamed('/mainscreen');
           break;
         case 1: //promotion
           naController.current_index = 2.obs;
-          Get.offNamed('/mainscreen');
+          Get.toNamed('/mainscreen');
           break;
         case 2: //home
           naController.current_index = 0.obs;
-          Get.offNamed('/mainscreen');
+          Get.toNamed('/mainscreen');
           break;
         case 3: //service
           naController.current_index = 1.obs;
-          Get.offNamed('/mainscreen');
+          Get.toNamed('/mainscreen');
           break;
         case 4: //event
           naController.current_index = 2.obs;
-          Get.offNamed('/mainscreen');
+          Get.toNamed('/mainscreen');
           break;
         default:
           naController.current_index = 0.obs;
-          Get.offNamed('/mainscreen');
+          Get.toNamed('/mainscreen');
           break;
       }
     },

@@ -10,6 +10,14 @@ import 'package:smarttv_app/app/core/values/app_styles.dart';
 
 Widget buildNavigationWidget(int index, String title, IconData? icons,
     IconData? iconSelected, int active, Size size) {
+  switch (index) {
+    case 7:
+      index = 1;
+      break;
+    default:
+      index;
+  }
+
   return Container(
     padding: EdgeInsets.only(left: (size.width * 0.02).w),
     child: SingleChildScrollView(
@@ -27,7 +35,7 @@ Widget buildNavigationWidget(int index, String title, IconData? icons,
             width: 6.w,
           ),
           Container(
-            width: 120.w,
+            width: 150.w,
             padding: EdgeInsets.symmetric(
                 horizontal: 12.w, vertical: (size.height * 0.02).w),
             child: Text(
