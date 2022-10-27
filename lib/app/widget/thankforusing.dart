@@ -5,7 +5,9 @@ import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class ThankCustomer extends StatelessWidget {
-  const ThankCustomer({super.key});
+  const ThankCustomer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,6 @@ class ThankCustomer extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        // Size size = MediaQuery.of(context).size;
         return Dialog(
           elevation: 5,
           backgroundColor: AppColors.navigabackground,
@@ -32,15 +33,12 @@ class ThankCustomer extends StatelessWidget {
                   SizedBox(
                     height: 15.h,
                   ),
-                  // SvgPicture.asset(
-
-                  //   "assets/svg/thankcustomer.svg",
-                  // ),
+                  Lottie.asset("assets/lotties/loading.json"),
                   Container(
                     padding: EdgeInsets.only(top: 10.h),
                     width: 800.w,
                     child: Text(
-                      "Cảm ơn quý khách đã sử dụng dịch vụ",
+                      "Yêu cầu của quý khách đang được xử lý",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 25.sp,
@@ -62,7 +60,7 @@ class ThankCustomer extends StatelessWidget {
                     padding: EdgeInsets.only(top: 00.h),
                     width: 800.w,
                     child: Text(
-                      "Chúc quý khách một ngày vui vẻ, hạnh phúc",
+                      "Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 15.sp,

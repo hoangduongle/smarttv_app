@@ -14,6 +14,8 @@ class WellcomeController extends GetxController {
   var formattedTime = "".obs;
   var formattedDate = "".obs;
 
+  bool isbirthday = false;
+
   @override
   void onInit() {
     timing();

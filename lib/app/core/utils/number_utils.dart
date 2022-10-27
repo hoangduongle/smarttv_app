@@ -1,9 +1,13 @@
-
-
 import 'package:intl/intl.dart';
 
 abstract class NumberUtils {
   static NumberFormat numberFormat = NumberFormat();
+
+  static String time(int? value) {
+    NumberFormat numberFormatTime = NumberFormat("00");
+    if (value == null) return '00';
+    return "${numberFormatTime.format(value)}";
+  }
 
   static String vnd(double? value) {
     if (value == null) return '-';

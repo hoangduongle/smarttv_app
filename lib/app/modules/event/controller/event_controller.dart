@@ -30,8 +30,6 @@ class EventController extends BaseController {
       onError: ((dioError) {}),
     );
     eventList(result);
-    eventList.value.add(EventContent(result));
   }
-
   var isFocus = [false, false, false];
 }

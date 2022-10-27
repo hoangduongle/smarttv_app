@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
@@ -9,47 +10,53 @@ import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
 import 'package:smarttv_app/app/modules/bill/widget/bill_dialog.dart';
 import 'package:smarttv_app/app/modules/bill/widget/listbill.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+import 'package:smarttv_app/app/widget/titile_screen.dart';
 
-class BillScreen extends GetView<BillController> {
+class BillScreen extends StatefulWidget {
   const BillScreen({super.key});
+
+  @override
+  State<BillScreen> createState() => _BillScreenState();
+}
+
+class _BillScreenState extends State<BillScreen> {
+  final List<FocusNode> focusNodesBill = [];
+  @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i < 99; i++) {
+      FocusNode focus = FocusNode();
+      focusNodesBill.add(focus);
+    }
+  }
+
+  @override
+  void dispose() {
+    for (int i = 0; i < 99; i++) {
+      focusNodesBill[i].dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Container(
-        color: AppColors.background,
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 25.h, left: 30.w),
-              child: Row(
-                children: [
-                  Text("Mã Hoá Đơn: ",
-                      style: AppStyles.h4.copyWith(
-                          color: AppColors.header,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold)),
-                  Text(
-                      "#${controller.bill.value?.id ?? '00000'}", //${controller.bill.value?.id}
-                      style: AppStyles.h4.copyWith(
-                          color: AppColors.header,
-                          fontSize: (size.width * 0.02).sp))
-                ],
-              ),
-            ),
-            const Divider(
-              color: AppColors.greyColor,
-              indent: 20,
-              endIndent: 20,
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Column(
+    ScrollController scrollController = ScrollController();
+    return GetBuilder<BillController>(
+      builder: (controller) {
+        return Scaffold(
+          body: Container(
+            color: AppColors.background,
+            child: Column(
               children: [
+                TitleScreen(
+                  name: "Mã Hoá Đơn: #${controller.bill.value?.id ?? '00000'}",
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.max,
@@ -74,7 +81,7 @@ class BillScreen extends GetView<BillController> {
                           fontSize: 20.sp,
                           color: AppColors.title,
                         )),
-                    Text('totalamout'.tr,
+                    Text('status'.tr,
                         style: AppStyles.h4.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.sp,
@@ -88,7 +95,7 @@ class BillScreen extends GetView<BillController> {
                         )),
                     naController.select
                         ? Container()
-                        : Text('status'.tr,
+                        : Text('totalamout'.tr,
                             style: AppStyles.h4.copyWith(
                               fontWeight: FontWeight.bold,
                               fontSize: 20.sp,
@@ -106,24 +113,33 @@ class BillScreen extends GetView<BillController> {
                     thickness: 1,
                   ),
                 ),
-                SizedBox(
-                  width: 870.w,
-                  height: 185.h,
-                  child: ListView.separated(
-                      physics: ScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: controller.billDetails.value.length,
-                      separatorBuilder: (context, index) => SizedBox(
-                            height: 25.h,
-                          ),
-                      itemBuilder: (context, index) => ListBill(
-                            billDetailContent:
-                                controller.billDetails.value[index],
-                            billController: controller,
-                            index: index,
-                          )),
-                ),
+                controller.billDetails.value.isEmpty
+                    ? Expanded(
+                        child: Lottie.asset("assets/lotties/loading.json"))
+                    : Expanded(
+                        child: RawScrollbar(
+                        thumbColor: AppColors.white,
+                        thumbVisibility: true,
+                        radius: Radius.circular(100.r),
+                        thickness: 10,
+                        controller: scrollController,
+                        child: SizedBox(
+                          width: 870.w,
+                          child: ListView.separated(
+                              controller: scrollController,
+                              separatorBuilder: (context, index) => SizedBox(
+                                    height: 25.h,
+                                  ),
+                              itemCount: controller.billDetails.value.length,
+                              itemBuilder: (context, index) => ListBill(
+                                    focus: focusNodesBill[index],
+                                    billDetailContent:
+                                        controller.billDetails.value[index],
+                                    billController: controller,
+                                    index: index,
+                                  )),
+                        ),
+                      )),
                 SizedBox(
                   height: 5.h,
                 ),
@@ -141,7 +157,7 @@ class BillScreen extends GetView<BillController> {
                 Row(
                   children: [
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Container(),
                     ),
                     Expanded(
@@ -162,7 +178,7 @@ class BillScreen extends GetView<BillController> {
                 Row(
                   children: [
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Container(),
                     ),
                     Expanded(
@@ -178,9 +194,6 @@ class BillScreen extends GetView<BillController> {
                       ),
                     ),
                   ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10.h),
                 ),
                 SizedBox(
                   width: 170.w,
@@ -209,11 +222,14 @@ class BillScreen extends GetView<BillController> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 20.h,
+                ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

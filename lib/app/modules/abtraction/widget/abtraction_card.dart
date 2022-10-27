@@ -1,11 +1,9 @@
+// ignore_for_file: must_be_immutable
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
@@ -34,7 +32,8 @@ class AbtractionCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.r),
               child: CachedNetworkImage(
-                imageUrl: "https://i.ibb.co/ssdbk86/event1.png",
+                imageUrl:
+                    "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
                 imageBuilder: (context, imageProvider) {
                   return Container(
                     height: 150.h,

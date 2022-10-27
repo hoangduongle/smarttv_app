@@ -28,7 +28,7 @@ class CartController extends BaseController {
     Get.snackbar(
         "${serviceContent.name} đã thêm vào giỏ", "số lượng: $quantity",
         colorText: AppColors.black,
-        backgroundColor: AppColors.focus.withOpacity(.6),
+        backgroundColor: AppColors.focus.withOpacity(.5),
         duration: const Duration(milliseconds: 1500));
   }
 
@@ -73,19 +73,6 @@ class CartController extends BaseController {
 
   var result;
 
-  Future<void> fetchupdateBill(String createBy, String createDate, int billId,
-      String lastModifyBy, double totalAmount, String updateDate) async {
-    var overview = _repository.updateBillByBillId(
-        createBy, createDate, billId, lastModifyBy, totalAmount, updateDate);
-    await callDataService(
-      overview,
-      onSuccess: (int response) {
-        result = response;
-      },
-      onError: ((dioError) {}),
-    );
-  }
-
   Future<void> insertBilldetails(BillDetailContent billDetailContent) async {
     var overview = _repository.insertBilldetail(billDetailContent);
     await callDataService(
@@ -99,10 +86,10 @@ class CartController extends BaseController {
 
   void addtoBill() async {
     if (_service.isNotEmpty) {
-      // const ThankCustomer().showThanksDialog(Get.context!);
+      // ThankCustomer().showThanksDialog(Get.context!);
       int billId = 1;
-      _service.forEach((key, value) {
-        insertBilldetails(BillDetailContent(
+      _service.forEach((key, value) async {
+        await insertBilldetails(BillDetailContent(
             amount: (key.price * value),
             billDate: DateTimeUtils.currentDate(),
             billId: billId,
@@ -112,18 +99,15 @@ class CartController extends BaseController {
             service: key,
             status: 1));
       });
-
-      // await fetchupdateBill(
-      //     "Duong", "", billId, "Duong", total, DateTimeUtils.currentDate());
-
-      // if (result == 200) {
-      //   removeAllSerivce();
-      //   Get.back();
-      //   Get.back();
-      //   Get.reload<BillController>();
-      // } else {
-      //   debugPrint("Update bill fail");
-      // }
+      
+      if (result == 200) {
+        removeAllSerivce();
+        Get.back();
+        Get.back();
+        Get.reload<BillController>();
+      } else {
+        debugPrint("Update bill fail");
+      }
     } else {
       debugPrint("Cart is Empty!!!");
     }

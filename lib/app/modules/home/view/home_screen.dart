@@ -15,6 +15,7 @@ import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
+import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
@@ -33,20 +34,8 @@ class HomePage extends GetView<HomeController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 25.h, left: 30.w),
-                    child: Text(
-                      "overview".tr,
-                      style: AppStyles.h4.copyWith(
-                          color: AppColors.header,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Divider(
-                    color: AppColors.greyColor,
-                    indent: 20,
-                    endIndent: 20,
+                  TitleScreen(
+                    name: "overview".tr,
                   ),
                   Container(
                     child: controller.overviewList.value.isEmpty

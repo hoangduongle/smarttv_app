@@ -1,5 +1,6 @@
 // ignore_for_file: unused_local_variable
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,8 @@ import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dar
 import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
+import 'package:smarttv_app/app/widget/navigator_back.dart';
+import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class FandBScreen extends StatefulWidget {
   const FandBScreen({super.key});
@@ -38,6 +41,7 @@ class _FandBScreenState extends State<FandBScreen> {
           floatingActionButton: Stack(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
+              NavigatorBack(),
               caController.sizeService <= 0
                   ? Stack()
                   : Stack(
@@ -101,21 +105,7 @@ class _FandBScreenState extends State<FandBScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: EdgeInsets.only(top: 25.h, left: 30.w),
-                      child: Text(
-                        'Thức ăn và đồ uống',
-                        style: AppStyles.h4.copyWith(
-                            color: AppColors.header,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Divider(
-                      color: AppColors.greyColor,
-                      indent: 20.w,
-                      endIndent: 20.w,
-                    ),
+                    TitleScreen(name: "Thức ăn và đồ uống"),
                     SizedBox(
                       height: 20.h,
                     ),

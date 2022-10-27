@@ -13,6 +13,7 @@ import 'package:smarttv_app/app/modules/event/loading/skeleton_event.dart';
 import 'package:smarttv_app/app/modules/event/widget/build_event.dart';
 
 import 'package:smarttv_app/app/modules/event/widget/title_event.dart';
+import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class EventScreen extends GetView<EventController> {
   const EventScreen({super.key});
@@ -26,22 +27,8 @@ class EventScreen extends GetView<EventController> {
             color: AppColors.background,
             child: Column(
               children: [
-                Container(
-                  padding: EdgeInsets.only(top: 25.h, left: 30.w),
-                  child: Row(
-                    children: [
-                      Text("event".tr,
-                          style: AppStyles.h4.copyWith(
-                              color: AppColors.header,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ),
-                const Divider(
-                  color: AppColors.greyColor,
-                  indent: 20,
-                  endIndent: 20,
+                TitleScreen(
+                  name: "event".tr,
                 ),
                 // Padding(
                 //     padding: EdgeInsets.fromLTRB(30.w, 10.h, 0.w, 10.h),

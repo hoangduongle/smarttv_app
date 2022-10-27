@@ -42,7 +42,8 @@ class BuildEvent extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5.r),
           child: CachedNetworkImage(
-            imageUrl: "https://i.ibb.co/ssdbk86/event1.png",
+            imageUrl:
+                "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
             imageBuilder: (context, imageProvider) {
               return Container(
                 margin: EdgeInsets.all(2.r),

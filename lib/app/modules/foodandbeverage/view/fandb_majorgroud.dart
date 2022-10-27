@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable, must_be_immutable
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,8 @@ import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
+import 'package:smarttv_app/app/widget/navigator_back.dart';
+import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class FandBMayjorScreen extends StatefulWidget {
   int mayjorId;
@@ -73,6 +76,7 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
           floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
           floatingActionButton: Stack(
             children: [
+              NavigatorBack(),
               caController.sizeService <= 0
                   ? Stack()
                   : Stack(
@@ -136,20 +140,8 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: EdgeInsets.only(top: 25.h, left: 30.w),
-                      child: Text(
-                        'Thức ăn và đồ uống',
-                        style: AppStyles.h4.copyWith(
-                            color: AppColors.title,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Divider(
-                      color: AppColors.greyColor,
-                      indent: 20.w,
-                      endIndent: 20.w,
+                    TitleScreen(
+                      name: "Thức ăn và đồ uống",
                     ),
                     SizedBox(
                       height: 10.h,

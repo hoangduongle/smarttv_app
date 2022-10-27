@@ -1,0 +1,84 @@
+// ignore_for_file: must_be_immutable
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:smarttv_app/app/core/model/promotion_content.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/promotion/widget/promotion_dialog.dart';
+
+class BuildPromotion extends StatelessWidget {
+  int index;
+  PromotionContent promotionContent;
+  BuildPromotion({
+    Key? key,
+    required this.index,
+    required this.promotionContent,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    NavigatorController naController =
+        Get.find(tag: (NavigatorController).toString());
+    Size size = MediaQuery.of(context).size;
+    return Material(
+      color: AppColors.transparent,
+      child: InkWell(
+        focusColor: AppColors.title,
+        borderRadius: BorderRadius.circular(5.r),
+        onTap: () {
+          const PromotionDialog()
+              .showPromotionDialog(context, index, promotionContent);
+        },
+        child: Container(
+            margin: EdgeInsets.all(2.r),
+            decoration: BoxDecoration(
+                color: AppColors.background,
+                borderRadius: BorderRadius.circular(5.r)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5.r),
+                    child: Image.network(
+                      "https://i.ibb.co/P5Cbjk0/tree-736885-480.jpg",
+                      width: size.width.w,
+                      height: naController.select ? 200.h : 160.h,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Text(
+                    "${promotionContent.name}", //<------ set controller
+                    style: TextStyle(
+                        fontSize: naController.select ? 20.sp : 20.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.white),
+                  ),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Text(
+                    "Combo 3 dành cho 4 đến 6 người ăn nay với mức giá ưu đãi chỉ còn 999.000 VNĐ", //<------ set controller
+                    style: TextStyle(
+                        fontSize: naController.select ? 15.sp : 13.sp,
+                        fontWeight: FontWeight.normal,
+                        color: AppColors.greyColor),
+                  ),
+                ),
+              ],
+            )),
+      ),
+    );
+  }
+}

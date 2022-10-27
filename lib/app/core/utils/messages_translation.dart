@@ -82,6 +82,7 @@ class Messages extends Translations {
           'save': 'Lưu',
           'delete': 'Xoá',
           'f&b': 'Thực đơn',
+          'promotion': 'Khuyến mãi',
         },
       };
 }

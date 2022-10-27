@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/model/event_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/widget/navigator_back.dart';
 
 class EventDialog extends StatelessWidget {
   const EventDialog({super.key});
@@ -36,7 +37,8 @@ class EventDialog extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(5.r),
                     child: CachedNetworkImage(
-                      imageUrl: "https://i.ibb.co/ssdbk86/event1.png",
+                      imageUrl:
+                          "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           height: 150.h,
@@ -186,42 +188,7 @@ class EventDialog extends StatelessWidget {
                   SizedBox(
                     height: 5.h,
                   ),
-                  SizedBox(
-                    height: 35.h,
-                    width: 120.w,
-                    child: Material(
-                      color: AppColors.green,
-                      borderRadius: BorderRadius.circular(5.r),
-                      child: InkWell(
-                        autofocus: true,
-                        borderRadius: BorderRadius.circular(5.r),
-                        focusColor: AppColors.greenFocus,
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.arrow_back,
-                              size: 20.r,
-                              color: AppColors.black,
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              'back'.tr,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.sp,
-                                  color: AppColors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  NavigatorBack()
                 ],
               )),
         );

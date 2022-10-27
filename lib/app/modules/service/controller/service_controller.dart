@@ -7,10 +7,14 @@ import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class ServiceController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
+
+  bool canRequestFocus = false;
+
   Rx<List<ServiceCategoryContent>> serviceCateList =
       Rx<List<ServiceCategoryContent>>([]);
   Rx<List<ServiceCategoryContent>> serviceCateListTMP =
       Rx<List<ServiceCategoryContent>>([]);
+
   @override
   void onInit() {
     fetchServiceCategory();
@@ -39,17 +43,5 @@ class ServiceController extends BaseController {
         serviceCateList.value.add(element);
       }
     }
-    // serviceCateList.value.add(
-    //     (ServiceCategoryContent(id: 4, description: "thuc don", name: "Taxi")));
-    // serviceCateList.value.add((ServiceCategoryContent(
-    //     id: 5, description: "thuc don", name: "Massage thư giản")));
-    // serviceCateList.value.add((ServiceCategoryContent(
-    //     id: 6, description: "thuc don", name: "Dọn phòng nhanh")));
-    // serviceCateList.value.add((ServiceCategoryContent(
-    //     id: 7, description: "thuc don", name: "Check-out tại phòng")));
-    // serviceCateList.value.add((ServiceCategoryContent(
-    //     id: 8, description: "thuc don", name: "Hồ bơi")));
-    // debugPrint(serviceCateList.value.toString());
-    // debugPrint(serviceCateList.value[0].toString());
   }
 }

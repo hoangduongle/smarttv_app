@@ -151,7 +151,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
     var endpoint = "${DioProvider.baseUrl}/billDetail";
     var data = {
       'id': 0,
-      "service_Id": billDetailContent.service?.serviceCategory?.id,
+      "service_Id": billDetailContent.service?.id,
       "bill_Id": billDetailContent.billId,
       "quantity": billDetailContent.quantity,
       "price": billDetailContent.price,
@@ -163,6 +163,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
     var dioCall = dioTokenClient.post(endpoint, data: fromData);
     try {
       return callApi(dioCall).then((response) {
+        debugPrint(response.statusCode.toString());
         return response.statusCode ?? 0;
       });
     } catch (e) {

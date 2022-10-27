@@ -16,6 +16,7 @@ abstract class Routes {
   static const EVENT = _Paths.EVENT;
   static const ABTRACTION = _Paths.ABTRACTION;
   static const BILL = _Paths.BILL;
+  static const FEEDBACK = _Paths.FEEDBACK;
 }
 
 abstract class _Paths {
@@ -32,4 +33,5 @@ abstract class _Paths {
   static const EVENT = '/event';
   static const ABTRACTION = '/abtraction';
   static const BILL = '/bill';
+  static const FEEDBACK = '/feedback';
 }

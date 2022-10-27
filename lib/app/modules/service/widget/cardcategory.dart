@@ -11,25 +11,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
-import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
-import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
-import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
-import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
-import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
-import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
+import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
+import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
+import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
+import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 
 class CardCategory extends StatelessWidget {
   int index;
   ServiceCategoryContent serviceCategory;
+  FocusNode focusNode;
 
   CardCategory({
     Key? key,
     required this.index,
     required this.serviceCategory,
+    required this.focusNode,
   }) : super(key: key);
 
   @override
@@ -43,19 +45,35 @@ class CardCategory extends StatelessWidget {
         return Material(
           color: AppColors.transparent,
           child: InkWell(
-            autofocus: index == 0,
             focusColor: AppColors.title,
             borderRadius: BorderRadius.circular(5.r),
             onTap: () async {
               final prefs = await SharedPreferences.getInstance();
               prefs.setInt('cateId', serviceCategory.id!);
-              if (serviceCategory.id == 1) {
-                fbController.numberSelected = 0.obs;
-                Get.toNamed('${Routes.FANDB}');
-              } else {
-                naController.current_index = 7.obs;
-                // Get.toNamed('${Routes.SERVICE_COMPONENT}',
-                //     parameters: {'cateName': '${serviceCategory.name}'});
+
+              switch (serviceCategory.id) {
+                case 1: //F&B
+                  fbController.numberSelected = 0.obs;
+                  Get.toNamed('${Routes.FANDB}');
+                  break;
+                case 3: //Ho boi
+                  naController.current_index = 7.obs;
+                  break;
+                case 4: //dua don san bay
+                  naController.current_index = 8.obs;
+                  break;
+                case 5: //massage thu gian
+                  naController.current_index = 9.obs;
+                  break;
+                case 6: //turn down
+                  naController.current_index = 10.obs;
+                  break;
+                case 7: //checkout
+                  naController.current_index = 11.obs;
+                  break;
+                case 8: //alarm
+                  naController.current_index = 12.obs;
+                  break;
               }
             },
             child: Container(

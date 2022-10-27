@@ -7,6 +7,8 @@ import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';
 import 'package:smarttv_app/app/modules/cart/view/cart_screen.dart';
 import 'package:smarttv_app/app/modules/event/binding/event_binding.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
+import 'package:smarttv_app/app/modules/feedback/binding/feedback_binding.dart';
+import 'package:smarttv_app/app/modules/feedback/view/feedback_screen.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/binding/foodandbeverage_binding.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/view/fandb_screen.dart';
 import 'package:smarttv_app/app/modules/abtraction/binding/abtraction_binding.dart';
@@ -16,7 +18,7 @@ import 'package:smarttv_app/app/modules/main/view/main_screen.dart';
 import 'package:smarttv_app/app/modules/service_components/binding/list_service_binding.dart';
 import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
 import 'package:smarttv_app/app/modules/welcome/binding/wellcome_binding.dart';
-import 'package:smarttv_app/app/modules/welcome/birthday/birthday_screen.dart';
+
 import 'package:smarttv_app/app/modules/welcome/view/wellcome_screen.dart';
 
 part 'app_routes.dart';
@@ -37,11 +39,6 @@ class AppPages {
       name: _Paths.MAIN,
       page: () => MainScreen(),
       binding: MainBinding(),
-      transition: Transition.noTransition,
-    ),
-    GetPage(
-      name: _Paths.BIRTHDAY,
-      page: () => Birthday(),
       transition: Transition.noTransition,
     ),
     GetPage(
@@ -78,7 +75,12 @@ class AppPages {
       name: _Paths.BILL,
       page: () => BillScreen(),
       binding: BillBinding(),
-      
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.FEEDBACK,
+      page: () => FeedbackScreen(),
+      binding: FeedbackBinding(),
       transition: Transition.noTransition,
     ),
   ];

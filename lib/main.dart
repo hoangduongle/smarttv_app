@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,10 +59,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     String initiaRoute = Routes.MAIN;
 
-    // bool welcome = true;
-    // if (welcome) {
-    //   initiaRoute = Routes.WELCOME;
-    // }
+    bool welcome = true;
+    if (welcome) {
+      initiaRoute = Routes.WELCOME;
+    }
 
     return ScreenUtilInit(
       designSize: const Size(960, 540),
