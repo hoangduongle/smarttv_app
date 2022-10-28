@@ -34,10 +34,10 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final List<FocusNode> focusNodes = [];
-  final List<FocusScopeNode> focusScopeNode = [];
-
-  final FocusScopeNode navigatorFocus = FocusScopeNode();
-  final FocusScopeNode widgetFocus = FocusScopeNode();
+  FocusNode navigaNode = FocusNode();
+  FocusNode viewNode = FocusNode();
+  FocusScopeNode navigaScope = FocusScopeNode();
+  FocusScopeNode viewScope = FocusScopeNode();
 
   // MainController maController = Get.find();
   NavigatorController naController =
@@ -49,9 +49,8 @@ class _MainScreenState extends State<MainScreen> {
     for (int i = 0; i < 9; i++) {
       FocusNode focus = FocusNode();
       focusNodes.add(focus);
-      FocusScopeNode focusScope = FocusScopeNode();
-      focusScopeNode.add(focusScope);
     }
+    navigaNode.requestFocus();
   }
 
   @override
@@ -66,6 +65,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     CartController Cacontroller = Get.find();
+
     return WillPopScope(onWillPop: () async {
       bool result = false;
       int popIndex = naController.current_index.toInt();
@@ -157,12 +157,7 @@ class _MainScreenState extends State<MainScreen> {
         );
         result = false;
       }
-      if (popIndex == 1 ||
-          popIndex == 2 ||
-          popIndex == 3 ||
-          popIndex == 4 ||
-          popIndex == 5 ||
-          popIndex == 6) {
+      if (popIndex != 0) {
         naController.current_index = 0.obs;
       }
       if (popIndex == 7 ||
@@ -204,20 +199,19 @@ class _MainScreenState extends State<MainScreen> {
                       : (size.width * 1 / 16).w,
                   duration: const Duration(milliseconds: 600),
                   curve: Curves.fastOutSlowIn,
-                  child: Container(
-                    // onKey: (node, event) {
-                    //   if (event is RawKeyDownEvent) {
-                    //     if (naController.current_index.toInt() != 0) {
-                    //       if (event.logicalKey ==
-                    //           LogicalKeyboardKey.arrowRight) {
-                    //         // navigatorFocus.unfocus();
-                    //         widgetFocus.requestFocus();
-                    //       }
-                    //     }
-                    //   }
-                    //   return KeyEventResult.ignored;
-                    // },
-                    // node: navigatorFocus,
+                  child: FocusScope(
+                    node: navigaScope,
+                    autofocus: true,
+                    canRequestFocus: navigaScope.canRequestFocus,
+                    onKeyEvent: (node, event) {
+                      if (event is KeyDownEvent) {
+                        if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
+                          FocusScope.of(context).requestFocus(viewScope);
+                          setState(() {});
+                        }
+                      }
+                      return KeyEventResult.ignored;
+                    },
                     child: Container(
                       color: AppColors.navigabackground,
                       child: Column(
@@ -319,24 +313,32 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   )),
               Expanded(
-                  child: Container(
-                // onKey: (node, event) {
-                //   if (event is RawKeyDownEvent) {
-                //     if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
-                //       // widgetFocus.unfocus();
-                //       navigatorFocus.requestFocus();
-                //     }
-                //   }
-                //   return KeyEventResult.ignored;
-                // },
-                // node: widgetFocus,
+                  child: FocusScope(
+                node: viewScope,
+                canRequestFocus: viewScope.canRequestFocus,
+                onKeyEvent: (node, event) {
+                  if (event is KeyDownEvent) {
+                    if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+                      FocusScope.of(context).requestFocus(navigaScope);
+                      setState(() {});
+                    }
+                  }
+                  return KeyEventResult.ignored;
+                },
                 child: Container(
                   child: IndexedStack(
                     index: naController.current_index.toInt(),
                     children: [
-                      HomePage(),
+                      ExcludeFocus(
+                        //home
+                        excluding: naController.current_index.toInt() == 0
+                            ? false
+                            : true,
+                        child: HomePage(),
+                      ),
                       ExcludeFocus(
                         //service
+
                         excluding: naController.current_index.toInt() == 1
                             ? false
                             : true,
@@ -349,12 +351,13 @@ class _MainScreenState extends State<MainScreen> {
                             : true,
                         child: EventScreen(),
                       ),
+
                       ExcludeFocus(
                         //abtraction
                         excluding: naController.current_index.toInt() == 3
                             ? false
                             : true,
-                        child:  AbtractionScreen(),
+                        child: AbtractionScreen(),
                       ),
                       ExcludeFocus(
                           //promotion

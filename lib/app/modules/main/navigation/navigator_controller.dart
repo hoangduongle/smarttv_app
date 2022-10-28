@@ -15,7 +15,6 @@ class NavigatorController extends GetxController {
   var current_index = 0.obs;
 
   bool select = true.obs.isTrue;
-
   @override
   void onInit() {
     for (int i = 0; i < 8; i++) {

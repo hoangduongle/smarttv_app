@@ -27,7 +27,9 @@ class PromotionScreen extends GetView<PromotionController> {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TitleScreen(name: "promotion".tr,),
+                TitleScreen(
+                  name: "promotion".tr,
+                ),
                 controller.promotionList.value.isEmpty
                     ? PromotionLoading()
                     : Expanded(
@@ -35,15 +37,14 @@ class PromotionScreen extends GetView<PromotionController> {
                         width: size.width,
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: naController.select ? 40.w : 40.w,
-                              vertical: 0.h),
+                            horizontal: 40.w,
+                          ),
                           child: GridView.builder(
                             itemCount: controller.promotionList.value.length,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: naController.select ? 2 : 3,
-                              crossAxisSpacing:
-                                  naController.select ? 40.w : 40.w,
+                              crossAxisSpacing: 40.w,
                               mainAxisExtent: 300,
                               mainAxisSpacing: 30.h,
                             ),

@@ -50,7 +50,6 @@ class CardCategory extends StatelessWidget {
             onTap: () async {
               final prefs = await SharedPreferences.getInstance();
               prefs.setInt('cateId', serviceCategory.id!);
-
               switch (serviceCategory.id) {
                 case 1: //F&B
                   fbController.numberSelected = 0.obs;

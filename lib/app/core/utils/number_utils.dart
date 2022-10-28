@@ -38,12 +38,4 @@ abstract class NumberUtils {
     }
   }
 
-  static String feedbackPoint(double? value) {
-    if (value == null) return '-';
-    if (value > 0) {
-      return value.toStringAsFixed(1);
-    } else {
-      return "-";
-    }
-  }
 }

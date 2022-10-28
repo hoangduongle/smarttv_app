@@ -27,8 +27,8 @@ class BillController extends BaseController {
 
   @override
   void onInit() async {
-    await fetchBill(1);
     await fetchBillDetails(1);
+    await fetchBill(1);
     await checkVailidate();
     super.onInit();
   }

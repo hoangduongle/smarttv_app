@@ -59,10 +59,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     String initiaRoute = Routes.MAIN;
 
-    bool welcome = true;
-    if (welcome) {
-      initiaRoute = Routes.WELCOME;
-    }
+    // bool welcome = true;
+    // if (welcome) {
+    //   initiaRoute = Routes.WELCOME;
+    // }
 
     return ScreenUtilInit(
       designSize: const Size(960, 540),
@@ -76,9 +76,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             title: "Smart Tv App",
             debugShowCheckedModeBanner: false,
             translations: Messages(),
-            locale: Locale('vi', 'Vi'),
+            locale: const Locale('vi', 'Vi'),
             // locale: Locale('en', 'US'),
-            fallbackLocale: Locale('vi', 'Vi'),
+            fallbackLocale: const Locale('vi', 'Vi'),
             initialBinding: InitiaBinding(),
             initialRoute: initiaRoute,
             getPages: AppPages.routes,

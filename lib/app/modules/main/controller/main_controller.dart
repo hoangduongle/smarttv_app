@@ -17,6 +17,8 @@ class MainController extends GetxController {
 
   get currentTime => formattedTime;
 
+
+
   @override
   void onInit() {
     timing();

@@ -14,22 +14,29 @@ class SkeletonCategoryService extends StatelessWidget {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
+
     return Expanded(
-      child: SizedBox(
-        width: size.width,
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: naController.select ? 15.w : 30.w, vertical: 0.h),
-          child: GridView.builder(
-            itemCount: 8,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: naController.select ? 3 : 4,
-              crossAxisSpacing: naController.select ? 50.w : 30.w,
-              mainAxisSpacing: 30.h,
+      child: Material(
+        color: AppColors.transparent,
+        child: InkWell(
+          onTap: () {},
+          child: SizedBox(
+            width: size.width,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: naController.select ? 15.w : 30.w),
+              child: GridView.builder(
+                itemCount: 12,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: naController.select ? 3 : 4,
+                  crossAxisSpacing: naController.select ? 50.w : 30.w,
+                  mainAxisSpacing: 30.h,
+                ),
+                itemBuilder: (context, index) {
+                  return CardCategorySkeleton();
+                },
+              ),
             ),
-            itemBuilder: (context, index) {
-              return CardCategorySkeleton();
-            },
           ),
         ),
       ),
@@ -45,59 +52,61 @@ class CardCategorySkeleton extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
-    return Material(
-      color: AppColors.transparent,
-      child: Container(
-        padding: EdgeInsets.only(bottom: 0.h),
-        child: Stack(
-          children: [
-            SizedBox(
-              height: (size.height).h,
-              width: size.width.w,
-              child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.white,
-                    period: Duration(milliseconds: 1500),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 150.w,
-                          height: 25.h,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(5.r),
-                              color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  )),
-            ),
-            Align(
-                alignment: Alignment.topCenter,
-                child: Shimmer.fromColors(
-                  baseColor: Colors.grey.shade300,
-                  highlightColor: Colors.white,
-                  period: Duration(milliseconds: 1500),
+    return Stack(
+      children: [
+        SizedBox(
+          width: size.width.w,
+          height: size.height.h,
+          child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey.shade300,
+                highlightColor: Colors.white,
+                period: Duration(milliseconds: 1500),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 200.w,
-                        height: naController.select ? 180.h : 160.h,
+                        width: 150.w,
+                        height: 25.h,
                         decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(5.r),
+                            borderRadius: BorderRadius.circular(15.r),
                             color: Colors.grey),
                       ),
                     ],
                   ),
-                )),
-          ],
+                ),
+              )),
         ),
-      ),
+        Align(
+            alignment: Alignment.topCenter,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey.shade300,
+                highlightColor: Colors.white,
+                period: Duration(milliseconds: 1500),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      child: Container(
+                        width: naController.select ? 200.w : 187.w,
+                        height: naController.select ? 175.h : 155.h,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(15.r),
+                            color: Colors.grey),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )),
+      ],
     );
   }
 }

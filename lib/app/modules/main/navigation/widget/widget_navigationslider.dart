@@ -10,7 +10,12 @@ import 'package:smarttv_app/app/core/values/app_styles.dart';
 
 Widget buildNavigationWidget(int index, String title, IconData? icons,
     IconData? iconSelected, int active, Size size) {
-  if (index == 7 || index == 8 || index == 9 || index == 10 || index == 11) {
+  if (index == 7 ||
+      index == 8 ||
+      index == 9 ||
+      index == 10 ||
+      index == 11 ||
+      index == 12) {
     index = 1;
   }
 
