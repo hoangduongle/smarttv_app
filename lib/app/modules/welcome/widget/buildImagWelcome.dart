@@ -21,32 +21,32 @@ Widget buildImageWelcome(Size size, int index, BuildContext context) {
     onTap: () {
       switch (index) {
         case 0: // abtraction
-          controller.player.stop();
+          controller.stopAudio();
           naController.current_index = 3.obs;
           Get.toNamed('/mainscreen');
           break;
         case 1: //promotion
-          controller.player.stop();
+          controller.stopAudio();
           naController.current_index = 2.obs;
           Get.toNamed('/mainscreen');
           break;
         case 2: //home
-          controller.player.stop();
+          controller.stopAudio();
           naController.current_index = 0.obs;
           Get.toNamed('/mainscreen');
           break;
         case 3: //service
-          controller.player.stop();
+          controller.stopAudio();
           naController.current_index = 1.obs;
           Get.toNamed('/mainscreen');
           break;
         case 4: //event
-          controller.player.stop();
+          controller.stopAudio();
           naController.current_index = 2.obs;
           Get.toNamed('/mainscreen');
           break;
         default:
-          controller.player.stop();
+          controller.stopAudio();
           naController.current_index = 0.obs;
           Get.toNamed('/mainscreen');
           break;

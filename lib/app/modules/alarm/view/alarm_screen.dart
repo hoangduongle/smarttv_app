@@ -233,43 +233,47 @@ class _AlarmScreenState extends State<AlarmScreen> {
                           ),
                         ],
                       )),
-                  Expanded(
-                      child: SizedBox(
-                    height: 470.h,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 15.h, horizontal: 10.w),
-                          width: 300.w,
+                  controller.alarmed.isEmpty
+                      ? Container()
+                      : Expanded(
+                          child: SizedBox(
                           height: 470.h,
-                          child: RawScrollbar(
-                            controller: scrollControllerAlarm,
-                            thumbColor: AppColors.title,
-                            thumbVisibility: true,
-                            radius: Radius.circular(100.r),
-                            thickness: 6,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 10.w),
-                              child: ListView.separated(
-                                controller: scrollControllerAlarm,
-                                itemCount: controller.alarmed.length,
-                                separatorBuilder: (context, index) => SizedBox(
-                                  height: 15.h,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 15.h, horizontal: 10.w),
+                                width: 300.w,
+                                height: 470.h,
+                                child: RawScrollbar(
+                                  controller: scrollControllerAlarm,
+                                  thumbColor: AppColors.title,
+                                  thumbVisibility: true,
+                                  radius: Radius.circular(100.r),
+                                  thickness: 6,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 10.w),
+                                    child: ListView.separated(
+                                      controller: scrollControllerAlarm,
+                                      itemCount: controller.alarmed.length,
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                        height: 15.h,
+                                      ),
+                                      itemBuilder: (context, index) {
+                                        return AlarmBuilder(
+                                            index: index,
+                                            alarmContent:
+                                                controller.alarmed[index]);
+                                      },
+                                    ),
+                                  ),
                                 ),
-                                itemBuilder: (context, index) {
-                                  return AlarmBuilder(
-                                      index: index,
-                                      alarmContent: controller.alarmed[index]);
-                                },
-                              ),
-                            ),
+                              )
+                            ],
                           ),
-                        )
-                      ],
-                    ),
-                  )),
+                        )),
                 ],
               ),
             )

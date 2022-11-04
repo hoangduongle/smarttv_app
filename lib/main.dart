@@ -1,3 +1,4 @@
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -13,7 +14,7 @@ import 'package:smarttv_app/config/map_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  FlutterNativeSplash.remove();
   MapConfig mapConfig = MapConfig(
     mapboxUrlTemplate:
         'https://api.mapbox.com/styles/v1/lehhoangduong/cl9xnm59q00j714o2ltpm3mdp/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ',
@@ -27,9 +28,10 @@ void main() async {
   );
 
   NetworkController.intance.init();
-  FlutterNativeSplash.remove();
+
   await TokenManager.instance.init();
   await ScreenUtil.ensureScreenSize();
+
   runApp(const MyApp());
 }
 

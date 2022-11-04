@@ -13,8 +13,6 @@ import 'package:smarttv_app/app/modules/service_components/controller/cart_dialo
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/turndown/controller/turndown_controller.dart';
 
-const List<Widget> alarms = <Widget>[Text('Bật'), Text('Tắt')];
-
 class AlarmDialogWidget extends StatelessWidget {
   const AlarmDialogWidget({
     Key? key,
@@ -194,7 +192,6 @@ class AlarmDialogWidget extends StatelessWidget {
 
   void showAlarmEdtDialog(BuildContext context, AlarmController controller,
       int index, AlarmContent alarmContent, int hours, int minutes) {
-    Rx<List<bool>> selectedAlarm = Rx<List<bool>>([false, true]);
     var hcount = hours.obs;
     var mcount = minutes.obs;
     showDialog(
@@ -323,25 +320,6 @@ class AlarmDialogWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              // Obx(() {
-              //   return ToggleButtons(
-              //     children: alarms,
-              //     isSelected: selectedAlarm.value,
-              //     fillColor: AppColors.transparent,
-              //     focusColor: AppColors.title,
-              //     textStyle:
-              //         TextStyle(fontWeight: FontWeight.normal, fontSize: 15.sp),
-              //     selectedBorderColor: AppColors.orangeColor,
-              //     selectedColor: AppColors.orangeColor,
-              //     borderRadius: BorderRadius.circular(5.r),
-              //     color: AppColors.greyColor,
-              //     onPressed: (int index) {
-              //       for (int i = 0; i < selectedAlarm.value.length; i++) {
-              //         selectedAlarm.value[i] = i.obs == index.obs;
-              //       }
-              //     },
-              //   );
-              // }),
               SizedBox(
                 height: 10.h,
               ),
@@ -392,8 +370,11 @@ class AlarmDialogWidget extends StatelessWidget {
                       child: InkWell(
                         focusColor: AppColors.orangeColor,
                         onTap: () {
-                      
+                          controller.updateAlarm(hcount.toInt(), mcount.toInt(),
+                              alarmContent.id!.toInt());
                           Get.back();
+                          AlarmDialogWidget().showAlarmOnDialog(
+                              context, hcount.toInt(), mcount.toInt());
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -426,7 +407,7 @@ class AlarmDialogWidget extends StatelessWidget {
                   child: InkWell(
                     focusColor: AppColors.red,
                     onTap: () {
-                      controller.cancelAlarm(alarmContent.id ?? 0);
+                      controller.removeAlarm(alarmContent.id ?? 0);
                       Get.back();
                     },
                     child: Row(
