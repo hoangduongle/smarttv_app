@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
@@ -22,14 +23,19 @@ class FoodandBeverageController extends BaseController {
   Rx<List<ServiceContent>> serviceBia = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceNuocmocktails = Rx<List<ServiceContent>>([]);
 //=============================================================================
+  Rx<List<ImageContent>> imageFandB = Rx<List<ImageContent>>([]);
+  List<MayjorContent> mayjorFood = [];
+  List<MayjorContent> mayjorDrink = [];
+
   var numberSelected = 0.obs;
 
   @override
   void onInit() async {
     _loadData();
+    await fetchImage("img_fandb");
     await fetchServicesFood();
     await fetchServicesDrink();
-    filter();
+    createMajor();
     super.onInit();
   }
 
@@ -37,6 +43,19 @@ class FoodandBeverageController extends BaseController {
     if (!TokenManager.instance.hasToken) {
       TokenManager.instance.init();
     }
+  }
+
+  Future<void> fetchImage(String type) async {
+    var overview = _repository.getListImageByType(type);
+    List<ImageContent> result = [];
+    await callDataService(
+      overview,
+      onSuccess: (List<ImageContent> response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+    imageFandB(result);
   }
 
   Future<void> fetchServicesFood() async {
@@ -65,17 +84,34 @@ class FoodandBeverageController extends BaseController {
     serviceListDrink(result);
   }
 
-  List<MayjorContent> mayjorFood = [
-    MayjorContent(id: 0, name: "Món khai vị", image: ""),
-    MayjorContent(id: 1, name: "Món chính", image: ""),
-    MayjorContent(id: 2, name: "Món tráng miệng", image: ""),
-  ];
-  List<MayjorContent> mayjorDrink = [
-    MayjorContent(id: 3, name: "Nước trà", image: ""),
-    MayjorContent(id: 4, name: "Nước suối và nước ngọt", image: ""),
-    MayjorContent(id: 5, name: "Bia", image: ""),
-    MayjorContent(id: 6, name: "Nước mocktails", image: ""),
-  ];
+  void createMajor() {
+    mayjorFood = [
+      MayjorContent(
+          id: 0, name: "Món khai vị", image: imageFandB.value[0].pictureUrl!),
+      MayjorContent(
+          id: 1, name: "Món chính", image: imageFandB.value[1].pictureUrl!),
+      MayjorContent(
+          id: 2,
+          name: "Món tráng miệng",
+          image: imageFandB.value[2].pictureUrl!),
+    ];
+    mayjorDrink = [
+      MayjorContent(
+          id: 3, name: "Cà phê", image: imageFandB.value[3].pictureUrl!),
+      MayjorContent(
+          id: 4, name: "Nước trà", image: imageFandB.value[4].pictureUrl!),
+      MayjorContent(
+          id: 5,
+          name: "Nước suối và nước ngọt",
+          image: imageFandB.value[5].pictureUrl!),
+      MayjorContent(
+          id: 6,
+          name: "Nước mocktails",
+          image: imageFandB.value[6].pictureUrl!),
+      MayjorContent(id: 7, name: "Bia", image: imageFandB.value[7].pictureUrl!),
+    ];
+    filter();
+  }
 
   void filter() {
     String food = "";
@@ -97,17 +133,20 @@ class FoodandBeverageController extends BaseController {
     for (var element in serviceListDrink.value) {
       drink = element.majorGroup.toString();
       switch (drink) {
+        case "Nuoc_cafe":
+          serviceNuoctra.value.add(element);
+          break;
         case "Nuoc_tra":
           serviceNuoctra.value.add(element);
           break;
         case "Nuoc_suoi":
           serviceNuocsuoi.value.add(element);
           break;
-        case "Bia":
-          serviceBia.value.add(element);
-          break;
         case "Nuoc_mocktails":
           serviceNuocmocktails.value.add(element);
+          break;
+        case "Bia":
+          serviceBia.value.add(element);
           break;
       }
     }

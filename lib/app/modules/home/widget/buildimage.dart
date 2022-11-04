@@ -14,7 +14,7 @@ Widget buildImage(OverviewContent overviewContent, int index, Size size) {
   return Container(
     padding: EdgeInsets.only(top: 8.h),
     child: ClipRRect(
-      borderRadius: BorderRadius.circular(15.r),
+      borderRadius: BorderRadius.circular(110.r),
       child: CachedNetworkImage(
         imageUrl: overviewContent.imageUrl!,
         imageBuilder: (context, imageProvider) {
@@ -23,7 +23,7 @@ Widget buildImage(OverviewContent overviewContent, int index, Size size) {
             width: size.width.w,
             margin: EdgeInsets.symmetric(horizontal: 8.0.w),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0.r),
+              borderRadius: BorderRadius.circular(110.r),
               image: DecorationImage(
                 image: imageProvider,
                 fit: BoxFit.fill,
@@ -36,8 +36,8 @@ Widget buildImage(OverviewContent overviewContent, int index, Size size) {
                   decoration: BoxDecoration(
                       color: Colors.black87.withOpacity(0.5),
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(15.r),
-                          bottomRight: Radius.circular(15.r))),
+                          bottomLeft: Radius.circular(110.r),
+                          bottomRight: Radius.circular(110.r))),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

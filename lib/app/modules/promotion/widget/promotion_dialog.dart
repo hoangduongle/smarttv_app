@@ -29,7 +29,7 @@ class PromotionDialog extends StatelessWidget {
           elevation: 2,
           backgroundColor: AppColors.background,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: Container(
               padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
               width: 800.w,
@@ -39,7 +39,7 @@ class PromotionDialog extends StatelessWidget {
                   Row(
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(5.r),
+                        borderRadius: BorderRadius.circular(10.r),
                         child: CachedNetworkImage(
                           imageUrl:
                               "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
@@ -48,7 +48,7 @@ class PromotionDialog extends StatelessWidget {
                               height: 330.h,
                               width: 320.w,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5.0.r),
+                                borderRadius: BorderRadius.circular(10.r),
                                 image: DecorationImage(
                                   image: imageProvider,
                                   fit: BoxFit.fill,

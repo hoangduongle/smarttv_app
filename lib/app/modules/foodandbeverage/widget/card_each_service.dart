@@ -46,7 +46,7 @@ class CardEachService extends StatelessWidget {
           child: InkWell(
             autofocus: index == 0,
             focusColor: AppColors.title,
-            borderRadius: BorderRadius.circular(5.r),
+            borderRadius: BorderRadius.circular(10.r),
             onTap: () {
               Get.to(() => FandBMayjorScreen(
                   mayjorId: mayjorContent.id, mayjorName: mayjorContent.name));
@@ -69,9 +69,9 @@ class CardEachService extends StatelessWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     child: Image.network(
-                      "https://statics.vinpearl.com/dia-diem-ngam-hoang-hon-nha-trang-01_1635591021.jpg",
+                      "${mayjorContent.image}",
                       width: 200.w,
                       height: 155.h,
                       fit: BoxFit.cover,

@@ -20,18 +20,18 @@ class BuildTaxi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: AppColors.black,
-      borderRadius: BorderRadius.circular(5.r),
+      borderRadius: BorderRadius.circular(10.r),
       child: InkWell(
         onTap: () {
           const TaxiDialog().showTaxiDialog(context, index);
         },
         focusColor: AppColors.title,
-        borderRadius: BorderRadius.circular(5.r),
+        borderRadius: BorderRadius.circular(10.r),
         child: Container(
           margin: EdgeInsets.all(2.r),
           height: 180.h,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.r),
+            borderRadius: BorderRadius.circular(10.r),
             color: AppColors.navigabackground,
           ),
           child: SingleChildScrollView(
@@ -42,7 +42,7 @@ class BuildTaxi extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     child: CachedNetworkImage(
                       imageUrl:
                           "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
@@ -51,7 +51,7 @@ class BuildTaxi extends StatelessWidget {
                           height: 135.h,
                           width: 180.w,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5.0.r),
+                            borderRadius: BorderRadius.circular(10.r),
                             image: DecorationImage(
                               image: imageProvider,
                               fit: BoxFit.fill,

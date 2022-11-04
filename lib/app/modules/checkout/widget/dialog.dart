@@ -29,7 +29,8 @@ class CheckoutDialogWidget extends StatelessWidget {
       builder: (context) => Dialog(
         elevation: 2,
         backgroundColor: AppColors.navigabackground,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
         child: SizedBox(
           width: 500.w,
           child: Column(
@@ -67,11 +68,11 @@ class CheckoutDialogWidget extends StatelessWidget {
                 height: 30.h,
                 child: Material(
                   color: AppColors.focus,
-                  borderRadius: BorderRadius.circular(5.r),
+                  borderRadius: BorderRadius.circular(10.r),
                   child: InkWell(
                     autofocus: true,
                     focusColor: AppColors.orangeColor,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     onTap: () {
                       Get.back();
                     },

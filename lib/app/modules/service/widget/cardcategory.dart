@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smarttv_app/app/core/model/image_content.dart';
 
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
@@ -21,17 +22,19 @@ import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
+import 'package:smarttv_app/app/widget/cached_image.dart';
 
 class CardCategory extends StatelessWidget {
   int index;
   ServiceCategoryContent serviceCategory;
   FocusNode focusNode;
-
+  ImageContent image;
   CardCategory({
     Key? key,
     required this.index,
     required this.serviceCategory,
     required this.focusNode,
+    required this.image,
   }) : super(key: key);
 
   @override
@@ -45,11 +48,13 @@ class CardCategory extends StatelessWidget {
         return Material(
           color: AppColors.transparent,
           child: InkWell(
+            autofocus: index == 0,
+            focusNode: focusNode,
             focusColor: AppColors.title,
-            borderRadius: BorderRadius.circular(5.r),
+            borderRadius: BorderRadius.circular(10.r),
             onTap: () async {
-              final prefs = await SharedPreferences.getInstance();
-              prefs.setInt('cateId', serviceCategory.id!);
+              // final prefs = await SharedPreferences.getInstance();
+              // prefs.setInt('cateId', serviceCategory.id!);
               switch (serviceCategory.id) {
                 case 1: //F&B
                   fbController.numberSelected = 0.obs;
@@ -96,15 +101,10 @@ class CardCategory extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.topCenter,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5.r),
-                      child: Image.network(
-                        "https://statics.vinpearl.com/dia-diem-ngam-hoang-hon-nha-trang-01_1635591021.jpg",
-                        width: 200.w,
-                        height: naController.select ? 180.h : 160.h,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    child: ImageNetwork(
+                        url: image.pictureUrl.toString(),
+                        width: 200,
+                        height: naController.select ? 180.h : 160.h),
                   ),
                 ],
               ),

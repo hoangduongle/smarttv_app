@@ -142,7 +142,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                         .navigabackground,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            5.r)),
+                                                            10.r)),
                                                 child: ListRadio(
                                                     controller: controller,
                                                     index: 0)),
@@ -157,7 +157,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                         .navigabackground,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            5.r)),
+                                                            10.r)),
                                                 child: ListRadio(
                                                     controller: controller,
                                                     index: 1)),
@@ -172,7 +172,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                       .navigabackground,
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          5.r)),
+                                                          10.r)),
                                               child: ListRadio(
                                                   controller: controller,
                                                   index: 2),
@@ -188,7 +188,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                       .navigabackground,
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          5.r)),
+                                                          10.r)),
                                               child: ListRadio(
                                                   controller: controller,
                                                   index: 3),
@@ -309,7 +309,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                         .navigabackground,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            5.r)),
+                                                            10.r)),
                                                 child: ListRadio(
                                                     controller: controller,
                                                     index: 4)),
@@ -324,7 +324,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                         .navigabackground,
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            5.r)),
+                                                            10.r)),
                                                 child: ListRadio(
                                                     controller: controller,
                                                     index: 5)),
@@ -339,7 +339,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                       .navigabackground,
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          5.r)),
+                                                          10.r)),
                                               child: ListRadio(
                                                   controller: controller,
                                                   index: 6),
@@ -355,7 +355,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                       .navigabackground,
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          5.r)),
+                                                          10.r)),
                                               child: ListRadio(
                                                   controller: controller,
                                                   index: 7),
@@ -371,7 +371,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                                       .navigabackground,
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          5.r)),
+                                                          10.r)),
                                               child: ListRadio(
                                                   controller: controller,
                                                   index: 8),
@@ -387,10 +387,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                               height: 25.h,
                               child: Material(
                                 color: AppColors.focus,
-                                borderRadius: BorderRadius.circular(5.r),
+                                borderRadius: BorderRadius.circular(10.r),
                                 child: InkWell(
                                   focusColor: AppColors.orangeColor,
-                                  borderRadius: BorderRadius.circular(5.r),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   onTap: () {},
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,

@@ -65,11 +65,10 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     CartController Cacontroller = Get.find();
-
     return WillPopScope(onWillPop: () async {
       bool result = false;
-      int popIndex = naController.current_index.toInt();
-      if (popIndex == 0) {
+
+      if (naController.current_index.toInt() == 0) {
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -99,7 +98,7 @@ class _MainScreenState extends State<MainScreen> {
                   height: 30.h,
                   child: Material(
                     color: AppColors.green,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
@@ -128,7 +127,7 @@ class _MainScreenState extends State<MainScreen> {
                   height: 30.h,
                   child: Material(
                     color: AppColors.title,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
@@ -157,14 +156,15 @@ class _MainScreenState extends State<MainScreen> {
         );
         result = false;
       }
-      if (popIndex != 0) {
+      if (naController.current_index.toInt() == 1 ||
+          naController.current_index.toInt() == 2 ||
+          naController.current_index.toInt() == 3 ||
+          naController.current_index.toInt() == 4 ||
+          naController.current_index.toInt() == 5 ||
+          naController.current_index.toInt() == 6) {
         naController.current_index = 0.obs;
       }
-      if (popIndex == 7 ||
-          popIndex == 8 ||
-          popIndex == 9 ||
-          popIndex == 10 ||
-          popIndex == 11) {
+      if (naController.current_index.toInt() >= 7) {
         naController.current_index = 1.obs;
       }
       return result;
@@ -206,8 +206,9 @@ class _MainScreenState extends State<MainScreen> {
                     onKeyEvent: (node, event) {
                       if (event is KeyDownEvent) {
                         if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
-                          FocusScope.of(context).requestFocus(viewScope);
-                          setState(() {});
+                          setState(() {
+                            FocusScope.of(context).requestFocus(viewScope);
+                          });
                         }
                       }
                       return KeyEventResult.ignored;
@@ -313,19 +314,20 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   )),
               Expanded(
-                  child: FocusScope(
-                node: viewScope,
-                canRequestFocus: viewScope.canRequestFocus,
-                onKeyEvent: (node, event) {
-                  if (event is KeyDownEvent) {
-                    if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
-                      FocusScope.of(context).requestFocus(navigaScope);
-                      setState(() {});
+                  child: Container(
+                child: FocusScope(
+                  node: viewScope,
+                  canRequestFocus: viewScope.canRequestFocus,
+                  onKeyEvent: (node, event) {
+                    if (event is KeyDownEvent) {
+                      if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+                        setState(() {
+                          FocusScope.of(context).requestFocus(navigaScope);
+                        });
+                      }
                     }
-                  }
-                  return KeyEventResult.ignored;
-                },
-                child: Container(
+                    return KeyEventResult.ignored;
+                  },
                   child: IndexedStack(
                     index: naController.current_index.toInt(),
                     children: [
@@ -342,7 +344,8 @@ class _MainScreenState extends State<MainScreen> {
                         excluding: naController.current_index.toInt() == 1
                             ? false
                             : true,
-                        child: ServiceScreen(),
+                        child: ServiceScreen(
+                            isFocus: naController.current_index.toInt() == 1),
                       ),
                       ExcludeFocus(
                         //event
@@ -351,7 +354,6 @@ class _MainScreenState extends State<MainScreen> {
                             : true,
                         child: EventScreen(),
                       ),
-
                       ExcludeFocus(
                         //abtraction
                         excluding: naController.current_index.toInt() == 3

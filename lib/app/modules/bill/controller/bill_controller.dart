@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/bill_content.dart';
 import 'package:smarttv_app/app/core/model/bill_detail_content.dart';
@@ -27,9 +28,10 @@ class BillController extends BaseController {
 
   @override
   void onInit() async {
-    await fetchBillDetails(1);
-    await fetchBill(1);
-    await checkVailidate();
+    final prefs = await SharedPreferences.getInstance();
+    int? billId = prefs.getInt("billId");
+    await fetchBillDetails(billId!);
+    await fetchBill(billId);
     super.onInit();
   }
 

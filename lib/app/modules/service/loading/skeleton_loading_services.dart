@@ -73,7 +73,7 @@ class CardCategorySkeleton extends StatelessWidget {
                         height: 25.h,
                         decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(15.r),
+                            borderRadius: BorderRadius.circular(10.r),
                             color: Colors.grey),
                       ),
                     ],
@@ -98,7 +98,7 @@ class CardCategorySkeleton extends StatelessWidget {
                         height: naController.select ? 175.h : 155.h,
                         decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(15.r),
+                            borderRadius: BorderRadius.circular(10.r),
                             color: Colors.grey),
                       ),
                     ),

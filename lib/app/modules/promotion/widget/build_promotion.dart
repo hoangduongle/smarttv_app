@@ -6,6 +6,7 @@ import 'package:smarttv_app/app/core/model/promotion_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/promotion/widget/promotion_dialog.dart';
+import 'package:smarttv_app/app/widget/cached_image.dart';
 
 class BuildPromotion extends StatelessWidget {
   int index;
@@ -25,7 +26,7 @@ class BuildPromotion extends StatelessWidget {
       color: AppColors.transparent,
       child: InkWell(
         focusColor: AppColors.title,
-        borderRadius: BorderRadius.circular(5.r),
+        borderRadius: BorderRadius.circular(10.r),
         onTap: () {
           const PromotionDialog()
               .showPromotionDialog(context, index, promotionContent);
@@ -34,20 +35,18 @@ class BuildPromotion extends StatelessWidget {
             margin: EdgeInsets.all(2.r),
             decoration: BoxDecoration(
                 color: AppColors.background,
-                borderRadius: BorderRadius.circular(5.r)),
+                borderRadius: BorderRadius.circular(10.r)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //  width: size.width.w,
+                //     height: naController.select ? 200.h : 160.h,
                 Align(
                   alignment: Alignment.topCenter,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5.r),
-                    child: Image.network(
-                      "https://i.ibb.co/P5Cbjk0/tree-736885-480.jpg",
-                      width: size.width.w,
-                      height: naController.select ? 200.h : 160.h,
-                      fit: BoxFit.cover,
-                    ),
+                  child: ImageNetwork(
+                    url: "https://i.ibb.co/P5Cbjk0/tree-736885-480.jpg",
+                    width: size.width.w,
+                    height: naController.select ? 200.h : 160.h,
                   ),
                 ),
                 SizedBox(
@@ -69,7 +68,7 @@ class BuildPromotion extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Text(
-                    "Combo 3 dành cho 4 đến 6 người ăn nay với mức giá ưu đãi chỉ còn 999.000 VNĐ", //<------ set controller
+                    "${promotionContent.description}", //<------ set controller
                     style: TextStyle(
                         fontSize: naController.select ? 15.sp : 13.sp,
                         fontWeight: FontWeight.normal,

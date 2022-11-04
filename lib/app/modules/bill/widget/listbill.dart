@@ -32,11 +32,11 @@ class ListBill extends StatelessWidget {
         Get.find(tag: (NavigatorController).toString());
     return Material(
       color: Colors.transparent,
-      borderRadius: BorderRadius.circular(5.r),
+      borderRadius: BorderRadius.circular(10.r),
       child: InkWell(
         onTap: () {},
         focusNode: focus,
-        borderRadius: BorderRadius.circular(5.r),
+        borderRadius: BorderRadius.circular(10.r),
         focusColor: AppColors.focus,
         child: Container(
           height: 45.h,

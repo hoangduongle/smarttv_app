@@ -3,6 +3,7 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:smarttv_app/app/core/model/device_content.dart';
+import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/navigator_content.dart';
 import 'package:smarttv_app/app/core/model/overview_content.dart';
 import 'package:smarttv_app/app/core/model/room_content.dart';
@@ -67,6 +68,11 @@ const List<NavigationContent> listNavigationContent = [
       iconData: FluentIcons.person_feedback_16_regular,
       iconSelectedData: FluentIcons.person_feedback_16_filled),
 ];
+
+const List<ImageContent> imageListServiceCategories = [];
+const List<ImageContent> imageListServices = [];
+const List<ImageContent> imageListEvent = [];
+const List<ImageContent> imageListPromotion = [];
 
 // const List<OverviewContent> listOverviewContent = [
 //   OverviewContent(

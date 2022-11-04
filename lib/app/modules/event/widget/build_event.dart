@@ -33,14 +33,13 @@ class BuildEvent extends StatelessWidget {
         onFocusChange: (value) {
           controller.isFocus[indexType] = value;
         },
-        borderRadius: BorderRadius.circular(5.r),
+        borderRadius: BorderRadius.circular(10.r),
         focusColor: AppColors.title,
         onTap: () {
-          // debugPrint(index.toString());
           const EventDialog().showEventDialog(context, index, eventContent);
         },
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(5.r),
+          borderRadius: BorderRadius.circular(10.r),
           child: CachedNetworkImage(
             imageUrl:
                 "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
@@ -50,7 +49,7 @@ class BuildEvent extends StatelessWidget {
                 height: size.height.h,
                 width: 400.w,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0.r),
+                  borderRadius: BorderRadius.circular(10.r),
                   image: DecorationImage(
                     image: imageProvider,
                     fit: BoxFit.fill,
@@ -65,8 +64,8 @@ class BuildEvent extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: AppColors.black.withOpacity(0.8),
                           borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(5.r),
-                              bottomRight: Radius.circular(5.r))),
+                              bottomLeft: Radius.circular(10.r),
+                              bottomRight: Radius.circular(10.r))),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -76,16 +75,6 @@ class BuildEvent extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  "Hồ Chí Minh",
-                                  style: AppStyles.h4.copyWith(
-                                      color: AppColors.greyColor,
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
                                 Text(
                                   eventContent.name.toString(),
                                   style: AppStyles.h4.copyWith(

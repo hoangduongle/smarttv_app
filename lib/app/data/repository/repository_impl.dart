@@ -8,6 +8,7 @@ import 'package:smarttv_app/app/core/model/booking_content.dart';
 import 'package:smarttv_app/app/core/model/event_content.dart';
 import 'package:smarttv_app/app/core/model/bill_content.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
+import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/promotion_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/data/dio/dio_provider.dart';
@@ -37,23 +38,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<ServiceContent> getServiceContentById(int serviceId) {
-    var endpoint = "${DioProvider.baseUrl}/service?cate_id=$serviceId";
-    var dioCall = dioTokenClient.get(endpoint);
-    try {
-      return callApi(dioCall).then((response) {
-        var result = <ServiceContent>[];
-        return ServiceContent.fromJson(response.data);
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  @override
   Future<List<ServiceContent>> getListServiceContentByCateId(int cateId) {
-    var endpoint = "${DioProvider.baseUrl}/service?cate_id=$cateId";
-    var dioCall = dioTokenClient.get(endpoint);
+    var endpoint = "${DioProvider.baseUrl}/service";
+    var data = {"cate_id": cateId};
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
     try {
       return callApi(dioCall).then((response) {
         var result = <ServiceContent>[];
@@ -141,8 +129,6 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
   }
 
-//amount=20000&bill_Id=1&billDate=23%2F10%2F2022&id=0&
-//price=10000&quantity=2&service_Id=55&status=1
   @override
   Future<int> insertBilldetail(BillDetailContent billDetailContent) {
     if (!TokenManager.instance.hasToken) {
@@ -173,9 +159,9 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<List<BillDetailContent>> getBilldetailByBillId(int billId) {
-    var endpoint =
-        "https://hotelservice-v5.herokuapp.com/api/v1/billDetail?bill_id=1";
-    var dioCall = dioTokenClient.get(endpoint);
+    var endpoint = "${DioProvider.baseUrl}/billDetail";
+    var data = {"bill_id": billId};
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
     try {
       return callApi(dioCall).then((response) {
         var result = <BillDetailContent>[];
@@ -190,22 +176,19 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<BookingContent> getBookingByRoomId() {
-    var endpoint = "${DioProvider.baseUrl}/";
-    var dioCall = dioTokenClient.get(endpoint);
-    // try {
-    //   return callApi(dioCall).then((response) {
-    //     var result = <BookingContent>[];
-
-    //     for (var element in (response.data as List<dynamic>)) {
-    //       result.add(BookingContent.fromJson(element));
-    //     }
-    //     return result;
-    //   });
-    // } catch (e) {
-    //   rethrow;
-    // }
-    throw UnimplementedError();
+  Future<BookingContent> getBookingByRoomId(int roomId) {
+    var endpoint = "${DioProvider.baseUrl}/booking";
+    var data = {"room_id": roomId};
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <BookingContent>[];
+        var a = response.data;
+        return BookingContent.fromJson(response.data[0]);
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
@@ -225,31 +208,23 @@ class RepositoryImpl extends BaseRepository implements Repository {
       rethrow;
     }
   }
-}
 
-/*
   @override
-  Future<int> busPayment({
-    required String customerId,
-    required String uid,
-    required LatLng location,
-  }) {
-    var endpoint = "${DioProvider.baseUrl}/bus-trip-pay-mobile";
-    var data = {
-      "customerId": customerId,
-      "uid": uid,
-      "latitude": location.latitude,
-      "longitude": location.longitude,
-    };
-    var formData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: formData);
-
+  Future<List<ImageContent>> getListImageByType(String type) {
+    var endpoint = "${DioProvider.baseUrl}/image";
+    var data = {"type": type};
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
     try {
       return callApi(dioCall).then((response) {
-        return response.statusCode ?? 0;
+        var result = <ImageContent>[];
+
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(ImageContent.fromJson(element));
+        }
+        return result;
       });
     } catch (e) {
       rethrow;
     }
   }
-*/
+}

@@ -34,7 +34,8 @@ class DialogWidget extends StatelessWidget {
       builder: (context) => Dialog(
         elevation: 2,
         backgroundColor: AppColors.navigabackground,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -43,7 +44,7 @@ class DialogWidget extends StatelessWidget {
               padding: EdgeInsets.only(top: 20.h),
               width: 180.w,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(5.r),
+                borderRadius: BorderRadius.circular(10.r),
                 child: CachedNetworkImage(
                   imageUrl:
                       'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcSxLr0EfOo_znMX-DYtQVeYFvNzAF4Xw3Ny8nm9RZqlS0QdgFMCBN81LtQxXfqj_1EviZSW9_zWBuBi6wLLtjA',
@@ -124,7 +125,7 @@ class DialogWidget extends StatelessWidget {
                   height: 30.h,
                   child: Material(
                     color: AppColors.green,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
@@ -154,7 +155,7 @@ class DialogWidget extends StatelessWidget {
                   height: 30.h,
                   child: Material(
                     color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(

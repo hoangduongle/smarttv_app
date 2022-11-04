@@ -21,12 +21,11 @@ class EventDialog extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        // Size size = MediaQuery.of(context).size;
         return Dialog(
           elevation: 2,
           backgroundColor: AppColors.background,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: SizedBox(
               width: 690.w,
               child: Column(
@@ -35,7 +34,7 @@ class EventDialog extends StatelessWidget {
                     height: 20.h,
                   ),
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     child: CachedNetworkImage(
                       imageUrl:
                           "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
@@ -44,7 +43,7 @@ class EventDialog extends StatelessWidget {
                           height: 150.h,
                           width: 480.w,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5.0.r),
+                            borderRadius: BorderRadius.circular(10.r),
                             image: DecorationImage(
                               image: imageProvider,
                               fit: BoxFit.fill,
@@ -188,7 +187,7 @@ class EventDialog extends StatelessWidget {
                   SizedBox(
                     height: 5.h,
                   ),
-                  NavigatorBack()
+                  NavigatorBack(autoFocus: true,)
                 ],
               )),
         );

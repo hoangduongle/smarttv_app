@@ -169,7 +169,7 @@ class CartScreen extends GetView<CartController> {
                   height: 50.h,
                   child: Material(
                     color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
@@ -202,7 +202,7 @@ class CartScreen extends GetView<CartController> {
                   height: 50.h,
                   child: Material(
                     color: AppColors.green,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
@@ -254,17 +254,17 @@ class CartService extends StatelessWidget {
       child: Container(
         height: 45.h,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.r),
+          borderRadius: BorderRadius.circular(10.r),
         ),
         child: Material(
           color: Colors.transparent,
-          borderRadius: BorderRadius.circular(5.r),
+          borderRadius: BorderRadius.circular(10.r),
           child: InkWell(
             onTap: () {
               DialogCart().showCustomeDialog(context, serviceContent, quantity);
             },
             autofocus: index == 0 ? true : false,
-            borderRadius: BorderRadius.circular(5.r),
+            borderRadius: BorderRadius.circular(10.r),
             focusColor: AppColors.focus,
             child: Row(
               children: [

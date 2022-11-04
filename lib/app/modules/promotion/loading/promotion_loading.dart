@@ -36,7 +36,7 @@ class PromotionLoading extends StatelessWidget {
                 return Container(
                     decoration: BoxDecoration(
                         color: AppColors.background,
-                        borderRadius: BorderRadius.circular(5.r)),
+                        borderRadius: BorderRadius.circular(10.r)),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Column(
@@ -56,7 +56,7 @@ class PromotionLoading extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         shape: BoxShape.rectangle,
                                         borderRadius:
-                                            BorderRadius.circular(5.r),
+                                            BorderRadius.circular(10.r),
                                         color: Colors.grey),
                                   ),
                                 ],
@@ -80,7 +80,7 @@ class PromotionLoading extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         shape: BoxShape.rectangle,
                                         borderRadius:
-                                            BorderRadius.circular(5.r),
+                                            BorderRadius.circular(10.r),
                                         color: Colors.grey),
                                   ),
                                 ],
@@ -104,7 +104,7 @@ class PromotionLoading extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         shape: BoxShape.rectangle,
                                         borderRadius:
-                                            BorderRadius.circular(5.r),
+                                            BorderRadius.circular(10.r),
                                         color: Colors.grey),
                                   ),
                                 ],
@@ -128,7 +128,7 @@ class PromotionLoading extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         shape: BoxShape.rectangle,
                                         borderRadius:
-                                            BorderRadius.circular(5.r),
+                                            BorderRadius.circular(10.r),
                                         color: Colors.grey),
                                   ),
                                 ],

@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/bill_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
@@ -86,7 +87,7 @@ class CartController extends BaseController {
 
   void addtoBill() async {
     if (_service.isNotEmpty) {
-      // ThankCustomer().showThanksDialog(Get.context!);
+      const ThankCustomer().showThanksDialog(Get.context!);
       int billId = 1;
       _service.forEach((key, value) async {
         await insertBilldetails(BillDetailContent(
@@ -99,12 +100,14 @@ class CartController extends BaseController {
             service: key,
             status: 1));
       });
-      
+
       if (result == 200) {
         removeAllSerivce();
         Get.back();
-        Get.back();
-        Get.reload<BillController>();
+        final prefs = await SharedPreferences.getInstance();
+        int billId = prefs.getInt("billId") ?? 0;
+        BillController().fetchBillDetails(billId);
+        BillController().fetchBill(billId);
       } else {
         debugPrint("Update bill fail");
       }

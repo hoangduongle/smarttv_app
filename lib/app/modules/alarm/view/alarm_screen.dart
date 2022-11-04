@@ -1,21 +1,19 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last, unnecessary_string_interpolations
-
 import 'dart:math';
-
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
-
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/alarm/controller/alarm_controller.dart';
+import 'package:smarttv_app/app/modules/alarm/widget/alarm_builder.dart';
+import 'package:smarttv_app/app/modules/alarm/widget/dialog.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
-const List<Widget> icons = <Widget>[
-  Icon(Icons.alarm_on),
-  Icon(Icons.alarm_off),
-];
+const List<Widget> alarms = <Widget>[Text('Bật'), Text('Tắt')];
 
 class AlarmScreen extends StatefulWidget {
   const AlarmScreen({super.key});
@@ -25,9 +23,10 @@ class AlarmScreen extends StatefulWidget {
 }
 
 class _AlarmScreenState extends State<AlarmScreen> {
-  final List<bool> _selectedWeather = <bool>[false, true];
+  final List<bool> _selectedAlarm = <bool>[false, true];
   @override
   Widget build(BuildContext context) {
+    ScrollController scrollControllerAlarm = ScrollController();
     return GetBuilder<AlarmController>(
       builder: (controller) {
         return Scaffold(
@@ -36,170 +35,244 @@ class _AlarmScreenState extends State<AlarmScreen> {
             TitleScreen(
               name: "Báo thức",
             ),
-            Container(
-              child: SizedBox(
-                width: 250.w,
-                height: 250.h,
-                child: CustomPaint(
-                  painter: ClockPainter(
-                      dateTime: DateTime(0, 0, 0, controller.hours.toInt(),
-                          controller.minutes.toInt(), 0, 0, 0)),
-                ),
-              ),
-            ),
-            SizedBox(
-              width: 300.w,
-              height: 40.h,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0.w),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Material(
-                    color: AppColors.transparent,
-                    child: IconButton(
-                        splashRadius: 12,
-                        color: AppColors.focus,
-                        onPressed: () {
-                          setState(() {
-                            if (controller.hours <= 0) {
-                              controller.hours = 24.obs;
-                            }
-                            controller.decrementHours();
-                          });
-                        },
-                        icon: const Icon(Icons.remove_circle),
-                        focusColor: AppColors.orangeColor),
-                  ),
-                  Container(
-                    color: AppColors.white,
-                    alignment: Alignment.center,
-                    width: 40.w,
-                    height: 30.h,
-                    child: Text("${NumberUtils.time(controller.hours.toInt())}",
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  Material(
-                    color: AppColors.transparent,
-                    child: IconButton(
-                        autofocus: true,
-                        color: AppColors.title,
-                        splashRadius: 12,
-                        onPressed: () {
-                          setState(() {
-                            if (controller.hours >= 23) {
-                              controller.hours = (-1).obs;
-                            }
-                            controller.incrementHours();
-                          });
-                        },
-                        icon: const Icon(Icons.add_circle),
-                        focusColor: AppColors.orangeColor),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    child: Text(
-                      ":",
-                      style: TextStyle(color: AppColors.white, fontSize: 30.sp),
+                  Expanded(
+                      flex: 2,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            width: 250.w,
+                            height: 250.h,
+                            child: CustomPaint(
+                              painter: ClockPainter(
+                                  dateTime: DateTime(
+                                0,
+                                0,
+                                0,
+                                controller.hours.toInt(),
+                                controller.minutes.toInt(),
+                              )),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 300.w,
+                            height: 40.h,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Material(
+                                  color: AppColors.transparent,
+                                  child: IconButton(
+                                      splashRadius: 12,
+                                      color: AppColors.focus,
+                                      onPressed: () {
+                                        setState(() {
+                                          if (controller.hours <= 0) {
+                                            controller.hours = 24.obs;
+                                          }
+                                          controller.decrementHours();
+                                        });
+                                      },
+                                      icon: const Icon(Icons.remove_circle),
+                                      focusColor: AppColors.orangeColor),
+                                ),
+                                Container(
+                                  color: AppColors.white,
+                                  alignment: Alignment.center,
+                                  width: 40.w,
+                                  height: 30.h,
+                                  child: Text(
+                                      "${NumberUtils.time(controller.hours.toInt())}",
+                                      style: TextStyle(
+                                          fontSize: 20.sp,
+                                          color: AppColors.black,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                                Material(
+                                  color: AppColors.transparent,
+                                  child: IconButton(
+                                      autofocus: true,
+                                      color: AppColors.title,
+                                      splashRadius: 12,
+                                      onPressed: () {
+                                        setState(() {
+                                          if (controller.hours >= 23) {
+                                            controller.hours = (-1).obs;
+                                          }
+                                          controller.incrementHours();
+                                        });
+                                      },
+                                      icon: const Icon(Icons.add_circle),
+                                      focusColor: AppColors.orangeColor),
+                                ),
+                                Container(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 10.w),
+                                  child: Text(
+                                    ":",
+                                    style: TextStyle(
+                                        color: AppColors.white,
+                                        fontSize: 30.sp),
+                                  ),
+                                ),
+                                Material(
+                                  color: AppColors.transparent,
+                                  child: IconButton(
+                                      splashRadius: 12,
+                                      color: AppColors.focus,
+                                      onPressed: () {
+                                        setState(() {
+                                          if (controller.minutes <= 0) {
+                                            controller.minutes = 60.obs;
+                                          }
+                                          controller.decrementMinute();
+                                        });
+                                      },
+                                      icon: const Icon(Icons.remove_circle),
+                                      focusColor: AppColors.orangeColor),
+                                ),
+                                Container(
+                                  color: AppColors.white,
+                                  alignment: Alignment.center,
+                                  width: 40.w,
+                                  height: 30.h,
+                                  child: Text(
+                                      "${NumberUtils.time(controller.minutes.toInt())}",
+                                      style: TextStyle(
+                                          fontSize: 20.sp,
+                                          color: AppColors.black,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                                Material(
+                                  color: AppColors.transparent,
+                                  child: IconButton(
+                                      autofocus: true,
+                                      color: AppColors.title,
+                                      splashRadius: 12,
+                                      onPressed: () {
+                                        setState(() {
+                                          if (controller.minutes >= 59) {
+                                            controller.minutes = (-1).obs;
+                                          }
+                                          controller.incrementMinute();
+                                        });
+                                      },
+                                      icon: const Icon(Icons.add_circle),
+                                      focusColor: AppColors.orangeColor),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          ToggleButtons(
+                            children: alarms,
+                            isSelected: _selectedAlarm,
+                            fillColor: AppColors.transparent,
+                            focusColor: AppColors.title,
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 18.sp),
+                            selectedBorderColor: AppColors.orangeColor,
+                            selectedColor: AppColors.orangeColor,
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: AppColors.greyColor,
+                            onPressed: (int index) {
+                              setState(() {
+                                for (int i = 0;
+                                    i < _selectedAlarm.length;
+                                    i++) {
+                                  _selectedAlarm[i] = i == index;
+                                }
+                              });
+                            },
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          SizedBox(
+                            width: 170.w,
+                            height: 50.h,
+                            child: Material(
+                              color: AppColors.focus,
+                              borderRadius: BorderRadius.circular(10.r),
+                              child: InkWell(
+                                focusColor: AppColors.orangeColor,
+                                borderRadius: BorderRadius.circular(10.r),
+                                onTap: () {
+                                  if (_selectedAlarm[0]) {
+                                    controller.setalarm(
+                                        controller.hours.toInt(),
+                                        controller.minutes.toInt());
+                                    AlarmDialogWidget().showAlarmOnDialog(
+                                        context,
+                                        controller.hours.toInt(),
+                                        controller.minutes.toInt());
+                                  } else {
+                                    AlarmDialogWidget()
+                                        .showAlarmOffDialog(context);
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Đặt báo thức',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20.sp,
+                                          color: AppColors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                  Expanded(
+                      child: SizedBox(
+                    height: 470.h,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 15.h, horizontal: 10.w),
+                          width: 300.w,
+                          height: 470.h,
+                          child: RawScrollbar(
+                            controller: scrollControllerAlarm,
+                            thumbColor: AppColors.title,
+                            thumbVisibility: true,
+                            radius: Radius.circular(100.r),
+                            thickness: 6,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 10.w),
+                              child: ListView.separated(
+                                controller: scrollControllerAlarm,
+                                itemCount: controller.alarmed.length,
+                                separatorBuilder: (context, index) => SizedBox(
+                                  height: 15.h,
+                                ),
+                                itemBuilder: (context, index) {
+                                  return AlarmBuilder(
+                                      index: index,
+                                      alarmContent: controller.alarmed[index]);
+                                },
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  ),
-                  Material(
-                    color: AppColors.transparent,
-                    child: IconButton(
-                        splashRadius: 12,
-                        color: AppColors.focus,
-                        onPressed: () {
-                          setState(() {
-                            if (controller.minutes <= 0) {
-                              controller.minutes = 60.obs;
-                            }
-                            controller.decrementMinute();
-                          });
-                        },
-                        icon: const Icon(Icons.remove_circle),
-                        focusColor: AppColors.orangeColor),
-                  ),
-                  Container(
-                    color: AppColors.white,
-                    alignment: Alignment.center,
-                    width: 40.w,
-                    height: 30.h,
-                    child: Text(
-                        "${NumberUtils.time(controller.minutes.toInt())}",
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: AppColors.black,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  Material(
-                    color: AppColors.transparent,
-                    child: IconButton(
-                        autofocus: true,
-                        color: AppColors.title,
-                        splashRadius: 12,
-                        onPressed: () {
-                          setState(() {
-                            if (controller.minutes >= 59) {
-                              controller.minutes = (-1).obs;
-                            }
-                            controller.incrementMinute();
-                          });
-                        },
-                        icon: const Icon(Icons.add_circle),
-                        focusColor: AppColors.orangeColor),
-                  ),
+                  )),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            ToggleButtons(
-              children: icons,
-              isSelected: _selectedWeather,
-              fillColor: AppColors.transparent,
-              focusColor: AppColors.title,
-              selectedBorderColor: AppColors.orangeColor,
-              selectedColor: AppColors.orangeColor,
-              borderRadius: BorderRadius.circular(5.r),
-              color: AppColors.greyColor,
-              onPressed: (int index) {
-                setState(() {
-                  for (int i = 0; i < _selectedWeather.length; i++) {
-                    _selectedWeather[i] = i == index;
-                  }
-                });
-              },
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            SizedBox(
-              width: 170.w,
-              height: 50.h,
-              child: Material(
-                color: AppColors.focus,
-                borderRadius: BorderRadius.circular(5.r),
-                child: InkWell(
-                  focusColor: AppColors.orangeColor,
-                  borderRadius: BorderRadius.circular(5.r),
-                  onTap: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Đặt báo thức',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.sp,
-                            color: AppColors.black),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            )
           ]),
         );
       },

@@ -10,7 +10,7 @@ Widget SkeletonLoading(Size size) {
     highlightColor: Colors.white,
     period: Duration(milliseconds: 1500),
     child: Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15.r)),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(110.r)),
       child: Row(
         children: [
           SingleChildScrollView(
@@ -20,7 +20,7 @@ Widget SkeletonLoading(Size size) {
               height: size.height, //300
               decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(15.r),
+                  borderRadius: BorderRadius.circular(110.r),
                   color: Colors.grey),
             ),
           ),

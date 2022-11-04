@@ -8,18 +8,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
-import 'package:smarttv_app/app/modules/home/view/home_screen.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
-import 'package:smarttv_app/app/modules/service/loading/skeleton_loading_services.dart';
-import 'package:smarttv_app/app/modules/service/binding/service_binding.dart';
-import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
-import 'package:smarttv_app/app/modules/service/widget/cardcategory.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
+import 'package:smarttv_app/app/modules/home/view/home_screen.dart';
+import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/service/binding/service_binding.dart';
+import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
+import 'package:smarttv_app/app/modules/service/loading/skeleton_loading_services.dart';
+import 'package:smarttv_app/app/modules/service/widget/cardcategory.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class ServiceScreen extends StatefulWidget {
-  const ServiceScreen({super.key});
+  bool isFocus;
+  ServiceScreen({
+    Key? key,
+    this.isFocus = false,
+  }) : super(key: key);
 
   @override
   State<ServiceScreen> createState() => _ServiceScreenState();
@@ -35,14 +39,6 @@ class _ServiceScreenState extends State<ServiceScreen> {
       FocusNode focus = FocusNode();
       focusNodes.add(focus);
     }
-  }
-
-  @override
-  void dispose() {
-    for (int i = 0; i < 99; i++) {
-      focusNodes[i].dispose();
-    }
-    super.dispose();
   }
 
   @override
@@ -97,6 +93,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                         ),
                                         itemBuilder: (context, index) {
                                           return CardCategory(
+                                              image: controller
+                                                  .imageServiceCategories
+                                                  .value[index],
                                               index: index,
                                               serviceCategory: controller
                                                   .serviceCateList.value[index],

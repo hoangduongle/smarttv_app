@@ -30,7 +30,7 @@ class AbtractionCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 15.w),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(5.r),
+              borderRadius: BorderRadius.circular(10.r),
               child: CachedNetworkImage(
                 imageUrl:
                     "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
@@ -39,7 +39,7 @@ class AbtractionCard extends StatelessWidget {
                     height: 150.h,
                     width: 180.w,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0.r),
+                      borderRadius: BorderRadius.circular(10.r),
                       image: DecorationImage(
                         image: imageProvider,
                         fit: BoxFit.fill,

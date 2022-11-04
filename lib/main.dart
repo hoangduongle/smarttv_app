@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:smarttv_app/app/bindings/initia_bindings.dart';
+import 'package:smarttv_app/app/core/controller/network_controller.dart';
 import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/core/utils/messages_translation.dart';
+import 'package:smarttv_app/config/build_config.dart';
+import 'package:smarttv_app/config/map_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await TokenManager.instance.init();
 
+  MapConfig mapConfig = MapConfig(
+    mapboxUrlTemplate:
+        'https://api.mapbox.com/styles/v1/lehhoangduong/cl9xnm59q00j714o2ltpm3mdp/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ',
+    mapboxAccessToken:
+        'pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ',
+    mapboxId: 'mapbox.mapbox-streets-v8',
+  );
+
+  BuildConfig(
+    mapConfig: mapConfig,
+  );
+
+  NetworkController.intance.init();
+  FlutterNativeSplash.remove();
+  await TokenManager.instance.init();
   await ScreenUtil.ensureScreenSize();
-  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -24,41 +40,10 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    WidgetsBinding.instance.addObserver(this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        debugPrint("app in resumed");
-        break;
-      case AppLifecycleState.inactive:
-        debugPrint("app in inactive");
-        break;
-      case AppLifecycleState.paused:
-        debugPrint("app in paused");
-        break;
-      case AppLifecycleState.detached:
-        debugPrint("app in detached");
-        break;
-    }
-  }
-
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     String initiaRoute = Routes.MAIN;
-
     // bool welcome = true;
     // if (welcome) {
     //   initiaRoute = Routes.WELCOME;

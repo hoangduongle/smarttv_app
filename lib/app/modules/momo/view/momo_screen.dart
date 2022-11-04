@@ -25,7 +25,7 @@ class MomoScreen extends GetView<MomoController> {
           elevation: 5,
           backgroundColor: AppColors.navigabackground,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: SizedBox(
             width: 380.w,
             height: 360.h,
@@ -53,7 +53,7 @@ class MomoScreen extends GetView<MomoController> {
                         child: Container(
                           decoration: BoxDecoration(
                               color: AppColors.pink.withOpacity(.85),
-                              borderRadius: BorderRadius.circular(5.r)),
+                              borderRadius: BorderRadius.circular(10.r)),
                           height: 200.h,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -63,8 +63,8 @@ class MomoScreen extends GetView<MomoController> {
                                 decoration: BoxDecoration(
                                     color: AppColors.white,
                                     borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(5.r),
-                                        bottomRight: Radius.circular(5.r))),
+                                        bottomLeft: Radius.circular(10.r),
+                                        bottomRight: Radius.circular(10.r))),
                               ),
                             ],
                             /*
@@ -100,9 +100,9 @@ class MomoScreen extends GetView<MomoController> {
                   width: 120.w,
                   child: Material(
                     color: AppColors.green,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(5.r),
+                      borderRadius: BorderRadius.circular(10.r),
                       focusColor: AppColors.greenFocus,
                       onTap: () {
                         Get.back();

@@ -32,7 +32,7 @@ class TitleEvent extends StatelessWidget {
             color: controller.isFocus[indexType]
                 ? AppColors.title
                 : AppColors.transparent,
-            borderRadius: BorderRadius.circular(5.r),
+            borderRadius: BorderRadius.circular(10.r),
             border: Border.all(color: AppColors.white, width: 1.w)),
         child: Text(name,
             style: AppStyles.h4.copyWith(
@@ -49,7 +49,7 @@ Align(
       child: Material(
         color: AppColors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(5.r),
+          borderRadius: BorderRadius.circular(10.r),
           focusColor: AppColors.title,
           onTap: () {},
           child: Container(
@@ -57,7 +57,7 @@ Align(
             width: 160.w,
             height: 30.h,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.r),
+                borderRadius: BorderRadius.circular(10.r),
                 border: Border.all(color: AppColors.white, width: 1.w)),
             child: Text(name,
                 style: AppStyles.h4.copyWith(
@@ -78,7 +78,7 @@ Align(
         width: 160.w,
         height: 30.h,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.r),
+            borderRadius: BorderRadius.circular(10.r),
             border: Border.all(color: AppColors.white, width: 1.w)),
         child: Text(name,
             style: AppStyles.h4.copyWith(

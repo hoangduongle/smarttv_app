@@ -58,7 +58,7 @@ class NotificationScreen extends StatelessWidget {
                   ),
                   icon: Icon(
                     Icons.arrow_back,
-                    size: 25.r,
+                    size: 210.r,
                     color: AppColors.black,
                   ),
                   backgroundColor: AppColors.green,

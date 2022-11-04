@@ -5,7 +5,7 @@ abstract class NumberUtils {
 
   static String time(int? value) {
     NumberFormat numberFormatTime = NumberFormat("00");
-    if (value == null) return '00';
+    if (value == "0") return '00';
     return "${numberFormatTime.format(value)}";
   }
 
@@ -37,5 +37,4 @@ abstract class NumberUtils {
       return "${numberFormat.format(value)} VNĐ";
     }
   }
-
 }

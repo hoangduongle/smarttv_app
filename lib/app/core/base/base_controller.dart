@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/core/controller/network_controller.dart';
 import 'package:smarttv_app/app/core/model/page_state.dart';
 
 abstract class BaseController extends GetxController {
+  get networkStatus => NetworkController.intance.connectionStatus;
   final _refreshController = false.obs;
 
   refreshPage(bool refresh) => _refreshController(refresh);
@@ -51,6 +53,7 @@ abstract class BaseController extends GetxController {
 
     onComplete == null ? hideLoading() : onComplete();
   }
+
   @override
   void onClose() {
     _refreshController.close();

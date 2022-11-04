@@ -52,19 +52,19 @@ class AbtractionScreen extends GetView<AbtractionController> {
                                     height: 180.h,
                                     child: Material(
                                       color: AppColors.white,
-                                      borderRadius: BorderRadius.circular(5.r),
+                                      borderRadius: BorderRadius.circular(10.r),
                                       child: InkWell(
                                           borderRadius:
-                                              BorderRadius.circular(5.r),
+                                              BorderRadius.circular(10.r),
                                           focusColor: AppColors.title,
                                           autofocus: index == 0,
                                           onTap: () {},
                                           child: Container(
-                                              margin: EdgeInsets.all(1.5.r),
+                                              margin: EdgeInsets.all(1.10.r),
                                               decoration: BoxDecoration(
                                                 color: AppColors.background,
                                                 borderRadius:
-                                                    BorderRadius.circular(5.r),
+                                                    BorderRadius.circular(10.r),
                                               ),
                                               child: AbtractionCard(
                                                   abtractionContent: controller

@@ -47,7 +47,8 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
       builder: (context) => Dialog(
         elevation: 2,
         backgroundColor: AppColors.navigabackground,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +57,7 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
               padding: EdgeInsets.only(top: 20.h),
               width: 220.w,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(5.r),
+                borderRadius: BorderRadius.circular(10.r),
                 child: CachedNetworkImage(
                   imageUrl:
                       'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcSxLr0EfOo_znMX-DYtQVeYFvNzAF4Xw3Ny8nm9RZqlS0QdgFMCBN81LtQxXfqj_1EviZSW9_zWBuBi6wLLtjA',
@@ -124,7 +125,7 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
                   height: 30.h,
                   child: Material(
                     color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
@@ -154,7 +155,7 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
                   height: 30.h,
                   child: Material(
                     color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(

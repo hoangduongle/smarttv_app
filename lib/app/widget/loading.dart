@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
-class Loading extends StatelessWidget {
+class Loading extends StatefulWidget {
   const Loading({super.key});
 
   @override
+  State<Loading> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         backgroundColor: AppColors.background,
-        body: Center(
-          child: CircularProgressIndicator(
-            backgroundColor: AppColors.focus,
-            color: AppColors.white,
-          ),
-        ));
+        body: Center(child: Lottie.asset("assets/lotties/loading.json")));
   }
 }

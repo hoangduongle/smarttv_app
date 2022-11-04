@@ -1,13 +1,17 @@
 // ignore_for_file: must_call_super, avoid_print, unused_field
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/controller/image_controller.dart';
+import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class ServiceController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
-
+  Rx<List<ImageContent>> imageServiceCategoriesTMP = Rx<List<ImageContent>>([]);
+  Rx<List<ImageContent>> imageServiceCategories = Rx<List<ImageContent>>([]);
   bool canRequestFocus = false;
 
   Rx<List<ServiceCategoryContent>> serviceCateList =
@@ -17,8 +21,22 @@ class ServiceController extends BaseController {
 
   @override
   void onInit() {
+    fetchImage("img_serviceCategory");
     fetchServiceCategory();
     super.onInit();
+  }
+
+  Future<void> fetchImage(String type) async {
+    var overview = _repository.getListImageByType(type);
+    List<ImageContent> result = [];
+    await callDataService(
+      overview,
+      onSuccess: (List<ImageContent> response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+    imageServiceCategories(result);
   }
 
   Future<void> fetchServiceCategory() async {
@@ -37,8 +55,9 @@ class ServiceController extends BaseController {
 
   void fandB() {
     serviceCateList.value.add(ServiceCategoryContent(
-        id: 1, description: "thuc an va do ung", name: "Thức ăn và đồ uống"));
+        id: 1, description: "fandb", name: "Thức ăn và đồ uống"));
     for (var element in serviceCateListTMP.value) {
+   
       if (element.id != 1 && element.id != 2) {
         serviceCateList.value.add(element);
       }

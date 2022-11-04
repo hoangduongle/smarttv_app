@@ -21,7 +21,8 @@ class MayjorEachService extends StatelessWidget {
     return Material(
       color: AppColors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(5.r),
+        autofocus: index == 0,
+        borderRadius: BorderRadius.circular(10.r),
         focusColor: AppColors.title,
         onTap: () {
           DialogWidget(
@@ -29,16 +30,16 @@ class MayjorEachService extends StatelessWidget {
           ).showServiceDialog(context, serviceContent);
         },
         child: Container(
-          margin: EdgeInsets.all(1.r),
+          margin: EdgeInsets.all(2.r),
           decoration: BoxDecoration(
               color: AppColors.navigabackground,
-              borderRadius: BorderRadius.circular(5.r)),
+              borderRadius: BorderRadius.circular(10.r)),
           child: Column(
             children: [
               Container(
                 padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 0.h),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5.r),
+                  borderRadius: BorderRadius.circular(10.r),
                   child: CachedNetworkImage(
                     imageUrl:
                         "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg",

@@ -103,15 +103,8 @@ class _BillScreenState extends State<BillScreen> {
                             )),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 25.w,
-                  ),
-                  child: Divider(
-                    color: AppColors.white,
-                    height: 20.h,
-                    thickness: 1,
-                  ),
+                SizedBox(
+                  height: 15.h,
                 ),
                 controller.billDetails.value.isEmpty
                     ? Expanded(
@@ -200,10 +193,10 @@ class _BillScreenState extends State<BillScreen> {
                   height: 50.h,
                   child: Material(
                     color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     child: InkWell(
                       focusColor: AppColors.orangeColor,
-                      borderRadius: BorderRadius.circular(5.r),
+                      borderRadius: BorderRadius.circular(10.r),
                       onTap: () {
                         BillDialog().showBillDialog(context);
                       },

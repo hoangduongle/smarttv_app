@@ -26,7 +26,7 @@ class TaxiDialog extends StatelessWidget {
           elevation: 2,
           backgroundColor: AppColors.background,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.r)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: SizedBox(
               width: 650.w,
               height: 260.h,
@@ -38,7 +38,7 @@ class TaxiDialog extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.w, vertical: 30.h),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5.r),
+                          borderRadius: BorderRadius.circular(10.r),
                           child: CachedNetworkImage(
                             imageUrl:
                                 "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
@@ -47,7 +47,7 @@ class TaxiDialog extends StatelessWidget {
                                 height: 135.h,
                                 width: 180.w,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.0.r),
+                                  borderRadius: BorderRadius.circular(10.r),
                                   image: DecorationImage(
                                     image: imageProvider,
                                     fit: BoxFit.fill,
@@ -131,11 +131,11 @@ class TaxiDialog extends StatelessWidget {
                         height: 40.h,
                         child: Material(
                           color: AppColors.focus,
-                          borderRadius: BorderRadius.circular(5.r),
+                          borderRadius: BorderRadius.circular(10.r),
                           child: InkWell(
                             autofocus: true,
                             focusColor: AppColors.orangeColor,
-                            borderRadius: BorderRadius.circular(5.r),
+                            borderRadius: BorderRadius.circular(10.r),
                             onTap: () {},
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

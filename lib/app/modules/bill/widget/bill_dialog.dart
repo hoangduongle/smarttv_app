@@ -56,7 +56,7 @@ class BillDialog extends StatelessWidget {
                       InkWell(
                         autofocus: true,
                         focusColor: AppColors.orangeColor,
-                        borderRadius: BorderRadius.circular(15.r),
+                        borderRadius: BorderRadius.circular(110.r),
                         onTap: () {
                           debugPrint("Payment Method: MoMo");
                           Get.back();
@@ -70,11 +70,11 @@ class BillDialog extends StatelessWidget {
                       ),
                       InkWell(
                         focusColor: AppColors.orangeColor,
-                        borderRadius: BorderRadius.circular(15.r),
+                        borderRadius: BorderRadius.circular(110.r),
                         onTap: () {
-                          debugPrint("Payment Method: MoMo");
+                          debugPrint("Payment Method: VNPay");
                         },
-                        child: SvgPicture.asset("assets/svg/momo.svg",
+                        child: SvgPicture.asset("assets/svg/vnpay.svg",
                             height: 150),
                       ),
                     ],
@@ -102,16 +102,6 @@ class BillDialog extends StatelessWidget {
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold),
                       ),
-                      // SizedBox(
-                      //   width: 125.h,
-                      // ),
-                      // Text(
-                      //   "Lễ tân",
-                      //   style: TextStyle(
-                      //       color: AppColors.title,
-                      //       fontSize: 20.sp,
-                      //       fontWeight: FontWeight.bold),
-                      // ),
                     ],
                   ),
                 ),
@@ -123,9 +113,9 @@ class BillDialog extends StatelessWidget {
                   width: 120.w,
                   child: Material(
                     color: AppColors.green,
-                    borderRadius: BorderRadius.circular(5.r),
+                    borderRadius: BorderRadius.circular(10.r),
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(5.r),
+                      borderRadius: BorderRadius.circular(10.r),
                       focusColor: AppColors.greenFocus,
                       onTap: () {
                         Get.back();
