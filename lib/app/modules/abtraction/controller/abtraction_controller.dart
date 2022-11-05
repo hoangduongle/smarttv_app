@@ -29,5 +29,6 @@ class AbtractionController extends BaseController {
       onError: ((dioError) {}),
     );
     abtractions(result);
+    // debugPrint("$abtractions");
   }
 }

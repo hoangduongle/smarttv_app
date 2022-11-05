@@ -23,6 +23,7 @@ class SkeletonEvent extends StatelessWidget {
           color: AppColors.transparent,
           child: InkWell(
             onTap: () {},
+            onFocusChange: (value) {},
             child: ListView.builder(
               primary: true,
               itemCount: 3,

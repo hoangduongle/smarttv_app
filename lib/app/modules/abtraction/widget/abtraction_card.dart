@@ -9,7 +9,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:smarttv_app/app/core/controller/smart_map_controller.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/abtraction/widget/abtraction_dialog.dart';
 
 class AbtractionCard extends StatelessWidget {
   AbtractionContent abtractionContent;
@@ -31,16 +31,22 @@ class AbtractionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NavigatorController naController =
-        Get.find(tag: (NavigatorController).toString());
-    Size size = MediaQuery.of(context).size;
     return Material(
       color: AppColors.greyColor,
       borderRadius: BorderRadius.circular(10.r),
       child: InkWell(
         focusColor: AppColors.title,
         borderRadius: BorderRadius.circular(10.r),
-        onTap: () {},
+        onFocusChange: (value) {
+          mapController.moveToPosition(
+              LatLng(double.parse("${abtractionContent.latidute}"),
+                  double.parse("${abtractionContent.logtitude}")),
+              zoom: 15);
+        },
+        onTap: () {
+          const AbtractionDialog()
+              .showAbtractionDialog(context, abtractionContent);
+        },
         child: Container(
           margin: EdgeInsets.all(2.r),
           width: 400.w,
@@ -52,7 +58,6 @@ class AbtractionCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(10.r),
                 child: CachedNetworkImage(
                   imageUrl:
                       "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
@@ -61,7 +66,9 @@ class AbtractionCard extends StatelessWidget {
                       height: 120.h,
                       width: 1000.w,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10.r),
+                            topRight: Radius.circular(10.r)),
                         image: DecorationImage(
                           image: imageProvider,
                           fit: BoxFit.fill,
@@ -74,7 +81,7 @@ class AbtractionCard extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 10.h),
                 child: Text(
-                  "${abtractionContent.name}", // ${abtractionContent.name}
+                  "${abtractionContent.name}",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17.sp,
@@ -85,7 +92,7 @@ class AbtractionCard extends StatelessWidget {
                 height: 15.h,
               ),
               Text(
-                "Giờ mở cửa: Hằng ngày 08:00 - 19:00",
+                "Giờ mở cửa: Hằng ngày ${abtractionContent.openTime} - ${abtractionContent.closeTime}",
                 style: TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: 14.sp,

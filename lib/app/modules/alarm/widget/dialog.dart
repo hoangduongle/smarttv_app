@@ -190,7 +190,7 @@ class AlarmDialogWidget extends StatelessWidget {
     );
   }
 
-  void showAlarmEdtDialog(BuildContext context, AlarmController controller,
+  void showAlarmEditDialog(BuildContext context, AlarmController controller,
       int index, AlarmContent alarmContent, int hours, int minutes) {
     var hcount = hours.obs;
     var mcount = minutes.obs;

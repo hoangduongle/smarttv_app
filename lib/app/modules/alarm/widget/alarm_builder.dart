@@ -30,7 +30,7 @@ class AlarmBuilder extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.r),
           child: InkWell(
             onTap: () {
-              const AlarmDialogWidget().showAlarmEdtDialog(
+              const AlarmDialogWidget().showAlarmEditDialog(
                   context,
                   controller,
                   index,

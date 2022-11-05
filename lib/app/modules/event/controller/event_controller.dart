@@ -48,6 +48,7 @@ class EventController extends BaseController {
     for (int i = 0; i < eventList.value.length; i++) {
       DateTime parseEnd =
           DateFormat('dd/MM/yyyy').parse(eventList.value[i].endDate.toString());
+      debugPrint("");
       DateTime parseStart = DateFormat('dd/MM/yyyy')
           .parse(eventList.value[i].startDate.toString());
       if (currentDay.isBefore(parseStart)) {

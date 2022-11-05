@@ -9,7 +9,7 @@ class PromotionController extends BaseController {
 
   @override
   void onInit() {
-    fetchPromotion();
+    // fetchPromotion();
     super.onInit();
   }
 

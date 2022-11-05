@@ -11,11 +11,13 @@ class NavigatorBack extends StatelessWidget {
   double x;
   double y;
   bool autoFocus;
+  Color background;
   NavigatorBack({
     Key? key,
     this.x = -0.955,
     this.y = 0.955,
     this.autoFocus = false,
+    this.background = AppColors.background,
   }) : super(key: key);
 
   @override
@@ -35,7 +37,7 @@ class NavigatorBack extends StatelessWidget {
             height: 31,
             margin: EdgeInsets.all(2.r),
             decoration: BoxDecoration(
-              color: AppColors.background,
+              color: background,
               borderRadius: BorderRadius.circular(100.r),
             ),
             child: Icon(
