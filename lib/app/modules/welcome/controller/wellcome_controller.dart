@@ -53,8 +53,8 @@ class WellcomeController extends BaseController {
   @override
   void onInit() async {
     timing();
-    await fetchBooking(11);
-    loadTitle();
+    // await fetchBooking(11);
+    // loadTitle();
     super.onInit();
   }
 
@@ -101,15 +101,5 @@ class WellcomeController extends BaseController {
     update();
   }
 
-  var image = [
-    "https://i.ibb.co/L69PWnr/local.png",
-    "https://i.ibb.co/F3FN8vx/promotion.png",
-    "https://i.ibb.co/hCf5LTX/homepage.jpg",
-    "https://i.ibb.co/pxdphfN/service.jpg",
-    "https://i.ibb.co/NKzWxKQ/event.jpg",
-  ];
 
-  var name = ["Địa điểm", "Khuyến mãi", "Trang chủ", "Dịch vụ", "Sự kiện"];
-
-  var isFocus = [false, false, false, false, false];
 }

@@ -62,13 +62,14 @@ class HomePage extends GetView<HomeController> {
                                   itemBuilder: (context, index, realIndex) {
                                     OverviewContent overviewContent =
                                         controller.overviewList.value[index];
-                                    return buildImage(
-                                        overviewContent, index, size);
+                                    return ImageBuild(
+                                        overviewContent: overviewContent,
+                                        index: index);
                                   },
                                 ),
                               ),
                               SizedBox(
-                                height: 45.h,
+                                height: 20.h,
                               ),
                               buildIndicator(controller.overviewList.value,
                                   controller.currentInt.value),

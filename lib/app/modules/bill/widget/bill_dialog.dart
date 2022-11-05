@@ -23,7 +23,7 @@ class BillDialog extends StatelessWidget {
           elevation: 5,
           backgroundColor: AppColors.navigabackground,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: SizedBox(
             width: 500.w,
             height: 360.h,
@@ -43,8 +43,8 @@ class BillDialog extends StatelessWidget {
                   ),
                 ),
                 const Divider(
-                  indent: 150,
-                  endIndent: 150,
+                  indent: 100,
+                  endIndent: 100,
                   thickness: .5,
                   color: AppColors.white,
                 ),
@@ -56,26 +56,35 @@ class BillDialog extends StatelessWidget {
                       InkWell(
                         autofocus: true,
                         focusColor: AppColors.orangeColor,
-                        borderRadius: BorderRadius.circular(110.r),
+                        borderRadius: BorderRadius.circular(10.r),
                         onTap: () {
                           debugPrint("Payment Method: MoMo");
                           Get.back();
                           const MomoScreen().MomoDialog(context);
                         },
-                        child: SvgPicture.asset("assets/svg/momo.svg",
-                            height: 150),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.r),
+                          child: SvgPicture.asset("assets/svg/momo.svg",
+                              height: 150),
+                        ),
                       ),
                       SizedBox(
                         width: 40.h,
                       ),
                       InkWell(
                         focusColor: AppColors.orangeColor,
-                        borderRadius: BorderRadius.circular(110.r),
+                        borderRadius: BorderRadius.circular(10.r),
                         onTap: () {
                           debugPrint("Payment Method: VNPay");
                         },
-                        child: SvgPicture.asset("assets/svg/vnpay.svg",
-                            height: 150),
+                        child: Container(
+                          margin: EdgeInsets.all(3.r),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.r),
+                            child: SvgPicture.asset("assets/svg/vnpay.svg",
+                                height: 140),
+                          ),
+                        ),
                       ),
                     ],
                   ),

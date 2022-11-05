@@ -56,7 +56,7 @@ const List<NavigationContent> listNavigationContent = [
       iconData: FluentIcons.location_24_regular,
       iconSelectedData: FluentIcons.location_24_filled),
   NavigationContent(
-      title: 'Khuyến mãi',
+      title: 'Tin tức',
       iconData: FluentIcons.ticket_diagonal_16_regular,
       iconSelectedData: FluentIcons.ticket_diagonal_16_filled),
   NavigationContent(

@@ -10,9 +10,9 @@ class BookingController extends BaseController {
 
   @override
   void onInit() async {
-    fetchBooking(11);
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt("billId", bookingContent.value?.bill!.id ?? 0);
+    // fetchBooking(11);
+    // final prefs = await SharedPreferences.getInstance();
+    // await prefs.setInt("billId", bookingContent.value?.bill!.id ?? 0);
     super.onInit();
   }
 

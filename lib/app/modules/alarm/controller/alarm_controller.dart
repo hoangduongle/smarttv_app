@@ -184,7 +184,9 @@ class AlarmController extends BaseController {
         idAlarm,
         firedAlarm,
         wakeup: true,
-        exact: true);
+        exact: true,
+        rescheduleOnReboot: true,
+        );
 
     alarmed.add(AlarmContent(
       id: idAlarm,
@@ -192,6 +194,8 @@ class AlarmController extends BaseController {
           "${NumberUtils.time(timeAlarm.day)}/${NumberUtils.time(timeAlarm.month)}/${timeAlarm.year} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
       status: true,
     ));
+  
+    
   }
 
   static firedAlarm() {

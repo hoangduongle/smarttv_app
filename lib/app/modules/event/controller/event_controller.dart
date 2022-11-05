@@ -22,7 +22,7 @@ class EventController extends BaseController {
 
   @override
   void onInit() {
-    fetchEvents();
+    // fetchEvents();
     super.onInit();
   }
 
@@ -41,7 +41,7 @@ class EventController extends BaseController {
     filterEvent();
   }
 
-  var isFocus = [false, false];
+  var isFocus = [false, false, false];
 
   void filterEvent() {
     DateTime currentDay = DateTime.now();
@@ -59,13 +59,13 @@ class EventController extends BaseController {
     }
   }
 
-  List<Marker> markers = [
-    Marker(
-      point: LatLng(10.838606359520535, 106.83161588307689),
-      builder: (context) => SvgPicture.asset(
-        "assets/svg/marker_red.svg",
-        color: AppColors.background,
-      ),
-    ),
-  ];
+  // List<Marker> markers = [
+  //   Marker(
+  //     point: LatLng(10.838606359520535, 106.83161588307689),
+  //     builder: (context) => SvgPicture.asset(
+  //       "assets/svg/marker_red.svg",
+  //       color: AppColors.background,
+  //     ),
+  //   ),
+  // ];
 }

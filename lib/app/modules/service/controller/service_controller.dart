@@ -21,8 +21,8 @@ class ServiceController extends BaseController {
 
   @override
   void onInit() {
-    fetchImage("img_serviceCategory");
-    fetchServiceCategory();
+    // fetchImage("img_serviceCategory");
+    // fetchServiceCategory();
     super.onInit();
   }
 

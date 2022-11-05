@@ -1,9 +1,10 @@
-// ignore_for_file: non_constant_identifier_names
-
+// ignore_for_file: non_constant_identifier_names, unused_local_variable, no_leading_underscores_for_local_identifiers, unrelated_type_equality_checks, unused_element
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/momo/controller/momo_controller.dart';
 
@@ -16,11 +17,13 @@ class MomoScreen extends GetView<MomoController> {
   }
 
   void MomoDialog(BuildContext context) {
+    if (controller.momo.value == null) {
+      controller.fetchPaymentMomo(7, 1);
+    }
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        // Size size = MediaQuery.of(context).size;
         return Dialog(
           elevation: 5,
           backgroundColor: AppColors.navigabackground,
@@ -28,12 +31,12 @@ class MomoScreen extends GetView<MomoController> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: SizedBox(
             width: 380.w,
-            height: 360.h,
+            height: 400.h,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 30.h),
+                  padding: EdgeInsets.only(top: 20.h),
                   width: 800.w,
                   child: Text(
                     "Quét mã để thanh toán",
@@ -67,32 +70,48 @@ class MomoScreen extends GetView<MomoController> {
                                         bottomRight: Radius.circular(10.r))),
                               ),
                             ],
-                            /*
-                          QrImage(
-                                foregroundColor: AppColors.black,
-                                data: "https://urlgeni.us/facebook/L7AX",
-                                version: QrVersions.auto,
-                                size: 190.0,
-                              ),
-                           */
                           ),
                         ),
                       ),
-                      Align(
-                        child: Padding(
-                          padding: EdgeInsets.all(8.r),
-                          child: QrImage(
-                            backgroundColor: AppColors.white,
-                            foregroundColor: AppColors.black,
-                            data:
-                                "https://test-payment.momo.vn/gw_payment/s/zoVKZd",
-                            // data: "https://urlgeni.us/facebook/L7AX",
-                            version: QrVersions.auto,
-                            size: 190.0,
-                          ),
-                        ),
+                      Obx(
+                        () {
+                          return controller.momo.value == null
+                              ? Container(
+                                  width: 300,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.background,
+                                      borderRadius: BorderRadius.circular(8.r)),
+                                  child: Lottie.asset(
+                                      "assets/lotties/loading.json"))
+                              : Align(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(10.r),
+                                    child: QrImage(
+                                      backgroundColor: AppColors.white,
+                                      foregroundColor: AppColors.black,
+                                      data: "${controller.momo.value?.payUrl}",
+                                      version: QrVersions.auto,
+                                      size: 190.0,
+                                    ),
+                                  ),
+                                );
+                        },
                       )
                     ],
+                  ),
+                ),
+                Obx(
+                  () => SizedBox(
+                    height: 35.h,
+                    child: Text(
+                      "Đơn hàng sẽ hết hạn sau ${NumberUtils.time(controller.minutes.toInt())}:${NumberUtils.time(controller.seconds.toInt())}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.orangeColor),
+                    ),
                   ),
                 ),
                 SizedBox(

@@ -145,7 +145,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               shrinkWrap: true,
                               padding: EdgeInsets.symmetric(horizontal: 85.w),
                               itemBuilder: (context, index) {
-                                return buildImageWelcome(size, index, context);
+                                return WellcomeBuild(index: index);
                               },
                               separatorBuilder: (context, index) => SizedBox(
                                     width: 40.w,

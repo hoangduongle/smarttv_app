@@ -4,6 +4,7 @@ import 'package:smarttv_app/app/core/model/bill_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
 import 'package:smarttv_app/app/core/model/event_content.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
+import 'package:smarttv_app/app/core/model/momo_content.dart';
 import 'package:smarttv_app/app/core/model/promotion_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
@@ -13,7 +14,6 @@ abstract class Repository {
   //========================Service=============================================
   Future<List<ServiceCategoryContent>> getListServiceCate();
   Future<List<ServiceContent>> getListServiceContentByCateId(int cateId);
-
 
   //=========================Event==============================================
   Future<List<EventContent>> getListEvent();
@@ -33,7 +33,8 @@ abstract class Repository {
 
 //===============================Booking========================================
   Future<BookingContent> getBookingByRoomId(int roomId);
-  //============================================================================
+//==============================================================================
   // Future<List<>> getListNotification();
-
+//==============================================================================
+  Future<MomoContent> momoPayment(int orderId, int orderInfo);
 }

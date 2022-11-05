@@ -4,26 +4,33 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:smarttv_app/app/core/model/event_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
 import 'package:smarttv_app/app/modules/event/widget/event_dialog.dart';
 
-class BuildEvent extends StatelessWidget {
+class BuildEvent extends StatefulWidget {
   int indexType;
   int index;
   EventContent eventContent;
   EventController controller;
-
+  ScrollController scrollController;
   BuildEvent({
     Key? key,
     required this.indexType,
     required this.index,
     required this.eventContent,
     required this.controller,
+    required this.scrollController,
   }) : super(key: key);
 
+  @override
+  State<BuildEvent> createState() => _BuildEventState();
+}
+
+class _BuildEventState extends State<BuildEvent> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -31,12 +38,24 @@ class BuildEvent extends StatelessWidget {
       color: AppColors.transparent,
       child: InkWell(
         onFocusChange: (value) {
-          controller.isFocus[indexType] = value;
+          widget.controller.isFocus[widget.indexType] = value;
+          if (widget.indexType == 0) {
+            widget.scrollController.animateTo(
+                widget.scrollController.position.minScrollExtent,
+                duration: const Duration(milliseconds: 100),
+                curve: Curves.decelerate);
+          } else if (widget.indexType == 2) {
+            widget.scrollController.animateTo(
+                widget.scrollController.position.maxScrollExtent,
+                duration: const Duration(milliseconds: 100),
+                curve: Curves.decelerate);
+          }
         },
         borderRadius: BorderRadius.circular(10.r),
         focusColor: AppColors.title,
         onTap: () {
-          const EventDialog().showEventDialog(context, index, eventContent);
+          const EventDialog()
+              .showEventDialog(context, widget.index, widget.eventContent);
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.r),
@@ -76,7 +95,7 @@ class BuildEvent extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  eventContent.name.toString(),
+                                  widget.eventContent.name.toString(),
                                   style: AppStyles.h4.copyWith(
                                       color: AppColors.white,
                                       fontSize: 12.sp,
@@ -95,7 +114,7 @@ class BuildEvent extends StatelessWidget {
                                             color: AppColors.white,
                                             size: 16.sp),
                                         Text(
-                                          "Từ ${eventContent.startTime} - ${eventContent.startDate}",
+                                          "Từ ${widget.eventContent.startTime} - ${widget.eventContent.startDate}",
                                           style: AppStyles.h4.copyWith(
                                               color: AppColors.greyColor,
                                               fontSize: 12.sp,
@@ -109,7 +128,8 @@ class BuildEvent extends StatelessWidget {
                                             color: AppColors.white,
                                             size: 16.sp),
                                         Text(
-                                          eventContent.numberOfView.toString(),
+                                          widget.eventContent.numberOfView
+                                              .toString(),
                                           style: AppStyles.h4.copyWith(
                                               color: AppColors.greyColor,
                                               fontSize: 12.sp,

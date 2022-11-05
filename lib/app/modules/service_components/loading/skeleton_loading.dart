@@ -39,7 +39,7 @@ Widget CardServiceSkeleton() {
       color: AppColors.navigabackground,
       elevation: 1,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(110.r),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -55,7 +55,7 @@ Widget CardServiceSkeleton() {
                   period: Duration(milliseconds: 1500),
                   child: Container(
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(110.r)),
+                        borderRadius: BorderRadius.circular(10.r)),
                     child: Row(
                       children: [
                         Container(
@@ -63,7 +63,7 @@ Widget CardServiceSkeleton() {
                           height: 90, //90 //110
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(110.r),
+                              borderRadius: BorderRadius.circular(10.r),
                               color: Colors.grey),
                         ),
                       ],
@@ -86,7 +86,7 @@ Widget CardServiceSkeleton() {
                       height: 25.h,
                       decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(110.r),
+                          borderRadius: BorderRadius.circular(10.r),
                           color: Colors.grey),
                     ),
                   ],

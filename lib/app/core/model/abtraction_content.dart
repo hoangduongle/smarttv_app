@@ -37,4 +37,9 @@ class AbtractionContent {
 
     return data;
   }
+
+  @override
+  String toString() {
+    return 'AbtractionContent(id: $id, name: $name, openTime: $openTime, closeTime: $closeTime, address: $address, description: $description)';
+  }
 }

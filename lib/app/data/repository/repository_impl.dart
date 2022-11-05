@@ -9,6 +9,7 @@ import 'package:smarttv_app/app/core/model/event_content.dart';
 import 'package:smarttv_app/app/core/model/bill_content.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
+import 'package:smarttv_app/app/core/model/momo_content.dart';
 import 'package:smarttv_app/app/core/model/promotion_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/data/dio/dio_provider.dart';
@@ -176,22 +177,6 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<BookingContent> getBookingByRoomId(int roomId) {
-    var endpoint = "${DioProvider.baseUrl}/booking";
-    var data = {"room_id": roomId};
-    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
-    try {
-      return callApi(dioCall).then((response) {
-        var result = <BookingContent>[];
-        var a = response.data;
-        return BookingContent.fromJson(response.data[0]);
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  @override
   Future<List<PromotionContent>> getListPromotion() {
     var endpoint = "${DioProvider.baseUrl}/promotions";
     var dioCall = dioTokenClient.get(endpoint);
@@ -226,5 +211,44 @@ class RepositoryImpl extends BaseRepository implements Repository {
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  Future<MomoContent> momoPayment(int orderId, int orderInfo) {
+    var endpoint = "${DioProvider.baseUrl}/momo";
+    var data = {
+      "lang": "vi",
+      "orderId": orderId,
+      "orderInfo": orderInfo,
+      "storeId": 1,
+    };
+    var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <MomoContent>[];
+        debugPrint("${response.statusCode}");
+        return MomoContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<BookingContent> getBookingByRoomId(int roomId) {
+    // var endpoint = "${DioProvider.baseUrl}/booking";
+    // var data = {"room_id": roomId};
+    // var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    // try {
+    //   return callApi(dioCall).then((response) {
+    //     var result = <BookingContent>[];
+    //     var a = response.data;
+    //     return BookingContent.fromJson(response.data);
+    //   });
+    // } catch (e) {
+    //   rethrow;
+    // }
+    throw UnimplementedError();
   }
 }

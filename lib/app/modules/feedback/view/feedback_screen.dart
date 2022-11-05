@@ -382,31 +382,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     ),
                                   ],
                                 )),
-                            SizedBox(
-                              width: 100.w,
-                              height: 25.h,
-                              child: Material(
-                                color: AppColors.focus,
-                                borderRadius: BorderRadius.circular(10.r),
-                                child: InkWell(
-                                  focusColor: AppColors.orangeColor,
-                                  borderRadius: BorderRadius.circular(10.r),
-                                  onTap: () {},
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Gửi',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18.sp,
-                                            color: AppColors.black),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
                         ))),
               ],
