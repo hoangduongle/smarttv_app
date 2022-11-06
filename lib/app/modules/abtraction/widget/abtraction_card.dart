@@ -10,6 +10,7 @@ import 'package:smarttv_app/app/core/controller/smart_map_controller.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/abtraction/widget/abtraction_dialog.dart';
+import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 
 class AbtractionCard extends StatelessWidget {
   AbtractionContent abtractionContent;
@@ -22,15 +23,10 @@ class AbtractionCard extends StatelessWidget {
     required this.mapController,
   }) : super(key: key);
 
-/*
-          mapController
-              .moveToPosition(LatLng(10.845259719568647, 106.8201004328285));
-
-
- */
-
   @override
   Widget build(BuildContext context) {
+    NavigatorController naController =
+        Get.find(tag: (NavigatorController).toString());
     return Material(
       color: AppColors.greyColor,
       borderRadius: BorderRadius.circular(10.r),
@@ -41,7 +37,7 @@ class AbtractionCard extends StatelessWidget {
           mapController.moveToPosition(
               LatLng(double.parse("${abtractionContent.latidute}"),
                   double.parse("${abtractionContent.logtitude}")),
-              zoom: 15);
+              zoom: 16);
         },
         onTap: () {
           const AbtractionDialog()

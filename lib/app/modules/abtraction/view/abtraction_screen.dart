@@ -14,6 +14,7 @@ import 'package:smarttv_app/app/modules/abtraction/controller/abtraction_control
 import 'package:smarttv_app/app/modules/abtraction/loading/abtraction_loading.dart';
 import 'package:smarttv_app/app/modules/abtraction/loading/map_loading.dart';
 import 'package:smarttv_app/app/modules/abtraction/widget/abtraction_card.dart';
+import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 import 'package:smarttv_app/config/build_config.dart';
 
@@ -27,8 +28,11 @@ class AbtractionScreen extends StatefulWidget {
 class _AbtractionScreenState extends State<AbtractionScreen> {
   @override
   Widget build(BuildContext context) {
+    NavigatorController naController =
+        Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
     SmartMapController mapController = SmartMapController();
+
     return GetBuilder<AbtractionController>(
       builder: (controller) {
         return Scaffold(
@@ -77,90 +81,131 @@ class _AbtractionScreenState extends State<AbtractionScreen> {
                           ? const MapLoading()
                           : Expanded(
                               flex: 3,
-                              child: Container(
-                                padding: EdgeInsets.all(10.r),
-                                width: 500.w,
-                                height: 500.h,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.r),
-                                  child: FlutterMap(
-                                    mapController: mapController.controller,
-                                    options: MapOptions(
-                                      keepAlive: true,
-                                      center: LatLng(10.838606359520535,
-                                          106.83161588307689),
-                                      zoom: 14.0,
-                                    ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      TileLayer(
-                                        urlTemplate: BuildConfig.instance
-                                            .mapConfig.mapboxUrlTemplate,
-                                        additionalOptions: {
-                                          "access_token": BuildConfig.instance
-                                              .mapConfig.mapboxAccessToken,
-                                          "id": BuildConfig
-                                              .instance.mapConfig.mapboxId,
-                                        },
+                                      SvgPicture.asset(
+                                        "assets/svg/marker_red.svg",
+                                        color: AppColors.orangeColor,
+                                        height: 20.h,
                                       ),
-                                      MarkerLayer(
-                                        markers: [
-                                          Marker(
-                                            point: LatLng(10.838606359520535,
-                                                106.83161588307689),
-                                            builder: (context) {
-                                              return SvgPicture.asset(
-                                                "assets/svg/marker_red.svg",
-                                                color: AppColors.orangeColor,
-                                              );
-                                            },
-                                          ),
-                                          for (int i = 0;
-                                              i <
-                                                  controller
-                                                      .abtractions.value.length;
-                                              i++)
-                                            Marker(
-                                              point: LatLng(
-                                                double.parse(
-                                                    "${(controller.abtractions.value[i].latidute)}"),
-                                                double.parse(
-                                                    "${(controller.abtractions.value[i].logtitude)}"),
-                                              ),
-                                              builder: (context) {
-                                                return SvgPicture.asset(
-                                                  "assets/svg/marker_circle.svg",
-                                                  color: controller
-                                                              .indexMarker ==
-                                                          i
-                                                      ? AppColors.red
-                                                      : AppColors.background,
-                                                );
-                                              },
-                                            ),
-                                          /*
-                                    
-                                      point: LatLng(10.841504426896728,
-                                          106.80972219406588),
-                                     */
-
-                                          /*
-                                      LatLng(10.845259719568647,
-                                          106.8201004328285),
-                                     */
-                                          /*
-                                  LatLng(10.84246140890824,
-                                          106.82356442059825),
-                                   */
-
-                                          /*
-                                    LatLng(
-                                          10.842250662716, 106.82903612634817),
-                                   */
-                                        ],
+                                      Text(
+                                        "Vị trí hiện tại",
+                                        style: TextStyle(
+                                            color: AppColors.white,
+                                            fontSize: 15.sp),
                                       ),
+                                      SizedBox(
+                                        width: 40.w,
+                                      ),
+                                      SvgPicture.asset(
+                                        "assets/svg/marker_circle.svg",
+                                        color: AppColors.red,
+                                        height: 20.h,
+                                      ),
+                                      Text(
+                                        "Vị trí đang chỉ định",
+                                        style: TextStyle(
+                                            color: AppColors.white,
+                                            fontSize: 15.sp),
+                                      )
                                     ],
                                   ),
-                                ),
+                                  Container(
+                                    padding: EdgeInsets.all(5.r),
+                                    width: 500.w,
+                                    height: 456.h,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      child: FlutterMap(
+                                        mapController: mapController.controller,
+                                        options: MapOptions(
+                                          keepAlive: true,
+                                          center: LatLng(10.838606359520535,
+                                              106.83161588307689),
+                                          zoom: 14.0,
+                                        ),
+                                        children: [
+                                          TileLayer(
+                                            urlTemplate: BuildConfig.instance
+                                                .mapConfig.mapboxUrlTemplate,
+                                            additionalOptions: {
+                                              "access_token": BuildConfig
+                                                  .instance
+                                                  .mapConfig
+                                                  .mapboxAccessToken,
+                                              "id": BuildConfig
+                                                  .instance.mapConfig.mapboxId,
+                                            },
+                                          ),
+                                          MarkerLayer(
+                                            markers: [
+                                              Marker(
+                                                point: LatLng(
+                                                    10.838606359520535,
+                                                    106.83161588307689),
+                                                builder: (context) {
+                                                  return SvgPicture.asset(
+                                                    "assets/svg/marker_red.svg",
+                                                    color:
+                                                        AppColors.orangeColor,
+                                                  );
+                                                },
+                                              ),
+                                              for (int i = 0;
+                                                  i <
+                                                      controller.abtractions
+                                                          .value.length;
+                                                  i++)
+                                                Marker(
+                                                  point: LatLng(
+                                                    double.parse(
+                                                        "${(controller.abtractions.value[i].latidute)}"),
+                                                    double.parse(
+                                                        "${(controller.abtractions.value[i].logtitude)}"),
+                                                  ),
+                                                  builder: (context) {
+                                                    return SvgPicture.asset(
+                                                      "assets/svg/marker_circle.svg",
+                                                      color: controller
+                                                                  .indexMarker ==
+                                                              i
+                                                          ? AppColors.red
+                                                          : AppColors
+                                                              .background,
+                                                    );
+                                                  },
+                                                ),
+                                              /*
+                                        
+                                          point: LatLng(10.841504426896728,
+                                              106.80972219406588),
+                                         */
+
+                                              /*
+                                          LatLng(10.845259719568647,
+                                              106.8201004328285),
+                                         */
+                                              /*
+                                      LatLng(10.84246140890824,
+                                              106.82356442059825),
+                                       */
+
+                                              /*
+                                        LatLng(
+                                              10.842250662716, 106.82903612634817),
+                                       */
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                     ],

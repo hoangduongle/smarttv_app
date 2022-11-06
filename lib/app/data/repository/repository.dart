@@ -6,6 +6,7 @@ import 'package:smarttv_app/app/core/model/event_content.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/momo_content.dart';
 import 'package:smarttv_app/app/core/model/promotion_content.dart';
+import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 
@@ -37,4 +38,6 @@ abstract class Repository {
   // Future<List<>> getListNotification();
 //==============================================================================
   Future<MomoContent> momoPayment(int orderId, int orderInfo);
+  Future<RequestServiceContent> requestService(int bookingId, String dateTime, int id, String name, String type, bool status);
+
 }

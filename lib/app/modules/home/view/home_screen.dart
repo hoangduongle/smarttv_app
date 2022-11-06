@@ -11,7 +11,7 @@ import 'package:smarttv_app/app/modules/home/controller/home_controller.dart';
 import 'package:smarttv_app/app/modules/home/loading/skeleton_loading_homescreen.dart';
 import 'package:smarttv_app/app/modules/home/widget/buildimage.dart';
 import 'package:smarttv_app/app/modules/home/widget/buildindicator.dart';
-import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
+import 'package:smarttv_app/app/widget/skeleton_loading.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';

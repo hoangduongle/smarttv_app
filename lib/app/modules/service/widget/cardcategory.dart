@@ -18,44 +18,53 @@ import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbevera
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
-import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
+import 'package:smarttv_app/app/widget/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/widget/cached_image.dart';
 
-class CardCategory extends StatelessWidget {
+class CardCategory extends StatefulWidget {
   int index;
   ServiceCategoryContent serviceCategory;
   FocusNode focusNode;
-  ImageContent image;
+  // ImageContent image;
   CardCategory({
     Key? key,
     required this.index,
     required this.serviceCategory,
     required this.focusNode,
-    required this.image,
+    // required this.image,
   }) : super(key: key);
 
+  @override
+  State<CardCategory> createState() => _CardCategoryState();
+}
+
+class _CardCategoryState extends State<CardCategory> {
   @override
   Widget build(BuildContext context) {
     FoodandBeverageController fbController = Get.find();
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
+
     return GetBuilder<ServiceController>(
       builder: (controller) {
         return Material(
           color: AppColors.transparent,
           child: InkWell(
-            autofocus: index == 0,
-            focusNode: focusNode,
+            autofocus: widget.index == 0,
+            focusNode: widget.focusNode,
             focusColor: AppColors.title,
             borderRadius: BorderRadius.circular(10.r),
+            onFocusChange: (value) {
+              setState(() {});
+            },
             onTap: () async {
               // final prefs = await SharedPreferences.getInstance();
               // prefs.setInt('cateId', serviceCategory.id!);
-              switch (serviceCategory.id) {
+              switch (widget.serviceCategory.id) {
                 case 1: //F&B
                   fbController.numberSelected = 0.obs;
                   Get.toNamed('${Routes.FANDB}');
@@ -91,7 +100,8 @@ class CardCategory extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Text(
-                        serviceCategory.name!.tr, //<------ set controller
+                        widget
+                            .serviceCategory.name!.tr, //<------ set controller
                         style: TextStyle(
                             fontSize: naController.select ? 20.sp : 17.sp,
                             fontWeight: FontWeight.bold,
@@ -101,10 +111,29 @@ class CardCategory extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.topCenter,
-                    child: ImageNetwork(
-                        url: image.pictureUrl.toString(),
-                        width: 200,
-                        height: naController.select ? 180.h : 160.h),
+                    child: ClipRRect(
+                      borderRadius: widget.focusNode.hasFocus
+                          ? BorderRadius.only(
+                              topLeft: Radius.circular(10.r),
+                              topRight: Radius.circular(10.r))
+                          : BorderRadius.circular(10.r),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+                        imageBuilder: (context, imageProvider) {
+                          return Container(
+                            height: naController.select ? 180.h : 160.h,
+                            width: 200.w,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 ],
               ),

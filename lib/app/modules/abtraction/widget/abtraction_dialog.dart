@@ -81,6 +81,7 @@ class AbtractionDialog extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.w, vertical: 10.h),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "${abtractionContent.name}",

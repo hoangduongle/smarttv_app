@@ -22,7 +22,7 @@ class ServiceController extends BaseController {
   @override
   void onInit() {
     // fetchImage("img_serviceCategory");
-    // fetchServiceCategory();
+    fetchServiceCategory();
     super.onInit();
   }
 
@@ -50,6 +50,7 @@ class ServiceController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceCateListTMP(result);
+    debugPrint(serviceCateListTMP.value.length.toString());
     fandB();
   }
 
@@ -57,7 +58,6 @@ class ServiceController extends BaseController {
     serviceCateList.value.add(ServiceCategoryContent(
         id: 1, description: "fandb", name: "Thức ăn và đồ uống"));
     for (var element in serviceCateListTMP.value) {
-   
       if (element.id != 1 && element.id != 2) {
         serviceCateList.value.add(element);
       }

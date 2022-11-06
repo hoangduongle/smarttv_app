@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
-import 'package:smarttv_app/app/modules/service/loading/skeleton_loading.dart';
+import 'package:smarttv_app/app/widget/skeleton_loading.dart';
 
 import 'package:smarttv_app/app/modules/service_components/controller/cart_dialog_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';

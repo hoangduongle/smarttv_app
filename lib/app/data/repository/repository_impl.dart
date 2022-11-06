@@ -11,6 +11,7 @@ import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/momo_content.dart';
 import 'package:smarttv_app/app/core/model/promotion_content.dart';
+import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/data/dio/dio_provider.dart';
 import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
@@ -245,6 +246,32 @@ class RepositoryImpl extends BaseRepository implements Repository {
     //     var result = <BookingContent>[];
     //     var a = response.data;
     //     return BookingContent.fromJson(response.data);
+    //   });
+    // } catch (e) {
+    //   rethrow;
+    // }
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<RequestServiceContent> requestService(int bookingId, String dateTime,
+      int id, String name, String type, bool status) {
+    // var endpoint = "${DioProvider.baseUrl}/requestService";
+    // var data = {
+    //   "booking_Id": bookingId,
+    //   "dateTime": dateTime,
+    //   "id": id,
+    //   "requestServiceName": name,
+    //   "requestServiceType": type,
+    //   "status": status
+    // };
+    // var fromData = FormData.fromMap(data);
+    // var dioCall = dioTokenClient.post(endpoint, data: data);
+    // try {
+    //   return callApi(dioCall).then((response) {
+    //     var result = <RequestServiceContent>[];
+    //     var a = response.data;
+    //     return RequestServiceContent.fromJson(response.data);
     //   });
     // } catch (e) {
     //   rethrow;

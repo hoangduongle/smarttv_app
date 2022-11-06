@@ -1,11 +1,11 @@
-class RequestService {
+class RequestServiceContent {
   String? id;
   String? bookingId;
   String? name;
   String? type;
   String? dateTime;
   bool? status;
-  RequestService({
+  RequestServiceContent({
     this.id,
     this.bookingId,
     this.name,

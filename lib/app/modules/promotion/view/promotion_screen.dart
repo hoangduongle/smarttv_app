@@ -8,7 +8,7 @@ import 'package:smarttv_app/app/modules/promotion/loading/promotion_loading.dart
 import 'package:smarttv_app/app/modules/promotion/widget/build_promotion.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
-class PromotionScreen extends GetView<PromotionController> {
+class PromotionScreen extends StatelessWidget {
   const PromotionScreen({super.key});
 
   @override
@@ -16,51 +16,56 @@ class PromotionScreen extends GetView<PromotionController> {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Container(
-        color: AppColors.background,
-        child: Column(
-          children: [
-            Expanded(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return GetBuilder<PromotionController>(
+      builder: (controller) {
+        return Scaffold(
+          body: Container(
+            color: AppColors.background,
+            child: Column(
               children: [
-                TitleScreen(
-                  name: "Tin tức",
-                ),
-                controller.promotionList.value.isEmpty
-                    ? const PromotionLoading()
-                    : Expanded(
-                        child: SizedBox(
-                        width: size.width,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 40.w,
-                          ),
-                          child: GridView.builder(
-                            itemCount: controller.promotionList.value.length,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: naController.select ? 2 : 3,
-                              crossAxisSpacing: 40.w,
-                              mainAxisExtent: 300,
-                              mainAxisSpacing: 30.h,
+                Expanded(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TitleScreen(
+                      name: "Tin tức",
+                    ),
+                    controller.promotionList.value.isEmpty
+                        ?  PromotionLoading()
+                        : Expanded(
+                            child: SizedBox(
+                            width: size.width,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 40.w,
+                              ),
+                              child: GridView.builder(
+                                itemCount:
+                                    controller.promotionList.value.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: naController.select ? 2 : 3,
+                                  crossAxisSpacing: 40.w,
+                                  mainAxisExtent: 300,
+                                  mainAxisSpacing: 30.h,
+                                ),
+                                itemBuilder: (context, index) {
+                                  return BuildPromotion(
+                                    index: index,
+                                    promotionContent:
+                                        controller.promotionList.value[index],
+                                  );
+                                },
+                              ),
                             ),
-                            itemBuilder: (context, index) {
-                              return BuildPromotion(
-                                index: index,
-                                promotionContent:
-                                    controller.promotionList.value[index],
-                              );
-                            },
-                          ),
-                        ),
-                      )),
+                          )),
+                  ],
+                ))
               ],
-            ))
-          ],
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
