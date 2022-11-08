@@ -1,8 +1,8 @@
-// ignore_for_file: unnecessary_this, unnecessary_new, prefer_collection_literals
+// ignore_for_file: unnecessary_this, prefer_collection_literals
 
-class EventContent {
+class NewsContent {
   int? id;
-  String? name;
+  String? newName;
   String? ticketInformation;
   String? address;
   String? description;
@@ -10,12 +10,13 @@ class EventContent {
   String? endDate;
   String? startTime;
   String? endTime;
+  String? newType;
   String? status;
   int? numberOfView;
 
-  EventContent(List<EventContent> result, {
+  NewsContent({
     this.id,
-    this.name,
+    this.newName,
     this.ticketInformation,
     this.address,
     this.description,
@@ -23,13 +24,14 @@ class EventContent {
     this.endDate,
     this.startTime,
     this.endTime,
+    this.newType,
     this.status,
     this.numberOfView,
   });
 
-  EventContent.fromJson(Map<String, dynamic> json) {
+  NewsContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
+    newName = json['newName'];
     ticketInformation = json['ticketInformation'];
     address = json['address'];
     description = json['description'];
@@ -37,14 +39,15 @@ class EventContent {
     endDate = json['endDate'];
     startTime = json['startTime'];
     endTime = json['endTime'];
+    newType = json['newType'];
     status = json['status'];
     numberOfView = json['numberOfView'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
-    data['name'] = this.name;
+    data['newName'] = this.newName;
     data['ticketInformation'] = this.ticketInformation;
     data['address'] = this.address;
     data['description'] = this.description;
@@ -52,6 +55,7 @@ class EventContent {
     data['endDate'] = this.endDate;
     data['startTime'] = this.startTime;
     data['endTime'] = this.endTime;
+    data['newType'] = this.newType;
     data['status'] = this.status;
     data['numberOfView'] = this.numberOfView;
 

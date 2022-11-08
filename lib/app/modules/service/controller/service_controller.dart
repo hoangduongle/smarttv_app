@@ -50,7 +50,7 @@ class ServiceController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceCateListTMP(result);
-    debugPrint(serviceCateListTMP.value.length.toString());
+    // debugPrint(serviceCateListTMP.value.length.toString());
     fandB();
   }
 

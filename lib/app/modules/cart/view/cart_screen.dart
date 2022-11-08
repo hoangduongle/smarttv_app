@@ -309,7 +309,14 @@ class CartService extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 135.w,
+                  width: 25.w,
+                  child: Icon(
+                    Icons.edit,
+                    color: AppColors.background,
+                  ),
+                ),
+                SizedBox(
+                  width: 115.w,
                 ),
                 //TOTAL
                 SizedBox(

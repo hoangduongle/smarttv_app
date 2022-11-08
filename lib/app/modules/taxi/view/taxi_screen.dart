@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
-import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/taxi/controller/taxi_controller.dart';
 import 'package:smarttv_app/app/modules/taxi/widget/build_taxi.dart';
@@ -30,13 +29,14 @@ class TaxiScreen extends GetView<TaxiController> {
               padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 30.w),
               width: size.width,
               child: ListView.separated(
-                itemCount: 2,
+                itemCount: controller.taxiContent.value.length,
                 separatorBuilder: (context, index) => SizedBox(
                   height: 15.h,
                 ),
                 itemBuilder: (context, index) {
                   return BuildTaxi(
                     index: index,
+                    serviceContent: controller.taxiContent.value[index],
                   );
                 },
               ),

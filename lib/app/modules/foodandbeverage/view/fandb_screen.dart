@@ -196,77 +196,75 @@ class _FandBScreenState extends State<FandBScreen> {
                       ),
                     ),
                     Padding(padding: EdgeInsets.symmetric(vertical: 5.h)),
-                    if (controller.serviceListFood.value.isEmpty &&
-                        controller.serviceListDrink.value.isEmpty)
-                      SkeletonLoadingServiceConponentScreen()
-                    else
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.w, vertical: 10.h),
-                          child: IndexedStack(
-                            index: controller.numberSelected.toInt(),
-                            children: [
-                              ExcludeFocus(
-                                excluding:
-                                    controller.numberSelected.toInt() == 0
-                                        ? false
-                                        : true,
-                                child: Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 140.w),
-                                  child: GridView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: controller.mayjorFood.length,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      mainAxisExtent: 180,
-                                      crossAxisCount: 3,
-                                      crossAxisSpacing: 30.w,
-                                      mainAxisSpacing: 20.h,
-                                    ),
-                                    itemBuilder: (context, index) {
-                                      return CardEachService(
-                                        index: index,
-                                        mayjorContent:
-                                            controller.mayjorFood[index],
-                                      );
-                                    },
+                    // if (controller.serviceListFood.value.isEmpty &&
+                    //     controller.serviceListDrink.value.isEmpty)
+                    //   SkeletonLoadingServiceConponentScreen()
+                    // else
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 10.h),
+                        child: IndexedStack(
+                          index: controller.numberSelected.toInt(),
+                          children: [
+                            ExcludeFocus(
+                              excluding: controller.numberSelected.toInt() == 0
+                                  ? false
+                                  : true,
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 140.w),
+                                child: GridView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: controller.mayjorFood.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    mainAxisExtent: 185,
+                                    crossAxisCount: 3,
+                                    crossAxisSpacing: 30.w,
+                                    mainAxisSpacing: 20.h,
                                   ),
+                                  itemBuilder: (context, index) {
+                                    return CardEachService(
+                                      index: index,
+                                      mayjorContent:
+                                          controller.mayjorFood[index],
+                                    );
+                                  },
                                 ),
                               ),
-                              ExcludeFocus(
-                                excluding:
-                                    controller.numberSelected.toInt() == 1
-                                        ? false
-                                        : true,
-                                child: Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 140.w),
-                                  child: GridView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: controller.mayjorDrink.length,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      mainAxisExtent: 180,
-                                      crossAxisCount: 3,
-                                      crossAxisSpacing: 30.w,
-                                      mainAxisSpacing: 20.h,
-                                    ),
-                                    itemBuilder: (context, index) {
-                                      return CardEachService(
-                                        index: index,
-                                        mayjorContent:
-                                            controller.mayjorDrink[index],
-                                      );
-                                    },
+                            ),
+                            ExcludeFocus(
+                              excluding: controller.numberSelected.toInt() == 1
+                                  ? false
+                                  : true,
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 140.w),
+                                child: GridView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: controller.mayjorDrink.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    mainAxisExtent: 185,
+                                    crossAxisCount: 3,
+                                    crossAxisSpacing: 30.w,
+                                    mainAxisSpacing: 20.h,
                                   ),
+                                  itemBuilder: (context, index) {
+                                    return CardEachService(
+                                      index: index,
+                                      mayjorContent:
+                                          controller.mayjorDrink[index],
+                                    );
+                                  },
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      )
+                      ),
+                    )
                   ],
                 ),
               )),

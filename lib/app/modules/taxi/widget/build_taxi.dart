@@ -5,15 +5,18 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/taxi/widget/taxi_dialog.dart';
 
 class BuildTaxi extends StatelessWidget {
   int index;
+  ServiceContent serviceContent;
   BuildTaxi({
     Key? key,
     required this.index,
+    required this.serviceContent,
   }) : super(key: key);
 
   @override
@@ -44,8 +47,7 @@ class BuildTaxi extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.r),
                     child: CachedNetworkImage(
-                      imageUrl:
-                          "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
+                      imageUrl: "https://i.ibb.co/7tYvdGh/duadonsanbay.jpg",
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           height: 135.h,
@@ -70,7 +72,7 @@ class BuildTaxi extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Đưa đón sân bay (Tối đa 4 hành khách)",
+                        "${serviceContent.name}",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.sp,
@@ -96,7 +98,7 @@ class BuildTaxi extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        "1 chiều từ khách sạn đến sân bay",
+                        "${serviceContent.description}",
                         style: TextStyle(
                             fontWeight: FontWeight.normal,
                             fontSize: 15.sp,
@@ -112,7 +114,7 @@ class BuildTaxi extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "${NumberUtils.vnd(500000)}",
+                                "${NumberUtils.vnd(serviceContent.price)}",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.sp,
@@ -125,7 +127,7 @@ class BuildTaxi extends StatelessWidget {
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: Text(
-                                "(${NumberUtils.vnd(500000)} mỗi phòng)",
+                                "(${NumberUtils.vnd(serviceContent.price)} mỗi phòng)",
                                 style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 10.sp,

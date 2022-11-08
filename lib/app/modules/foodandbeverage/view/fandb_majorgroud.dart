@@ -1,19 +1,15 @@
 // ignore_for_file: unused_local_variable, must_be_immutable
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
-
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/mayjor_each_service.dart';
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
@@ -54,18 +50,22 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
         length = controller.serviceTrangmieng.value.length;
         break;
       case 3:
+        serviceContent = controller.serviceCafe;
+        length = controller.serviceCafe.value.length;
+        break;
+      case 4:
         serviceContent = controller.serviceNuoctra;
         length = controller.serviceNuoctra.value.length;
         break;
-      case 4:
+      case 5:
         serviceContent = controller.serviceNuocsuoi;
         length = controller.serviceNuocsuoi.value.length;
         break;
-      case 5:
+      case 6:
         serviceContent = controller.serviceBia;
         length = controller.serviceBia.value.length;
         break;
-      case 6:
+      case 7:
         serviceContent = controller.serviceNuocmocktails;
         length = controller.serviceNuocmocktails.value.length;
         break;

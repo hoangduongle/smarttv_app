@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
-import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
+import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class ListServiceController extends BaseController {
@@ -18,7 +18,7 @@ class ListServiceController extends BaseController {
   void onInit() async {
     final prefs = await SharedPreferences.getInstance();
     serviceCateId = prefs.getInt("cateId");
-    debugPrint(serviceCateId.toString());
+    // debugPrint(serviceCateId.toString());
     super.onInit();
   }
 

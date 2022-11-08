@@ -6,20 +6,20 @@ import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
-import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
-import 'package:smarttv_app/app/modules/bill/widget/bill_dialog.dart';
-import 'package:smarttv_app/app/modules/bill/widget/listbill.dart';
+import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
+import 'package:smarttv_app/app/modules/order/widget/order_dialog.dart';
+import 'package:smarttv_app/app/modules/order/widget/listorder.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
-class BillScreen extends StatefulWidget {
-  const BillScreen({super.key});
+class OrderScreen extends StatefulWidget {
+  const OrderScreen({super.key});
 
   @override
-  State<BillScreen> createState() => _BillScreenState();
+  State<OrderScreen> createState() => _OrderScreenState();
 }
 
-class _BillScreenState extends State<BillScreen> {
+class _OrderScreenState extends State<OrderScreen> {
   final List<FocusNode> focusNodesBill = [];
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _BillScreenState extends State<BillScreen> {
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
     ScrollController scrollController = ScrollController();
-    return GetBuilder<BillController>(
+    return GetBuilder<OrderController>(
       builder: (controller) {
         return Scaffold(
           body: Container(
@@ -52,7 +52,8 @@ class _BillScreenState extends State<BillScreen> {
             child: Column(
               children: [
                 TitleScreen(
-                  name: "Mã Hoá Đơn: #${controller.bill.value?.id ?? '00000'}",
+                  name:
+                      "Mã Hoá Đơn: #${controller.order.value?.id ?? '00000'}", //${controller.bill.value?.id ?? '00000'}
                 ),
                 SizedBox(
                   height: 30.h,
@@ -106,7 +107,7 @@ class _BillScreenState extends State<BillScreen> {
                 SizedBox(
                   height: 15.h,
                 ),
-                controller.billDetails.value.isEmpty
+                controller.orderDetails.value.isEmpty
                     ? Expanded(
                         child: Lottie.asset("assets/lotties/loading.json"))
                     : Expanded(
@@ -123,12 +124,12 @@ class _BillScreenState extends State<BillScreen> {
                               separatorBuilder: (context, index) => SizedBox(
                                     height: 25.h,
                                   ),
-                              itemCount: controller.billDetails.value.length,
-                              itemBuilder: (context, index) => ListBill(
+                              itemCount: controller.orderDetails.value.length,
+                              itemBuilder: (context, index) => ListOrder(
                                     focus: focusNodesBill[index],
-                                    billDetailContent:
-                                        controller.billDetails.value[index],
-                                    billController: controller,
+                                    orderDetailContent:
+                                        controller.orderDetails.value[index],
+                                    orderController: controller,
                                     index: index,
                                   )),
                         ),
@@ -179,7 +180,8 @@ class _BillScreenState extends State<BillScreen> {
                         alignment: Alignment.center,
                         child: Text(
                             NumberUtils.vnd(
-                                controller.bill.value?.totalAmount ?? 0),
+                                controller.order.value?.totalAmount ??
+                                    0), //controller.bill.value?.totalAmount ??
                             style: AppStyles.h4.copyWith(
                                 fontSize: 20.sp,
                                 color: AppColors.white,
@@ -198,7 +200,7 @@ class _BillScreenState extends State<BillScreen> {
                       focusColor: AppColors.orangeColor,
                       borderRadius: BorderRadius.circular(10.r),
                       onTap: () {
-                        BillDialog().showBillDialog(context);
+                        OrderDialog().showOrderDialog(context);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

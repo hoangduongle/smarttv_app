@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:smarttv_app/app/data/dio/dio_debug.dart';
-import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
+import 'package:smarttv_app/app/core/dio/dio_debug.dart';
+import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 
 class DioProvider {
-  static const String version = "v5";
   static const String baseUrl = "https://hotelservice-v5.herokuapp.com/api/v1";
   static Dio? _instance;
 

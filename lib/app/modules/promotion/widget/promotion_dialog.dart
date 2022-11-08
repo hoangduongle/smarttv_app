@@ -3,8 +3,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/core/model/event_content.dart';
-import 'package:smarttv_app/app/core/model/promotion_content.dart';
+import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
 
@@ -17,14 +16,14 @@ class PromotionDialog extends StatelessWidget {
   }
 
   void showPromotionDialog(
-      BuildContext context, int index, PromotionContent promotionContent) {
+      BuildContext context, int index, NewsContent newsContent) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) {
         // Size size = MediaQuery.of(context).size;
         List<String> arrDescription =
-            promotionContent.detailInformation!.split("+");
+            newsContent.description!.split("+");
         return Dialog(
           elevation: 2,
           backgroundColor: AppColors.background,
@@ -64,7 +63,7 @@ class PromotionDialog extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${promotionContent.name}", //<------ set controller
+                              "${newsContent.newName}", //<------ set controller
                               style: TextStyle(
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
@@ -84,7 +83,7 @@ class PromotionDialog extends StatelessWidget {
                                   width: 10.w,
                                 ),
                                 Text(
-                                  "${promotionContent.startDate} - ${promotionContent.endDate}",
+                                  "${newsContent.startDate} - ${newsContent.endDate}",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 15.sp,
@@ -120,7 +119,7 @@ class PromotionDialog extends StatelessWidget {
                               width: 360.w,
                               height: 52.h,
                               child: Text(
-                                "${promotionContent.description}",
+                                "${newsContent.description}",
                                 textAlign: TextAlign.left,
                                 maxLines: 3,
                                 style: TextStyle(

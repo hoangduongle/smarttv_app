@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, constant_identifier_names
 
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +37,10 @@ DeviceContent device = DeviceContent(
     status: true,
     room: roomContent);
 
+enum StatusService { BOOKED, PROCESSING, DONE }
+
+enum StatusBooking { BOOKED, CANCELED, NOSHOW, CHECKIN, CHECKOUT }
+
 const List<NavigationContent> listNavigationContent = [
   NavigationContent(
       title: 'home',
@@ -68,11 +72,6 @@ const List<NavigationContent> listNavigationContent = [
       iconData: FluentIcons.person_feedback_16_regular,
       iconSelectedData: FluentIcons.person_feedback_16_filled),
 ];
-
-const List<ImageContent> imageListServiceCategories = [];
-const List<ImageContent> imageListServices = [];
-const List<ImageContent> imageListEvent = [];
-const List<ImageContent> imageListPromotion = [];
 
 // const List<OverviewContent> listOverviewContent = [
 //   OverviewContent(

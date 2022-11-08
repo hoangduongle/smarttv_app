@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, constant_identifier_names
 
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/modules/bill/binding/bill_binding.dart';
-import 'package:smarttv_app/app/modules/bill/view/bill_screen.dart';
+import 'package:smarttv_app/app/modules/order/binding/order_binding.dart';
+import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
 import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';
 import 'package:smarttv_app/app/modules/cart/view/cart_screen.dart';
 import 'package:smarttv_app/app/modules/event/binding/event_binding.dart';
@@ -72,9 +72,9 @@ class AppPages {
       transition: Transition.noTransition,
     ),
     GetPage(
-      name: _Paths.BILL,
-      page: () => BillScreen(),
-      binding: BillBinding(),
+      name: _Paths.ORDER,
+      page: () => OrderScreen(),
+      binding: OrderBinding(),
       transition: Transition.noTransition,
     ),
     GetPage(

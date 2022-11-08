@@ -3,7 +3,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/core/model/event_content.dart';
+import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
 
@@ -16,7 +16,7 @@ class EventDialog extends StatelessWidget {
   }
 
   void showEventDialog(
-      BuildContext context, int index, EventContent eventContent) {
+      BuildContext context, int index, NewsContent newsContent) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -57,7 +57,7 @@ class EventDialog extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 5.h),
                     width: 550.w,
                     child: Text(
-                      eventContent.name.toString(),
+                      newsContent.newName.toString(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 20.sp,
@@ -78,7 +78,7 @@ class EventDialog extends StatelessWidget {
                           width: 10.w,
                         ),
                         Text(
-                          "${eventContent.startDate} - ${eventContent.endDate}",
+                          "${newsContent.startDate} - ${newsContent.endDate}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 15.sp,
@@ -104,7 +104,7 @@ class EventDialog extends StatelessWidget {
                           width: 10.w,
                         ),
                         Text(
-                          "${eventContent.startTime} - ${eventContent.endTime}",
+                          "${newsContent.startTime} - ${newsContent.endTime}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 15.sp,
@@ -140,7 +140,7 @@ class EventDialog extends StatelessWidget {
                     width: double.infinity.w,
                     height: 35.h,
                     child: Text(
-                      "${eventContent.ticketInformation}",
+                      "${newsContent.ticketInformation}",
                       maxLines: 2,
                       textAlign: TextAlign.left,
                       style: TextStyle(
@@ -175,7 +175,7 @@ class EventDialog extends StatelessWidget {
                     width: double.infinity.w,
                     height: 70.h,
                     child: Text(
-                      "${eventContent.description}",
+                      "${newsContent.description}",
                       textAlign: TextAlign.left,
                       maxLines: 4,
                       style: TextStyle(

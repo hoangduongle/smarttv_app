@@ -5,7 +5,7 @@ import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
-import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
+import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class FoodandBeverageController extends BaseController {
@@ -18,6 +18,7 @@ class FoodandBeverageController extends BaseController {
   Rx<List<ServiceContent>> serviceMonchinh = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceTrangmieng = Rx<List<ServiceContent>>([]);
 //=============================================================================
+  Rx<List<ServiceContent>> serviceCafe = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceNuoctra = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceNuocsuoi = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceBia = Rx<List<ServiceContent>>([]);
@@ -32,7 +33,7 @@ class FoodandBeverageController extends BaseController {
   @override
   void onInit() async {
     _loadData();
-    await fetchImage("img_fandb");
+    // await fetchImage("img_fandb");
     await fetchServicesFood();
     await fetchServicesDrink();
     createMajor();
@@ -87,28 +88,48 @@ class FoodandBeverageController extends BaseController {
   void createMajor() {
     mayjorFood = [
       MayjorContent(
-          id: 0, name: "Món khai vị", image: imageFandB.value[0].pictureUrl!),
+          id: 0,
+          name: "Món khai vị",
+          image:
+              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+      //imageFandB.value[0].pictureUrl!
       MayjorContent(
-          id: 1, name: "Món chính", image: imageFandB.value[1].pictureUrl!),
+          id: 1,
+          name: "Món chính",
+          image:
+              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
       MayjorContent(
           id: 2,
           name: "Món tráng miệng",
-          image: imageFandB.value[2].pictureUrl!),
+          image:
+              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
     ];
     mayjorDrink = [
       MayjorContent(
-          id: 3, name: "Cà phê", image: imageFandB.value[3].pictureUrl!),
+          id: 3,
+          name: "Cà phê",
+          image:
+              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
       MayjorContent(
-          id: 4, name: "Nước trà", image: imageFandB.value[4].pictureUrl!),
+          id: 4,
+          name: "Nước trà",
+          image:
+              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
       MayjorContent(
           id: 5,
           name: "Nước suối và nước ngọt",
-          image: imageFandB.value[5].pictureUrl!),
+          image:
+              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
       MayjorContent(
           id: 6,
           name: "Nước mocktails",
-          image: imageFandB.value[6].pictureUrl!),
-      MayjorContent(id: 7, name: "Bia", image: imageFandB.value[7].pictureUrl!),
+          image:
+              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+      MayjorContent(
+          id: 7,
+          name: "Bia",
+          image:
+              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
     ];
     filter();
   }
@@ -134,7 +155,7 @@ class FoodandBeverageController extends BaseController {
       drink = element.majorGroup.toString();
       switch (drink) {
         case "Nuoc_cafe":
-          serviceNuoctra.value.add(element);
+          serviceCafe.value.add(element);
           break;
         case "Nuoc_tra":
           serviceNuoctra.value.add(element);

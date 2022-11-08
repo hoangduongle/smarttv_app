@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/alarm/view/alarm_screen.dart';
-import 'package:smarttv_app/app/modules/bill/view/bill_screen.dart';
+import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/checkout/view/checkout_screen.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
@@ -372,7 +372,7 @@ class _MainScreenState extends State<MainScreen> {
                         excluding: naController.current_index.toInt() == 5
                             ? false
                             : true,
-                        child: BillScreen(),
+                        child: OrderScreen(),
                       ),
                       ExcludeFocus(
                           //feedback

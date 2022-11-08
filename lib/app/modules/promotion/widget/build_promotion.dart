@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/core/model/promotion_content.dart';
+import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/promotion/widget/promotion_dialog.dart';
@@ -10,11 +10,11 @@ import 'package:smarttv_app/app/widget/cached_image.dart';
 
 class BuildPromotion extends StatelessWidget {
   int index;
-  PromotionContent promotionContent;
+  NewsContent newsContent;
   BuildPromotion({
     Key? key,
     required this.index,
-    required this.promotionContent,
+    required this.newsContent,
   }) : super(key: key);
 
   @override
@@ -29,7 +29,7 @@ class BuildPromotion extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.r),
         onTap: () {
           const PromotionDialog()
-              .showPromotionDialog(context, index, promotionContent);
+              .showPromotionDialog(context, index, newsContent);
         },
         child: Container(
             margin: EdgeInsets.all(2.r),
@@ -55,7 +55,7 @@ class BuildPromotion extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Text(
-                    "${promotionContent.name}", //<------ set controller
+                    "${newsContent.newName}", //<------ set controller
                     style: TextStyle(
                         fontSize: naController.select ? 20.sp : 20.sp,
                         fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class BuildPromotion extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Text(
-                    "${promotionContent.description}", //<------ set controller
+                    "${newsContent.description}", //<------ set controller
                     style: TextStyle(
                         fontSize: naController.select ? 15.sp : 13.sp,
                         fontWeight: FontWeight.normal,

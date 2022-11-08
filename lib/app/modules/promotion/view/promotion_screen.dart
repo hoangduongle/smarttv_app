@@ -52,7 +52,7 @@ class PromotionScreen extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   return BuildPromotion(
                                     index: index,
-                                    promotionContent:
+                                    newsContent:
                                         controller.promotionList.value[index],
                                   );
                                 },

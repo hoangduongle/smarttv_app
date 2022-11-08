@@ -5,23 +5,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'package:smarttv_app/app/core/model/bill_detail_content.dart';
+import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
-import 'package:smarttv_app/app/modules/bill/controller/bill_controller.dart';
+import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 
-class ListBill extends StatelessWidget {
-  BillController billController;
-  BillDetailContent billDetailContent;
+class ListOrder extends StatelessWidget {
+  OrderController orderController;
+  OrderDetailContent orderDetailContent;
   int index;
   FocusNode focus;
 
-  ListBill({
+  ListOrder({
     Key? key,
-    required this.billController,
-    required this.billDetailContent,
+    required this.orderController,
+    required this.orderDetailContent,
     required this.index,
     required this.focus,
   }) : super(key: key);
@@ -55,7 +55,7 @@ class ListBill extends StatelessWidget {
                     SizedBox(
                       width: 130.w,
                       child: Text(
-                        "${billDetailContent.service?.name}",
+                        "${orderDetailContent.service?.name}",
                         maxLines: 2,
                         textAlign: TextAlign.start,
                         style: AppStyles.h5.copyWith(
@@ -71,7 +71,7 @@ class ListBill extends StatelessWidget {
                 SizedBox(
                   width: 30.w,
                   child: Text(
-                    "${billDetailContent.quantity}", //QUANTITY
+                    "${orderDetailContent.quantity}", //QUANTITY
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
                   ),
@@ -83,7 +83,7 @@ class ListBill extends StatelessWidget {
                   width: 92.w,
                   child: Text(
                     NumberUtils.noVnd(
-                        billController.billDetails.value[index].price), //PRICE
+                        orderController.orderDetails.value[index].price), //PRICE
                     textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
@@ -95,7 +95,7 @@ class ListBill extends StatelessWidget {
                 SizedBox(
                   width: 90.w,
                   child: Text(
-                    billDetailContent.status == 0 ? 'paid'.tr : 'unpaid'.tr,
+                    orderDetailContent.status == 0 ? 'paid'.tr : 'unpaid'.tr,
                     textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
@@ -105,7 +105,7 @@ class ListBill extends StatelessWidget {
                     duration: Duration(milliseconds: 500),
                     width: naController.select ? 55.w : 55.w),
                 Text(
-                  "${billDetailContent.billDate}",
+                  "${orderDetailContent.billDate}",
                   textAlign: TextAlign.center,
                   style: AppStyles.h5.copyWith(
                       color: AppColors.white, fontWeight: FontWeight.bold),
@@ -118,7 +118,7 @@ class ListBill extends StatelessWidget {
                     : SizedBox(
                         width: 92.w,
                         child: Text(
-                          NumberUtils.noVnd(billDetailContent.amount), //AMOUNT
+                          NumberUtils.noVnd(orderDetailContent.amount), //AMOUNT
                           textAlign: TextAlign.center,
                           style: AppStyles.h5.copyWith(
                               color: AppColors.white,

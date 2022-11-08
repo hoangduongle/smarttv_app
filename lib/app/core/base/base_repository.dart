@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
-import 'package:smarttv_app/app/data/dio/dio_provider.dart';
-import 'package:smarttv_app/app/data/dio/handler_error.dart';
+import 'package:smarttv_app/app/core/dio/dio_provider.dart';
+import 'package:smarttv_app/app/core/dio/handler_error.dart';
 import 'package:smarttv_app/app/exceptions/base_exception.dart';
 
 abstract class BaseRepository {

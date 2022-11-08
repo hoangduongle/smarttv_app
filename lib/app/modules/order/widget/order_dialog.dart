@@ -5,15 +5,15 @@ import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/momo/view/momo_screen.dart';
 
-class BillDialog extends StatelessWidget {
-  const BillDialog({super.key});
+class OrderDialog extends StatelessWidget {
+  const OrderDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container();
   }
 
-  void showBillDialog(BuildContext context) {
+  void showOrderDialog(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,

@@ -4,8 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:smarttv_app/app/core/model/event_content.dart';
+import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
@@ -14,14 +13,14 @@ import 'package:smarttv_app/app/modules/event/widget/event_dialog.dart';
 class BuildEvent extends StatefulWidget {
   int indexType;
   int index;
-  EventContent eventContent;
+  NewsContent newsContent;
   EventController controller;
   ScrollController scrollController;
   BuildEvent({
     Key? key,
     required this.indexType,
     required this.index,
-    required this.eventContent,
+    required this.newsContent,
     required this.controller,
     required this.scrollController,
   }) : super(key: key);
@@ -31,6 +30,7 @@ class BuildEvent extends StatefulWidget {
 }
 
 class _BuildEventState extends State<BuildEvent> {
+  
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -38,7 +38,8 @@ class _BuildEventState extends State<BuildEvent> {
       color: AppColors.transparent,
       child: InkWell(
         onFocusChange: (value) {
-          widget.controller.isFocus[widget.indexType] = value;
+          // widget.controller.isFocus[widget.indexType] = value;
+
           if (widget.indexType == 0) {
             widget.scrollController.animateTo(
                 widget.scrollController.position.minScrollExtent,
@@ -55,7 +56,7 @@ class _BuildEventState extends State<BuildEvent> {
         focusColor: AppColors.title,
         onTap: () {
           const EventDialog()
-              .showEventDialog(context, widget.index, widget.eventContent);
+              .showEventDialog(context, widget.index, widget.newsContent);
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.r),
@@ -95,7 +96,7 @@ class _BuildEventState extends State<BuildEvent> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.eventContent.name.toString(),
+                                  widget.newsContent.newName.toString(),
                                   style: AppStyles.h4.copyWith(
                                       color: AppColors.white,
                                       fontSize: 12.sp,
@@ -114,7 +115,7 @@ class _BuildEventState extends State<BuildEvent> {
                                             color: AppColors.white,
                                             size: 16.sp),
                                         Text(
-                                          "Từ ${widget.eventContent.startTime} - ${widget.eventContent.startDate}",
+                                          "Từ ${widget.newsContent.startTime} - ${widget.newsContent.startDate}",
                                           style: AppStyles.h4.copyWith(
                                               color: AppColors.greyColor,
                                               fontSize: 12.sp,
@@ -128,7 +129,7 @@ class _BuildEventState extends State<BuildEvent> {
                                             color: AppColors.white,
                                             size: 16.sp),
                                         Text(
-                                          widget.eventContent.numberOfView
+                                          widget.newsContent.numberOfView
                                               .toString(),
                                           style: AppStyles.h4.copyWith(
                                               color: AppColors.greyColor,

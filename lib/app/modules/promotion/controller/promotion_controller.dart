@@ -1,25 +1,25 @@
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
-import 'package:smarttv_app/app/core/model/promotion_content.dart';
+import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class PromotionController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
-  Rx<List<PromotionContent>> promotionList = Rx<List<PromotionContent>>([]);
+  Rx<List<NewsContent>> promotionList = Rx<List<NewsContent>>([]);
 
   @override
   void onInit() {
-    // fetchPromotion();
+    fetchNewsPromotion();
     super.onInit();
   }
 
-  Future<void> fetchPromotion() async {
-    var overview = _repository.getListPromotion();
-    List<PromotionContent> result = [];
+  Future<void> fetchNewsPromotion() async {
+    var overview = _repository.getListNewsByType("promotion");
+    List<NewsContent> result = [];
 
     await callDataService(
       overview,
-      onSuccess: (List<PromotionContent> response) {
+      onSuccess: (List<NewsContent> response) {
         result = response;
       },
       onError: ((dioError) {}),

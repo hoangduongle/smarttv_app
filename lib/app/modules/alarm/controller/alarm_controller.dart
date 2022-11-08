@@ -30,7 +30,7 @@ class AlarmController extends BaseController {
 
   void timing() async {
     _timer = Timer.periodic(
-      const Duration(milliseconds: 550),
+      const Duration(milliseconds: 600),
       (timer) {
         changeUpdate();
       },
@@ -179,14 +179,14 @@ class AlarmController extends BaseController {
       );
     }
     AndroidAlarmManager.oneShotAt(
-        DateTime(currentDateTime.year, currentDateTime.month,
-            currentDateTime.day, hours, minutes),
-        idAlarm,
-        firedAlarm,
-        wakeup: true,
-        exact: true,
-        rescheduleOnReboot: true,
-        );
+      DateTime(currentDateTime.year, currentDateTime.month, currentDateTime.day,
+          hours, minutes),
+      idAlarm,
+      firedAlarm,
+      wakeup: true,
+      exact: true,
+      rescheduleOnReboot: true,
+    );
 
     alarmed.add(AlarmContent(
       id: idAlarm,
@@ -194,8 +194,6 @@ class AlarmController extends BaseController {
           "${NumberUtils.time(timeAlarm.day)}/${NumberUtils.time(timeAlarm.month)}/${timeAlarm.year} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
       status: true,
     ));
-  
-    
   }
 
   static firedAlarm() {

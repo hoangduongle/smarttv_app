@@ -12,10 +12,12 @@ import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
 class TitleEvent extends StatelessWidget {
   String name;
   int indexType;
+  bool isFocus;
   TitleEvent({
     Key? key,
     required this.name,
     required this.indexType,
+    required this.isFocus,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class TitleEvent extends StatelessWidget {
         width: 160.w,
         height: 30.h,
         decoration: BoxDecoration(
-            color: controller.isFocus[indexType]
+            color: isFocus
                 ? AppColors.title
                 : AppColors.transparent,
             borderRadius: BorderRadius.circular(10.r),

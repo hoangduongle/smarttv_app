@@ -26,14 +26,14 @@ class ThankCustomer extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
           child: AnimatedContainer(
               duration: const Duration(milliseconds: 500),
-              width: 450.w,
+              width: 460.w,
               height: 250.h,
               child: Column(
                 children: [
                   SizedBox(
                     height: 15.h,
                   ),
-                  Lottie.asset("assets/lotties/loading.json"),
+                  Lottie.asset("assets/lotties/loading.json", width: 130),
                   Container(
                     padding: EdgeInsets.only(top: 10.h),
                     width: 800.w,
@@ -41,20 +41,13 @@ class ThankCustomer extends StatelessWidget {
                       "Yêu cầu của quý khách đang được xử lý",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 25.sp,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.normal,
                           color: AppColors.title),
                     ),
                   ),
-                  const Divider(
-                    indent: 40,
-                    endIndent: 40,
-                    color: AppColors.greyColor,
-                    thickness: 1,
-                  ),
-                  Container(
-                    child:
-                        Lottie.asset("assets/lotties/love.json", height: 140),
+                  SizedBox(
+                    height: 20.h,
                   ),
                   Container(
                     padding: EdgeInsets.only(top: 00.h),
@@ -63,8 +56,8 @@ class ThankCustomer extends StatelessWidget {
                       "Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.normal,
                           color: AppColors.greyColor),
                     ),
                   ),

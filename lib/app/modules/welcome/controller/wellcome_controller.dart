@@ -53,8 +53,8 @@ class WellcomeController extends BaseController {
   @override
   void onInit() async {
     timing();
-    // await fetchBooking(11);
-    // loadTitle();
+    await fetchBooking(11);
+    loadTitle();
     super.onInit();
   }
 

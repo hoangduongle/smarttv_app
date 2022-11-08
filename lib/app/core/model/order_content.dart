@@ -1,6 +1,6 @@
-// ignore_for_file: unnecessary_new, prefer_collection_literals, unnecessary_this
+// ignore_for_file: unnecessary_this, prefer_collection_literals
 
-class BillContent {
+class OrderContent {
   int? id;
   double? totalAmount;
   String? createDate;
@@ -8,7 +8,7 @@ class BillContent {
   String? createBy;
   String? lastModifyBy;
 
-  BillContent(
+  OrderContent(
       {this.id,
       this.totalAmount,
       this.createDate,
@@ -16,7 +16,7 @@ class BillContent {
       this.createBy,
       this.lastModifyBy});
 
-  BillContent.fromJson(Map<String, dynamic> json) {
+  OrderContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     totalAmount = json['totalAmount'];
     createDate = json['createDate'];
@@ -26,7 +26,7 @@ class BillContent {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['totalAmount'] = this.totalAmount;
     data['createDate'] = this.createDate;
@@ -38,6 +38,6 @@ class BillContent {
 
   @override
   String toString() {
-    return 'BillContent(id: $id, totalAmount: $totalAmount, createDate: $createDate, updateDate: $updateDate, createBy: $createBy, lastModifyBy: $lastModifyBy)';
+    return 'OrderContent(id: $id, totalAmount: $totalAmount, createDate: $createDate, updateDate: $updateDate, createBy: $createBy, lastModifyBy: $lastModifyBy)';
   }
 }

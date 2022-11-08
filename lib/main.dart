@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/bindings/initia_bindings.dart';
 import 'package:smarttv_app/app/core/controller/network_controller.dart';
-import 'package:smarttv_app/app/data/dio/dio_token_manager.dart';
+import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/core/utils/messages_translation.dart';
 import 'package:smarttv_app/config/build_config.dart';

@@ -7,8 +7,6 @@ class SmartMapController {
 
 
   void moveToPosition(LatLng position, {double? zoom}) {
-    
-
     AnimatedMapController.init(controller: controller);
     var zoomLevel = zoom ?? controller.zoom;
     AnimatedMapController.instance.move(position, zoomLevel);
