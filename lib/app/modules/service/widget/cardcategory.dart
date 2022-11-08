@@ -125,6 +125,9 @@ class _CardCategoryState extends State<CardCategory> {
                             height: naController.select ? 180.h : 160.h,
                             width: 200.w,
                             decoration: BoxDecoration(
+                              borderRadius: widget.focusNode.hasFocus
+                                  ? BorderRadius.circular(0.r)
+                                  : BorderRadius.circular(10.r),
                               image: DecorationImage(
                                 image: imageProvider,
                                 fit: BoxFit.cover,

@@ -3,6 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
+import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
@@ -133,7 +134,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<int> requestService(int bookingId, String dateTime, int id,
-      String name, String type, String status) {
+      String name, String type, String status) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/requestService";
     var data = {
       "booking_Id": bookingId,
@@ -189,20 +193,20 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<List<OrderDetailContent>> getOrderdetailByOrderId(int orderId) {
-      var endpoint = "${DioProvider.baseUrl}/orderDetail";
-      var data = {"order_id": orderId};
-      var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
-      try {
-        return callApi(dioCall).then((response) {
-          var result = <OrderDetailContent>[];
-          for (var element in (response.data as List<dynamic>)) {
-            result.add(OrderDetailContent.fromJson(element));
-          }
-          return result;
-        });
-      } catch (e) {
-        rethrow;
-      }
+    var endpoint = "${DioProvider.baseUrl}/orderDetail";
+    var data = {"order_id": orderId};
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <OrderDetailContent>[];
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(OrderDetailContent.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

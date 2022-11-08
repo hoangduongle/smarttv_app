@@ -253,13 +253,9 @@ class TurndownScreen extends GetView<TurndownController> {
                               focusColor: AppColors.orangeColor,
                               borderRadius: BorderRadius.circular(10.r),
                               onTap: () {
-                                controller.fetchRequest(
-                                    "${NumberUtils.time(controller.countHours.toInt())}:${NumberUtils.time(controller.countMinute.toInt())}",
-                                    "Turn Down");
-                                // debugPrint(
-                                //     "${NumberUtils.time(controller.countHours.toInt())}:${NumberUtils.time(controller.countMinute.toInt())}");
-                                TurndownDialogWidget()
-                                    .showTurndownDialog(context, controller);
+                                controller.requestTurndown(
+                                    controller.countHours.toInt(),
+                                    controller.countMinute.toInt());
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

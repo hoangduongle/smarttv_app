@@ -12,7 +12,7 @@ class ImageNetwork extends StatelessWidget {
   double height;
   ImageNetwork({
     Key? key,
-    this.url = "https://i.ibb.co/k3hGhf9/loadingimage.png",
+    this.url = "https://www.macmillandictionary.com/external/slideshow/full/White_full.png",
     required this.width,
     required this.height,
   }) : super(key: key);

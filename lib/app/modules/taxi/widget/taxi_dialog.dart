@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
@@ -14,7 +15,8 @@ class TaxiDialog extends StatelessWidget {
     return Container();
   }
 
-  void showTaxiDialog(BuildContext context, int index) {
+  void showTaxiDialog(
+      BuildContext context, int index, ServiceContent serviceContent) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -64,14 +66,17 @@ class TaxiDialog extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Đưa đón sân bay (Tối đa 4 hành khách)",
+                              "${serviceContent.name}",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20.sp,
                                   color: AppColors.white),
                             ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
                             Text(
-                              "1 chiều từ khách sạn đến sân bay",
+                              "${serviceContent.description}",
                               style: TextStyle(
                                   fontWeight: FontWeight.normal,
                                   fontSize: 15.sp,
@@ -87,7 +92,7 @@ class TaxiDialog extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "${NumberUtils.vnd(500000)}",
+                                      "${NumberUtils.vnd(serviceContent.price)}",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20.sp,
@@ -100,7 +105,7 @@ class TaxiDialog extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.bottomCenter,
                                     child: Text(
-                                      "(${NumberUtils.vnd(500000)} mỗi phòng)",
+                                      "(${NumberUtils.vnd(serviceContent.price)} mỗi phòng)",
                                       style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontSize: 10.sp,

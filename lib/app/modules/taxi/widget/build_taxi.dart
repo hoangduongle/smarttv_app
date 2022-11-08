@@ -26,7 +26,7 @@ class BuildTaxi extends StatelessWidget {
       borderRadius: BorderRadius.circular(10.r),
       child: InkWell(
         onTap: () {
-          const TaxiDialog().showTaxiDialog(context, index);
+          const TaxiDialog().showTaxiDialog(context, index, serviceContent);
         },
         focusColor: AppColors.title,
         borderRadius: BorderRadius.circular(10.r),
@@ -82,14 +82,14 @@ class BuildTaxi extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Checkbox(
-                            value: true,
+                            value: serviceContent.status,
                             checkColor: AppColors.green,
                             activeColor: AppColors.background,
                             onChanged: (value) {},
                           ),
                           Text(
                             // "Lựa chọn",
-                            "Đã lựa chọn",
+                            serviceContent.status! ? "Đã lựa chọn" : "Lựa chọn",
                             style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 15.sp,

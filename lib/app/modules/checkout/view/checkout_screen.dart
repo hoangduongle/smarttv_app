@@ -107,12 +107,7 @@ check-out khi quý khách yêu cầu''',
                           focusColor: AppColors.orangeColor,
                           borderRadius: BorderRadius.circular(10.r),
                           onTap: () {
-                            DateTime dateTime = DateTime.now();
-                            controller.fetchRequest(
-                                "${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}",
-                                "Check Out");
-                            const CheckoutDialogWidget()
-                                .showCheckoutDialog(context);
+                            controller.requestCheckout();
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

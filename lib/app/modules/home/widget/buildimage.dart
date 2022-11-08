@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings, unnecessary_brace_in_string_interps
+// ignore_for_file: prefer_interpolation_to_compose_strings, unnecessary_brace_in_string_interps, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

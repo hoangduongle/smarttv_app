@@ -6,8 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
+import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
+import 'package:smarttv_app/app/modules/turndown/widget/dialog.dart';
+import 'package:smarttv_app/app/widget/loading_dialog.dart';
 
 class TurndownController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
@@ -23,13 +26,26 @@ class TurndownController extends BaseController {
     super.onInit();
   }
 
+  var result;
+  Future<void> requestTurndown(int hours, int minutes) async {
+    const TurndownDialogWidget().showTurndownDialogFail(Get.context!);
+    // const LoadingDialog().showLoadingDialog(Get.context!);
+    // DateTime dateTime = DateTime.now();
+    // await fetchRequest(
+    //     "${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}",
+    //     "TurnDown");
+    // Get.back();
+    // debugPrint("Request Service: ${result.toString()}");
+    // if (result == 200) {
+    //   TurndownDialogWidget().showTurndownDialog(Get.context!, hours, minutes);
+    // } else {
+    //   const TurndownDialogWidget().showTurndownDialogFail(Get.context!);
+    // }
+  }
+
   Future<void> fetchRequest(String dateTime, String name) async {
-    int result = 0;
-    debugPrint("$bookingId");
-    debugPrint("$dateTime");
-    debugPrint("$name");
-    var overview = _repository.requestService(bookingId.toInt(), dateTime, 0,
-        name, name, StatusService.BOOKED.toString());
+    var overview = _repository.requestService(
+        bookingId, dateTime, 0, name, name, "BOOKED");
     await callDataService(
       overview,
       onSuccess: (int response) {
@@ -37,7 +53,7 @@ class TurndownController extends BaseController {
       },
       onError: ((dioError) {}),
     );
-    debugPrint("Request Service: ${result.toString()}");
+    // debugPrint("Request Service: ${result.toString()}");
     // debugPrint("$order");
   }
 
