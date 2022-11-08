@@ -1,6 +1,8 @@
 // ignore_for_file: unused_field, prefer_typing_uninitialized_variables
 
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -24,6 +26,21 @@ class WellcomeController extends BaseController {
   var birthdayContent = "Chúc mừng sinh nhật ";
   var title = "";
   var content = "";
+  AudioPlayer player = AudioPlayer();
+
+  void audio() async {
+    String audioasset = "assets/audios/audio.mp3";
+    Uint8List? audiobytes;
+    ByteData bytes = await rootBundle.load(audioasset);
+    audiobytes =
+        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    player.setVolume(40);
+    await player.playBytes(audiobytes);
+  }
+
+  void stopAudio() {
+    player.stop();
+  }
 
   void loadTitle() {
     String currentDay = DateFormat('dd/MM/yyyy').format(DateTime.now());
@@ -36,12 +53,13 @@ class WellcomeController extends BaseController {
         fromAsset: "assets/audios/alarm.mp3",
         volume: 10,
       );
+      //  audio();
     }
     content =
         "Chúc ${bookingContent.value?.customer?.gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
   }
 
-  void stopAudio() {
+  void stopRingtone() {
     FlutterRingtonePlayer.stop();
   }
 
@@ -95,6 +113,4 @@ class WellcomeController extends BaseController {
 
     update();
   }
-
-
 }
