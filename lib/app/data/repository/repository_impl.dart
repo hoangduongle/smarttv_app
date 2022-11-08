@@ -192,7 +192,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<OrderDetailContent>> getOrderdetailByOrderId(int orderId) {
+  Future<List<OrderDetailContent>> getOrderdetailByOrderId(int orderId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/orderDetail";
     var data = {"order_id": orderId};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
@@ -210,58 +213,52 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<int> insertOrderdetail(OrderDetailContent billDetailContent) {
-    //https://hotelservice-v5.herokuapp.com/api/v1/orderDetail?amount=10000&billDate=06%2F11%2F2022&id=0&order_Id=3&price=10000&quantity=1&service_Id=6&status=0
-
-    //   if (!TokenManager.instance.hasToken) {
-    //     TokenManager.instance.init();
-    //   }
-    //   var endpoint = "${DioProvider.baseUrl}/billDetail";
-    //   var data = {
-    //     'id': 0,
-    //     "service_Id": billDetailContent.service?.id,
-    //     "bill_Id": billDetailContent.billId,
-    //     "quantity": billDetailContent.quantity,
-    //     "price": billDetailContent.price,
-    //     "amount": billDetailContent.amount,
-    //     "status": billDetailContent.status,
-    //     "billDate": billDetailContent.billDate,
-    //   };
-    //   var fromData = FormData.fromMap(data);
-    //   var dioCall = dioTokenClient.post(endpoint, data: fromData);
-    //   try {
-    //     return callApi(dioCall).then((response) {
-    //       // debugPrint(response.statusCode.toString());
-    //       return response.statusCode ?? 0;
-    //     });
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    throw UnimplementedError();
+  Future<int> insertOrderdetail(OrderDetailContent orderDetailContent) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/orderDetail";
+    var data = {
+      "amount": orderDetailContent.amount,
+      "billDate": orderDetailContent.billDate,
+      'id': 0,
+      "order_Id": orderDetailContent.billId,
+      "price": orderDetailContent.price,
+      "quantity": orderDetailContent.quantity,
+      "service_Id": orderDetailContent.service?.id,
+      "status": orderDetailContent.status,
+    };
+    var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
-  Future<int> updateOrderByOrderId(String createBy, String createDate,
-      int orderId, String lastModifyBy, double totalAmount, String updateDate) {
-    //   var endpoint = "${DioProvider.baseUrl}/bill";
-    //   var data = {
-    //     "id": billId,
-    //     "totalAmount": totalAmount,
-    //     "createDate": createDate,
-    //     "updateDate": updateDate,
-    //     "createBy": createBy,
-    //     "lastModifyBy": lastModifyBy
-    //   };
-    //   var formData = FormData.fromMap(data);
-    //   var dioCall = dioTokenClient.put(endpoint, data: formData);
-    //   try {
-    //     return callApi(dioCall).then((response) {
-    //       return response.statusCode ?? 0;
-    //     });
-    //   } catch (e) {
-    //     rethrow;
-    //   }
-    throw UnimplementedError();
+  Future<int> updateOrderByOrderId(OrderContent orderContent) {
+    var endpoint = "${DioProvider.baseUrl}/order";
+    var data = {
+      "createBy": orderContent.createBy,
+      "createDate": orderContent.createDate,
+      "id": orderContent.id,
+      "lastModifyBy": orderContent.lastModifyBy,
+      "totalAmount": orderContent.totalAmount,
+      "updateDate": orderContent.updateDate,
+    };
+    var formData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.put(endpoint, data: formData);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

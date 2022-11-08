@@ -33,12 +33,12 @@ class ThankCustomer extends StatelessWidget {
                   SizedBox(
                     height: 15.h,
                   ),
-                  Lottie.asset("assets/lotties/loading.json", width: 130),
+                  Lottie.asset("assets/lotties/done.json", width: 130),
                   Container(
                     padding: EdgeInsets.only(top: 10.h),
                     width: 800.w,
                     child: Text(
-                      "Yêu cầu của quý khách đang được xử lý",
+                      "Yêu cầu của quý khách đang được chuẩn bị",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 17.sp,

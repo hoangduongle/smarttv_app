@@ -25,7 +25,7 @@ class LoadingDialog extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
         child: WillPopScope(
           onWillPop: () async {
-            return false;
+            return true;
           },
           child: SizedBox(
             width: 250.w,

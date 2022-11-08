@@ -153,31 +153,35 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
                 SizedBox(
                   width: 100.w,
                   height: 30.h,
-                  child: Material(
-                    color: AppColors.focus,
-                    borderRadius: BorderRadius.circular(10.r),
-                    elevation: 0,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    child: InkWell(
-                      focusColor: AppColors.orangeColor,
-                      onTap: () {
-                        Get.back();
-                        caController.updateService(
-                            serviceContent, controller.count.value);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          //controller.count
-                          Obx(
-                            () => Text(
+                  child: Obx(
+                    () => Material(
+                      color: controller.count == 0
+                          ? AppColors.red.withOpacity(0.8)
+                          : AppColors.focus,
+                      borderRadius: BorderRadius.circular(10.r),
+                      elevation: 0,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: InkWell(
+                        focusColor: controller.count == 0
+                            ? AppColors.red
+                            : AppColors.orangeColor,
+                        onTap: () {
+                          Get.back();
+                          caController.updateService(
+                              serviceContent, controller.count.value);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            //controller.count
+                            Text(
                               controller.count == 0 ? 'delete'.tr : 'save'.tr,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

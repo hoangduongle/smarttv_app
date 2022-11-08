@@ -82,8 +82,8 @@ class ListOrder extends StatelessWidget {
                 SizedBox(
                   width: 92.w,
                   child: Text(
-                    NumberUtils.noVnd(
-                        orderController.orderDetails.value[index].price), //PRICE
+                    NumberUtils.noVnd(orderController
+                        .orderDetails.value[index].price), //PRICE
                     textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
@@ -102,13 +102,16 @@ class ListOrder extends StatelessWidget {
                   ),
                 ),
                 AnimatedContainer(
-                    duration: Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 500),
                     width: naController.select ? 55.w : 55.w),
-                Text(
-                  "${orderDetailContent.billDate}",
-                  textAlign: TextAlign.center,
-                  style: AppStyles.h5.copyWith(
-                      color: AppColors.white, fontWeight: FontWeight.bold),
+                SizedBox(
+                  width: 86.w,
+                  child: Text(
+                    "${orderDetailContent.billDate}",
+                    textAlign: TextAlign.center,
+                    style: AppStyles.h5.copyWith(
+                        color: AppColors.white, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 SizedBox(
                   width: 60.w,

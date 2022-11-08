@@ -1,4 +1,4 @@
-// ignore_for_file: unrelated_type_equality_checks, await_only_futures
+// ignore_for_file: unrelated_type_equality_checks, await_only_futures, prefer_typing_uninitialized_variables
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -28,19 +28,19 @@ class TurndownController extends BaseController {
 
   var result;
   Future<void> requestTurndown(int hours, int minutes) async {
-    const TurndownDialogWidget().showTurndownDialogFail(Get.context!);
-    // const LoadingDialog().showLoadingDialog(Get.context!);
-    // DateTime dateTime = DateTime.now();
-    // await fetchRequest(
-    //     "${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}",
-    //     "TurnDown");
-    // Get.back();
+    const LoadingDialog().showLoadingDialog(Get.context!);
+    DateTime dateTime = DateTime.now();
+    await fetchRequest(
+        "${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}",
+        "TurnDown");
+    Get.back();
     // debugPrint("Request Service: ${result.toString()}");
-    // if (result == 200) {
-    //   TurndownDialogWidget().showTurndownDialog(Get.context!, hours, minutes);
-    // } else {
-    //   const TurndownDialogWidget().showTurndownDialogFail(Get.context!);
-    // }
+    if (result == 200) {
+      const TurndownDialogWidget()
+          .showTurndownDialog(Get.context!, hours, minutes);
+    } else {
+      const TurndownDialogWidget().showTurndownDialogFail(Get.context!);
+    }
   }
 
   Future<void> fetchRequest(String dateTime, String name) async {

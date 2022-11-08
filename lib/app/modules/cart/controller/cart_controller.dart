@@ -1,10 +1,11 @@
-// ignore_for_file: unnecessary_null_comparison, unused_local_variable, unrelated_type_equality_checks
+// ignore_for_file: unnecessary_null_comparison, unused_local_variable, unrelated_type_equality_checks, await_only_futures
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
@@ -13,6 +14,8 @@ import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/order/binding/order_binding.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/main/view/main_screen.dart';
+import 'package:smarttv_app/app/widget/loading.dart';
+import 'package:smarttv_app/app/widget/loading_dialog.dart';
 import 'package:smarttv_app/app/widget/thankforusing.dart';
 
 class CartController extends BaseController {
@@ -74,48 +77,68 @@ class CartController extends BaseController {
 
   var result;
 
-  // Future<void> insertBilldetails(BillDetailContent billDetailContent) async {
-  //   var overview = _repository.insertBilldetail(billDetailContent);
-  //   await callDataService(
-  //     overview,
-  //     onSuccess: (response) {
-  //       result = response;
-  //     },
-  //     onError: ((dioError) {}),
-  //   );
-  // }
+  Future<void> insertOrderdetails(OrderDetailContent orderDetailContent) async {
+    var overview = _repository.insertOrderdetail(orderDetailContent);
+    await callDataService(
+      overview,
+      onSuccess: (response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+  }
+
+  Future<void> updateOrder(OrderContent orderContent) async {
+    var overview = _repository.updateOrderByOrderId(orderContent);
+    await callDataService(
+      overview,
+      onSuccess: (response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+  }
 
   void addtoBill() async {
     if (_service.isNotEmpty) {
-      const ThankCustomer().showThanksDialog(Get.context!);
-      // final prefs = await SharedPreferences.getInstance();
-      // int? billId = prefs.getInt("billId");
-      // if (billId != 0) {
-      //   _service.forEach((key, value) async {
-      //     await insertBilldetails(BillDetailContent(
-      //         amount: (key.price * value),
-      //         billDate: DateTimeUtils.currentDate(),
-      //         billId: billId,
-      //         id: 0,
-      //         price: key.price,
-      //         quantity: value,
-      //         service: key,
-      //         status: 1));
-      //   });
-      // }
-
-      //   if (result == 200) {
-      //     removeAllSerivce();
-      //     Get.back();
-      //     final prefs = await SharedPreferences.getInstance();
-      //     int billId = prefs.getInt("billId") ?? 0;
-      //     BillController().fetchBillDetails(billId);
-      //     BillController().fetchBill(billId);
-      //   } else {
-      //     debugPrint("Update bill fail");
-      //   }
-      // } else {
-      //   debugPrint("Cart is Empty!!!");
+      const LoadingDialog().showLoadingDialog(Get.context!);
+      final prefs = await SharedPreferences.getInstance();
+      int? orderId = await prefs.getInt("orderId");
+      double newTotal = 0;
+      if (orderId != 0) {
+        for (int i = 0; i < _service.length; i++) {
+          ServiceContent serContent = _service.keys.toList()[i];
+          int quantity = _service.values.toList()[i];
+          await insertOrderdetails(OrderDetailContent(
+              amount: (serContent.price! * quantity),
+              billDate: DateTimeUtils.currentDate(),
+              billId: orderId,
+              id: 0,
+              price: serContent.price,
+              quantity: quantity,
+              service: serContent,
+              status: 1));
+          newTotal += (serContent.price! * quantity);
+        }
+        removeAllSerivce();
+        double? totalOrder = await prefs.getDouble("totalOrder");
+        newTotal += totalOrder!;
+        await updateOrder(OrderContent(
+            id: orderId,
+            createBy: "Duong",
+            createDate: "",
+            lastModifyBy: "Duong",
+            totalAmount: newTotal,
+            updateDate: DateTime.now().toString()));
+        OrderController orderController = Get.find();
+        orderController.onInit();
+        Get.back();
+        const ThankCustomer().showThanksDialog(Get.context!);
+        Future.delayed(const Duration(seconds: 3), () {
+          Get.back();
+          Get.back();
+        });
+      }
     }
   }
 }

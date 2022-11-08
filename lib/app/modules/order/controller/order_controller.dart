@@ -1,4 +1,5 @@
 // ignore_for_file: await_only_futures, unused_local_variable
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
@@ -36,12 +37,14 @@ class OrderController extends BaseController {
   //   );
   // }
 
+  void reloadOrder() {}
+
   Future<void> checkVailidate() async {
     double? totalAmount = order.value?.totalAmount;
     double orderdetailAmount = 0;
-    for (var element in orderDetails.value) {
-      orderdetailAmount += element.amount!;
-    }
+    // for (var element in orderDetails.value) {
+    //   orderdetailAmount += element.amount!;
+    // }
     // if (totalAmount != orderdetailAmount) {
     //   await fetchupdateBill("Duong", "", 1, "Duong", orderdetailAmount,
     //       DateTimeUtils.currentDate());
@@ -57,12 +60,15 @@ class OrderController extends BaseController {
       },
       onError: ((dioError) {}),
     );
+    debugPrint(order.toString());
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble("totalOrder", order.value?.totalAmount ?? 0);
+    update();
   }
 
   Future<void> fetchOrderDetails(int orderId) async {
     var overview = _repository.getOrderdetailByOrderId(orderId);
     List<OrderDetailContent> result = [];
-
     await callDataService(
       overview,
       onSuccess: (List<OrderDetailContent> response) {
@@ -71,5 +77,7 @@ class OrderController extends BaseController {
       onError: ((dioError) {}),
     );
     orderDetails(result);
+
+    update();
   }
 }
