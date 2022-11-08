@@ -93,14 +93,12 @@ class CardCategorySkeleton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      child: Container(
-                        width: naController.select ? 200.w : 187.w,
-                        height: naController.select ? 175.h : 155.h,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(10.r),
-                            color: Colors.grey),
-                      ),
+                      width: naController.select ? 200.w : 187.w,
+                      height: naController.select ? 175.h : 155.h,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(10.r),
+                          color: Colors.grey),
                     ),
                   ],
                 ),

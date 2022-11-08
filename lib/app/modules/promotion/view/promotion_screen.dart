@@ -31,7 +31,7 @@ class PromotionScreen extends StatelessWidget {
                       name: "Tin tức",
                     ),
                     controller.promotionList.value.isEmpty
-                        ?  PromotionLoading()
+                        ? const PromotionLoading()
                         : Expanded(
                             child: SizedBox(
                             width: size.width,

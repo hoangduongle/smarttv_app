@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:smarttv_app/app/core/dio/dio_debug.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 
 class DioProvider {

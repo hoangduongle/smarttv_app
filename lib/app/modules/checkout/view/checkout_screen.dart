@@ -1,15 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/checkout/controller/checkout_controller.dart';
-import 'package:smarttv_app/app/modules/checkout/widget/dialog.dart';
-import 'package:smarttv_app/app/widget/loading.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class CheckoutScreen extends GetView<CheckoutController> {
@@ -17,7 +12,7 @@ class CheckoutScreen extends GetView<CheckoutController> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         color: AppColors.background,

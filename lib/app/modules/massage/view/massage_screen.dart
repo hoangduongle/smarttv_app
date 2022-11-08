@@ -1,12 +1,12 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
-import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/massage/controller/massage_controller.dart';
 import 'package:smarttv_app/app/widget/cached_image.dart';
-import 'package:smarttv_app/app/widget/loading.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class MassageScreen extends GetView<MassageController> {
@@ -16,7 +16,7 @@ class MassageScreen extends GetView<MassageController> {
   Widget build(BuildContext context) {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         color: AppColors.background,

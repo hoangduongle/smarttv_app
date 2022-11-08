@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals, unnecessary_this
+
 import 'package:smarttv_app/app/core/model/booking_content.dart';
 
 class RequestServiceContent {
@@ -22,12 +24,13 @@ class RequestServiceContent {
     requestServiceType = json['requestServiceType'];
     dateTime = json['dateTime'];
     status = json['status'];
-    booking =
-        json['booking'] != null ? new BookingContent.fromJson(json['booking']) : null;
+    booking = json['booking'] != null
+        ? BookingContent.fromJson(json['booking'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['requestServiceName'] = this.requestServiceName;
     data['requestServiceType'] = this.requestServiceType;

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_import, unnecessary_import, implementation_imports
+// ignore_for_file: prefer_const_constructors, unused_import, unnecessary_import, implementation_imports, must_be_immutable
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

@@ -1,12 +1,8 @@
 // ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, unused_local_variable
 
-import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_const.dart';
@@ -15,7 +11,7 @@ import 'package:smarttv_app/app/modules/welcome/controller/wellcome_controller.d
 import 'package:smarttv_app/app/modules/welcome/widget/buildImagWelcome.dart';
 
 class WelcomePage extends StatefulWidget {
-  WelcomePage({
+  const WelcomePage({
     Key? key,
   }) : super(key: key);
 
@@ -117,7 +113,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         Padding(
                           padding: EdgeInsets.only(top: 35.h),
                           child: Text(
-                            '${controller.title}',
+                            controller.title,
                             style: AppStyles.h4.copyWith(
                                 color: AppColors.white,
                                 fontSize: (size.width * 1 / 25).sp),
@@ -125,13 +121,11 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 35.h),
-                          child: Container(
-                            child: Text(
-                              "${controller.content}",
-                              style: AppStyles.h4.copyWith(
-                                  color: AppColors.greyColor,
-                                  fontSize: (size.width * 1 / 45).sp),
-                            ),
+                          child: Text(
+                            controller.content,
+                            style: AppStyles.h4.copyWith(
+                                color: AppColors.greyColor,
+                                fontSize: (size.width * 1 / 45).sp),
                           ),
                         ),
                         SizedBox(

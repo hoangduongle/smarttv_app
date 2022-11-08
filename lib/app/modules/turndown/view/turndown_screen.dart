@@ -1,16 +1,12 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
-import 'package:smarttv_app/app/core/values/app_styles.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/turndown/controller/turndown_controller.dart';
-import 'package:smarttv_app/app/modules/turndown/widget/dialog.dart';
 import 'package:smarttv_app/app/widget/cached_image.dart';
-import 'package:smarttv_app/app/widget/loading.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class TurndownScreen extends GetView<TurndownController> {
@@ -18,8 +14,8 @@ class TurndownScreen extends GetView<TurndownController> {
 
   @override
   Widget build(BuildContext context) {
-    NavigatorController naController =
-        Get.find(tag: (NavigatorController).toString());
+    // NavigatorController naController =
+    //     Get.find(tag: (NavigatorController).toString());
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
@@ -166,7 +162,8 @@ class TurndownScreen extends GetView<TurndownController> {
                                 height: 30.h,
                                 child: Obx(
                                   () => Text(
-                                      "${NumberUtils.time(controller.countHours.toInt())}",
+                                      NumberUtils.time(
+                                          controller.countHours.toInt()),
                                       style: TextStyle(
                                           fontSize: 20.sp,
                                           color: AppColors.black,
@@ -216,7 +213,8 @@ class TurndownScreen extends GetView<TurndownController> {
                               height: 30.h,
                               child: Obx(
                                 () => Text(
-                                    "${NumberUtils.time(controller.countMinute.toInt())}",
+                                    NumberUtils.time(
+                                        controller.countMinute.toInt()),
                                     style: TextStyle(
                                         fontSize: 20.sp,
                                         color: AppColors.black,

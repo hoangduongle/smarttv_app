@@ -1,4 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

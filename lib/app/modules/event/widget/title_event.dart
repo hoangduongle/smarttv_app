@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, unused_local_variable
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +31,7 @@ class TitleEvent extends StatelessWidget {
         width: 160.w,
         height: 30.h,
         decoration: BoxDecoration(
-            color: isFocus
-                ? AppColors.title
-                : AppColors.transparent,
+            color: isFocus ? AppColors.title : AppColors.transparent,
             borderRadius: BorderRadius.circular(10.r),
             border: Border.all(color: AppColors.white, width: 1.w)),
         child: Text(name,

@@ -1,6 +1,5 @@
 // ignore_for_file: unused_field, unused_local_variable
 import 'dart:async';
-import 'dart:isolate';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';

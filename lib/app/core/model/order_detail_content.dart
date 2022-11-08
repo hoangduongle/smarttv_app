@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals, unnecessary_this
+
 import 'package:smarttv_app/app/core/model/service_content.dart';
 
 class OrderDetailContent {
@@ -23,7 +25,7 @@ class OrderDetailContent {
   OrderDetailContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     service = json['service'] != null
-        ? new ServiceContent.fromJson(json['service'])
+        ? ServiceContent.fromJson(json['service'])
         : null;
     billId = json['bill_Id'];
     quantity = json['quantity'];
@@ -34,7 +36,7 @@ class OrderDetailContent {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     if (this.service != null) {
       data['service'] = this.service!.toJson();

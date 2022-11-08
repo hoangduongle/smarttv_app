@@ -17,8 +17,6 @@ class MainController extends GetxController {
 
   get currentTime => formattedTime;
 
-
-
   @override
   void onInit() {
     timing();
@@ -46,20 +44,14 @@ class MainController extends GetxController {
   }
 
   void updateTime() {
-    // Intl.defaultLocale = 'vi_VN';
     Intl.defaultLocale = 'en_US';
     initializeDateFormatting();
     formattedTime = DateFormat('hh:mm a').format(DateTime.now()).obs;
-
     update();
   }
 
   void autoReload() {
     debugPrint("Time to refesh fetch Api");
-    // Get.reloadAll();
-    // HomeController().fetchOverViews();
-    // ServiceController().fetchServiceCategory();
-    // ListServiceController().fetchServices();
   }
 }
   // var language = "vietnamese".obs;

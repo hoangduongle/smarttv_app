@@ -1,8 +1,7 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:smarttv_app/app/core/model/service_content.dart';
@@ -114,7 +113,7 @@ class BuildTaxi extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "${NumberUtils.vnd(serviceContent.price)}",
+                                NumberUtils.vnd(serviceContent.price),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.sp,

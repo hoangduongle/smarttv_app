@@ -1,5 +1,4 @@
 // ignore_for_file: use_key_in_widget_constructors, unused_local_variable
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -9,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:smarttv_app/app/core/controller/smart_map_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
-import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/abtraction/controller/abtraction_controller.dart';
 import 'package:smarttv_app/app/modules/abtraction/loading/abtraction_loading.dart';
 import 'package:smarttv_app/app/modules/abtraction/loading/map_loading.dart';

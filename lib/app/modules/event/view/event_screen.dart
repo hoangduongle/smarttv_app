@@ -1,19 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
-
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/event/loading/skeleton_event.dart';
-import 'package:smarttv_app/app/modules/event/widget/build_event.dart';
 import 'package:smarttv_app/app/modules/event/widget/event_dialog.dart';
-
 import 'package:smarttv_app/app/modules/event/widget/title_event.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 

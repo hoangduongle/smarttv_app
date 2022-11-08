@@ -44,7 +44,6 @@ class NetworkController {
         connectionStatus.value = 0;
         break;
       case ConnectivityResult.vpn:
-        // TODO: Handle this case.
         break;
     }
   }

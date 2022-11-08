@@ -1,6 +1,4 @@
 // ignore_for_file: unused_local_variable
-
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';

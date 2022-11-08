@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals, unnecessary_this
+
 import 'package:smarttv_app/app/core/model/customer_content.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/room_content.dart';
@@ -62,16 +64,15 @@ class BookingContent {
     createBy = json['createBy'];
     lastModifyBy = json['lastModifyBy'];
 
-    room = json['room'] != null ? new RoomContent.fromJson(json['room']) : null;
+    room = json['room'] != null ? RoomContent.fromJson(json['room']) : null;
     customer = json['customer'] != null
-        ? new CustomerContent.fromJson(json['customer'])
+        ? CustomerContent.fromJson(json['customer'])
         : null;
-    order =
-        json['order'] != null ? new OrderContent.fromJson(json['order']) : null;
+    order = json['order'] != null ? OrderContent.fromJson(json['order']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['confirmationNo'] = this.confirmationNo;
     data['arrivalDate'] = this.arrivalDate;

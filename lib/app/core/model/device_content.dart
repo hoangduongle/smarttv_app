@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals, unnecessary_this
+
 import 'package:smarttv_app/app/core/model/room_content.dart';
 
 class DeviceContent {
@@ -28,11 +30,11 @@ class DeviceContent {
     brand = json['brand'];
     description = json['description'];
     status = json['status'];
-    room = json['room'] != null ? new RoomContent.fromJson(json['room']) : null;
+    room = json['room'] != null ? RoomContent.fromJson(json['room']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['partNumber'] = this.partNumber;
     data['serialNo'] = this.serialNo;

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:intl/intl.dart';
 
 abstract class NumberUtils {
@@ -5,7 +7,7 @@ abstract class NumberUtils {
 
   static String time(int? value) {
     NumberFormat numberFormatTime = NumberFormat("00");
-    if (value == "0") return '00';
+    if (value == 0) return '00';
     return "${numberFormatTime.format(value)}";
   }
 

@@ -92,7 +92,7 @@ class TaxiDialog extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      "${NumberUtils.vnd(serviceContent.price)}",
+                                      NumberUtils.vnd(serviceContent.price),
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20.sp,
