@@ -25,7 +25,7 @@ class PromotionLoading extends GetView<PromotionController> {
             child: GridView.builder(
                 itemCount: 4,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: naController.select ? 2 : 3,
+                  crossAxisCount: 2,
                   crossAxisSpacing: 40.w,
                   mainAxisExtent: 300,
                   mainAxisSpacing: 30.h,

@@ -58,7 +58,6 @@ dependencies:
   flutter_map: ^3.0.0
   latlong2: ^0.8.1
   connectivity_plus: ^3.0.2
-  flutter_ringtone_player: ^3.2.0
   android_alarm_manager_plus: ^2.1.0
   video_player: ^2.4.7
 

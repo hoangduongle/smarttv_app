@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -52,18 +51,10 @@ class WellcomeController extends BaseController {
     title = welcomeContent + nameCus;
     if (bookingContent.value?.customer?.birthDate == currentDay) {
       title = birthdayContent + nameCus;
-      // FlutterRingtonePlayer.play(
-      //   fromAsset: "assets/audios/alarm.mp3",
-      //   volume: 10,
-      // );
-      //  audio();
+       audio();
     }
     content =
         "Chúc ${bookingContent.value?.customer?.gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
-  }
-
-  void stopRingtone() {
-    FlutterRingtonePlayer.stop();
   }
 
   @override

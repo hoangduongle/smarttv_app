@@ -1,8 +1,10 @@
 // ignore_for_file: unused_field, unused_local_variable
 import 'dart:async';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -19,6 +21,7 @@ class AlarmController extends BaseController {
 
   late Timer _timer;
   List<AlarmContent> alarmed = [];
+  AudioPlayer player = AudioPlayer();
 
   @override
   void onInit() async {
@@ -37,7 +40,7 @@ class AlarmController extends BaseController {
   }
 
   void alarmOff() {
-    FlutterRingtonePlayer.stop();
+    player.stop();
   }
 
   void changeUpdate() {
@@ -47,15 +50,29 @@ class AlarmController extends BaseController {
     if (alarmed.isNotEmpty) {
       for (var e in alarmed) {
         if (("${e.date}") == formattedDate) {
-          FlutterRingtonePlayer.play(
-            fromAsset: "assets/audios/alarm.mp3",
-            volume: 10,
-          );
+          audio();
           dialogWhenFired();
           e.status = false;
           update();
         }
       }
+    }
+  }
+
+  void audio() async {
+    String audioasset = "assets/audios/alarm.mp3";
+    Uint8List? audiobytes;
+    ByteData bytes = await rootBundle.load(audioasset);
+    audiobytes =
+        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    debugPrint(audiobytes.toString());
+    debugPrint(bytes.toString());
+    player.setVolume(10);
+    if (player.state == PlayerState.PLAYING) {
+      player.stop();
+      await player.playBytes(audiobytes);
+    } else {
+      await player.playBytes(audiobytes);
     }
   }
 
