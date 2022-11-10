@@ -12,7 +12,6 @@ class CheckoutScreen extends GetView<CheckoutController> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         color: AppColors.background,
@@ -72,8 +71,8 @@ class CheckoutScreen extends GetView<CheckoutController> {
                                       ),
                                       Text(
                                         '''
-Nhân viên sẽ đến tận phòng để thực hiên thủ tục
-check-out khi quý khách yêu cầu''',
+                                Nhân viên sẽ đến tận phòng để thực hiên thủ tục
+                                        check-out khi quý khách yêu cầu''',
                                         textAlign: TextAlign.center,
                                         style: AppStyles.h4.copyWith(
                                             color: AppColors.white,

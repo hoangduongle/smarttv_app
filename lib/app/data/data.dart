@@ -50,7 +50,6 @@ const List<NavigationContent> listNavigationContent = [
       title: 'services',
       iconData: FluentIcons.service_bell_24_regular,
       iconSelectedData: FluentIcons.service_bell_24_filled),
-  // NavigationContent(title: 'cart', iconData: FluentIcons.cart_20_filled),
   NavigationContent(
       title: 'event',
       iconData: FluentIcons.calendar_checkmark_24_regular,
@@ -72,31 +71,3 @@ const List<NavigationContent> listNavigationContent = [
       iconData: FluentIcons.person_feedback_16_regular,
       iconSelectedData: FluentIcons.person_feedback_16_filled),
 ];
-
-// const List<OverviewContent> listOverviewContent = [
-//   OverviewContent(
-//       title: AppConstants.title,
-//       imageUrl: AppAssets.overview_hotel,
-//       description: '+ Khách sạn 5 sao chuẩn quốc tế'
-//           '+ Hứa hẹn đem lại cho quý khách hàng trải nghiệm tốt nhất'
-//           '+ Free bữa sáng - view hồ bơi - và một số sự kiện hấp dẫn đi kèm'),
-//   OverviewContent(
-//       title: 'Dịch vụ',
-//       imageUrl: AppAssets.overview_service,
-//       description:
-//           '+ Hotel cung cấp cho quý khách hàng tất tần tật mọi loại dịch vụ'
-//           '+ Sẵn sáng đáp ứng yêu cầu của quý khách 24/24'
-//           '+ Đa dạng các dịch vụ như giặt ủi, thuê xe,...'),
-//   OverviewContent(
-//       title: 'Thức ăn',
-//       imageUrl: AppAssets.overview_food,
-//       description: '+ Thức ăn phong phú đến từ mọi miền của đất nước'
-//           '+ Từ núi cao cho đến biển cả'
-//           '+ Đặc biệt chỉ cần yêu cầu chúng tôi sẽ đáp ứng menu theo yêu cầu của bạn'),
-//   OverviewContent(
-//       title: 'Sự kiện',
-//       imageUrl: AppAssets.overview_event,
-//       description: '+ 5 Men Hotel - nơi hội tụ mọi cuộc chơi'
-//           '+ Xung quanh hotel luôn có những sự kiện đình đám trong và ngoài nước'
-//           '+ Colors me run - festival - sea party - concert'),
-// ];

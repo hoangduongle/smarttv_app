@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
@@ -38,7 +39,20 @@ class EventController extends BaseController {
   // var isFocus = [false, false, false];
 
   void filterEvent() {
-
+    for (int i = 0; i < eventList.value.length; i++) {
+      switch (eventList.value[i].status) {
+        case "ON":
+          eventListOn.value.add(eventList.value[i]);
+          break;
+        case "READY":
+          eventListReady.value.add(eventList.value[i]);
+          break;
+        case "DONE":
+          eventListDone.value.add(eventList.value[i]);
+          break;
+        default:
+      }
+    }
 
     // DateTime currentDay = DateTime.now();
     // for (int i = 0; i < eventList.value.length; i++) {
@@ -54,14 +68,4 @@ class EventController extends BaseController {
     //   }
     // }
   }
-
-  // List<Marker> markers = [
-  //   Marker(
-  //     point: LatLng(10.838606359520535, 106.83161588307689),
-  //     builder: (context) => SvgPicture.asset(
-  //       "assets/svg/marker_red.svg",
-  //       color: AppColors.background,
-  //     ),
-  //   ),
-  // ];
 }

@@ -219,13 +219,12 @@ class RepositoryImpl extends BaseRepository implements Repository {
     var endpoint = "${DioProvider.baseUrl}/orderDetail";
     var data = {
       "amount": orderDetailContent.amount,
-      "billDate": orderDetailContent.billDate,
+      "orderDate": orderDetailContent.orderDate,
       'id': 0,
-      "order_Id": orderDetailContent.billId,
+      "order_Id": orderDetailContent.orderId,
       "price": orderDetailContent.price,
       "quantity": orderDetailContent.quantity,
       "service_Id": orderDetailContent.service?.id,
-      "status": orderDetailContent.status,
     };
     var fromData = FormData.fromMap(data);
     var dioCall = dioTokenClient.post(endpoint, data: fromData);

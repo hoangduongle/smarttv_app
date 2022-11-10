@@ -11,10 +11,6 @@ class RepositoryBindings implements Bindings {
       tag: (Repository).toString(),
       fenix: true,
     );
-    // Get.lazyPut<ImageController>(
-    //   () => ImageController(),
-    //   fenix: true,
-    // );
     Get.put<BookingController>(BookingController());
   }
 }

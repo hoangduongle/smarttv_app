@@ -1,9 +1,10 @@
-// ignore_for_file: unnecessary_this, prefer_collection_literals
+// ignore_for_file: prefer_collection_literals, unnecessary_this
 
 class NewsContent {
   int? id;
   String? newName;
   String? ticketInformation;
+  String? detailInformation;
   String? address;
   String? description;
   String? startDate;
@@ -18,6 +19,7 @@ class NewsContent {
     this.id,
     this.newName,
     this.ticketInformation,
+    this.detailInformation,
     this.address,
     this.description,
     this.startDate,
@@ -33,6 +35,7 @@ class NewsContent {
     id = json['id'];
     newName = json['newName'];
     ticketInformation = json['ticketInformation'];
+    detailInformation = json['detailInformation'];
     address = json['address'];
     description = json['description'];
     startDate = json['startDate'];
@@ -49,6 +52,7 @@ class NewsContent {
     data['id'] = this.id;
     data['newName'] = this.newName;
     data['ticketInformation'] = this.ticketInformation;
+    data['detailInformation'] = this.detailInformation;
     data['address'] = this.address;
     data['description'] = this.description;
     data['startDate'] = this.startDate;
@@ -58,7 +62,6 @@ class NewsContent {
     data['newType'] = this.newType;
     data['status'] = this.status;
     data['numberOfView'] = this.numberOfView;
-
     return data;
   }
 }

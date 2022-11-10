@@ -19,8 +19,8 @@ class FoodandBeverageController extends BaseController {
   Rx<List<ServiceContent>> serviceCafe = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceNuoctra = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceNuocsuoi = Rx<List<ServiceContent>>([]);
-  Rx<List<ServiceContent>> serviceBia = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceNuocmocktails = Rx<List<ServiceContent>>([]);
+  Rx<List<ServiceContent>> serviceBia = Rx<List<ServiceContent>>([]);
 //=============================================================================
   Rx<List<ImageContent>> imageFandB = Rx<List<ImageContent>>([]);
   List<MayjorContent> mayjorFood = [];
@@ -88,46 +88,32 @@ class FoodandBeverageController extends BaseController {
       MayjorContent(
           id: 0,
           name: "Món khai vị",
-          image:
-              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+          image: "https://i.ibb.co/1XrSCCn/khaivi.jpg"),
       //imageFandB.value[0].pictureUrl!
       MayjorContent(
           id: 1,
           name: "Món chính",
-          image:
-              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+          image: "https://i.ibb.co/FXxCjRs/monchinh.jpg"),
       MayjorContent(
           id: 2,
           name: "Món tráng miệng",
-          image:
-              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+          image: "https://i.ibb.co/VCdGJd5/trangmieng.jpg"),
     ];
     mayjorDrink = [
       MayjorContent(
-          id: 3,
-          name: "Cà phê",
-          image:
-              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+          id: 3, name: "Cà phê", image: "https://i.ibb.co/rkKPj6d/coffee.jpg"),
       MayjorContent(
-          id: 4,
-          name: "Nước trà",
-          image:
-              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+          id: 4, name: "Nước trà", image: "https://i.ibb.co/S57jQwN/tea.jpg"),
       MayjorContent(
           id: 5,
           name: "Nước suối và nước ngọt",
-          image:
-              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+          image: "https://i.ibb.co/hy50Vj5/nuocngot.jpg"),
       MayjorContent(
           id: 6,
           name: "Nước mocktails",
-          image:
-              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+          image: "https://i.ibb.co/3BkkL5L/mocktails.jpg"),
       MayjorContent(
-          id: 7,
-          name: "Bia",
-          image:
-              "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"),
+          id: 7, name: "Bia", image: "https://i.ibb.co/2k5QHCB/bia.png"),
     ];
     filter();
   }
@@ -152,7 +138,7 @@ class FoodandBeverageController extends BaseController {
     for (var element in serviceListDrink.value) {
       drink = element.majorGroup.toString();
       switch (drink) {
-        case "Nuoc_cafe":
+        case "nuoc_cafe":
           serviceCafe.value.add(element);
           break;
         case "Nuoc_tra":

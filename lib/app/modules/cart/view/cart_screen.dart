@@ -97,7 +97,6 @@ class CartScreen extends GetView<CartController> {
                   separatorBuilder: (context, index) => SizedBox(
                         height: 20.h,
                       ),
-                  //
                   itemBuilder: (context, index) => CartService(
                       controller: controller,
                       serviceContent: controller.services.keys.toList()[index],
@@ -148,7 +147,6 @@ class CartScreen extends GetView<CartController> {
               Expanded(
                 child: Align(
                   alignment: Alignment.center,
-                  //${controller.total}
                   child: Obx(() => Text(NumberUtils.vnd(controller.total),
                       style: AppStyles.h4
                           .copyWith(fontSize: 20.sp, color: AppColors.white))),
@@ -175,7 +173,6 @@ class CartScreen extends GetView<CartController> {
                     child: InkWell(
                       focusColor: AppColors.orangeColor,
                       onTap: () {
-                        //addtobill
                         if (controller.sizeService > 0) {
                           controller.addtoBill();
                         } else {

@@ -47,7 +47,7 @@ class _EventScreenState extends State<EventScreen> {
                             indexType: 0,
                             isFocus: isFocus[0],
                           ),
-                          controller.eventList.value.isEmpty
+                          controller.eventListOn.value.isEmpty
                               ? const SkeletonEvent()
                               : Padding(
                                   padding: EdgeInsets.symmetric(vertical: 15.h),
@@ -57,7 +57,7 @@ class _EventScreenState extends State<EventScreen> {
                                     child: ListView.builder(
                                       primary: true,
                                       itemCount:
-                                          controller.eventList.value.length,
+                                          controller.eventListOn.value.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         return Padding(
@@ -65,7 +65,7 @@ class _EventScreenState extends State<EventScreen> {
                                           child: _buildEvent(
                                               0,
                                               index,
-                                              controller.eventList.value[index],
+                                              controller.eventListOn.value[index],
                                               controller,
                                               scrollController,
                                               size),
@@ -80,7 +80,7 @@ class _EventScreenState extends State<EventScreen> {
                             indexType: 1,
                             isFocus: isFocus[1],
                           ),
-                          controller.eventList.value.isEmpty
+                          controller.eventListReady.value.isEmpty
                               ? const SkeletonEvent()
                               : Padding(
                                   padding: EdgeInsets.symmetric(vertical: 15.h),
@@ -90,7 +90,7 @@ class _EventScreenState extends State<EventScreen> {
                                     child: ListView.builder(
                                       primary: true,
                                       itemCount:
-                                          controller.eventList.value.length,
+                                          controller.eventListReady.value.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         return Padding(
@@ -98,7 +98,7 @@ class _EventScreenState extends State<EventScreen> {
                                           child: _buildEvent(
                                               1,
                                               index,
-                                              controller.eventList.value[index],
+                                              controller.eventListReady.value[index],
                                               controller,
                                               scrollController,
                                               size),
@@ -113,7 +113,7 @@ class _EventScreenState extends State<EventScreen> {
                             indexType: 2,
                             isFocus: isFocus[2],
                           ),
-                          controller.eventList.value.isEmpty
+                          controller.eventListDone.value.isEmpty
                               ? const SkeletonEvent()
                               : Padding(
                                   padding: EdgeInsets.symmetric(vertical: 15.h),
@@ -123,7 +123,7 @@ class _EventScreenState extends State<EventScreen> {
                                     child: ListView.builder(
                                       shrinkWrap: true,
                                       itemCount:
-                                          controller.eventList.value.length,
+                                          controller.eventListDone.value.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         return Padding(
@@ -131,7 +131,7 @@ class _EventScreenState extends State<EventScreen> {
                                           child: _buildEvent(
                                               2,
                                               index,
-                                              controller.eventList.value[index],
+                                              controller.eventListDone.value[index],
                                               controller,
                                               scrollController,
                                               size),
@@ -165,7 +165,6 @@ class _EventScreenState extends State<EventScreen> {
         onFocusChange: (value) {
           setState(() {
             isFocus[indexType] = value;
-            debugPrint("$indexType: ${isFocus[indexType]}");
           });
           if (indexType == 0) {
             scrollController.animateTo(

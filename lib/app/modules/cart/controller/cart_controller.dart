@@ -1,6 +1,9 @@
 // ignore_for_file: unnecessary_null_comparison, unused_local_variable, unrelated_type_equality_checks, await_only_futures, unused_import, prefer_typing_uninitialized_variables
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,7 +19,7 @@ import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/main/view/main_screen.dart';
 import 'package:smarttv_app/app/widget/loading.dart';
 import 'package:smarttv_app/app/widget/loading_dialog.dart';
-import 'package:smarttv_app/app/widget/thankforusing.dart';
+import 'package:smarttv_app/app/modules/cart/widget/thankforusing.dart';
 
 class CartController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
@@ -29,11 +32,26 @@ class CartController extends BaseController {
     } else {
       _service[serviceContent] = quantity;
     }
-    Get.snackbar(
-        "${serviceContent.name} đã thêm vào giỏ", "số lượng: $quantity",
-        colorText: AppColors.black,
-        backgroundColor: AppColors.focus.withOpacity(.5),
-        duration: const Duration(milliseconds: 1500));
+    Get.snackbar("", "",
+        colorText: AppColors.white,
+        borderRadius: 10.r,
+        icon: const Icon(FluentIcons.cart_16_filled),
+        messageText: Text(
+          "Số lượng: $quantity",
+          style: TextStyle(
+              color: AppColors.white,
+              fontSize: 15.r,
+              fontWeight: FontWeight.normal),
+        ),
+        titleText: Text(
+          "${serviceContent.name} đã thêm vào giỏ",
+          style: TextStyle(
+              color: AppColors.background,
+              fontSize: 17.r,
+              fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: AppColors.focus.withOpacity(.8),
+        duration: const Duration(seconds: 2));
   }
 
   void removeSerivce(ServiceContent serviceContent) {
@@ -105,19 +123,20 @@ class CartController extends BaseController {
       final prefs = await SharedPreferences.getInstance();
       int? orderId = await prefs.getInt("orderId");
       double newTotal = 0;
+      // debugPrint(DateTimeUtils.currentDate());
       if (orderId != 0) {
         for (int i = 0; i < _service.length; i++) {
           ServiceContent serContent = _service.keys.toList()[i];
           int quantity = _service.values.toList()[i];
           await insertOrderdetails(OrderDetailContent(
-              amount: (serContent.price! * quantity),
-              billDate: DateTimeUtils.currentDate(),
-              billId: orderId,
-              id: 0,
-              price: serContent.price,
-              quantity: quantity,
-              service: serContent,
-              status: 1));
+            amount: (serContent.price! * quantity),
+            orderDate: DateTimeUtils.currentDate(),
+            orderId: orderId,
+            id: 0,
+            price: serContent.price,
+            quantity: quantity,
+            service: serContent,
+          ));
           newTotal += (serContent.price! * quantity);
         }
         removeAllSerivce();

@@ -26,9 +26,10 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.WELCOME;
+  static const INITIAL = Routes.MAIN;
 
   static final routes = [
+   
     GetPage(
       name: _Paths.WELCOME,
       page: () => WelcomePage(),

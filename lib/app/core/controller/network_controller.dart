@@ -74,7 +74,7 @@ class NetworkController {
         right: 18.w,
         bottom: 17.h,
       ),
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 10),
     );
   }
 
@@ -95,11 +95,13 @@ class NetworkController {
       borderRadius: 9.r,
       messageText: Padding(
         padding: EdgeInsets.only(left: 10.w),
-        child: Text('Đã khôi phục kết nối internet',
-            style: TextStyle(
-                fontSize: 14.sp,
-                letterSpacing: 0.0025.sp,
-                color: AppColors.white),),
+        child: Text(
+          'Đã khôi phục kết nối internet',
+          style: TextStyle(
+              fontSize: 14.sp,
+              letterSpacing: 0.0025.sp,
+              color: AppColors.white),
+        ),
       ),
       margin: EdgeInsets.only(left: 10.w, bottom: 10.h, right: 10.w),
       padding: EdgeInsets.only(
@@ -108,7 +110,7 @@ class NetworkController {
         right: 18.w,
         bottom: 17.h,
       ),
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 10),
     );
   }
 }

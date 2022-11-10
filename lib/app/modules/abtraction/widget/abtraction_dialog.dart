@@ -145,7 +145,7 @@ class AbtractionDialog extends StatelessWidget {
                                     backgroundColor: AppColors.white,
                                     foregroundColor: AppColors.black,
                                     data:
-                                        "https://www.google.com/maps/search/?api=1&query=${abtractionContent.latidute},${abtractionContent.logtitude}",
+                                        "https://www.google.com/maps/search/?api=1&query=${abtractionContent.latidute},${abtractionContent.longtitude}",
                                     version: QrVersions.auto,
                                     size: 110.0,
                                   ),

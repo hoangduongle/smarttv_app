@@ -63,7 +63,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                           TitleScreen(
                             name: "services".tr,
                           ),
-                          controller.serviceCateList.value.isEmpty
+                          controller.serviceCateListTMP.value.isEmpty
                               ? SkeletonCategoryService()
                               : Expanded(
                                   child: SizedBox(

@@ -44,7 +44,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    String initiaRoute = Routes.MAIN;
+    String initialRoute = AppPages.INITIAL;
     // bool welcome = true;
     // if (welcome) {
     //   initiaRoute = Routes.WELCOME;
@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
             // locale: Locale('en', 'US'),
             fallbackLocale: const Locale('vi', 'Vi'),
             initialBinding: InitiaBinding(),
-            initialRoute: initiaRoute,
+            initialRoute: initialRoute,
             getPages: AppPages.routes,
           ),
         );

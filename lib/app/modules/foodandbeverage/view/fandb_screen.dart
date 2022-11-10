@@ -3,6 +3,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
@@ -10,6 +11,7 @@ import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbevera
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
+import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
@@ -22,22 +24,18 @@ class FandBScreen extends StatefulWidget {
 }
 
 class _FandBScreenState extends State<FandBScreen> {
-  // int num = 0;
-  final List<FocusNode> focusNodes = [];
   @override
   Widget build(BuildContext context) {
-    FoodandBeverageController controller = Get.find();
     CartController caController = Get.find();
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     MainController maController = Get.find();
 
-    return Obx(
-      () {
+    return GetBuilder<FoodandBeverageController>(
+      builder: (controller) {
         return Scaffold(
           floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
           floatingActionButton: Stack(
-            // ignore: prefer_const_literals_to_create_immutables
             children: [
               NavigatorBack(),
               caController.sizeService <= 0
@@ -194,75 +192,80 @@ class _FandBScreenState extends State<FandBScreen> {
                       ),
                     ),
                     Padding(padding: EdgeInsets.symmetric(vertical: 5.h)),
-                    // if (controller.serviceListFood.value.isEmpty &&
-                    //     controller.serviceListDrink.value.isEmpty)
-                    //   SkeletonLoadingServiceConponentScreen()
-                    // else
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20.w, vertical: 10.h),
-                        child: IndexedStack(
-                          index: controller.numberSelected.toInt(),
-                          children: [
-                            ExcludeFocus(
-                              excluding: controller.numberSelected.toInt() == 0
-                                  ? false
-                                  : true,
-                              child: Padding(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: 140.w),
-                                child: GridView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: controller.mayjorFood.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    mainAxisExtent: 185,
-                                    crossAxisCount: 3,
-                                    crossAxisSpacing: 30.w,
-                                    mainAxisSpacing: 20.h,
+                    if (controller.mayjorFood.isEmpty &&
+                        controller.mayjorDrink.isEmpty)
+                      Expanded(
+                          child: Center(
+                              child: Lottie.asset("assets/lotties/loading.json",
+                                  width: 300.w)))
+                    else
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.w, vertical: 10.h),
+                          child: IndexedStack(
+                            index: controller.numberSelected.toInt(),
+                            children: [
+                              ExcludeFocus(
+                                excluding:
+                                    controller.numberSelected.toInt() == 0
+                                        ? false
+                                        : true,
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 140.w),
+                                  child: GridView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: controller.mayjorFood.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      mainAxisExtent: 185,
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: 30.w,
+                                      mainAxisSpacing: 20.h,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return CardEachService(
+                                        index: index,
+                                        mayjorContent:
+                                            controller.mayjorFood[index],
+                                      );
+                                    },
                                   ),
-                                  itemBuilder: (context, index) {
-                                    return CardEachService(
-                                      index: index,
-                                      mayjorContent:
-                                          controller.mayjorFood[index],
-                                    );
-                                  },
                                 ),
                               ),
-                            ),
-                            ExcludeFocus(
-                              excluding: controller.numberSelected.toInt() == 1
-                                  ? false
-                                  : true,
-                              child: Padding(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: 140.w),
-                                child: GridView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: controller.mayjorDrink.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    mainAxisExtent: 185,
-                                    crossAxisCount: 3,
-                                    crossAxisSpacing: 30.w,
-                                    mainAxisSpacing: 20.h,
+                              ExcludeFocus(
+                                excluding:
+                                    controller.numberSelected.toInt() == 1
+                                        ? false
+                                        : true,
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 140.w),
+                                  child: GridView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: controller.mayjorDrink.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      mainAxisExtent: 185,
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: 30.w,
+                                      mainAxisSpacing: 20.h,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return CardEachService(
+                                        index: index,
+                                        mayjorContent:
+                                            controller.mayjorDrink[index],
+                                      );
+                                    },
                                   ),
-                                  itemBuilder: (context, index) {
-                                    return CardEachService(
-                                      index: index,
-                                      mayjorContent:
-                                          controller.mayjorDrink[index],
-                                    );
-                                  },
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    )
+                      )
                   ],
                 ),
               )),

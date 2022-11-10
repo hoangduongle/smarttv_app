@@ -17,9 +17,8 @@ abstract class Repository {
   Future<List<ServiceCategoryContent>> getListServiceCate();
   Future<List<ServiceContent>> getListServiceContentByCateId(int cateId);
 
-  //=========================News0==============================================
+  //=========================News===============================================
   Future<List<NewsContent>> getListNewsByType(String type);
-
 //===========================Abtraction=========================================
   Future<List<AbtractionContent>> getListAbtraction();
 //==============================Order============================================
@@ -27,7 +26,6 @@ abstract class Repository {
   Future<int> updateOrderByOrderId(OrderContent orderContent);
   Future<int> insertOrderdetail(OrderDetailContent orderDetailContent);
   Future<List<OrderDetailContent>> getOrderdetailByOrderId(int orderId);
-
 //===============================Booking========================================
   Future<BookingContent> getBookingByRoomId(int roomId);
 //==============================================================================

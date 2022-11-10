@@ -21,21 +21,6 @@ class DialogCart extends StatelessWidget {
     return Container();
   }
 
-/*
-lấy dữ liệu   
-  final CartController controller;
-  final ServiceContent serviceContent;
-  final int quantity;
-  final int index;
-
-cho phép người dùng chỉnh số lượng tăng giảm
-khi bấm Lưu sẽ set lại quantity được hiển thị của service đó
-
-nếu người dùng bấm xoá sẽ remove service đó khỏi cart
-
-
-
-*/
   void showCustomeDialog(
       BuildContext context, ServiceContent serviceContent, int quantity) {
     CartController caController = Get.find();
@@ -69,22 +54,19 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
               ),
             ),
             SizedBox(
-              height: 12,
+              height: 5,
             ),
             SizedBox(
               width: 120,
               child: Text(
-                serviceContent.name!, //<------ set controller
+                serviceContent.name!,
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: TextStyle(
-                    fontSize: 20.sp,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.title),
+                    color: AppColors.white),
               ),
-            ),
-            SizedBox(
-              height: 2.h,
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -124,12 +106,12 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
                   width: 80.w,
                   height: 30.h,
                   child: Material(
-                    color: AppColors.focus,
+                    color: AppColors.green,
                     borderRadius: BorderRadius.circular(10.r),
                     elevation: 0,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: InkWell(
-                      focusColor: AppColors.orangeColor,
+                      focusColor: AppColors.greenFocus,
                       onTap: () {
                         Get.back();
                       },
@@ -192,7 +174,6 @@ nếu người dùng bấm xoá sẽ remove service đó khỏi cart
               height: 20,
             ),
           ],
-          // caController.addService(serviceContent);
         ),
       ),
     );

@@ -199,20 +199,21 @@ class _MainScreenState extends State<MainScreen> {
                       : (size.width * 1 / 16).w,
                   duration: const Duration(milliseconds: 600),
                   curve: Curves.fastOutSlowIn,
-                  child: FocusScope(
-                    node: navigaScope,
-                    autofocus: true,
-                    canRequestFocus: navigaScope.canRequestFocus,
-                    onKeyEvent: (node, event) {
-                      if (event is KeyDownEvent) {
-                        if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
-                          setState(() {
-                            FocusScope.of(context).requestFocus(viewScope);
-                          });
-                        }
-                      }
-                      return KeyEventResult.ignored;
-                    },
+                  child: Container(
+                    // node: navigaScope,
+                    // autofocus: true,
+                    // canRequestFocus: navigaScope.canRequestFocus,
+                    // onKeyEvent: (node, event) {
+                    //   if (event is KeyDownEvent) {
+                    //     if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
+                    //       setState(() {
+                    //         // FocusScope.of(context).requestFocus(viewScope);
+                    //         FocusScope.of(context).unfocus();
+                    //       });
+                    //     }
+                    //   }
+                    //   return KeyEventResult.ignored;
+                    // },
                     child: Container(
                       color: AppColors.navigabackground,
                       child: Column(
@@ -315,19 +316,19 @@ class _MainScreenState extends State<MainScreen> {
                   )),
               Expanded(
                   child: Container(
-                child: FocusScope(
-                  node: viewScope,
-                  canRequestFocus: viewScope.canRequestFocus,
-                  onKeyEvent: (node, event) {
-                    if (event is KeyDownEvent) {
-                      if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
-                        setState(() {
-                          FocusScope.of(context).requestFocus(navigaScope);
-                        });
-                      }
-                    }
-                    return KeyEventResult.ignored;
-                  },
+                child: Container(
+                  // node: viewScope,
+                  // canRequestFocus: viewScope.canRequestFocus,
+                  // onKeyEvent: (node, event) {
+                  //   if (event is KeyDownEvent) {
+                  //     if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+                  //       setState(() {
+                  //         FocusScope.of(context).requestFocus(navigaScope);
+                  //       });
+                  //     }
+                  //   }
+                  //   return KeyEventResult.ignored;
+                  // },
                   child: IndexedStack(
                     index: naController.current_index.toInt(),
                     children: [

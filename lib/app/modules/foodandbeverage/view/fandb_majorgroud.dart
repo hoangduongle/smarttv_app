@@ -62,16 +62,17 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
         length = controller.serviceNuocsuoi.value.length;
         break;
       case 6:
-        serviceContent = controller.serviceBia;
-        length = controller.serviceBia.value.length;
-        break;
-      case 7:
         serviceContent = controller.serviceNuocmocktails;
         length = controller.serviceNuocmocktails.value.length;
         break;
+      case 7:
+        serviceContent = controller.serviceBia;
+        length = controller.serviceBia.value.length;
+
+        break;
     }
-    return Obx(
-      () {
+    return GetBuilder<FoodandBeverageController>(
+      builder: (controller) {
         return Scaffold(
           floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
           floatingActionButton: Stack(

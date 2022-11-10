@@ -3,8 +3,8 @@
 class AbtractionContent {
   int? id;
   String? name;
-  String? logtitude;
-  String? latidute;
+  double? longtitude;
+  double? latidute;
   String? openTime;
   String? closeTime;
   String? address;
@@ -13,7 +13,7 @@ class AbtractionContent {
   AbtractionContent({
     this.id,
     this.name,
-    this.logtitude,
+    this.longtitude,
     this.latidute,
     this.openTime,
     this.closeTime,
@@ -24,7 +24,7 @@ class AbtractionContent {
   AbtractionContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    logtitude = json['logtitude'];
+    longtitude = json['longtitude'];
     latidute = json['latidute'];
     openTime = json['openTime'];
     closeTime = json['closeTime'];
@@ -36,17 +36,12 @@ class AbtractionContent {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
-    data['logtitude'] = this.logtitude;
+    data['longtitude'] = this.longtitude;
     data['latidute'] = this.latidute;
     data['openTime'] = this.openTime;
     data['closeTime'] = this.closeTime;
     data['address'] = this.address;
     data['description'] = this.description;
     return data;
-  }
-
-  @override
-  String toString() {
-    return 'AbtractionContent(id: $id, name: $name, logtitude: $logtitude, latidute: $latidute, openTime: $openTime, closeTime: $closeTime, address: $address, description: $description)';
   }
 }

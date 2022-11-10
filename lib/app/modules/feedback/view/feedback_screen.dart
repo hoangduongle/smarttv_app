@@ -33,10 +33,19 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TitleScreen(name: "Đánh giá"),
+                Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                  child: Text(
+                    "Đánh giá của quý khách sẽ được lưu lại khi thực hiện chech-out",
+                    style: TextStyle(
+                        color: AppColors.orangeColor.withOpacity(0.8),
+                        fontSize: 17.sp),
+                  ),
+                ),
                 Expanded(
                     child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20.w, vertical: 0.h),
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: Column(
                           children: [
                             SizedBox(
@@ -45,6 +54,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                   children: [
                                     Expanded(
                                       child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Padding(
                                             padding: EdgeInsets.symmetric(
@@ -98,7 +109,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 3,
+                                      flex: 4,
                                       child: Column(
                                         children: [
                                           Padding(
@@ -202,6 +213,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                   children: [
                                     Expanded(
                                       child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Padding(
                                             padding:
@@ -265,7 +278,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 3,
+                                      flex: 4,
                                       child: Column(
                                         children: [
                                           Padding(

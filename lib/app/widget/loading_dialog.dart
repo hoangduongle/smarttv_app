@@ -36,7 +36,6 @@ class LoadingDialog extends StatelessWidget {
                 Lottie.asset("assets/lotties/loadingImage.json", width: 100.w),
                 Text(
                   "Hệ thống đang xử lý",
-                  // textAlign: TextAlign.left,
                   style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold,
@@ -50,7 +49,6 @@ class LoadingDialog extends StatelessWidget {
                 ),
                 Text(
                   "Xin quý khách đợi trong giây lát",
-                  // textAlign: TextAlign.left,
                   style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold,

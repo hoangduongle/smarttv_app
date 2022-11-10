@@ -82,26 +82,18 @@ class _OrderScreenState extends State<OrderScreen> {
                           fontSize: 20.sp,
                           color: AppColors.title,
                         )),
-                    Text('status'.tr,
-                        style: AppStyles.h4.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.sp,
-                          color: AppColors.title,
-                        )),
                     Text('Ngày',
                         style: AppStyles.h4.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 20.sp,
                           color: AppColors.title,
                         )),
-                    naController.select
-                        ? Container()
-                        : Text('totalamout'.tr,
-                            style: AppStyles.h4.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.sp,
-                              color: AppColors.title,
-                            )),
+                    Text('totalamout'.tr,
+                        style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title,
+                        )),
                   ],
                 ),
                 SizedBox(

@@ -33,8 +33,8 @@ class AbtractionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.r),
         onFocusChange: (value) {
           mapController.moveToPosition(
-              LatLng(double.parse("${abtractionContent.latidute}"),
-                  double.parse("${abtractionContent.logtitude}")),
+              LatLng(abtractionContent.latidute ?? 0,
+                  abtractionContent.longtitude ?? 0),
               zoom: 16);
         },
         onTap: () {

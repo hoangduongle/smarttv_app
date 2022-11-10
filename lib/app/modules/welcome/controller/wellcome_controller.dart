@@ -1,7 +1,8 @@
-// ignore_for_file: unused_field, prefer_typing_uninitialized_variables
+// ignore_for_file: unused_field, prefer_typing_uninitialized_variables, unused_local_variable
 
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:get/get.dart';
@@ -34,6 +35,8 @@ class WellcomeController extends BaseController {
     ByteData bytes = await rootBundle.load(audioasset);
     audiobytes =
         bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    debugPrint(audiobytes.toString());
+    debugPrint(bytes.toString());
     player.setVolume(40);
     await player.playBytes(audiobytes);
   }
@@ -49,10 +52,10 @@ class WellcomeController extends BaseController {
     title = welcomeContent + nameCus;
     if (bookingContent.value?.customer?.birthDate == currentDay) {
       title = birthdayContent + nameCus;
-      FlutterRingtonePlayer.play(
-        fromAsset: "assets/audios/alarm.mp3",
-        volume: 10,
-      );
+      // FlutterRingtonePlayer.play(
+      //   fromAsset: "assets/audios/alarm.mp3",
+      //   volume: 10,
+      // );
       //  audio();
     }
     content =

@@ -1,5 +1,4 @@
 // ignore_for_file: await_only_futures, unused_local_variable
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
@@ -19,37 +18,10 @@ class OrderController extends BaseController {
     final prefs = await SharedPreferences.getInstance();
     var orderId = await prefs.getInt("orderId");
     await fetchOrderDetails(orderId ?? 0);
-    // debugPrint("$orderId");
     await fetchOrder(orderId ?? 0);
     super.onInit();
   }
-
-  // Future<void> fetchupdateBill(String createBy, String createDate, int billId,
-  //     String lastModifyBy, double totalAmount, String updateDate) async {
-  //   var overview = _repository.updateBillByBillId(
-  //       createBy, createDate, billId, lastModifyBy, totalAmount, updateDate);
-  //   await callDataService(
-  //     overview,
-  //     onSuccess: (int response) {
-  //       result = response;
-  //     },
-  //     onError: ((dioError) {}),
-  //   );
-  // }
-
   void reloadOrder() {}
-
-  Future<void> checkVailidate() async {
-    double? totalAmount = order.value?.totalAmount;
-    double orderdetailAmount = 0;
-    // for (var element in orderDetails.value) {
-    //   orderdetailAmount += element.amount!;
-    // }
-    // if (totalAmount != orderdetailAmount) {
-    //   await fetchupdateBill("Duong", "", 1, "Duong", orderdetailAmount,
-    //       DateTimeUtils.currentDate());
-    // }
-  }
 
   Future<void> fetchOrder(int orderId) async {
     var overview = _repository.getOrderById(orderId);
@@ -60,7 +32,6 @@ class OrderController extends BaseController {
       },
       onError: ((dioError) {}),
     );
-    debugPrint(order.toString());
     var prefs = await SharedPreferences.getInstance();
     await prefs.setDouble("totalOrder", order.value?.totalAmount ?? 0);
     update();
@@ -77,7 +48,6 @@ class OrderController extends BaseController {
       onError: ((dioError) {}),
     );
     orderDetails(result);
-
     update();
   }
 }

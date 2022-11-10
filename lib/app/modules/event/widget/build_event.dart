@@ -38,8 +38,6 @@ class _BuildEventState extends State<BuildEvent> {
       color: AppColors.transparent,
       child: InkWell(
         onFocusChange: (value) {
-          // widget.controller.isFocus[widget.indexType] = value;
-
           if (widget.indexType == 0) {
             widget.scrollController.animateTo(
                 widget.scrollController.position.minScrollExtent,

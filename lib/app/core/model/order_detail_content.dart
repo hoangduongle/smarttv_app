@@ -5,34 +5,31 @@ import 'package:smarttv_app/app/core/model/service_content.dart';
 class OrderDetailContent {
   int? id;
   ServiceContent? service;
-  int? billId;
+  int? orderId;
   int? quantity;
   double? price;
   double? amount;
-  int? status;
-  String? billDate;
+  String? orderDate;
 
   OrderDetailContent(
       {this.id,
       this.service,
-      this.billId,
+      this.orderId,
       this.quantity,
       this.price,
       this.amount,
-      this.status,
-      this.billDate});
+      this.orderDate});
 
   OrderDetailContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     service = json['service'] != null
         ? ServiceContent.fromJson(json['service'])
         : null;
-    billId = json['bill_Id'];
+    orderId = json['order_Id'];
     quantity = json['quantity'];
     price = json['price'];
     amount = json['amount'];
-    status = json['status'];
-    billDate = json['billDate'];
+    orderDate = json['orderDate'];
   }
 
   Map<String, dynamic> toJson() {
@@ -41,12 +38,11 @@ class OrderDetailContent {
     if (this.service != null) {
       data['service'] = this.service!.toJson();
     }
-    data['bill_Id'] = this.billId;
+    data['order_Id'] = this.orderId;
     data['quantity'] = this.quantity;
     data['price'] = this.price;
     data['amount'] = this.amount;
-    data['status'] = this.status;
-    data['billDate'] = this.billDate;
+    data['orderDate'] = this.orderDate;
     return data;
   }
 }

@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -80,11 +81,24 @@ class BuildTaxi extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Checkbox(
-                            value: serviceContent.status,
-                            checkColor: AppColors.green,
-                            activeColor: AppColors.background,
-                            onChanged: (value) {},
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0.r, 15.r, 10.r, 15.r),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(2.r),
+                              color: AppColors.greyColor,
+                              child: Container(
+                                margin: EdgeInsets.all(1.r),
+                                width: 25.w,
+                                height: 25.h,
+                                decoration: BoxDecoration(
+                                    color: AppColors.black,
+                                    borderRadius: BorderRadius.circular(2.r)),
+                                child: serviceContent.status!
+                                    ? Icon(FluentIcons.checkmark_12_filled,
+                                        color: AppColors.green, size: 25.sp)
+                                    : Container(),
+                              ),
+                            ),
                           ),
                           Text(
                             // "Lựa chọn",

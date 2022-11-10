@@ -33,7 +33,6 @@ class CheckoutDialogWidget extends StatelessWidget {
               Lottie.asset("assets/lotties/done.json", width: 100.w),
               Text(
                 "Nhân viên đã nhận được yêu cầu check-out của quý khách",
-                // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
@@ -47,7 +46,6 @@ class CheckoutDialogWidget extends StatelessWidget {
               ),
               Text(
                 "Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi",
-                // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
@@ -88,7 +86,6 @@ class CheckoutDialogWidget extends StatelessWidget {
                 height: 20.h,
               ),
             ],
-            // caController.addService(serviceContent);
           ),
         ),
       ),
@@ -119,7 +116,6 @@ class CheckoutDialogWidget extends StatelessWidget {
               ),
               Text(
                 "Xin lỗi quý khách, hệ thống đang trục trặc",
-                // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
@@ -130,7 +126,6 @@ class CheckoutDialogWidget extends StatelessWidget {
               ),
               Text(
                 "Xin quý khách thử lại sau",
-                // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,

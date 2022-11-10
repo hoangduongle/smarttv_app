@@ -58,6 +58,3 @@ class SkeletonEvent extends StatelessWidget {
     );
   }
 }
-/*
-
- */

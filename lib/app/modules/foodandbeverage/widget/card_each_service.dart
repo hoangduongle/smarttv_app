@@ -64,7 +64,7 @@ class _CardEachServiceState extends State<CardEachService> {
                   child: Align(
                     alignment: Alignment(0, 0.97),
                     child: Text(
-                      widget.mayjorContent.name, //<------ set controller
+                      "${widget.mayjorContent.name}", //<------ set controller
                       style: TextStyle(
                           fontSize: naController.select ? 20.sp : 17.sp,
                           fontWeight: FontWeight.bold,
@@ -77,7 +77,7 @@ class _CardEachServiceState extends State<CardEachService> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.r),
                     child: Image.network(
-                      "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg", //${mayjorContent.image}
+                      "${widget.mayjorContent.image}", //${mayjorContent.image}
                       width: 200.w,
                       height: 160.h,
                       fit: BoxFit.cover,

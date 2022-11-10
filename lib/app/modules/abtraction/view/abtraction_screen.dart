@@ -161,10 +161,16 @@ class _AbtractionScreenState extends State<AbtractionScreen> {
                                                   i++)
                                                 Marker(
                                                   point: LatLng(
-                                                    double.parse(
-                                                        "${(controller.abtractions.value[i].latidute)}"),
-                                                    double.parse(
-                                                        "${(controller.abtractions.value[i].logtitude)}"),
+                                                    controller
+                                                            .abtractions
+                                                            .value[i]
+                                                            .latidute ??
+                                                        0,
+                                                    controller
+                                                            .abtractions
+                                                            .value[i]
+                                                            .longtitude ??
+                                                        0,
                                                   ),
                                                   builder: (context) {
                                                     return SvgPicture.asset(

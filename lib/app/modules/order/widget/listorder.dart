@@ -47,10 +47,10 @@ class ListOrder extends StatelessWidget {
                   children: [
                     AnimatedPadding(
                         padding: EdgeInsets.only(
-                            left: naController.select ? 25.w : 15.w),
+                            left: naController.select ? 15.w : 10.w),
                         duration: const Duration(milliseconds: 500)),
                     SizedBox(
-                      width: 130.w,
+                      width: 150.w,
                       child: Text(
                         "${orderDetailContent.service?.name}",
                         maxLines: 2,
@@ -63,19 +63,20 @@ class ListOrder extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  width: 40.w,
+                  width: naController.select ? 35.w : 65.w,
                 ),
                 SizedBox(
                   width: 30.w,
                   child: Text(
                     "${orderDetailContent.quantity}", //QUANTITY
+                    textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
                 AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
-                    width: naController.select ? 70.w : 85.w),
+                    width: naController.select ? 100.w : 130.w),
                 SizedBox(
                   width: 92.w,
                   child: Text(
@@ -88,43 +89,28 @@ class ListOrder extends StatelessWidget {
                 ),
                 AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
-                    width: naController.select ? 55.w : 65.w),
-                SizedBox(
-                  width: 90.w,
-                  child: Text(
-                    orderDetailContent.status == 0 ? 'paid'.tr : 'unpaid'.tr,
-                    textAlign: TextAlign.center,
-                    style: AppStyles.h5.copyWith(
-                        color: AppColors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    width: naController.select ? 55.w : 55.w),
+                    width: naController.select ? 55.w : 80.w),
                 SizedBox(
                   width: 86.w,
                   child: Text(
-                    "${orderDetailContent.billDate}",
+                    "${orderDetailContent.orderDate}",
                     textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(
-                  width: 60.w,
+                  width: naController.select ? 55.w : 90.w,
                 ),
-                naController.select
-                    ? Container()
-                    : SizedBox(
-                        width: 92.w,
-                        child: Text(
-                          NumberUtils.noVnd(orderDetailContent.amount), //AMOUNT
-                          textAlign: TextAlign.center,
-                          style: AppStyles.h5.copyWith(
-                              color: AppColors.white,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                SizedBox(
+                  width: 92.w,
+                  child: Text(
+                    NumberUtils.noVnd(orderDetailContent.amount), //AMOUNT
+                    textAlign: TextAlign.center,
+                    style: AppStyles.h5.copyWith(
+                        color: AppColors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ],
             ),
           ),
