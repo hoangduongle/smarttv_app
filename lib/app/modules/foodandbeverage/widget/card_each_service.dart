@@ -43,7 +43,6 @@ class _CardEachServiceState extends State<CardEachService> {
   Widget build(BuildContext context) {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
-
     return GetBuilder<ServiceController>(
       builder: (controller) {
         return Material(

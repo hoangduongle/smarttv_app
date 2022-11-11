@@ -1,5 +1,6 @@
 // ignore_for_file: must_call_super, avoid_print, unused_field
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
@@ -36,6 +37,7 @@ class ServiceController extends BaseController {
     imageServiceCategories(result);
   }
 
+
   Future<void> fetchServiceCategory() async {
     var servicecate = _repository.getListServiceCate();
     List<ServiceCategoryContent> result = [];
@@ -56,7 +58,9 @@ class ServiceController extends BaseController {
         id: 1, description: "fandb", name: "Thức ăn và đồ uống"));
     for (var element in serviceCateListTMP.value) {
       if (element.id != 1 && element.id != 2) {
-        serviceCateList.value.add(element);
+        if (element.status == true) {
+          serviceCateList.value.add(element);
+        }
       }
     }
   }

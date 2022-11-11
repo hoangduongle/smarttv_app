@@ -2,117 +2,114 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
-import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
-import 'package:smarttv_app/app/core/values/app_styles.dart';
-import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 
 class ListOrder extends StatelessWidget {
   OrderController orderController;
-  OrderDetailContent orderDetailContent;
+  OrderContent orderContent;
   int index;
-  FocusNode focus;
 
   ListOrder({
     Key? key,
     required this.orderController,
-    required this.orderDetailContent,
+    required this.orderContent,
     required this.index,
-    required this.focus,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    NavigatorController naController =
-        Get.find(tag: (NavigatorController).toString());
     return Material(
-      color: Colors.transparent,
+      color: AppColors.greyColor,
       borderRadius: BorderRadius.circular(10.r),
       child: InkWell(
-        onTap: () {},
-        focusNode: focus,
+        // autofocus: index == 0,
         borderRadius: BorderRadius.circular(10.r),
-        focusColor: AppColors.focus,
+        focusColor: AppColors.orangeColor,
+        onTap: () {},
         child: Container(
-          height: 45.h,
-          padding: EdgeInsets.symmetric(horizontal: 8.w),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  children: [
-                    AnimatedPadding(
-                        padding: EdgeInsets.only(
-                            left: naController.select ? 15.w : 10.w),
-                        duration: const Duration(milliseconds: 500)),
-                    SizedBox(
-                      width: 150.w,
-                      child: Text(
-                        "${orderDetailContent.service?.name}",
-                        maxLines: 2,
-                        textAlign: TextAlign.start,
-                        style: AppStyles.h5.copyWith(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: naController.select ? 35.w : 65.w,
-                ),
-                SizedBox(
-                  width: 30.w,
-                  child: Text(
-                    "${orderDetailContent.quantity}", //QUANTITY
-                    textAlign: TextAlign.center,
-                    style: AppStyles.h5.copyWith(
-                        color: AppColors.white, fontWeight: FontWeight.bold),
+          margin: EdgeInsets.all(1.r),
+          decoration: BoxDecoration(
+              color: AppColors.navigabackground,
+              borderRadius: BorderRadius.circular(10.r)),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10.h,
+              ),
+              Text(
+                "Mã hoá đơn", //<------ set controller
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.title),
+              ),
+              Text(
+                "#138789", //<------ set controller
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.normal,
+                    color: AppColors.white),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                "Tổng tiền", //<------ set controller
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.title),
+              ),
+              Text(
+                "100.000.000 VNĐ", //<------ set controller
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.normal,
+                    color: AppColors.white),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                //"Đã thanh toán"
+                //"Chờ thanh toán"
+                "Đã thanh toán",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.greenFocus),
+                //AppColors.lighBlue
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                "xem chi tiết", //<------ set controller
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.normal,
+                    color: AppColors.title),
+              ),
+              Container(
+                width: 85.w,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: AppColors.title, width: 1.w),
                   ),
                 ),
-                AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    width: naController.select ? 100.w : 130.w),
-                SizedBox(
-                  width: 92.w,
-                  child: Text(
-                    NumberUtils.noVnd(orderController
-                        .orderDetails.value[index].price), //PRICE
-                    textAlign: TextAlign.center,
-                    style: AppStyles.h5.copyWith(
-                        color: AppColors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
-                    width: naController.select ? 55.w : 80.w),
-                SizedBox(
-                  width: 86.w,
-                  child: Text(
-                    "${orderDetailContent.orderDate}",
-                    textAlign: TextAlign.center,
-                    style: AppStyles.h5.copyWith(
-                        color: AppColors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SizedBox(
-                  width: naController.select ? 55.w : 90.w,
-                ),
-                SizedBox(
-                  width: 92.w,
-                  child: Text(
-                    NumberUtils.noVnd(orderDetailContent.amount), //AMOUNT
-                    textAlign: TextAlign.center,
-                    style: AppStyles.h5.copyWith(
-                        color: AppColors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

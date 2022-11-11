@@ -1,4 +1,5 @@
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
+import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
@@ -29,10 +30,10 @@ abstract class Repository {
 //===============================Booking========================================
   Future<BookingContent> getBookingByRoomId(int roomId);
 //==============================================================================
-  // Future<List<>> getListNotification();
+  Future<List<MessageContent>> getListMessage(int bookingId);
 //==============================================================================
   Future<MomoContent> momoPayment(int orderId, int orderInfo);
-  Future<int> requestService(int bookingId, String dateTime, int id, String name, String type, String status);
+  Future<int> requestService(int bookingId, String dateTime, int id,
+      String name, String type, String status);
   Future<RequestServiceContent> getRequestService(int bookingId);
-
 }

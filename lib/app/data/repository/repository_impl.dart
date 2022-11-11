@@ -3,6 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
+import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
@@ -267,6 +268,25 @@ class RepositoryImpl extends BaseRepository implements Repository {
     try {
       return callApi(dioCall).then((response) {
         return RequestServiceContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<MessageContent>> getListMessage(int bookingId) {
+    var endpoint = "${DioProvider.baseUrl}/messages";
+    var data = {"bookingId": bookingId};
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <MessageContent>[];
+
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(MessageContent.fromJson(element));
+        }
+        return result;
       });
     } catch (e) {
       rethrow;

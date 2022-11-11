@@ -8,10 +8,11 @@ class AppColors {
   static const Color blueColor = Color(0xffABC4FF);
   static const Color blackGrey = Color(0xffb8acab);
   static const Color secondColor = Color(0xffEDF2FB);
-  static const Color lighBlue = Color(0xffD7E3FC);
+  static const Color lighBlue = Color.fromARGB(255, 102, 149, 250);
   static const Color greyColor = Color(0xffc4c4c4);
   static const Color green = Color(0xFF4CAF50);
   static const Color greenFocus = Color(0xFF46EE46);
+  static const Color lightblue = Color(0xFF04B8F1);
   static const Color lightGrey = Color(0xffB2B6BD);
   static const Color white = Color(0xffffffff);
   static const Color lightWhite = Color.fromARGB(255, 245, 245, 245);

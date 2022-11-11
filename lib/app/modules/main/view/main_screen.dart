@@ -1,8 +1,10 @@
 // ignore_for_file: dead_code, prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, avoid_print, unused_field, unused_local_variable, non_constant_identifier_names, unrelated_type_equality_checks
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/alarm/view/alarm_screen.dart';
+import 'package:smarttv_app/app/modules/notification/view/notification_screen.dart';
 import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/checkout/view/checkout_screen.dart';
@@ -173,6 +175,42 @@ class _MainScreenState extends State<MainScreen> {
         return Scaffold(
           floatingActionButton: Stack(
             children: [
+              Stack(
+                children: [
+                  Align(
+                    alignment: Alignment(0.72.w, -0.92.h),
+                    child: Material(
+                      color: AppColors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(100.r),
+                        focusColor: AppColors.orangeColor,
+                        onTap: () {
+                          NotificationScreen().showNotificationDialog(context);
+                        },
+                        child: Icon(
+                          FluentIcons.alert_20_regular,
+                          size: 30.r,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment(0.725.w, -0.905.h), //0.74 -0.945
+                    child: Container(
+                      width: 12,
+                      height: 9,
+                      decoration: BoxDecoration(
+                          color: AppColors.red,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: AppColors.background,
+                              width: 2,
+                              strokeAlign: StrokeAlign.center)),
+                    ),
+                  ),
+                ],
+              ),
               Align(
                   alignment: Alignment(0.95, -0.90),
                   child: Obx(
