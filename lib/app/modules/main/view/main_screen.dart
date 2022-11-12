@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/alarm/view/alarm_screen.dart';
 import 'package:smarttv_app/app/modules/notification/view/notification_screen.dart';
-import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
+import 'package:smarttv_app/app/modules/order/view/list_order_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/checkout/view/checkout_screen.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
@@ -13,9 +13,10 @@ import 'package:smarttv_app/app/modules/feedback/view/feedback_screen.dart';
 import 'package:smarttv_app/app/modules/home/view/home_screen.dart';
 import 'package:smarttv_app/app/modules/abtraction/view/abtraction_screen.dart';
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
-import 'package:smarttv_app/app/modules/main/navigation/widget/widget_navigationslider.dart';
+import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/navigation/widget/widget_navigationslider.dart';
 import 'package:smarttv_app/app/modules/massage/view/massage_screen.dart';
+import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
 import 'package:smarttv_app/app/modules/pool/view/pool_screen.dart';
 import 'package:smarttv_app/app/modules/promotion/view/promotion_screen.dart';
 import 'package:smarttv_app/app/modules/service/view/service_screen.dart';
@@ -166,8 +167,16 @@ class _MainScreenState extends State<MainScreen> {
           naController.current_index.toInt() == 6) {
         naController.current_index = 0.obs;
       }
-      if (naController.current_index.toInt() >= 7) {
+      if (naController.current_index.toInt() == 7 ||
+          naController.current_index.toInt() == 8 ||
+          naController.current_index.toInt() == 9 ||
+          naController.current_index.toInt() == 10 ||
+          naController.current_index.toInt() == 11 ||
+          naController.current_index.toInt() == 12) {
         naController.current_index = 1.obs;
+      }
+      if (naController.current_index.toInt() == 13) {
+        naController.current_index = 5.obs;
       }
       return result;
     }, child: GetBuilder<MainController>(
@@ -327,19 +336,19 @@ class _MainScreenState extends State<MainScreen> {
                                                   index.obs;
                                             });
                                           },
-                                          child: buildNavigationWidget(
-                                              naController.current_index
-                                                  .toInt(),
-                                              naController
-                                                  .navigation_list[index].title,
-                                              naController
-                                                  .navigation_list[index]
-                                                  .iconData,
-                                              naController
-                                                  .navigation_list[index]
-                                                  .iconSelectedData,
-                                              index,
-                                              size),
+                                          child: BuildNavigation(
+                                            index: naController.current_index
+                                                .toInt(),
+                                            title: naController
+                                                .navigation_list[index].title,
+                                            icons: naController
+                                                .navigation_list[index]
+                                                .iconData,
+                                            iconSelected: naController
+                                                .navigation_list[index]
+                                                .iconSelectedData,
+                                            active: index,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -407,7 +416,7 @@ class _MainScreenState extends State<MainScreen> {
                               : true,
                           child: PromotionScreen()),
                       ExcludeFocus(
-                        //bill
+                        //order
                         excluding: naController.current_index.toInt() == 5
                             ? false
                             : true,
@@ -456,6 +465,12 @@ class _MainScreenState extends State<MainScreen> {
                               ? false
                               : true,
                           child: AlarmScreen()),
+                      ExcludeFocus(
+                          //order
+                          excluding: naController.current_index.toInt() == 13
+                              ? false
+                              : true,
+                          child: OrderScreen()),
                     ],
                   ),
                 ),

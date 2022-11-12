@@ -24,6 +24,10 @@ class ServiceController extends BaseController {
     super.onInit();
   }
 
+  void reload() {
+    onInit();
+  }
+
   Future<void> fetchImage(String type) async {
     var overview = _repository.getListImageByType(type);
     List<ImageContent> result = [];
@@ -36,7 +40,6 @@ class ServiceController extends BaseController {
     );
     imageServiceCategories(result);
   }
-
 
   Future<void> fetchServiceCategory() async {
     var servicecate = _repository.getListServiceCate();

@@ -14,7 +14,7 @@ import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/view/fandb_majorgroud.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/dialog.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/widget/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';

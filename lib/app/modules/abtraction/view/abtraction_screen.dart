@@ -12,7 +12,7 @@ import 'package:smarttv_app/app/modules/abtraction/controller/abtraction_control
 import 'package:smarttv_app/app/modules/abtraction/loading/abtraction_loading.dart';
 import 'package:smarttv_app/app/modules/abtraction/loading/map_loading.dart';
 import 'package:smarttv_app/app/modules/abtraction/widget/abtraction_card.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 import 'package:smarttv_app/config/build_config.dart';
 

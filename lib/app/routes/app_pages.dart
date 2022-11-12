@@ -2,7 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/order/binding/order_binding.dart';
-import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
+import 'package:smarttv_app/app/modules/order/view/list_order_screen.dart';
 import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';
 import 'package:smarttv_app/app/modules/cart/view/cart_screen.dart';
 import 'package:smarttv_app/app/modules/event/binding/event_binding.dart';
@@ -74,7 +74,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ORDER,
-      page: () => OrderScreen(),
+      page: () => ListOrderScreen(),
       binding: OrderBinding(),
       transition: Transition.noTransition,
     ),

@@ -13,14 +13,14 @@ class NavigatorController extends GetxController {
   final List<FocusScopeNode> focusNodeScope = [];
   final List<FocusNode> focusNodesService = [];
   var current_index = 0.obs;
-
+  var orderid = 0.obs;
   bool select = true.obs.isTrue;
   @override
   void onInit() {
     for (int i = 0; i < 8; i++) {
       FocusScopeNode focusScope = FocusScopeNode();
       focusNodeScope.add(focusScope);
-        FocusNode focus = FocusNode();
+      FocusNode focus = FocusNode();
       focusNodesService.add(focus);
     }
     super.onInit();

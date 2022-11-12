@@ -72,7 +72,7 @@ flutter_icons:
 
 flutter_native_splash:
   color: "#1E1E1E"
-
+  image: assets/images/splash.png
 dev_dependencies:
   flutter_test:
     sdk: flutter

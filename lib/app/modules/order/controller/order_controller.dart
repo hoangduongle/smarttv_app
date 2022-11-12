@@ -21,7 +21,10 @@ class OrderController extends BaseController {
     await fetchOrder(orderId ?? 0);
     super.onInit();
   }
-  void reloadOrder() {}
+
+  void reloadOrder() {
+    onInit();
+  }
 
   Future<void> fetchOrder(int orderId) async {
     var overview = _repository.getOrderById(orderId);

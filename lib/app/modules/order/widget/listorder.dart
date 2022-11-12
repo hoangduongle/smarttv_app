@@ -2,14 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
+import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
-import 'package:smarttv_app/app/modules/main/navigation/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 
-class ListOrder extends StatelessWidget {
+class ListOrder extends StatefulWidget {
   OrderController orderController;
   OrderContent orderContent;
   int index;
@@ -22,7 +24,14 @@ class ListOrder extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ListOrder> createState() => _ListOrderState();
+}
+
+class _ListOrderState extends State<ListOrder> {
+  @override
   Widget build(BuildContext context) {
+    NavigatorController naController =
+        Get.find(tag: (NavigatorController).toString());
     return Material(
       color: AppColors.greyColor,
       borderRadius: BorderRadius.circular(10.r),
@@ -30,7 +39,10 @@ class ListOrder extends StatelessWidget {
         // autofocus: index == 0,
         borderRadius: BorderRadius.circular(10.r),
         focusColor: AppColors.orangeColor,
-        onTap: () {},
+        onTap: () async {
+          naController.current_index = 13.obs;
+          naController.orderid = widget.orderContent.id!.obs;
+        },
         child: Container(
           margin: EdgeInsets.all(1.r),
           decoration: BoxDecoration(
@@ -50,7 +62,7 @@ class ListOrder extends StatelessWidget {
                     color: AppColors.title),
               ),
               Text(
-                "#138789", //<------ set controller
+                "#${widget.orderContent.id}", //<------ set controller
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 18.sp,
@@ -69,7 +81,8 @@ class ListOrder extends StatelessWidget {
                     color: AppColors.title),
               ),
               Text(
-                "100.000.000 VNĐ", //<------ set controller
+                NumberUtils.vnd(
+                    widget.orderContent.totalAmount), //<------ set controller
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 18.sp,
