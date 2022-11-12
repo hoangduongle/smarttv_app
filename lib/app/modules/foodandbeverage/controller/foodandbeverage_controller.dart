@@ -121,38 +121,42 @@ class FoodandBeverageController extends BaseController {
   void filter() {
     String food = "";
     for (var element in serviceListFood.value) {
-      food = element.majorGroup.toString();
-      switch (food) {
-        case "khai_vi":
-          serviceKhaivi.value.add(element);
-          break;
-        case "Mon_chinh":
-          serviceMonchinh.value.add(element);
-          break;
-        case "Trang_mieng":
-          serviceTrangmieng.value.add(element);
-          break;
+      if (element.status == true) {
+        food = element.majorGroup.toString();
+        switch (food) {
+          case "appetizer": //appetizer
+            serviceKhaivi.value.add(element);
+            break;
+          case "main_dishes": //main_dishes
+            serviceMonchinh.value.add(element);
+            break;
+          case "dessert": //dessert
+            serviceTrangmieng.value.add(element);
+            break;
+        }
       }
     }
     String drink = "";
     for (var element in serviceListDrink.value) {
-      drink = element.majorGroup.toString();
-      switch (drink) {
-        case "nuoc_cafe":
-          serviceCafe.value.add(element);
-          break;
-        case "Nuoc_tra":
-          serviceNuoctra.value.add(element);
-          break;
-        case "Nuoc_suoi":
-          serviceNuocsuoi.value.add(element);
-          break;
-        case "Nuoc_mocktails":
-          serviceNuocmocktails.value.add(element);
-          break;
-        case "Bia":
-          serviceBia.value.add(element);
-          break;
+      if (element.status == true) {
+        drink = element.majorGroup.toString();
+        switch (drink) {
+          case "coffee": //coffee
+            serviceCafe.value.add(element);
+            break;
+          case "tea": //tea
+            serviceNuoctra.value.add(element);
+            break;
+          case "water_and_soft_drink": //water_and_soft_drink
+            serviceNuocsuoi.value.add(element);
+            break;
+          case "mocktails": //mocktails
+            serviceNuocmocktails.value.add(element);
+            break;
+          case "beer": //beer
+            serviceBia.value.add(element);
+            break;
+        }
       }
     }
   }
