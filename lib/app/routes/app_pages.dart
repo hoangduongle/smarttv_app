@@ -17,6 +17,8 @@ import 'package:smarttv_app/app/modules/main/binding/main_binding.dart';
 import 'package:smarttv_app/app/modules/main/view/main_screen.dart';
 import 'package:smarttv_app/app/modules/service_components/binding/list_service_binding.dart';
 import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
+import 'package:smarttv_app/app/modules/splash/bindings/splash_binding.dart';
+import 'package:smarttv_app/app/modules/splash/views/splash_view.dart';
 import 'package:smarttv_app/app/modules/welcome/binding/wellcome_binding.dart';
 
 import 'package:smarttv_app/app/modules/welcome/view/wellcome_screen.dart';
@@ -29,7 +31,12 @@ class AppPages {
   static const INITIAL = Routes.MAIN;
 
   static final routes = [
-   
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => SplashView(),
+      binding: SplashBinding(),
+      transition: Transition.noTransition,
+    ),
     GetPage(
       name: _Paths.WELCOME,
       page: () => WelcomePage(),

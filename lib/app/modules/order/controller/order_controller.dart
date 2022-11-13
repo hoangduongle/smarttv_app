@@ -66,7 +66,7 @@ class OrderController extends BaseController {
     var prefs = await SharedPreferences.getInstance();
 
     await prefs.setDouble("totalOrder", total); //
-    debugPrint("Order new Total: $total");
+    // debugPrint("Order new Total: $total");
     update();
   }
 
@@ -81,7 +81,7 @@ class OrderController extends BaseController {
       onError: ((dioError) {}),
     );
     orderDetails(result);
-    debugPrint(orderDetails.toString());
+    // debugPrint(orderDetails.toString());
     update();
   }
 }

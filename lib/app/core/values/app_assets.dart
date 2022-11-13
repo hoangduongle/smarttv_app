@@ -10,7 +10,7 @@ class AppAssets {
   static const String logoforeground = imagePath + 'logo_foreground.png';
   static const String promotionWelcome = imagePath + 'promotion.png';
   static const String localWelcome = imagePath + 'local.png';
-  static const String splash = 'assets/mp4/fast_splash.mp4';
+  static const String splash = 'assets/mp4/splash.mp4';
   // jpg file
   static const String home_masterWelcome = imagePath + 'home_master.jpg';
   static const String homepageWelcome = imagePath + 'homepage.jpg';
