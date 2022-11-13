@@ -75,11 +75,22 @@ class _CardEachServiceState extends State<CardEachService> {
                   alignment: Alignment.topCenter,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.r),
-                    child: Image.network(
-                      "${widget.mayjorContent.image}", //${mayjorContent.image}
-                      width: 200.w,
-                      height: 160.h,
-                      fit: BoxFit.cover,
+                    child: CachedNetworkImage(
+                      imageUrl: "${widget.mayjorContent.image}",
+                      imageBuilder: (context, imageProvider) {
+                        return Container(
+                          alignment: Alignment.topCenter,
+                          width: 200.w,
+                          height: 160.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),

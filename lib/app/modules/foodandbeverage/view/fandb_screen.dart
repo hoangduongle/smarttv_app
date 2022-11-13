@@ -29,9 +29,9 @@ class _FandBScreenState extends State<FandBScreen> {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     MainController maController = Get.find();
-
-    return GetBuilder<FoodandBeverageController>(
-      builder: (controller) {
+    FoodandBeverageController controller = Get.find();
+    return Obx(
+      () {
         return Scaffold(
           floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
           floatingActionButton: Stack(
@@ -191,80 +191,81 @@ class _FandBScreenState extends State<FandBScreen> {
                       ),
                     ),
                     Padding(padding: EdgeInsets.symmetric(vertical: 5.h)),
-                    if (controller.mayjorFood.isEmpty &&
-                        controller.mayjorDrink.isEmpty)
-                      Expanded(
-                          child: Center(
-                              child: Lottie.asset("assets/lotties/loading.json",
-                                  width: 300.w)))
-                    else
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.w, vertical: 10.h),
-                          child: IndexedStack(
-                            index: controller.numberSelected.toInt(),
-                            children: [
-                              ExcludeFocus(
-                                excluding:
-                                    controller.numberSelected.toInt() == 0
-                                        ? false
-                                        : true,
-                                child: Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 140.w),
-                                  child: GridView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: controller.mayjorFood.length,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      mainAxisExtent: 185,
-                                      crossAxisCount: 3,
-                                      crossAxisSpacing: 30.w,
-                                      mainAxisSpacing: 20.h,
+                    controller.mayjorFood.isEmpty &&
+                            controller.mayjorDrink.isEmpty
+                        ? Expanded(
+                            child: Center(
+                                child: Lottie.asset(
+                                    "assets/lotties/loading.json",
+                                    width: 300.w)))
+                        : Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20.w, vertical: 10.h),
+                              child: IndexedStack(
+                                index: controller.numberSelected.toInt(),
+                                children: [
+                                  ExcludeFocus(
+                                    excluding:
+                                        controller.numberSelected.toInt() == 0
+                                            ? false
+                                            : true,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 140.w),
+                                      child: GridView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: controller.mayjorFood.length,
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                          mainAxisExtent: 185,
+                                          crossAxisCount: 3,
+                                          crossAxisSpacing: 30.w,
+                                          mainAxisSpacing: 20.h,
+                                        ),
+                                        itemBuilder: (context, index) {
+                                          return CardEachService(
+                                            index: index,
+                                            mayjorContent:
+                                                controller.mayjorFood[index],
+                                          );
+                                        },
+                                      ),
                                     ),
-                                    itemBuilder: (context, index) {
-                                      return CardEachService(
-                                        index: index,
-                                        mayjorContent:
-                                            controller.mayjorFood[index],
-                                      );
-                                    },
                                   ),
-                                ),
-                              ),
-                              ExcludeFocus(
-                                excluding:
-                                    controller.numberSelected.toInt() == 1
-                                        ? false
-                                        : true,
-                                child: Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 140.w),
-                                  child: GridView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: controller.mayjorDrink.length,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      mainAxisExtent: 185,
-                                      crossAxisCount: 3,
-                                      crossAxisSpacing: 30.w,
-                                      mainAxisSpacing: 20.h,
+                                  ExcludeFocus(
+                                    excluding:
+                                        controller.numberSelected.toInt() == 1
+                                            ? false
+                                            : true,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 140.w),
+                                      child: GridView.builder(
+                                        shrinkWrap: true,
+                                        itemCount:
+                                            controller.mayjorDrink.length,
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                          mainAxisExtent: 185,
+                                          crossAxisCount: 3,
+                                          crossAxisSpacing: 30.w,
+                                          mainAxisSpacing: 20.h,
+                                        ),
+                                        itemBuilder: (context, index) {
+                                          return CardEachService(
+                                            index: index,
+                                            mayjorContent:
+                                                controller.mayjorDrink[index],
+                                          );
+                                        },
+                                      ),
                                     ),
-                                    itemBuilder: (context, index) {
-                                      return CardEachService(
-                                        index: index,
-                                        mayjorContent:
-                                            controller.mayjorDrink[index],
-                                      );
-                                    },
                                   ),
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                      )
+                            ),
+                          )
                   ],
                 ),
               )),

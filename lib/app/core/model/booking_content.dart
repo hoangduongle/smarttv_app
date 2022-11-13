@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_collection_literals, unnecessary_this
 
 import 'package:smarttv_app/app/core/model/customer_content.dart';
-import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/room_content.dart';
 
 class BookingContent {
@@ -23,7 +22,6 @@ class BookingContent {
   String? lastModifyBy;
   RoomContent? room;
   CustomerContent? customer;
-  OrderContent? order;
 
   BookingContent(
       {this.id,
@@ -43,8 +41,7 @@ class BookingContent {
       this.createBy,
       this.lastModifyBy,
       this.room,
-      this.customer,
-      this.order});
+      this.customer});
 
   BookingContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -63,12 +60,10 @@ class BookingContent {
     updateDate = json['updateDate'];
     createBy = json['createBy'];
     lastModifyBy = json['lastModifyBy'];
-
     room = json['room'] != null ? RoomContent.fromJson(json['room']) : null;
     customer = json['customer'] != null
         ? CustomerContent.fromJson(json['customer'])
         : null;
-    order = json['order'] != null ? OrderContent.fromJson(json['order']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -89,21 +84,12 @@ class BookingContent {
     data['updateDate'] = this.updateDate;
     data['createBy'] = this.createBy;
     data['lastModifyBy'] = this.lastModifyBy;
-
     if (this.room != null) {
       data['room'] = this.room!.toJson();
     }
     if (this.customer != null) {
       data['customer'] = this.customer!.toJson();
     }
-    if (this.order != null) {
-      data['order'] = this.order!.toJson();
-    }
     return data;
-  }
-
-  @override
-  String toString() {
-    return 'BookingContent(id: $id, confirmationNo: $confirmationNo, arrivalDate: $arrivalDate, actualArrivalDate: $actualArrivalDate, departureDate: $departureDate, actualDepartureDate: $actualDepartureDate, numOfAdult: $numOfAdult, numOfChildren: $numOfChildren, totalAmount: $totalAmount, roomPayment: $roomPayment, specialNote: $specialNote, status: $status, createDate: $createDate, updateDate: $updateDate, createBy: $createBy, lastModifyBy: $lastModifyBy, room: $room, customer: $customer, order: $order)';
   }
 }

@@ -28,6 +28,7 @@ class MainController extends BaseController {
   void onInit() {
     timing();
     timingDependencies();
+    refreshMessage();
     super.onInit();
   }
 

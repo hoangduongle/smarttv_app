@@ -20,59 +20,63 @@ class MayjorEachService extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.transparent,
-      child: InkWell(
-        autofocus: index == 0,
-        borderRadius: BorderRadius.circular(10.r),
-        focusColor: AppColors.title,
-        onTap: () {
-          DialogWidget(
-            index: index,
-          ).showServiceDialog(context, serviceContent);
-        },
-        child: Container(
-          margin: EdgeInsets.all(2.r),
-          decoration: BoxDecoration(
-              color: AppColors.navigabackground,
-              borderRadius: BorderRadius.circular(10.r)),
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 0.h),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10.r),
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg",
-                    height: 105.h,
-                    width: 148.w,
-                    fit: BoxFit.fill,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
+      child: Material(
+        color: AppColors.transparent,
+        child: InkWell(
+          autofocus: index == 0,
+          borderRadius: BorderRadius.circular(10.r),
+          focusColor: AppColors.title,
+          onTap: () {
+            DialogWidget(
+              index: index,
+            ).showServiceDialog(context, serviceContent);
+          },
+          child: Container(
+            margin: EdgeInsets.all(2.r),
+            decoration: BoxDecoration(
+                color: AppColors.navigabackground,
+                borderRadius: BorderRadius.circular(10.r)),
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 0.h),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.r),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg",
+                      height: 105.h,
+                      width: 148.w,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                serviceContent.name.toString(), //<------ set controller
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.normal,
-                    color: AppColors.white),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                NumberUtils.vnd(serviceContent.price), //<------ set controller
-                style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.normal,
-                    color: AppColors.white),
-              ),
-            ],
+                SizedBox(
+                  height: 10.h,
+                ),
+                Text(
+                  serviceContent.name.toString(), //<------ set controller
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.normal,
+                      color: AppColors.white),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Text(
+                  NumberUtils.vnd(
+                      serviceContent.price), //<------ set controller
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.normal,
+                      color: AppColors.white),
+                ),
+              ],
+            ),
           ),
         ),
       ),

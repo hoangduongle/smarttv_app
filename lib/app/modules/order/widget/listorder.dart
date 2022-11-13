@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable, deprecated_member_use
+// ignore_for_file: must_be_immutable, deprecated_member_use, unrelated_type_equality_checks
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,6 +8,7 @@ import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 
@@ -32,97 +33,109 @@ class _ListOrderState extends State<ListOrder> {
   Widget build(BuildContext context) {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
-    return Material(
-      color: AppColors.greyColor,
-      borderRadius: BorderRadius.circular(10.r),
-      child: InkWell(
-        // autofocus: index == 0,
+    return Padding(
+      padding: EdgeInsets.only(right: 15.w),
+      child: Material(
+        color: AppColors.greyColor.withOpacity(0.3),
         borderRadius: BorderRadius.circular(10.r),
-        focusColor: AppColors.orangeColor,
-        onTap: () async {
-          naController.current_index = 13.obs;
-          naController.orderid = widget.orderContent.id!.obs;
-        },
-        child: Container(
-          margin: EdgeInsets.all(1.r),
-          decoration: BoxDecoration(
-              color: AppColors.navigabackground,
-              borderRadius: BorderRadius.circular(10.r)),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                "Mã hoá đơn", //<------ set controller
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.title),
-              ),
-              Text(
-                "#${widget.orderContent.id}", //<------ set controller
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.normal,
-                    color: AppColors.white),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                "Tổng tiền", //<------ set controller
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.title),
-              ),
-              Text(
-                NumberUtils.vnd(
-                    widget.orderContent.totalAmount), //<------ set controller
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.normal,
-                    color: AppColors.white),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                //"Đã thanh toán"
-                //"Chờ thanh toán"
-                "Đã thanh toán",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.greenFocus),
-                //AppColors.lighBlue
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                "xem chi tiết", //<------ set controller
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.normal,
-                    color: AppColors.title),
-              ),
-              Container(
-                width: 85.w,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: AppColors.title, width: 1.w),
+        child: InkWell(
+          onTap: () {
+            naController.current_index = 13.obs;
+            naController.orderid = widget.orderContent.id!.obs;
+          },
+          borderRadius: BorderRadius.circular(10.r),
+          focusColor: AppColors.white,
+          child: Container(
+            width: 100.w,
+            height: 50.h,
+            margin: EdgeInsets.all(1.r),
+            decoration: BoxDecoration(
+                color: AppColors.navigabackground,
+                borderRadius: BorderRadius.circular(10.r)),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    children: [
+                      AnimatedPadding(
+                          padding: EdgeInsets.only(
+                              left: naController.select ? 30.w : 40.w),
+                          duration: const Duration(milliseconds: 500)),
+                      SizedBox(
+                        width: 28.w,
+                        child: Text(
+                          "${widget.index + 1}",
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                          style: AppStyles.h5.copyWith(
+                              color: AppColors.greyColor,
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                  AnimatedPadding(
+                      padding: EdgeInsets.only(
+                          left: naController.select ? 100.w : 130.w),
+                      duration: const Duration(milliseconds: 500)),
+                  SizedBox(
+                    width: 70.w,
+                    child: Text(
+                      "#${widget.orderContent.id}", //QUANTITY
+                      textAlign: TextAlign.center,
+                      style: AppStyles.h5.copyWith(
+                          color: AppColors.greyColor,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                  AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      width: naController.select ? 75.w : 110.w),
+                  SizedBox(
+                    width: 130.w,
+                    child: Text(
+                      NumberUtils.vnd(widget.orderContent.totalAmount), //PRICE
+                      textAlign: TextAlign.center,
+                      style: AppStyles.h5.copyWith(
+                          color: AppColors.greyColor,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                  AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      width: naController.select ? 40.w : 60.w),
+                  SizedBox(
+                    width: 86.w,
+                    child: Text(
+                      "${widget.orderContent.updateDate}",
+                      textAlign: TextAlign.center,
+                      style: AppStyles.h5.copyWith(
+                          color: AppColors.greyColor,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                  AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      width: naController.select ? 40.w : 80.w),
+                  SizedBox(
+                    width: 110.w,
+                    child: Text(
+                      widget.orderContent.status == "0"
+                          ? "Đã thanh toán"
+                          : "Chờ thanh toán",
+                      textAlign: TextAlign.center,
+                      style: AppStyles.h5.copyWith(
+                          color: widget.orderContent.status == "0"
+                              ? AppColors.greenFocus
+                              : AppColors.lighBlue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

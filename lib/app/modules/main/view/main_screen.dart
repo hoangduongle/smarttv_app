@@ -204,20 +204,22 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment(0.725.w, -0.905.h), //0.74 -0.945
-                    child: Container(
-                      width: 12,
-                      height: 9,
-                      decoration: BoxDecoration(
-                          color: AppColors.red,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: AppColors.background,
-                              width: 2,
-                              strokeAlign: StrokeAlign.center)),
-                    ),
-                  ),
+                  maController.messages.value.isEmpty
+                      ? Align()
+                      : Align(
+                          alignment: Alignment(0.725.w, -0.905.h), //0.74 -0.945
+                          child: Container(
+                            width: 12,
+                            height: 9,
+                            decoration: BoxDecoration(
+                                color: AppColors.red,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: AppColors.background,
+                                    width: 2,
+                                    strokeAlign: StrokeAlign.center)),
+                          ),
+                        ),
                 ],
               ),
               Align(
@@ -420,7 +422,7 @@ class _MainScreenState extends State<MainScreen> {
                         excluding: naController.current_index.toInt() == 5
                             ? false
                             : true,
-                        child: OrderScreen(),
+                        child: ListOrderScreen(),
                       ),
                       ExcludeFocus(
                           //feedback

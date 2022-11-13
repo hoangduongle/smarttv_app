@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/model/booking_content.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
@@ -52,6 +53,7 @@ class CartController extends BaseController {
         ),
         backgroundColor: AppColors.focus.withOpacity(.8),
         duration: const Duration(seconds: 2));
+    debugPrint("${_service.keys.length}");
   }
 
   void removeSerivce(ServiceContent serviceContent) {
@@ -120,8 +122,8 @@ class CartController extends BaseController {
   void addtoBill() async {
     if (_service.isNotEmpty) {
       const LoadingDialog().showLoadingDialog(Get.context!);
-      final prefs = await SharedPreferences.getInstance();
-      int? orderId = await prefs.getInt("orderId");
+      OrderController orderController = Get.find();
+      int? orderId = orderController.searchOrderIdByStatus("1").id;
       double newTotal = 0;
       // debugPrint(DateTimeUtils.currentDate());
       if (orderId != 0) {
@@ -139,19 +141,23 @@ class CartController extends BaseController {
           ));
           newTotal += (serContent.price! * quantity);
         }
-        removeAllSerivce();
+
+        var prefs = await SharedPreferences.getInstance();
         double? totalOrder = await prefs.getDouble("totalOrder");
         newTotal += totalOrder!;
+        var bookingId = await prefs.getInt("bookingId");
         await updateOrder(OrderContent(
+            booking: BookingContent(id: bookingId),
             id: orderId,
             createBy: "Duong",
             createDate: "",
             lastModifyBy: "Duong",
             totalAmount: newTotal,
-            updateDate: DateTime.now().toString()));
-        OrderController orderController = Get.find();
+            status: "1",
+            updateDate: DateTimeUtils.currentDate()));
         orderController.onInit();
         Get.back();
+        removeAllSerivce();
         const ThankCustomer().showThanksDialog(Get.context!);
         Future.delayed(const Duration(seconds: 3), () {
           Get.back();

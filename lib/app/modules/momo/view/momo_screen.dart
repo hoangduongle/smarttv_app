@@ -20,7 +20,7 @@ class MomoScreen extends GetView<MomoController> {
   Future<void> MomoDialog(BuildContext context) async {
     if (controller.momo.value == null) {
       final prefs = await SharedPreferences.getInstance();
-      var orderId = await prefs.getInt("orderId");
+      // var orderId = await prefs.getInt("orderId");
       controller.fetchPaymentMomo(8, 1);
     }
     showDialog(

@@ -38,8 +38,8 @@ class _OrderScreenState extends State<OrderScreen> {
               children: [
                 TitleScreen(
                   name:
-                      "Mã Hoá Đơn: #${controller.order.value?.id ?? '00000'}", 
-                      //${controller.order.value?.id ?? '00000'}${naController.orderid}
+                      "Mã Hoá Đơn: #${naController.orderid}", //${controller.order.value?.id ?? '00000'}
+                  //${controller.order.value?.id ?? '00000'}${naController.orderid}
                 ),
                 SizedBox(
                   height: 30.h,
@@ -85,32 +85,33 @@ class _OrderScreenState extends State<OrderScreen> {
                 SizedBox(
                   height: 15.h,
                 ),
-                controller.orderDetails.value.isEmpty
-                    ? Expanded(
-                        child: Lottie.asset("assets/lotties/loading.json"))
-                    : Expanded(
-                        child: RawScrollbar(
-                        thumbColor: AppColors.white,
-                        thumbVisibility: true,
-                        radius: Radius.circular(100.r),
-                        thickness: 10,
+                // controller.orderDetails.value.isEmpty
+                //     ? Expanded(
+                //         child: Lottie.asset("assets/lotties/loading.json"))
+                //     :
+                Expanded(
+                    child: RawScrollbar(
+                  thumbColor: AppColors.white,
+                  thumbVisibility: true,
+                  radius: Radius.circular(100.r),
+                  thickness: 10,
+                  controller: scrollController,
+                  child: SizedBox(
+                    width: 870.w,
+                    child: ListView.separated(
                         controller: scrollController,
-                        child: SizedBox(
-                          width: 870.w,
-                          child: ListView.separated(
-                              controller: scrollController,
-                              separatorBuilder: (context, index) => SizedBox(
-                                    height: 25.h,
-                                  ),
-                              itemCount: controller.orderDetails.value.length,
-                              itemBuilder: (context, index) => ListOrderDetail(
-                                    orderDetailContent:
-                                        controller.orderDetails.value[index],
-                                    orderController: controller,
-                                    index: index,
-                                  )),
-                        ),
-                      )),
+                        separatorBuilder: (context, index) => SizedBox(
+                              height: 25.h,
+                            ),
+                        itemCount: controller.orderDetails.value.length,
+                        itemBuilder: (context, index) => ListOrderDetail(
+                              orderDetailContent:
+                                  controller.orderDetails.value[index],
+                              orderController: controller,
+                              index: index,
+                            )),
+                  ),
+                )),
                 SizedBox(
                   height: 5.h,
                 ),
@@ -156,9 +157,8 @@ class _OrderScreenState extends State<OrderScreen> {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                            NumberUtils.vnd(
-                                controller.order.value?.totalAmount ??
-                                    0), //controller.bill.value?.totalAmount ??
+                            NumberUtils.vnd(controller
+                                .getOrderTotal(naController.orderid.toInt())),
                             style: AppStyles.h4.copyWith(
                                 fontSize: 20.sp,
                                 color: AppColors.white,

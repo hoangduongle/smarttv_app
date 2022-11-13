@@ -23,7 +23,7 @@ abstract class Repository {
 //===========================Abtraction=========================================
   Future<List<AbtractionContent>> getListAbtraction();
 //==============================Order============================================
-  Future<OrderContent> getOrderById(int orderId);
+  Future<List<OrderContent>> getOrderByBookingId(int bookingId);
   Future<int> updateOrderByOrderId(OrderContent orderContent);
   Future<int> insertOrderdetail(OrderDetailContent orderDetailContent);
   Future<List<OrderDetailContent>> getOrderdetailByOrderId(int orderId);

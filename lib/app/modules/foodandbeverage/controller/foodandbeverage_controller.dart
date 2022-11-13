@@ -35,6 +35,7 @@ class FoodandBeverageController extends BaseController {
     await fetchServicesFood();
     await fetchServicesDrink();
     createMajor();
+    filter();
     super.onInit();
   }
 
@@ -115,16 +116,15 @@ class FoodandBeverageController extends BaseController {
       MayjorContent(
           id: 7, name: "Bia", image: "https://i.ibb.co/2k5QHCB/bia.png"),
     ];
-    filter();
   }
 
   void filter() {
     String food = "";
     for (var element in serviceListFood.value) {
-      if (element.status == true) {
+      if (element.status == false) {
         food = element.majorGroup.toString();
         switch (food) {
-          case "appetizer": //appetizer
+          case "khai_vi": //appetizer
             serviceKhaivi.value.add(element);
             break;
           case "main_dishes": //main_dishes
@@ -138,7 +138,7 @@ class FoodandBeverageController extends BaseController {
     }
     String drink = "";
     for (var element in serviceListDrink.value) {
-      if (element.status == true) {
+      if (element.status == false) {
         drink = element.majorGroup.toString();
         switch (drink) {
           case "coffee": //coffee
@@ -159,5 +159,6 @@ class FoodandBeverageController extends BaseController {
         }
       }
     }
+    update();
   }
 }

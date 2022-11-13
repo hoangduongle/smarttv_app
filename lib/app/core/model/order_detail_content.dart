@@ -45,4 +45,9 @@ class OrderDetailContent {
     data['orderDate'] = this.orderDate;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'OrderDetailContent(id: $id, service: $service, orderId: $orderId, quantity: $quantity, price: $price, amount: $amount, orderDate: $orderDate)';
+  }
 }

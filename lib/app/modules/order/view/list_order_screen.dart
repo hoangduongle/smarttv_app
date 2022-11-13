@@ -2,11 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/order/widget/listorder.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/order/widget/listorderdetail.dart';
+import 'package:smarttv_app/app/widget/loading.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class ListOrderScreen extends StatefulWidget {
@@ -33,38 +37,79 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                 TitleScreen(
                   name: "Hoá đơn",
                 ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'STT.'.tr,
+                      style: AppStyles.h4.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.sp,
+                        color: AppColors.title,
+                      ),
+                    ),
+                    Text('Mã hoá đơn'.tr,
+                        style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title,
+                        )),
+                    Text('Tổng tiền'.tr,
+                        style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title,
+                        )),
+                    Text('Ngày',
+                        style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title,
+                        )),
+                    Text('Trạng thái'.tr,
+                        style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title,
+                        )),
+                  ],
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                // controller.orders.value.isEmpty
+                //     ? Expanded(
+                //         child: Lottie.asset("assets/lotties/loading.json",
+                //             width: 200.w))
+                //     :
                 Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                      EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
                   child: SizedBox(
                     width: 900.w,
-                    height: 450.h,
+                    height: 380.h,
                     child: RawScrollbar(
                       thumbColor: AppColors.greyColor,
                       thumbVisibility: true,
                       radius: Radius.circular(100.r),
                       thickness: 10,
                       controller: scrollOrderController,
-                      child: GridView.builder(
-                        controller: scrollOrderController,
-                        shrinkWrap: true,
-                        itemCount: 5,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisExtent: 210.w, //220
-                          crossAxisCount: naController.select ? 3 : 4,
-                          crossAxisSpacing: naController.select ? 60.w : 20.w,
-                          mainAxisSpacing: 20.h,
-                        ),
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 12.w),
-                            child: ListOrder(
-                                orderContent: controller.order.value!,
+                      child: ListView.separated(
+                          controller: scrollOrderController,
+                          separatorBuilder: (context, index) => SizedBox(
+                                height: 25.h,
+                              ),
+                          itemCount: controller.orders.value.length,
+                          itemBuilder: (context, index) {
+                            return ListOrder(
                                 orderController: controller,
-                                index: index),
-                          );
-                        },
-                      ),
+                                orderContent: controller.orders.value[index],
+                                index: index);
+                          }),
                     ),
                   ),
                 ),

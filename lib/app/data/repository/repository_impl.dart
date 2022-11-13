@@ -178,13 +178,17 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<OrderContent> getOrderById(int orderId) {
-    var endpoint = "${DioProvider.baseUrl}/order/$orderId";
-    var dioCall = dioTokenClient.get(endpoint);
+  Future<List<OrderContent>> getOrderByBookingId(int bookingId) {
+    var endpoint = "${DioProvider.baseUrl}/orderByBooking";
+    var data = {'booking_id': bookingId};
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
     try {
       return callApi(dioCall).then((response) {
         var result = <OrderContent>[];
-        return OrderContent.fromJson(response.data);
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(OrderContent.fromJson(element));
+        }
+        return result;
       });
     } catch (e) {
       rethrow;
@@ -242,12 +246,14 @@ class RepositoryImpl extends BaseRepository implements Repository {
   Future<int> updateOrderByOrderId(OrderContent orderContent) {
     var endpoint = "${DioProvider.baseUrl}/order";
     var data = {
+      "booking_Id": orderContent.booking?.id,
       "createBy": orderContent.createBy,
       "createDate": orderContent.createDate,
       "id": orderContent.id,
       "lastModifyBy": orderContent.lastModifyBy,
       "totalAmount": orderContent.totalAmount,
       "updateDate": orderContent.updateDate,
+      "status": orderContent.status,
     };
     var formData = FormData.fromMap(data);
     var dioCall = dioTokenClient.put(endpoint, data: formData);
@@ -276,8 +282,8 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
   @override
   Future<List<MessageContent>> getListMessage(int bookingId) {
-    var endpoint = "${DioProvider.baseUrl}/messages";
-    var data = {"bookingId": bookingId};
+    var endpoint = "${DioProvider.baseUrl}/messagesByBooking";
+    var data = {"booking_id": bookingId};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
     try {
       return callApi(dioCall).then((response) {

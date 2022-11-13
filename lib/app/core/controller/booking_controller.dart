@@ -1,3 +1,4 @@
+
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
@@ -24,8 +25,8 @@ class BookingController extends BaseController {
       },
       onError: ((dioError) {}),
     );
+
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt("orderId", bookingContent.value?.order!.id ?? 0);
     await prefs.setInt("bookingId", bookingContent.value?.id ?? 0);
   }
 }

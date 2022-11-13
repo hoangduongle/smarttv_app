@@ -35,6 +35,7 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
     CartController caController = Get.find();
     MainController maController = Get.find();
     Rx<List<ServiceContent>> serviceContent = Rx<List<ServiceContent>>([]);
+    ScrollController scrollControllerFANDB = ScrollController();
     int length = 0;
     switch (widget.mayjorId) {
       case 0:
@@ -71,8 +72,8 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
 
         break;
     }
-    return GetBuilder<FoodandBeverageController>(
-      builder: (controller) {
+    return Obx(
+      () {
         return Scaffold(
           floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
           floatingActionButton: Stack(
@@ -185,21 +186,29 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 40.w, vertical: 20.h),
-                          child: GridView.builder(
-                            itemCount: length,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              mainAxisExtent: 180,
-                              crossAxisCount: 5,
-                              crossAxisSpacing: 20.w,
-                              mainAxisSpacing: 16.h,
+                          child: RawScrollbar(
+                            controller: scrollControllerFANDB,
+                            thumbColor: AppColors.title,
+                            thumbVisibility: true,
+                            radius: Radius.circular(100.r),
+                            thickness: 10,
+                            child: GridView.builder(
+                              controller: scrollControllerFANDB,
+                              itemCount: length,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                mainAxisExtent: 180,
+                                crossAxisCount: 5,
+                                crossAxisSpacing: 0.w,
+                                mainAxisSpacing: 16.h,
+                              ),
+                              itemBuilder: (context, index) {
+                                return MayjorEachService(
+                                  index: index,
+                                  serviceContent: serviceContent.value[index],
+                                );
+                              },
                             ),
-                            itemBuilder: (context, index) {
-                              return MayjorEachService(
-                                index: index,
-                                serviceContent: serviceContent.value[index],
-                              );
-                            },
                           ),
                         ),
                       ),

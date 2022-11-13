@@ -1,8 +1,12 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: must_be_immutable
 
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -19,6 +23,7 @@ class NotificationScreen extends StatelessWidget {
       barrierDismissible: false,
       builder: (context) {
         ScrollController scrollNoticontroller = ScrollController();
+        MainController maController = Get.find();
         return Dialog(
           elevation: 10,
           backgroundColor: AppColors.background,
@@ -45,7 +50,7 @@ class NotificationScreen extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Container(
+                  SizedBox(
                     width: 800.w,
                     height: 350.h,
                     child: RawScrollbar(
@@ -56,46 +61,14 @@ class NotificationScreen extends StatelessWidget {
                       controller: scrollNoticontroller,
                       child: ListView.separated(
                         controller: scrollNoticontroller,
-                        itemCount: 10,
+                        itemCount: maController.messages.value.length,
                         separatorBuilder: (context, index) => SizedBox(
                           height: 10.h,
                         ),
                         itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15.w),
-                            child: Material(
-                              color: AppColors.greyColor.withOpacity(0.7),
-                              borderRadius: BorderRadius.circular(10.r),
-                              child: InkWell(
-                                focusColor: AppColors.orangeColor,
-                                borderRadius: BorderRadius.circular(10.r),
-                                onTap: () {
-                                  openDetailNoti(context);
-                                },
-                                autofocus: index == 0,
-                                child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  height: 50.h,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 10.w),
-                                  margin: EdgeInsets.all(1.r),
-                                  decoration: BoxDecoration(
-                                      color: AppColors.background,
-                                      borderRadius:
-                                          BorderRadius.circular(10.r)),
-                                  child: SizedBox(
-                                    width: 750.w,
-                                    child: Text(
-                                      "Đây là message content chi tiết",
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                          color: AppColors.white,
-                                          fontSize: 20.sp),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                          return BuildMessage(
+                            index: index,
+                            messageContent: maController.messages.value[index],
                           );
                         },
                       ),
@@ -104,7 +77,9 @@ class NotificationScreen extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  NavigatorBack(),
+                  NavigatorBack(
+                    autoFocus: true,
+                  ),
                 ],
               )),
         );
@@ -167,6 +142,52 @@ class NotificationScreen extends StatelessWidget {
               )),
         );
       },
+    );
+  }
+}
+
+class BuildMessage extends StatelessWidget {
+  int index;
+  MessageContent messageContent;
+  BuildMessage({
+    Key? key,
+    required this.index,
+    required this.messageContent,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
+      child: Material(
+        color: AppColors.greyColor.withOpacity(0.7),
+        borderRadius: BorderRadius.circular(10.r),
+        child: InkWell(
+          focusColor: AppColors.orangeColor,
+          borderRadius: BorderRadius.circular(10.r),
+          onTap: () {
+            const NotificationScreen().openDetailNoti(context);
+          },
+          autofocus: index == 0,
+          child: Container(
+            alignment: Alignment.centerLeft,
+            height: 50.h,
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            margin: EdgeInsets.all(1.r),
+            decoration: BoxDecoration(
+                color: AppColors.background,
+                borderRadius: BorderRadius.circular(10.r)),
+            child: SizedBox(
+              width: 750.w,
+              child: Text(
+                messageContent.messageContent.toString(),
+                maxLines: 1,
+                style: TextStyle(color: AppColors.white, fontSize: 20.sp),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
