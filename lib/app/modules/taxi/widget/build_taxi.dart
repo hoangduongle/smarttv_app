@@ -8,14 +8,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/modules/taxi/controller/taxi_controller.dart';
 import 'package:smarttv_app/app/modules/taxi/widget/taxi_dialog.dart';
 
 class BuildTaxi extends StatelessWidget {
   int index;
+  TaxiController controller;
   ServiceContent serviceContent;
   BuildTaxi({
     Key? key,
     required this.index,
+    required this.controller,
     required this.serviceContent,
   }) : super(key: key);
 
@@ -26,7 +29,12 @@ class BuildTaxi extends StatelessWidget {
       borderRadius: BorderRadius.circular(10.r),
       child: InkWell(
         onTap: () {
-          const TaxiDialog().showTaxiDialog(context, index, serviceContent);
+          const TaxiDialog().showTaxiDialog(
+            context,
+            index,
+            serviceContent,
+            controller,
+          );
         },
         focusColor: AppColors.title,
         borderRadius: BorderRadius.circular(10.r),

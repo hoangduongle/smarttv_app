@@ -34,6 +34,7 @@ class TaxiScreen extends GetView<TaxiController> {
                 ),
                 itemBuilder: (context, index) {
                   return BuildTaxi(
+                    controller: controller,
                     index: index,
                     serviceContent: controller.taxiContent.value[index],
                   );
