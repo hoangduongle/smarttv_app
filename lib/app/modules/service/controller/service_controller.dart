@@ -1,6 +1,5 @@
 // ignore_for_file: must_call_super, avoid_print, unused_field
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';

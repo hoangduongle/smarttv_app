@@ -2,10 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:smarttv_app/app/core/model/order_content.dart';
-import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
@@ -124,13 +121,13 @@ class _ListOrderState extends State<ListOrder> {
                     width: 110.w,
                     child: Text(
                       widget.orderContent.status == "0"
-                          ? "Đã thanh toán"
-                          : "Chờ thanh toán",
+                          ? "Chờ thanh toán"
+                          : "Đã thanh toán",
                       textAlign: TextAlign.center,
                       style: AppStyles.h5.copyWith(
                           color: widget.orderContent.status == "0"
-                              ? AppColors.greenFocus
-                              : AppColors.lighBlue,
+                              ? AppColors.lighBlue
+                              : AppColors.greenFocus,
                           fontWeight: FontWeight.bold),
                     ),
                   ),

@@ -2,15 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/order/widget/listorder.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
-import 'package:smarttv_app/app/modules/order/widget/listorderdetail.dart';
-import 'package:smarttv_app/app/widget/loading.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class ListOrderScreen extends StatefulWidget {

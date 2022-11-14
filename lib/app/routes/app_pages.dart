@@ -2,7 +2,6 @@
 
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/order/binding/order_binding.dart';
-import 'package:smarttv_app/app/modules/order/view/list_order_screen.dart';
 import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';
 import 'package:smarttv_app/app/modules/cart/view/cart_screen.dart';
 import 'package:smarttv_app/app/modules/event/binding/event_binding.dart';
@@ -15,6 +14,7 @@ import 'package:smarttv_app/app/modules/abtraction/binding/abtraction_binding.da
 import 'package:smarttv_app/app/modules/abtraction/view/abtraction_screen.dart';
 import 'package:smarttv_app/app/modules/main/binding/main_binding.dart';
 import 'package:smarttv_app/app/modules/main/view/main_screen.dart';
+import 'package:smarttv_app/app/modules/order/view/order_main_screen.dart';
 import 'package:smarttv_app/app/modules/service_components/binding/list_service_binding.dart';
 import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
 import 'package:smarttv_app/app/modules/splash/bindings/splash_binding.dart';
@@ -81,7 +81,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ORDER,
-      page: () => ListOrderScreen(),
+      page: () => OrderMainScreen(),
       binding: OrderBinding(),
       transition: Transition.noTransition,
     ),

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable, must_be_immutable, deprecated_member_use
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable, must_be_immutable, deprecated_member_use, prefer_const_constructors_in_immutables
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,24 +13,19 @@ import 'package:smarttv_app/app/modules/order/widget/listorderdetail.dart';
 import 'package:smarttv_app/app/modules/order/widget/order_dialog.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
-class OrderScreen extends StatefulWidget {
+class OrderScreen extends GetView<OrderController> {
   OrderScreen({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<OrderScreen> createState() => _OrderScreenState();
-}
-
-class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
     ScrollController scrollController = ScrollController();
-    return GetBuilder<OrderController>(
-      builder: (controller) {
+    return Obx(
+      () {
         return Scaffold(
           body: Container(
             color: AppColors.background,
@@ -38,7 +33,7 @@ class _OrderScreenState extends State<OrderScreen> {
               children: [
                 TitleScreen(
                   name:
-                      "Mã Hoá Đơn: #${naController.orderid}", //${controller.order.value?.id ?? '00000'}
+                      "Mã Hoá Đơn: #${controller.orders.value.length <= 1 ? controller.orders.value[0].id : naController.orderid}", //${controller.order.value?.id ?? '00000'}
                   //${controller.order.value?.id ?? '00000'}${naController.orderid}
                 ),
                 SizedBox(
@@ -160,8 +155,10 @@ class _OrderScreenState extends State<OrderScreen> {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                            NumberUtils.vnd(controller
-                                .getOrderTotal(naController.orderid.toInt())),
+                            NumberUtils.vnd(controller.getOrderTotal(
+                                controller.orders.value.length <= 1
+                                    ? controller.orders.value[0].id!
+                                    : naController.orderid.toInt())),
                             style: AppStyles.h4.copyWith(
                                 fontSize: 20.sp,
                                 color: AppColors.white,

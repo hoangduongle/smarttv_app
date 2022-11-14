@@ -122,7 +122,7 @@ class CartController extends BaseController {
     if (_service.isNotEmpty) {
       const LoadingDialog().showLoadingDialog(Get.context!);
       OrderController orderController = Get.find();
-      int? orderId = orderController.searchOrderIdByStatus("0").id;
+      int? orderId = orderController.searchOrderIdByStatus("1").id;
       double newTotal = 0;
       // debugPrint(DateTimeUtils.currentDate());
       if (orderId != 0) {

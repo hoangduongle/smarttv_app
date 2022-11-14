@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/alarm/view/alarm_screen.dart';
+import 'package:smarttv_app/app/modules/notification/controller/notification_controller.dart';
 import 'package:smarttv_app/app/modules/notification/view/notification_screen.dart';
-import 'package:smarttv_app/app/modules/order/view/list_order_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/checkout/view/checkout_screen.dart';
 import 'package:smarttv_app/app/modules/event/view/event_screen.dart';
@@ -16,6 +16,7 @@ import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/navigation/widget/widget_navigationslider.dart';
 import 'package:smarttv_app/app/modules/massage/view/massage_screen.dart';
+import 'package:smarttv_app/app/modules/order/view/order_main_screen.dart';
 import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
 import 'package:smarttv_app/app/modules/pool/view/pool_screen.dart';
 import 'package:smarttv_app/app/modules/promotion/view/promotion_screen.dart';
@@ -68,6 +69,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     CartController Cacontroller = Get.find();
+    NotificationController noController = Get.find();
     return WillPopScope(onWillPop: () async {
       bool result = false;
 
@@ -204,7 +206,7 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ),
                   ),
-                  maController.messages.value.isEmpty
+                  noController.messages.value.isEmpty
                       ? Align()
                       : Align(
                           alignment: Alignment(0.725.w, -0.905.h), //0.74 -0.945
@@ -422,7 +424,7 @@ class _MainScreenState extends State<MainScreen> {
                         excluding: naController.current_index.toInt() == 5
                             ? false
                             : true,
-                        child: ListOrderScreen(),
+                        child: OrderMainScreen(),
                       ),
                       ExcludeFocus(
                           //feedback

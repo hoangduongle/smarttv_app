@@ -3,10 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
-import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
+import 'package:smarttv_app/app/modules/notification/controller/notification_controller.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -23,7 +22,7 @@ class NotificationScreen extends StatelessWidget {
       barrierDismissible: false,
       builder: (context) {
         ScrollController scrollNoticontroller = ScrollController();
-        MainController maController = Get.find();
+        NotificationController noController = Get.find();
         return Dialog(
           elevation: 10,
           backgroundColor: AppColors.background,
@@ -37,15 +36,13 @@ class NotificationScreen extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Container(
-                    child: Text(
-                      "Thông báo",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 25.sp,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.orangeColor),
-                    ),
+                  Text(
+                    "Thông báo",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.orangeColor),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -61,14 +58,14 @@ class NotificationScreen extends StatelessWidget {
                       controller: scrollNoticontroller,
                       child: ListView.separated(
                         controller: scrollNoticontroller,
-                        itemCount: maController.messages.value.length,
+                        itemCount: noController.messages.value.length,
                         separatorBuilder: (context, index) => SizedBox(
                           height: 10.h,
                         ),
                         itemBuilder: (context, index) {
                           return BuildMessage(
                             index: index,
-                            messageContent: maController.messages.value[index],
+                            messageContent: noController.messages.value[index],
                           );
                         },
                       ),
@@ -92,7 +89,6 @@ class NotificationScreen extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        ScrollController scrollNoticontroller = ScrollController();
         return Dialog(
           elevation: 2,
           backgroundColor: AppColors.background,

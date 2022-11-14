@@ -17,7 +17,6 @@ import 'package:smarttv_app/app/modules/service_components/controller/list_servi
 
 class MainController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
-  Rx<List<MessageContent>> messages = Rx<List<MessageContent>>([]);
 
   late Timer _timer;
   var formattedTime = "".obs;
@@ -28,7 +27,6 @@ class MainController extends BaseController {
   void onInit() {
     timing();
     timingDependencies();
-    refreshMessage();
     super.onInit();
   }
 
@@ -53,31 +51,9 @@ class MainController extends BaseController {
     );
   }
 
-  void refreshMessage() {
-    _timer = Timer.periodic(
-      const Duration(minutes: 5),
-      (timer) async {
-        final prefs = await SharedPreferences.getInstance();
-        var bookingId = await prefs.getInt("bookingId");
-        fetchMessages(bookingId!);
-        update();
-      },
-    );
-  }
 
-  Future<void> fetchMessages(int bookingId) async {
-    var servicecate = _repository.getListMessage(bookingId);
-    List<MessageContent> result = [];
-    await callDataService(
-      servicecate,
-      onSuccess: (List<MessageContent> response) {
-        result = response;
-      },
-      onError: ((dioError) {}),
-    );
-    messages(result);
-    // debugPrint(serviceCateListTMP.value.length.toString());
-  }
+
+
 }
   // var language = "vietnamese".obs;
   // void switchLanguage() {
