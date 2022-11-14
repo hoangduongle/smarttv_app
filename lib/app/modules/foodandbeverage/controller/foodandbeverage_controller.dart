@@ -121,10 +121,10 @@ class FoodandBeverageController extends BaseController {
   void filter() {
     String food = "";
     for (var element in serviceListFood.value) {
-      if (element.status == false) {
+      if (element.status == true) {
         food = element.majorGroup.toString();
         switch (food) {
-          case "khai_vi": //appetizer
+          case "appetizer": //appetizer
             serviceKhaivi.value.add(element);
             break;
           case "main_dishes": //main_dishes

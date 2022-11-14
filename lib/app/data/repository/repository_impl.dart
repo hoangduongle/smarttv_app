@@ -243,6 +243,33 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
+  Future<int> insertOrder(OrderContent orderContent) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/order";
+    var data = {
+      "booking_Id": orderContent.booking!.id,
+      "createBy": orderContent.createBy,
+      'createDate': orderContent.createDate,
+      "id": orderContent.id,
+      "lastModifyBy": orderContent.lastModifyBy,
+      "status": orderContent.status,
+      "totalAmount": orderContent.totalAmount,
+      "updateDate": orderContent.updateDate,
+    };
+    var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<int> updateOrderByOrderId(OrderContent orderContent) {
     var endpoint = "${DioProvider.baseUrl}/order";
     var data = {

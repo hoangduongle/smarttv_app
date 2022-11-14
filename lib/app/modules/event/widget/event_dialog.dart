@@ -33,7 +33,7 @@ class EventDialog extends StatelessWidget {
                     height: 20.h,
                   ),
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(10.r),
+                    borderRadius: BorderRadius.circular(5.r),
                     child: CachedNetworkImage(
                       imageUrl:
                           "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
@@ -42,7 +42,7 @@ class EventDialog extends StatelessWidget {
                           height: 150.h,
                           width: 480.w,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
+                            borderRadius: BorderRadius.circular(5.r),
                             image: DecorationImage(
                               image: imageProvider,
                               fit: BoxFit.fill,
@@ -186,7 +186,9 @@ class EventDialog extends StatelessWidget {
                   SizedBox(
                     height: 5.h,
                   ),
-                  NavigatorBack(autoFocus: true,)
+                  NavigatorBack(
+                    autoFocus: true,
+                  )
                 ],
               )),
         );

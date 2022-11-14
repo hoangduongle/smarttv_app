@@ -34,4 +34,9 @@ class AlarmContent {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'AlarmContent(id: $id, date: $date, booking: $booking, status: $status)';
+  }
 }

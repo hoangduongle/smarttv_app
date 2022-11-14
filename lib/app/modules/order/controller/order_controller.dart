@@ -27,14 +27,25 @@ class OrderController extends BaseController {
   OrderContent searchOrderIdByStatus(String status) {
     //0 pay 1 unpay
     OrderContent result = OrderContent();
-    // debugPrint(orders.value.toList().toString());
     for (int i = 0; i < orders.value.length; i++) {
       if (orders.value[i].status == status) {
-        debugPrint(orders.value[i].id.toString());
         result = orders.value[i];
       }
     }
+    return result;
+  }
 
+  bool getStatusByOrderId(int orderId) {
+    //0 pay 1 unpay
+    bool result = false;
+    // debugPrint(orders.value.toList().toString());
+    for (int i = 0; i < orders.value.length; i++) {
+      if (orders.value[i].id == orderId) {
+        if (orders.value[i].status == "1") {
+          result = true;
+        }
+      }
+    }
     return result;
   }
 
@@ -47,6 +58,7 @@ class OrderController extends BaseController {
   }
 
   void loadOrderdetails(int orderId) async {
+    orderDetails.value.clear();
     await fetchOrderDetails(orderId);
   }
 
@@ -62,7 +74,7 @@ class OrderController extends BaseController {
     );
     orders(result);
 
-    double total = searchOrderIdByStatus("1").totalAmount ?? 0;
+    double total = searchOrderIdByStatus("0").totalAmount ?? 0;
     var prefs = await SharedPreferences.getInstance();
 
     await prefs.setDouble("totalOrder", total); //
@@ -81,7 +93,19 @@ class OrderController extends BaseController {
       onError: ((dioError) {}),
     );
     orderDetails(result);
-    // debugPrint(orderDetails.toString());
+    update();
+  }
+
+  Future<void> fetchinsertOrder(OrderContent orderContent) async {
+    var overview = _repository.insertOrder(orderContent);
+    int result = 0;
+    await callDataService(
+      overview,
+      onSuccess: (int response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
     update();
   }
 }

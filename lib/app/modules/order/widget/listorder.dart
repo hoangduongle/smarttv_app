@@ -41,6 +41,7 @@ class _ListOrderState extends State<ListOrder> {
         child: InkWell(
           onTap: () {
             naController.current_index = 13.obs;
+            widget.orderController.loadOrderdetails(widget.orderContent.id!);
             naController.orderid = widget.orderContent.id!.obs;
           },
           borderRadius: BorderRadius.circular(10.r),

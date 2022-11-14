@@ -21,7 +21,17 @@ class AlarmController extends BaseController {
 
   late Timer _timer;
   List<AlarmContent> alarmed = [];
+
   AudioPlayer player = AudioPlayer();
+
+  void sort() {
+    // debugPrint("Chua sort $alarmed");
+
+    alarmed.sort(
+      (a, b) => b.date!.compareTo(a.date!),
+    );
+    // debugPrint("Da sort $alarmed");
+  }
 
   @override
   void onInit() async {
@@ -46,12 +56,13 @@ class AlarmController extends BaseController {
   void changeUpdate() {
     String formattedDate =
         DateFormat('dd/MM/yyyy HH:mm:ss').format(DateTime.now());
-
     if (alarmed.isNotEmpty) {
       for (var e in alarmed) {
         if (("${e.date}") == formattedDate) {
           audio();
-          dialogWhenFired();
+          if (Get.isDialogOpen == false) {
+            dialogWhenFired();
+          }
           e.status = false;
           update();
         }
@@ -65,8 +76,8 @@ class AlarmController extends BaseController {
     ByteData bytes = await rootBundle.load(audioasset);
     audiobytes =
         bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
-    debugPrint(audiobytes.toString());
-    debugPrint(bytes.toString());
+    // debugPrint(audiobytes.toString());
+    // debugPrint(bytes.toString());
     player.setVolume(10);
     if (player.state == PlayerState.PLAYING) {
       player.stop();
@@ -170,6 +181,7 @@ class AlarmController extends BaseController {
             "${NumberUtils.time(timeAlarm.day)}/${NumberUtils.time(timeAlarm.month)}/${timeAlarm.year} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00";
       }
     }
+    sort();
     update();
   }
 
@@ -210,6 +222,8 @@ class AlarmController extends BaseController {
           "${NumberUtils.time(timeAlarm.day)}/${NumberUtils.time(timeAlarm.month)}/${timeAlarm.year} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
       status: true,
     ));
+    sort();
+    update();
   }
 
   static firedAlarm() {

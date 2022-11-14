@@ -75,7 +75,7 @@ class AbtractionCard extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 10.h),
                 child: Text(
-                  "${abtractionContent.name}",
+                  "${abtractionContent.name}",//
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17.sp,

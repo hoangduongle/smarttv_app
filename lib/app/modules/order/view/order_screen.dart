@@ -85,33 +85,36 @@ class _OrderScreenState extends State<OrderScreen> {
                 SizedBox(
                   height: 15.h,
                 ),
-                // controller.orderDetails.value.isEmpty
-                //     ? Expanded(
-                //         child: Lottie.asset("assets/lotties/loading.json"))
-                //     :
-                Expanded(
-                    child: RawScrollbar(
-                  thumbColor: AppColors.white,
-                  thumbVisibility: true,
-                  radius: Radius.circular(100.r),
-                  thickness: 10,
-                  controller: scrollController,
-                  child: SizedBox(
-                    width: 870.w,
-                    child: ListView.separated(
+                controller.orderDetails.value.isEmpty
+                    ? Expanded(
+                        child: Lottie.asset("assets/lotties/loading.json"))
+                    : Expanded(
+                        child: RawScrollbar(
+                        thumbColor: AppColors.greyColor,
+                        thumbVisibility: true,
+                        radius: Radius.circular(100.r),
+                        thickness: 10,
                         controller: scrollController,
-                        separatorBuilder: (context, index) => SizedBox(
-                              height: 25.h,
-                            ),
-                        itemCount: controller.orderDetails.value.length,
-                        itemBuilder: (context, index) => ListOrderDetail(
-                              orderDetailContent:
-                                  controller.orderDetails.value[index],
-                              orderController: controller,
-                              index: index,
-                            )),
-                  ),
-                )),
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 15.w),
+                          child: SizedBox(
+                            width: 870.w,
+                            child: ListView.separated(
+                                controller: scrollController,
+                                separatorBuilder: (context, index) => SizedBox(
+                                      height: 25.h,
+                                    ),
+                                itemCount: controller.orderDetails.value.length,
+                                itemBuilder: (context, index) =>
+                                    ListOrderDetail(
+                                      orderDetailContent:
+                                          controller.orderDetails.value[index],
+                                      orderController: controller,
+                                      index: index,
+                                    )),
+                          ),
+                        ),
+                      )),
                 SizedBox(
                   height: 5.h,
                 ),
@@ -171,19 +174,33 @@ class _OrderScreenState extends State<OrderScreen> {
                   width: 170.w,
                   height: 50.h,
                   child: Material(
-                    color: AppColors.focus,
+                    color: controller
+                            .getStatusByOrderId(naController.orderid.toInt())
+                        ? AppColors.green
+                        : AppColors.focus,
                     borderRadius: BorderRadius.circular(10.r),
                     child: InkWell(
-                      focusColor: AppColors.orangeColor,
+                      focusColor: controller
+                              .getStatusByOrderId(naController.orderid.toInt())
+                          ? AppColors.greenFocus
+                          : AppColors.orangeColor,
                       borderRadius: BorderRadius.circular(10.r),
                       onTap: () {
-                        OrderDialog().showOrderDialog(context);
+                        if (controller
+                            .getStatusByOrderId(naController.orderid.toInt())) {
+                          naController.current_index = 5.obs;
+                        } else {
+                          OrderDialog().showOrderDialog(context);
+                        }
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'pay'.tr,
+                            controller.getStatusByOrderId(
+                                    naController.orderid.toInt())
+                                ? 'Đã thanh toán'
+                                : 'pay'.tr,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.sp,
