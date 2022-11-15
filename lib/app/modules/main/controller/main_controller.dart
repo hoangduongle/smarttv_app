@@ -1,7 +1,5 @@
 // ignore_for_file: unrelated_type_equality_checks, unused_import, unused_field, await_only_futures
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

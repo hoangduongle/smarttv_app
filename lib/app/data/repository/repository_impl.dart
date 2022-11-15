@@ -3,6 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
+import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
@@ -14,6 +15,7 @@ import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/dio/dio_provider.dart';
+import 'package:smarttv_app/app/core/model/vnpay.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 
@@ -324,5 +326,48 @@ class RepositoryImpl extends BaseRepository implements Repository {
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  Future<int> insertAlarm(AlarmContent alarmContent) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/roomAlarm";
+    var data = {
+      "booking_Id": alarmContent.booking!.id,
+      "dateTime": alarmContent.date,
+      'status': alarmContent.status,
+    };
+    var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> deleteAlarm(AlarmContent alarmContent) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/roomAlarm/${alarmContent.id}";
+    var dioCall = dioTokenClient.delete(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<VNPayContent> vnPayPayment(int orderId, int orderInfo) {
+    throw UnimplementedError();
   }
 }

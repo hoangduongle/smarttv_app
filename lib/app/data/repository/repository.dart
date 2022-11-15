@@ -1,4 +1,5 @@
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
+import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
@@ -11,6 +12,7 @@ import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
+import 'package:smarttv_app/app/core/model/vnpay.dart';
 
 abstract class Repository {
   Future<List<ImageContent>> getListImageByType(String type);
@@ -24,20 +26,22 @@ abstract class Repository {
   Future<List<AbtractionContent>> getListAbtraction();
 //==============================Order============================================
   Future<List<OrderContent>> getOrderByBookingId(int bookingId);
+  Future<List<OrderDetailContent>> getOrderdetailByOrderId(int orderId);
   Future<int> updateOrderByOrderId(OrderContent orderContent);
   Future<int> insertOrderdetail(OrderDetailContent orderDetailContent);
-  Future<List<OrderDetailContent>> getOrderdetailByOrderId(int orderId);
   Future<int> insertOrder(OrderContent orderContent);
-
 //===============================Booking========================================
   Future<BookingContent> getBookingByRoomId(int roomId);
-//==============================================================================
+//===============================Notification===================================
   Future<List<MessageContent>> getListMessage(int bookingId);
 //==============================================================================
   Future<MomoContent> momoPayment(int orderId, int orderInfo);
+  Future<VNPayContent> vnPayPayment(int orderId, int orderInfo);
+//============================Request Service===================================
   Future<int> requestService(int bookingId, String dateTime, int id,
       String name, String type, String status);
   Future<RequestServiceContent> getRequestService(int bookingId);
-//==============================================================================
-
+//===============================Alarm==========================================
+  Future<int> insertAlarm(AlarmContent alarmContent);
+  Future<int> deleteAlarm(AlarmContent alarmContent);
 }
