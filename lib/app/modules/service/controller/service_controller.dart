@@ -56,6 +56,7 @@ class ServiceController extends BaseController {
   }
 
   void fandB() {
+    serviceCateList.value.clear();
     serviceCateList.value.add(ServiceCategoryContent(
         id: 1, description: "fandb", name: "Thức ăn và đồ uống"));
     for (var element in serviceCateListTMP.value) {

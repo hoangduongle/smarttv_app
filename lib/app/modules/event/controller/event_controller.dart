@@ -38,6 +38,9 @@ class EventController extends BaseController {
   // var isFocus = [false, false, false];
 
   void filterEvent() {
+    eventListOn.value.clear();
+    eventListReady.value.clear();
+    eventListDone.value.clear();
     for (int i = 0; i < eventList.value.length; i++) {
       switch (eventList.value[i].status) {
         case "ON":

@@ -2,16 +2,25 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
+import 'package:smarttv_app/app/modules/abtraction/controller/abtraction_controller.dart';
+import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
 import 'package:smarttv_app/app/modules/home/controller/home_controller.dart';
 import 'package:smarttv_app/app/modules/notification/controller/notification_controller.dart';
+import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
+import 'package:smarttv_app/app/modules/promotion/controller/promotion_controller.dart';
 import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 
@@ -44,16 +53,73 @@ class MainController extends BaseController {
 
   void timingDependencies() {
     _timer = Timer.periodic(
-      const Duration(minutes: 30),
+      const Duration(milliseconds: 1000),
       (timer) {
-        debugPrint("Time to refesh fetch Api");
+        if (DateTime.now().minute == 30 && DateTime.now().second == 1) {
+          debugPrint("${DateTime.now().minute}:${DateTime.now().second}");
+          debugPrint("Time to refesh fetch Api");
+          fetchAllApi();
+        }
       },
     );
   }
 
+  void loadingDialog() {
+    Get.dialog(
+      Dialog(
+        elevation: 100,
+        backgroundColor: AppColors.transparent,
+        child: WillPopScope(
+          onWillPop: () async {
+            return true;
+          },
+          child: Center(
+            child: SizedBox(
+              width: double.infinity.w,
+              height: double.infinity.w,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset("assets/lotties/loadingImage.json", width: 150),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
+  void fetchAllApi() async {
+    debugPrint("Refesh fetch Api");
+    loadingDialog();
 
+    ServiceController serviceController = Get.find();
+    serviceController.onInit();
 
+    FoodandBeverageController foodandBeverageController = Get.find();
+    foodandBeverageController.onInit();
+
+    EventController eventController = Get.find();
+    eventController.onInit();
+
+    PromotionController promotionController = Get.find();
+    promotionController.onInit();
+
+    AbtractionController abtractionController = Get.find();
+    abtractionController.onInit();
+
+    OrderController orderController = Get.find();
+    orderController.onInit();
+    Future.delayed(
+      const Duration(seconds: 3),
+      () => Get.back(),
+    );
+  }
 }
   // var language = "vietnamese".obs;
   // void switchLanguage() {
