@@ -36,7 +36,7 @@ class EventDialog extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.r),
                     child: CachedNetworkImage(
                       imageUrl:
-                          "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
+                          "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg",
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           height: 150.h,

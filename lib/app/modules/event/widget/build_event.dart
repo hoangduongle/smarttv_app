@@ -10,6 +10,7 @@ import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
 import 'package:smarttv_app/app/modules/event/widget/event_dialog.dart';
 
+//ddang ko su dung
 class BuildEvent extends StatefulWidget {
   int indexType;
   int index;
@@ -30,7 +31,6 @@ class BuildEvent extends StatefulWidget {
 }
 
 class _BuildEventState extends State<BuildEvent> {
-  
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -60,12 +60,12 @@ class _BuildEventState extends State<BuildEvent> {
           borderRadius: BorderRadius.circular(10.r),
           child: CachedNetworkImage(
             imageUrl:
-                "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
+                "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg",
             imageBuilder: (context, imageProvider) {
               return Container(
                 margin: EdgeInsets.all(2.r),
                 height: size.height.h,
-                width: 400.w,
+                width: 300.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
                   image: DecorationImage(
@@ -135,7 +135,7 @@ class _BuildEventState extends State<BuildEvent> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ],

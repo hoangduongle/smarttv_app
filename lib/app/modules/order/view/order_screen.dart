@@ -33,7 +33,7 @@ class OrderScreen extends GetView<OrderController> {
               children: [
                 TitleScreen(
                   name:
-                      "Mã Hoá Đơn: #${controller.orders.value.length <= 1 ? controller.orders.value[0].id : naController.orderid}", //${controller.order.value?.id ?? '00000'}
+                      "Mã Hoá Đơn: #${controller.orders.value.length <= 1 ? controller.orders.value.first.id : naController.orderid}", //${controller.order.value?.id ?? '00000'}
                   //${controller.order.value?.id ?? '00000'}${naController.orderid}
                 ),
                 SizedBox(

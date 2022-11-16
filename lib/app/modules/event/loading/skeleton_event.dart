@@ -26,7 +26,7 @@ class SkeletonEvent extends StatelessWidget {
             onFocusChange: (value) {},
             child: ListView.builder(
               primary: true,
-              itemCount: 3,
+              itemCount: 5,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Padding(
@@ -40,7 +40,7 @@ class SkeletonEvent extends StatelessWidget {
                       children: [
                         Container(
                           height: size.height.h,
-                          width: 400.w,
+                          width: 300.w,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(10.r),

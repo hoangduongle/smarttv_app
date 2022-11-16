@@ -72,12 +72,15 @@ class OrderController extends BaseController {
       onError: ((dioError) {}),
     );
     orders(result);
-
     double total = searchOrderIdByStatus("0").totalAmount ?? 0;
     var prefs = await SharedPreferences.getInstance();
-
     await prefs.setDouble("totalOrder", total); //
     // debugPrint("Order new Total: $total");
+
+    if (orders.value.length <= 1) {
+      fetchOrderDetails(orders.value.first.id!);
+    }
+
     update();
   }
 

@@ -60,7 +60,7 @@ class MayjorEachService extends StatelessWidget {
                   serviceContent.name.toString(), //<------ set controller
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 14.sp,
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.normal,
                       color: AppColors.white),
                 ),

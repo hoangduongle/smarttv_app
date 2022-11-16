@@ -73,7 +73,6 @@ class BuildTaxi extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                    // width: size.width.w,
                     child: Container(
                   padding: EdgeInsets.symmetric(vertical: 20.h),
                   child: Column(
@@ -109,8 +108,8 @@ class BuildTaxi extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            // "Lựa chọn",
-                            serviceContent.status! ? "Đã lựa chọn" : "Lựa chọn",
+                            "Đã lựa chọn",
+                            //: "Lựa chọn",
                             style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 15.sp,

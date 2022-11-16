@@ -8,6 +8,7 @@ import 'package:smarttv_app/app/widget/loading_dialog.dart';
 class TaxiController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
   Rx<List<ServiceContent>> taxiContent = Rx<List<ServiceContent>>([]);
+
   bool checkbox = false;
 
   @override

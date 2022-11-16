@@ -47,7 +47,7 @@ class ListOrderDetail extends StatelessWidget {
                             left: naController.select ? 15.w : 10.w),
                         duration: const Duration(milliseconds: 500)),
                     SizedBox(
-                      width: 150.w,
+                      width: 160.w,
                       child: Text(
                         "${orderDetailContent.service?.name}",
                         maxLines: 2,
@@ -60,7 +60,7 @@ class ListOrderDetail extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  width: naController.select ? 35.w : 65.w,
+                  width: naController.select ? 25.w : 55.w,
                 ),
                 SizedBox(
                   width: 30.w,
@@ -73,7 +73,7 @@ class ListOrderDetail extends StatelessWidget {
                 ),
                 AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
-                    width: naController.select ? 100.w : 130.w),
+                    width: naController.select ? 100.w : 135.w),
                 SizedBox(
                   width: 92.w,
                   child: Text(

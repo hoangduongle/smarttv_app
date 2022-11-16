@@ -65,7 +65,8 @@ class _EventScreenState extends State<EventScreen> {
                                           child: _buildEvent(
                                               0,
                                               index,
-                                              controller.eventListOn.value[index],
+                                              controller
+                                                  .eventListOn.value[index],
                                               controller,
                                               scrollController,
                                               size),
@@ -88,9 +89,8 @@ class _EventScreenState extends State<EventScreen> {
                                     width: size.width.w,
                                     height: 150.h,
                                     child: ListView.builder(
-                                      primary: true,
-                                      itemCount:
-                                          controller.eventListReady.value.length,
+                                      itemCount: controller
+                                          .eventListReady.value.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         return Padding(
@@ -98,7 +98,8 @@ class _EventScreenState extends State<EventScreen> {
                                           child: _buildEvent(
                                               1,
                                               index,
-                                              controller.eventListReady.value[index],
+                                              controller
+                                                  .eventListReady.value[index],
                                               controller,
                                               scrollController,
                                               size),
@@ -131,7 +132,8 @@ class _EventScreenState extends State<EventScreen> {
                                           child: _buildEvent(
                                               2,
                                               index,
-                                              controller.eventListDone.value[index],
+                                              controller
+                                                  .eventListDone.value[index],
                                               controller,
                                               scrollController,
                                               size),
@@ -187,14 +189,14 @@ class _EventScreenState extends State<EventScreen> {
           borderRadius: BorderRadius.circular(10.r),
           child: CachedNetworkImage(
             imageUrl:
-                "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
+                "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg",
             imageBuilder: (context, imageProvider) {
               return Container(
                 margin: EdgeInsets.all(2.r),
                 height: size.height.h,
-                width: 400.w,
+                width: 300.w,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
+                  borderRadius: BorderRadius.circular(11.r),
                   image: DecorationImage(
                     image: imageProvider,
                     fit: BoxFit.fill,
@@ -204,10 +206,10 @@ class _EventScreenState extends State<EventScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      height: 70.h,
+                      height: 50.h,
                       width: size.width.w,
                       decoration: BoxDecoration(
-                          color: AppColors.black.withOpacity(0.8),
+                          color: AppColors.black.withOpacity(0.7),
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(10.r),
                               bottomRight: Radius.circular(10.r))),
@@ -216,7 +218,7 @@ class _EventScreenState extends State<EventScreen> {
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 10.w, vertical: 4.h),
+                                horizontal: 10.w, vertical: 5.h),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -228,23 +230,25 @@ class _EventScreenState extends State<EventScreen> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
-                                  height: 10.h,
+                                  height: 8.h,
                                 ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Icon(FluentIcons.clock_16_regular,
                                             color: AppColors.white,
-                                            size: 16.sp),
+                                            size: 11.sp),
                                         Text(
                                           "Từ ${newsContent.startTime} - ${newsContent.startDate}",
                                           style: AppStyles.h4.copyWith(
                                               color: AppColors.greyColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.bold),
+                                              fontSize: 11.sp,
+                                              fontWeight: FontWeight.normal),
                                         ),
                                       ],
                                     ),
@@ -252,16 +256,16 @@ class _EventScreenState extends State<EventScreen> {
                                       children: [
                                         Icon(FluentIcons.eye_20_regular,
                                             color: AppColors.white,
-                                            size: 16.sp),
+                                            size: 11.sp),
                                         Text(
                                           newsContent.numberOfView.toString(),
                                           style: AppStyles.h4.copyWith(
                                               color: AppColors.greyColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.bold),
+                                              fontSize: 11.sp,
+                                              fontWeight: FontWeight.normal),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ],

@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
@@ -24,11 +25,13 @@ class NotificationController extends BaseController {
 
   void refreshMessage() {
     _timer = Timer.periodic(
-      const Duration(minutes: 5),
+      const Duration(minutes: 4),
       (timer) async {
+        // debugPrint("${DateTime.now().minute} ${DateTime.now().second}");
         final prefs = await SharedPreferences.getInstance();
         var bookingId = await prefs.getInt("bookingId");
         fetchMessages(bookingId!);
+        debugPrint("Auto refersh Notification");
         update();
       },
     );

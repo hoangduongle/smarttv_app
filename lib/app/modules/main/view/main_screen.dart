@@ -227,7 +227,7 @@ class _MainScreenState extends State<MainScreen> {
                   noController.messages.value.isEmpty
                       ? Align()
                       : Align(
-                          alignment: Alignment(0.725.w, -0.905.h), //0.74 -0.945
+                          alignment: Alignment(0.721.w, -0.905.h), //0.74 -0.945
                           child: Container(
                             width: 12,
                             height: 9,
