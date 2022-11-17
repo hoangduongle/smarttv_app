@@ -209,9 +209,9 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                         controller.hours.toInt(),
                                         controller.minutes.toInt());
                                   } else {
-                                    // controller.sorttt();
-                                    AlarmDialogWidget()
-                                        .showAlarmOffDialog(context);
+                                    controller.dialogWhenFired("time");
+                                    // AlarmDialogWidget()
+                                    //     .showAlarmOffDialog(context);
                                   }
                                 },
                                 child: Row(

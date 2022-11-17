@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
+import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class PromotionController extends BaseController {
@@ -14,6 +16,7 @@ class PromotionController extends BaseController {
   }
 
   Future<void> fetchNewsPromotion() async {
+    promotionList.value.clear();
     var overview = _repository.getListNewsByType("promotion");
     List<NewsContent> result = [];
 
@@ -25,5 +28,6 @@ class PromotionController extends BaseController {
       onError: ((dioError) {}),
     );
     promotionList(result);
+    debugPrint("Promotion ${DateTimeUtils.currentDate()}");
   }
 }

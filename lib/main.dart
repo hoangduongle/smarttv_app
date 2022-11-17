@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
     String initialRoute = AppPages.INITIAL;
     // bool welcome = true;
     // if (welcome) {
-    //   initiaRoute = Routes.WELCOME;
+    //   initialRoute = Routes.WELCOME;
     // }
 
     return ScreenUtilInit(

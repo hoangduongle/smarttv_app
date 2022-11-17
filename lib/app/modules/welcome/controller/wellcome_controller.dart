@@ -45,13 +45,16 @@ class WellcomeController extends BaseController {
   }
 
   void loadTitle() {
-    String currentDay = DateFormat('dd/MM/yyyy').format(DateTime.now());
+    //chỉnh lại so sánh day month không so sánh thêm year
+    String currentDay = DateFormat('dd/MM').format(DateTime.now());
     nameCus =
         "${bookingContent.value?.customer?.gender == 0 ? 'Chị' : 'Anh'} ${bookingContent.value?.customer?.lastName}";
     title = welcomeContent + nameCus;
-    if (bookingContent.value?.customer?.birthDate == currentDay) {
+    String? birthday =
+        bookingContent.value?.customer?.birthDate?.substring(0, 5);
+    if (birthday == currentDay) {
       title = birthdayContent + nameCus;
-       audio();
+      audio();
     }
     content =
         "Chúc ${bookingContent.value?.customer?.gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";

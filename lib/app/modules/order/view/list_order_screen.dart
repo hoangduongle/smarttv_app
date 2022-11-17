@@ -2,11 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/order/widget/listorder.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/order/widget/order_dialog.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class ListOrderScreen extends StatefulWidget {
@@ -34,7 +36,7 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                   name: "Hoá đơn",
                 ),
                 SizedBox(
-                  height: 30.h,
+                  height: 10.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -75,7 +77,7 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 15.h,
+                  height: 10.h,
                 ),
                 // controller.orders.value.isEmpty
                 //     ? Expanded(
@@ -83,11 +85,10 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                 //             width: 200.w))
                 //     :
                 Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
                   child: SizedBox(
                     width: 900.w,
-                    height: 380.h,
+                    height: 300.h,
                     child: RawScrollbar(
                       thumbColor: AppColors.greyColor,
                       thumbVisibility: true,
@@ -108,6 +109,86 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                           }),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 7.h,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Container(),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text('totalcost'.tr,
+                            style: AppStyles.h4.copyWith(
+                                fontSize: 20.sp,
+                                color: AppColors.title,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Container(),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text("${NumberUtils.vnd(controller.total)}",
+                            style: AppStyles.h4.copyWith(
+                                fontSize: 20.sp,
+                                color: AppColors.white,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 170.w,
+                  height: 50.h,
+                  child: Material(
+                    color:
+                        controller.isPayall ? AppColors.green : AppColors.focus,
+                    borderRadius: BorderRadius.circular(10.r),
+                    child: InkWell(
+                      focusColor: controller
+                              .getStatusByOrderId(naController.orderid.toInt())
+                          ? AppColors.greenFocus
+                          : AppColors.orangeColor,
+                      borderRadius: BorderRadius.circular(10.r),
+                      onTap: () {
+                        controller.isPayall
+                            ? null
+                            : OrderDialog().showOrderDialog(context);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            controller.isPayall
+                                ? 'Đã thanh toán'
+                                : 'Thanh toán tất cả',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.sp,
+                                color: AppColors.black),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
                 ),
               ],
             ),

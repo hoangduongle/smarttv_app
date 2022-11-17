@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
+import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class EventController extends BaseController {
@@ -55,6 +57,7 @@ class EventController extends BaseController {
         default:
       }
     }
+    debugPrint("Event ${DateTimeUtils.currentDate()}");
 
     // DateTime currentDay = DateTime.now();
     // for (int i = 0; i < eventList.value.length; i++) {

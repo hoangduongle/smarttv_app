@@ -1,10 +1,14 @@
 // ignore_for_file: unused_element, unused_local_variable
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
+import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
@@ -245,23 +249,13 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<int> insertOrder(OrderContent orderContent) async {
+  Future<int> insertOrderRequest(OrderRequest orderRequest) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/order";
-    var data = {
-      "booking_Id": orderContent.booking!.id,
-      "createBy": orderContent.createBy,
-      'createDate': orderContent.createDate,
-      "id": orderContent.id,
-      "lastModifyBy": orderContent.lastModifyBy,
-      "status": orderContent.status,
-      "totalAmount": orderContent.totalAmount,
-      "updateDate": orderContent.updateDate,
-    };
-    var fromData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    var endpoint = "${DioProvider.baseUrl}/orderService";
+    var data = orderRequest.toJson();
+    var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
         return response.statusCode ?? 0;

@@ -38,9 +38,7 @@ class OrderContent {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
-    if (this.booking != null) {
-      data['booking'] = this.booking!.toJson();
-    }
+    data['booking_Id'] = this.booking!.id;
     data['totalAmount'] = this.totalAmount;
     data['createDate'] = this.createDate;
     data['updateDate'] = this.updateDate;

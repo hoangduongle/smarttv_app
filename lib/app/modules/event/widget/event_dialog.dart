@@ -26,7 +26,7 @@ class EventDialog extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: SizedBox(
-              width: 690.w,
+              width: 560.w,
               child: Column(
                 children: [
                   SizedBox(
@@ -39,8 +39,8 @@ class EventDialog extends StatelessWidget {
                           "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg",
                       imageBuilder: (context, imageProvider) {
                         return Container(
-                          height: 150.h,
-                          width: 480.w,
+                          height: 200.h,
+                          width: 400.w,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5.r),
                             image: DecorationImage(
@@ -59,56 +59,60 @@ class EventDialog extends StatelessWidget {
                       newsContent.newName.toString(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 20.sp,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
-                          color: AppColors.orangeColor.withOpacity(.8)),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 100.w),
-                    child: Row(
-                      children: [
-                        Icon(
-                          FluentIcons.calendar_ltr_12_regular,
-                          color: AppColors.greyColor,
-                          size: 20.sp,
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        Text(
-                          "${newsContent.startDate} - ${newsContent.endDate}",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.normal,
-                              color: AppColors.greyColor),
-                        ),
-                      ],
+                          color: AppColors.white),
                     ),
                   ),
                   SizedBox(
-                    height: 10.w,
+                    height: 5.w,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 100.w),
+                    padding: EdgeInsets.only(left: 78.w),
                     child: Row(
                       children: [
-                        Icon(
-                          FluentIcons.clock_12_regular,
-                          color: AppColors.greyColor,
-                          size: 20.sp,
+                        Row(
+                          children: [
+                            Icon(
+                              FluentIcons.calendar_ltr_12_regular,
+                              color: AppColors.greyColor,
+                              size: 20.sp,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Text(
+                              "${newsContent.startDate} - ${newsContent.endDate}",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.normal,
+                                  color: AppColors.greyColor),
+                            ),
+                          ],
                         ),
                         SizedBox(
-                          width: 10.w,
+                          width: 85.w,
                         ),
-                        Text(
-                          "${newsContent.startTime} - ${newsContent.endTime}",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.normal,
-                              color: AppColors.greyColor),
+                        Row(
+                          children: [
+                            Icon(
+                              FluentIcons.clock_12_regular,
+                              color: AppColors.greyColor,
+                              size: 20.sp,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Text(
+                              "${newsContent.startTime} - ${newsContent.endTime}",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.normal,
+                                  color: AppColors.greyColor),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -117,27 +121,23 @@ class EventDialog extends StatelessWidget {
                     height: 10.w,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 100.w),
-                    width: double.infinity.w,
+                    width: 400.w,
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(color: AppColors.greyColor))),
                     child: Text(
                       "Thông tin vé",
-                      textAlign: TextAlign.left,
+                      textAlign: TextAlign.start,
                       style: TextStyle(
                           fontSize: 15.sp,
                           fontWeight: FontWeight.bold,
                           color: AppColors.title),
                     ),
                   ),
-                  Divider(
-                    indent: 100.w,
-                    endIndent: 150.w,
-                    thickness: 1,
-                    color: AppColors.greyColor,
-                  ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 100.w),
-                    width: double.infinity.w,
-                    height: 35.h,
+                    padding: EdgeInsets.only(top: 10.h),
+                    width: 400.w,
+                    height: 25.h,
                     child: Text(
                       "${newsContent.ticketInformation}",
                       maxLines: 2,
@@ -152,26 +152,24 @@ class EventDialog extends StatelessWidget {
                     height: 10.w,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 100.w),
-                    width: double.infinity.w,
+                    width: 400.w,
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(color: AppColors.greyColor))),
                     child: Text(
                       "Mô tả sự kiện",
-                      textAlign: TextAlign.left,
+                      textAlign: TextAlign.start,
                       style: TextStyle(
                           fontSize: 15.sp,
                           fontWeight: FontWeight.bold,
                           color: AppColors.title),
                     ),
                   ),
-                  Divider(
-                    indent: 100.w,
-                    endIndent: 150.w,
-                    thickness: 1,
-                    color: AppColors.greyColor,
+                  SizedBox(
+                    height: 10.w,
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 100.w),
-                    width: double.infinity.w,
+                  SizedBox(
+                    width: 400.w,
                     height: 70.h,
                     child: Text(
                       "${newsContent.description}",
@@ -188,7 +186,7 @@ class EventDialog extends StatelessWidget {
                   ),
                   NavigatorBack(
                     autoFocus: true,
-                  )
+                  ),
                 ],
               )),
         );

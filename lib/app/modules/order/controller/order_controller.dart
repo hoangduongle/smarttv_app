@@ -1,9 +1,11 @@
 // ignore_for_file: await_only_futures, unused_local_variable
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
+import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class OrderController extends BaseController {
@@ -12,6 +14,36 @@ class OrderController extends BaseController {
   Rx<List<OrderDetailContent>> orderDetails = Rx<List<OrderDetailContent>>([]);
   Rx<List<OrderContent>> orders = Rx<List<OrderContent>>([]);
   int result = 0;
+
+  get total {
+    String x;
+    double y = 0;
+    try {
+      for (int i = 0; i < orders.value.length; i++) {
+        if (orders.value[i].status == "0") {
+          y += orders.value[i].totalAmount!;
+        }
+      }
+    } catch (e) {
+      y;
+    }
+    return y;
+  }
+
+  get isPayall {
+    bool x = true;
+    try {
+      for (int i = 0; i < orders.value.length; i++) {
+        if (orders.value[i].status == "0") {
+          x = false;
+          break;
+        }
+      }
+    } catch (e) {
+      x;
+    }
+    return x;
+  }
 
   double getOrderTotal(int id) {
     double result = 0;
@@ -35,7 +67,7 @@ class OrderController extends BaseController {
   }
 
   bool getStatusByOrderId(int orderId) {
-    //0 pay 1 unpay
+    //0 false 1 true
     bool result = false;
     // debugPrint(orders.value.toList().toString());
     for (int i = 0; i < orders.value.length; i++) {
@@ -52,7 +84,7 @@ class OrderController extends BaseController {
   void onInit() async {
     final prefs = await SharedPreferences.getInstance();
     var bookingId = await prefs.getInt("bookingId");
-    await fetchOrder(bookingId ?? 0);
+    fetchOrder(bookingId ?? 0);
     super.onInit();
   }
 
@@ -80,6 +112,7 @@ class OrderController extends BaseController {
     if (orders.value.length <= 1) {
       fetchOrderDetails(orders.value.first.id!);
     }
+    debugPrint("Order ${DateTimeUtils.currentDate()}");
 
     update();
   }
@@ -98,16 +131,16 @@ class OrderController extends BaseController {
     update();
   }
 
-  Future<void> fetchinsertOrder(OrderContent orderContent) async {
-    var overview = _repository.insertOrder(orderContent);
-    int result = 0;
-    await callDataService(
-      overview,
-      onSuccess: (int response) {
-        result = response;
-      },
-      onError: ((dioError) {}),
-    );
-    update();
-  }
+  // Future<void> fetchinsertOrder(OrderContent orderContent) async {
+  //   var overview = _repository.insertOrder(orderContent);
+  //   int result = 0;
+  //   await callDataService(
+  //     overview,
+  //     onSuccess: (int response) {
+  //       result = response;
+  //     },
+  //     onError: ((dioError) {}),
+  //   );
+  //   update();
+  // }
 }

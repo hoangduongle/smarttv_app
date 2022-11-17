@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/widget/skeleton_loading.dart';
@@ -21,7 +22,7 @@ class DialogCart extends StatelessWidget {
     return Container();
   }
 
-  void showCustomeDialog(
+  void showCartDialog(
       BuildContext context, ServiceContent serviceContent, int quantity) {
     CartController caController = Get.find();
     CartdialogController controller = Get.find();
@@ -176,6 +177,146 @@ class DialogCart extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void showFailDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return Dialog(
+          elevation: 5,
+          backgroundColor: AppColors.navigabackground,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+          child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              width: 460.w,
+              height: 300.h,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Lottie.asset("assets/lotties/uncheck.json", width: 130),
+                  Container(
+                    padding: EdgeInsets.only(top: 10.h),
+                    width: 800.w,
+                    child: Text(
+                      "Xin lỗi đã mang trải nghiệm không tốt đến quý khách",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.title),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 00.h),
+                    width: 800.w,
+                    child: Text(
+                      "Hệ thống gặp sự cố, xin quý khách thực hiện lại.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.greyColor),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  SizedBox(
+                    width: 100.w,
+                    height: 40.h,
+                    child: Material(
+                      color: AppColors.green,
+                      borderRadius: BorderRadius.circular(10.r),
+                      elevation: 0,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: InkWell(
+                        autofocus: true,
+                        focusColor: AppColors.greenFocus,
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'back'.tr,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.sp,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+        );
+      },
+    );
+  }
+
+  void showThanksDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return Dialog(
+          elevation: 5,
+          backgroundColor: AppColors.navigabackground,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+          child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              width: 460.w,
+              height: 250.h,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Lottie.asset("assets/lotties/done.json", width: 130),
+                  Container(
+                    padding: EdgeInsets.only(top: 10.h),
+                    width: 800.w,
+                    child: Text(
+                      "Yêu cầu của quý khách đang được chuẩn bị",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.title),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 00.h),
+                    width: 800.w,
+                    child: Text(
+                      "Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.greyColor),
+                    ),
+                  ),
+                ],
+              )),
+        );
+      },
     );
   }
 }

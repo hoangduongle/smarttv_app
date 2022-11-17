@@ -16,6 +16,7 @@ class CartScreen extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    ScrollController scrollControllerCart = ScrollController();
     return Container(
       color: AppColors.background,
       child: Column(
@@ -40,6 +41,16 @@ class CartScreen extends GetView<CartController> {
                       width: 80.w,
                     ),
                     Text(
+                      'STT.',
+                      style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title),
+                    ),
+                    SizedBox(
+                      width: 30.w,
+                    ),
+                    Text(
                       'namefood'.tr,
                       style: AppStyles.h4.copyWith(
                           fontWeight: FontWeight.bold,
@@ -47,7 +58,7 @@ class CartScreen extends GetView<CartController> {
                           color: AppColors.title),
                     ),
                     SizedBox(
-                      width: 270.w,
+                      width: 200.w,
                     ),
                     Text('unitprice'.tr,
                         style: AppStyles.h4.copyWith(
@@ -89,19 +100,28 @@ class CartScreen extends GetView<CartController> {
             () => SizedBox(
               width: (size.width * .9).w,
               height: 180.h,
-              child: ListView.separated(
-                  physics: const ScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: controller.services.length,
-                  separatorBuilder: (context, index) => SizedBox(
-                        height: 20.h,
-                      ),
-                  itemBuilder: (context, index) => CartService(
-                      controller: controller,
-                      serviceContent: controller.services.keys.toList()[index],
-                      quantity: controller.services.values.toList()[index],
-                      index: index)),
+              child: RawScrollbar(
+                controller: scrollControllerCart,
+                thumbColor: AppColors.title,
+                thumbVisibility: true,
+                radius: Radius.circular(100.r),
+                thickness: 10,
+                child: ListView.separated(
+                    controller: scrollControllerCart,
+                    physics: const ScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: controller.services.length,
+                    separatorBuilder: (context, index) => SizedBox(
+                          height: 20.h,
+                        ),
+                    itemBuilder: (context, index) => CartService(
+                        controller: controller,
+                        serviceContent:
+                            controller.services.keys.toList()[index],
+                        quantity: controller.services.values.toList()[index],
+                        index: index)),
+              ),
             ),
           ),
           Padding(
@@ -173,11 +193,7 @@ class CartScreen extends GetView<CartController> {
                     child: InkWell(
                       focusColor: AppColors.orangeColor,
                       onTap: () {
-                        if (controller.sizeService > 0) {
-                          controller.addtoBill();
-                        } else {
-                          Get.back();
-                        }
+                        controller.addNewOrder();
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -258,29 +274,42 @@ class CartService extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.r),
           child: InkWell(
             onTap: () {
-              DialogCart().showCustomeDialog(context, serviceContent, quantity);
+              DialogCart().showCartDialog(context, serviceContent, quantity);
             },
             autofocus: index == 0 ? true : false,
             borderRadius: BorderRadius.circular(10.r),
             focusColor: AppColors.focus,
             child: Row(
               children: [
-                //NAME
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: 15.w),
                   child: SizedBox(
-                    width: 200.w,
+                    width: 30.w,
                     child: Text(
-                      serviceContent.name!,
-                      maxLines: 2,
-                      textAlign: TextAlign.start,
+                      (index + 1).toString(),
+                      maxLines: 1,
+                      textAlign: TextAlign.center,
                       style: AppStyles.h5.copyWith(
                           color: AppColors.white, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
                 SizedBox(
-                  width: 140.w,
+                  width: 40.w,
+                ),
+                //NAME
+                SizedBox(
+                  width: 200.w,
+                  child: Text(
+                    serviceContent.name!,
+                    maxLines: 2,
+                    textAlign: TextAlign.start,
+                    style: AppStyles.h5.copyWith(
+                        color: AppColors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  width: 65.w,
                 ),
                 //PRICE
                 SizedBox(
@@ -293,7 +322,7 @@ class CartService extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 115.w,
+                  width: 120.w,
                 ),
                 //QUANTIY
                 SizedBox(
@@ -313,7 +342,7 @@ class CartService extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 115.w,
+                  width: 105.w,
                 ),
                 //TOTAL
                 SizedBox(

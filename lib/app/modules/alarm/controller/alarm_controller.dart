@@ -23,6 +23,7 @@ class AlarmController extends BaseController {
   List<AlarmContent> alarmed = [];
 
   AudioPlayer player = AudioPlayer();
+  AudioCache musicCache = AudioCache();
 
   void sort() {
     // debugPrint("Chua sort $alarmed");
@@ -61,7 +62,7 @@ class AlarmController extends BaseController {
         if (("${e.date}") == formattedDate) {
           audio();
           if (Get.isDialogOpen == false) {
-            dialogWhenFired();
+            dialogWhenFired(e.date!.substring(11, 16));
           }
           e.status = false;
           update();
@@ -76,18 +77,23 @@ class AlarmController extends BaseController {
     ByteData bytes = await rootBundle.load(audioasset);
     audiobytes =
         bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
-    // debugPrint(audiobytes.toString());
-    // debugPrint(bytes.toString());
     player.setVolume(10);
+
     if (player.state == PlayerState.PLAYING) {
       player.stop();
-      await player.playBytes(audiobytes);
+      musicCache = AudioCache(prefix: "assets/audios/");
+      player = await musicCache.loop("alarm.mp3");
+      // await player.playBytes(audiobytes);
     } else {
-      await player.playBytes(audiobytes);
+      musicCache = AudioCache(prefix: "assets/audios/");
+      player = await musicCache.loop("alarm.mp3");
+      // await player.playBytes(audiobytes);
     }
   }
 
-  void dialogWhenFired() {
+  void dialogWhenFired(String time) {
+    String formattedDate =
+        DateFormat('dd/MM/yyyy HH:mm:ss').format(DateTime.now());
     Get.dialog(
       Dialog(
         elevation: 2,
@@ -99,12 +105,24 @@ class AlarmController extends BaseController {
             return false;
           },
           child: SizedBox(
-            width: 150.w,
+            width: 100.w,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Lottie.asset("assets/lotties/alarm.json", width: 100),
+                Lottie.asset("assets/lotties/alarm.json", width: 80.w),
+                SizedBox(
+                  width: 120.w,
+                  height: 40.h,
+                  child: Text(
+                    time,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.sp),
+                  ),
+                ),
                 SizedBox(
                   height: 20.h,
                 ),
@@ -234,57 +252,57 @@ class AlarmController extends BaseController {
     alarmed.removeWhere((element) => element.id == id);
   }
 
-  void openDialog() {
-    Get.dialog(Dialog(
-      elevation: 2,
-      backgroundColor: AppColors.navigabackground,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-      child: SizedBox(
-        width: 150.w,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Lottie.asset("assets/lotties/alarm.json", width: 100),
-            SizedBox(
-              height: 20.h,
-            ),
-            SizedBox(
-              width: 100.w,
-              height: 30.h,
-              child: Material(
-                color: AppColors.focus,
-                borderRadius: BorderRadius.circular(10.r),
-                child: InkWell(
-                  autofocus: true,
-                  focusColor: AppColors.orangeColor,
-                  borderRadius: BorderRadius.circular(10.r),
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Tắt báo thức'.tr,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.sp,
-                            color: AppColors.black),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-          ],
-        ),
-      ),
-    ));
-  }
+  // void openDialog() {
+  //   Get.dialog(Dialog(
+  //     elevation: 2,
+  //     backgroundColor: AppColors.navigabackground,
+  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+  //     child: SizedBox(
+  //       width: 150.w,
+  //       child: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: [
+  //           Lottie.asset("assets/lotties/alarm.json", width: 100),
+  //           SizedBox(
+  //             height: 20.h,
+  //           ),
+  //           SizedBox(
+  //             width: 100.w,
+  //             height: 30.h,
+  //             child: Material(
+  //               color: AppColors.focus,
+  //               borderRadius: BorderRadius.circular(10.r),
+  //               child: InkWell(
+  //                 autofocus: true,
+  //                 focusColor: AppColors.orangeColor,
+  //                 borderRadius: BorderRadius.circular(10.r),
+  //                 onTap: () {
+  //                   Get.back();
+  //                 },
+  //                 child: Row(
+  //                   mainAxisAlignment: MainAxisAlignment.center,
+  //                   children: [
+  //                     Text(
+  //                       'Tắt báo thức'.tr,
+  //                       style: TextStyle(
+  //                           fontWeight: FontWeight.bold,
+  //                           fontSize: 15.sp,
+  //                           color: AppColors.black),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //           SizedBox(
+  //             height: 20.h,
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   ));
+  // }
 
   void incrementHours() {
     hours++;

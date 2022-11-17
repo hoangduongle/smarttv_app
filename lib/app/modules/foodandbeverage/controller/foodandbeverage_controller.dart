@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
+import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class FoodandBeverageController extends BaseController {
@@ -32,9 +34,11 @@ class FoodandBeverageController extends BaseController {
   void onInit() async {
     _loadData();
     // await fetchImage("img_fandb");
-    await fetchServicesFood();
-    await fetchServicesDrink();
     createMajor();
+    var futures = await Future.wait([
+      fetchServicesFood(),
+      fetchServicesDrink(),
+    ]);
     filter();
     super.onInit();
   }
@@ -69,6 +73,7 @@ class FoodandBeverageController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceListFood(result);
+    debugPrint("Food ${DateTimeUtils.currentDate()}");
   }
 
   Future<void> fetchServicesDrink() async {
@@ -82,6 +87,7 @@ class FoodandBeverageController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceListDrink(result);
+    debugPrint("Drink ${DateTimeUtils.currentDate()}");
   }
 
   void createMajor() {

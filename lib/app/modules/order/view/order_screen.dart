@@ -33,7 +33,7 @@ class OrderScreen extends GetView<OrderController> {
               children: [
                 TitleScreen(
                   name:
-                      "Mã Hoá Đơn: #${controller.orders.value.length <= 1 ? controller.orders.value.first.id : naController.orderid}", //${controller.order.value?.id ?? '00000'}
+                      "Mã Hoá Đơn: #${controller.orders.value.length == 1 ? controller.orders.value.first.id : naController.orderid}", //${controller.order.value?.id ?? '00000'}
                   //${controller.order.value?.id ?? '00000'}${naController.orderid}
                 ),
                 SizedBox(
@@ -171,20 +171,26 @@ class OrderScreen extends GetView<OrderController> {
                   width: 170.w,
                   height: 50.h,
                   child: Material(
-                    color: controller
-                            .getStatusByOrderId(naController.orderid.toInt())
+                    color: controller.getStatusByOrderId(
+                            controller.orders.value.length <= 1
+                                ? controller.orders.value.first.id!
+                                : naController.orderid.toInt())
                         ? AppColors.green
                         : AppColors.focus,
                     borderRadius: BorderRadius.circular(10.r),
                     child: InkWell(
-                      focusColor: controller
-                              .getStatusByOrderId(naController.orderid.toInt())
+                      focusColor: controller.getStatusByOrderId(
+                              controller.orders.value.length <= 1
+                                  ? controller.orders.value.first.id!
+                                  : naController.orderid.toInt())
                           ? AppColors.greenFocus
                           : AppColors.orangeColor,
                       borderRadius: BorderRadius.circular(10.r),
                       onTap: () {
-                        if (controller
-                            .getStatusByOrderId(naController.orderid.toInt())) {
+                        if (controller.getStatusByOrderId(
+                            controller.orders.value.length <= 1
+                                ? controller.orders.value.first.id!
+                                : naController.orderid.toInt())) {
                           naController.current_index = 5.obs;
                         } else {
                           OrderDialog().showOrderDialog(context);
@@ -195,7 +201,9 @@ class OrderScreen extends GetView<OrderController> {
                         children: [
                           Text(
                             controller.getStatusByOrderId(
-                                    naController.orderid.toInt())
+                                    controller.orders.value.length <= 1
+                                        ? controller.orders.value.first.id!
+                                        : naController.orderid.toInt())
                                 ? 'Đã thanh toán'
                                 : 'pay'.tr,
                             style: TextStyle(

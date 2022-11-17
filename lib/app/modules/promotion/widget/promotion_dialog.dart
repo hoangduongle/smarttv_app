@@ -21,8 +21,7 @@ class PromotionDialog extends StatelessWidget {
       barrierDismissible: false,
       builder: (context) {
         // Size size = MediaQuery.of(context).size;
-        List<String> arrDescription =
-            newsContent.description!.split("+");
+        List<String> arrDescription = newsContent.description!.split("+");
         return Dialog(
           elevation: 2,
           backgroundColor: AppColors.background,
@@ -152,21 +151,28 @@ class PromotionDialog extends StatelessWidget {
                             ),
                             for (var description in arrDescription)
                               if (description != '')
-                                Padding(
-                                  padding: EdgeInsets.only(top: 6.h),
-                                  child: Text(
-                                    "+ $description",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.normal,
-                                        color: AppColors.greyColor),
+                                Container(
+                                  width: 360.w,
+                                  // height: 40.h,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 6.h),
+                                    child: Text(
+                                      "+ $description",
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.normal,
+                                          color: AppColors.greyColor),
+                                    ),
                                   ),
                                 ),
                           ],
                         ),
                       ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 15.h,
                   ),
                   NavigatorBack(),
                 ],

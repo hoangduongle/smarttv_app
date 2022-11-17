@@ -1,8 +1,11 @@
 // ignore_for_file: must_call_super, avoid_print, unused_field
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
+import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class ServiceController extends BaseController {
@@ -51,7 +54,7 @@ class ServiceController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceCateListTMP(result);
-    // debugPrint(serviceCateListTMP.value.length.toString());
+    debugPrint("Service ${DateTimeUtils.currentDate()}");
     fandB();
   }
 

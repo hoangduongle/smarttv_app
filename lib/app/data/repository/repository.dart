@@ -1,6 +1,7 @@
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
+import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
@@ -29,7 +30,7 @@ abstract class Repository {
   Future<List<OrderDetailContent>> getOrderdetailByOrderId(int orderId);
   Future<int> updateOrderByOrderId(OrderContent orderContent);
   Future<int> insertOrderdetail(OrderDetailContent orderDetailContent);
-  Future<int> insertOrder(OrderContent orderContent);
+  Future<int> insertOrderRequest(OrderRequest orderRequest);
 //===============================Booking========================================
   Future<BookingContent> getBookingByRoomId(int roomId);
 //===============================Notification===================================

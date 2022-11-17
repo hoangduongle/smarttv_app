@@ -95,12 +95,11 @@ class MainController extends BaseController {
   void fetchAllApi() async {
     debugPrint("Refesh fetch Api");
     loadingDialog();
+    FoodandBeverageController foodandBeverageController = Get.find();
+    foodandBeverageController.onInit();
 
     ServiceController serviceController = Get.find();
     serviceController.onInit();
-
-    FoodandBeverageController foodandBeverageController = Get.find();
-    foodandBeverageController.onInit();
 
     EventController eventController = Get.find();
     eventController.onInit();
@@ -114,7 +113,7 @@ class MainController extends BaseController {
     OrderController orderController = Get.find();
     orderController.onInit();
     Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 10),
       () => Get.back(),
     );
   }

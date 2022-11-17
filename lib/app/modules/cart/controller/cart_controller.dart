@@ -9,18 +9,19 @@ import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
+import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
+import 'package:smarttv_app/app/modules/cart/widget/dialog.dart';
 import 'package:smarttv_app/app/modules/order/binding/order_binding.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/main/view/main_screen.dart';
 import 'package:smarttv_app/app/widget/loading.dart';
 import 'package:smarttv_app/app/widget/loading_dialog.dart';
-import 'package:smarttv_app/app/modules/cart/widget/thankforusing.dart';
 
 class CartController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
@@ -107,8 +108,8 @@ class CartController extends BaseController {
     );
   }
 
-  Future<void> updateOrder(OrderContent orderContent) async {
-    var overview = _repository.updateOrderByOrderId(orderContent);
+  Future<void> insertOrderRequest(OrderRequest orderRequest) async {
+    var overview = _repository.insertOrderRequest(orderRequest);
     await callDataService(
       overview,
       onSuccess: (response) {
@@ -118,7 +119,58 @@ class CartController extends BaseController {
     );
   }
 
-  void addtoBill() async {
+  void addNewOrder() async {
+    try {
+      if (_service.isNotEmpty) {
+        const LoadingDialog().showLoadingDialog(Get.context!);
+        List<LorderDetailRequests> listlorderDetailRequests = [];
+        for (int i = 0; i < _service.length; i++) {
+          ServiceContent serContent = _service.keys.toList()[i];
+          int quantity = _service.values.toList()[i];
+          LorderDetailRequests lorderDetailRequests = LorderDetailRequests(
+            amount: (serContent.price! * quantity),
+            id: 0,
+            orderDate: DateTimeUtils.currentDate(),
+            orderId: 0,
+            price: serContent.price,
+            quantity: quantity,
+            serviceId: serContent.id,
+          );
+          listlorderDetailRequests.add(lorderDetailRequests);
+        }
+        var prefs = await SharedPreferences.getInstance();
+        var bookingId = await prefs.getInt("bookingId");
+        OrderRequest orderRequest = OrderRequest(
+            bookingId: bookingId,
+            createBy: "Duong",
+            createDate: DateTimeUtils.currentDate(),
+            id: 0,
+            lastModifyBy: "Duong",
+            lorderDetailRequests: listlorderDetailRequests,
+            status: "0",
+            totalAmount: total,
+            updateDate: DateTimeUtils.currentDate());
+        await insertOrderRequest(orderRequest);
+        OrderController orderController = Get.find();
+        orderController.onInit();
+        Get.back();
+        removeAllSerivce();
+        const DialogCart().showThanksDialog(Get.context!);
+        Future.delayed(const Duration(seconds: 2), () {
+          Get.back();
+          Get.back();
+        });
+      } else {
+        Get.back();
+      }
+    } catch (e) {
+      const DialogCart().showFailDialog(Get.context!);
+    }
+  }
+}
+
+/**
+  void addtoBil() async {
     if (_service.isNotEmpty) {
       const LoadingDialog().showLoadingDialog(Get.context!);
       OrderController orderController = Get.find();
@@ -147,15 +199,16 @@ class CartController extends BaseController {
         double? totalOrder = await prefs.getDouble("totalOrder");
         newTotal += totalOrder!;
         var bookingId = await prefs.getInt("bookingId");
-        await updateOrder(OrderContent(
-            booking: BookingContent(id: bookingId),
-            id: orderId,
-            createBy: "Duong",
-            createDate: "",
-            lastModifyBy: "Duong",
-            totalAmount: newTotal,
-            status: "1",
-            updateDate: DateTimeUtils.currentDate()));
+
+        // await insertOrder(OrderContent(
+        //     booking: BookingContent(id: bookingId),
+        //     id: orderId,
+        //     createBy: "Duong",
+        //     createDate: "",
+        //     lastModifyBy: "Duong",
+        //     totalAmount: newTotal,
+        //     status: "1",
+        //     updateDate: DateTimeUtils.currentDate()));
         orderController.onInit();
         Get.back();
         removeAllSerivce();
@@ -167,4 +220,5 @@ class CartController extends BaseController {
       }
     }
   }
-}
+  
+ */
