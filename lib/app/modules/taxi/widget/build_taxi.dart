@@ -55,7 +55,7 @@ class BuildTaxi extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.r),
                     child: CachedNetworkImage(
-                      imageUrl: "https://i.ibb.co/7tYvdGh/duadonsanbay.jpg",
+                      imageUrl: "${serviceContent.image![0].pictureUrl}",
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           height: 135.h,

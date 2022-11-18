@@ -18,6 +18,7 @@ abstract class Routes {
   static const ABTRACTION = _Paths.ABTRACTION;
   static const ORDER = _Paths.ORDER;
   static const FEEDBACK = _Paths.FEEDBACK;
+  static const MOMO = _Paths.MOMO;
 }
 
 abstract class _Paths {
@@ -36,4 +37,5 @@ abstract class _Paths {
   static const ABTRACTION = '/abtraction';
   static const ORDER = '/order';
   static const FEEDBACK = '/feedback';
+  static const MOMO = '/momo';
 }

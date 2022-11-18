@@ -45,11 +45,13 @@ class MayjorEachService extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.r),
                     child: CachedNetworkImage(
-                      imageUrl:
-                          "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg",
+                      imageUrl: serviceContent.image!.isEmpty
+                          ? "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"
+                          : "${serviceContent.image![0].pictureUrl}",
+                      //
                       height: 105.h,
                       width: 148.w,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -57,7 +59,8 @@ class MayjorEachService extends StatelessWidget {
                   height: 10.h,
                 ),
                 Text(
-                  serviceContent.name.toString(), //<------ set controller
+                  serviceContent.name.toString(),
+                  //
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 12.sp,

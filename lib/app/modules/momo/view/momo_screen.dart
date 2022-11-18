@@ -19,9 +19,9 @@ class MomoScreen extends GetView<MomoController> {
 
   Future<void> MomoDialog(BuildContext context) async {
     if (controller.momo.value == null) {
-      final prefs = await SharedPreferences.getInstance();
-      // var orderId = await prefs.getInt("orderId");
-      controller.fetchPaymentMomo(8, 1);
+      // final prefs = await SharedPreferences.getInstance();
+      // // var orderId = await prefs.getInt("orderId");
+      // controller.fetchPaymentMomo(8, 1);
     }
     showDialog(
       context: context,
@@ -93,7 +93,8 @@ class MomoScreen extends GetView<MomoController> {
                                     child: QrImage(
                                       backgroundColor: AppColors.white,
                                       foregroundColor: AppColors.black,
-                                      data: "${controller.momo.value?.payUrl}",
+                                      data:
+                                          "${controller.momo.value?.payUrl}", //
                                       version: QrVersions.auto,
                                       size: 190.0,
                                     ),
@@ -104,19 +105,19 @@ class MomoScreen extends GetView<MomoController> {
                     ],
                   ),
                 ),
-                Obx(
-                  () => SizedBox(
-                    height: 35.h,
-                    child: Text(
-                      "Đơn hàng sẽ hết hạn sau ${NumberUtils.time(controller.minutes.toInt())}:${NumberUtils.time(controller.seconds.toInt())}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.normal,
-                          color: AppColors.orangeColor),
-                    ),
-                  ),
-                ),
+                // Obx(
+                //   () => SizedBox(
+                //     height: 35.h,
+                //     child: Text(
+                //       "Đơn hàng sẽ hết hạn sau ${NumberUtils.time(controller.minutes.toInt())}:${NumberUtils.time(controller.seconds.toInt())}",
+                //       textAlign: TextAlign.center,
+                //       style: TextStyle(
+                //           fontSize: 17.sp,
+                //           fontWeight: FontWeight.normal,
+                //           color: AppColors.orangeColor),
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
                   height: 35.h,
                   width: 120.w,

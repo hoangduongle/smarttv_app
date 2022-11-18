@@ -16,6 +16,13 @@ class DateTimeUtils {
     return formattedDate;
   }
 
+  static String currentDateTime() {
+    var now = DateTime.now();
+    var formatter = DateFormat('dd/MM/yyyy hh:mm');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
+
   static String currentTimeAdd({int? second}) {
     initializeDateFormatting();
     var today = DateTime.now();

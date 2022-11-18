@@ -65,46 +65,18 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                               isBig: true,
                                             ),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: SizedBox(
-                                              height: 30.h,
-                                              child: TitleFeedback(
-                                                name: "Lễ tân",
+                                          for (int i = 0; i < 4; i++)
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 5.h),
+                                              child: SizedBox(
+                                                height: 30.h,
+                                                child: TitleFeedback(
+                                                  name:
+                                                      "${controller.listFeedback.value[i].content}",
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: SizedBox(
-                                              height: 30.h,
-                                              child: TitleFeedback(
-                                                name: "Thức ăn và đồ uống",
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: SizedBox(
-                                              height: 30.h,
-                                              child: TitleFeedback(
-                                                name: "Đưa đón sân bay",
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: SizedBox(
-                                              height: 30.h,
-                                              child: TitleFeedback(
-                                                name: "Massage",
-                                              ),
-                                            ),
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -224,56 +196,18 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                               isBig: true,
                                             ),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: SizedBox(
-                                              height: 30.h,
-                                              child: TitleFeedback(
-                                                name: "Trang trí",
+                                          for (int i = 4; i < 9; i++)
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 5.h),
+                                              child: SizedBox(
+                                                height: 30.h,
+                                                child: TitleFeedback(
+                                                  name:
+                                                      "${controller.listFeedback.value[i].content}",
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: SizedBox(
-                                              height: 30.h,
-                                              child: TitleFeedback(
-                                                name: "Vệ sinh",
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: SizedBox(
-                                              height: 30.h,
-                                              child: TitleFeedback(
-                                                name: "Tiện ích",
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: SizedBox(
-                                              height: 30.h,
-                                              child: TitleFeedback(
-                                                name: "Điều hoà",
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: SizedBox(
-                                              height: 30.h,
-                                              child: TitleFeedback(
-                                                name: "Giường",
-                                              ),
-                                            ),
-                                          ),
                                         ],
                                       ),
                                     ),

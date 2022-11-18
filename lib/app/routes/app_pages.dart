@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, constant_identifier_names
 
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/modules/momo/binding/momo_binding.dart';
+import 'package:smarttv_app/app/modules/momo/controller/momo_controller.dart';
+import 'package:smarttv_app/app/modules/momo/view/momo_screen.dart';
 import 'package:smarttv_app/app/modules/order/binding/order_binding.dart';
 import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';
 import 'package:smarttv_app/app/modules/cart/view/cart_screen.dart';
@@ -28,7 +31,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.MAIN;
 
   static final routes = [
     GetPage(
@@ -89,6 +92,12 @@ class AppPages {
       name: _Paths.FEEDBACK,
       page: () => FeedbackScreen(),
       binding: FeedbackBinding(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(
+      name: _Paths.MOMO,
+      page: () => MomoScreen(),
+      binding: MomoBinding(),
       transition: Transition.noTransition,
     ),
   ];

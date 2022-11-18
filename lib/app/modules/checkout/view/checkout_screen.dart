@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/checkout/controller/checkout_controller.dart';
+import 'package:smarttv_app/app/modules/feedback/controller/feedback_controller.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class CheckoutScreen extends GetView<CheckoutController> {
@@ -101,6 +102,8 @@ class CheckoutScreen extends GetView<CheckoutController> {
                           focusColor: AppColors.orangeColor,
                           borderRadius: BorderRadius.circular(10.r),
                           onTap: () {
+                            // FeedbackController feedbackController = Get.find();
+                            // feedbackController.insertAllFeedback();
                             controller.requestCheckout();
                           },
                           child: Row(

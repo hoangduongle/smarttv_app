@@ -1,12 +1,11 @@
 // ignore_for_file: unused_element, unused_local_variable
-
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
+import 'package:smarttv_app/app/core/model/customer_feedback.dart';
+import 'package:smarttv_app/app/core/model/feedback_content.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
@@ -363,5 +362,41 @@ class RepositoryImpl extends BaseRepository implements Repository {
   @override
   Future<VNPayContent> vnPayPayment(int orderId, int orderInfo) {
     throw UnimplementedError();
+  }
+
+  @override
+  Future<List<FeedbackContent>> getListFeedbackContent() {
+    var endpoint = "${DioProvider.baseUrl}/feedbackContents";
+    var dioCall = dioTokenClient.get(endpoint);
+
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <FeedbackContent>[];
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(FeedbackContent.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> insertCustomerFeedback(CustomerFeedback customerFeedback) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/customerFeedBack";
+    var data = customerFeedback.toJson();
+    var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 }

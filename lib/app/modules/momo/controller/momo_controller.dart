@@ -24,7 +24,7 @@ class MomoController extends BaseController {
     );
     debugPrint("${momo.value?.payUrl.toString()}");
     if (momo.value != null) {
-      startTimer();
+      // startTimer();
     }
   }
 

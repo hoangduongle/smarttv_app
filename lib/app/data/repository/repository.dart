@@ -1,5 +1,7 @@
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
+import 'package:smarttv_app/app/core/model/customer_feedback.dart';
+import 'package:smarttv_app/app/core/model/feedback_content.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
@@ -17,11 +19,10 @@ import 'package:smarttv_app/app/core/model/vnpay.dart';
 
 abstract class Repository {
   Future<List<ImageContent>> getListImageByType(String type);
-  //========================Service=============================================
+//========================Service=============================================
   Future<List<ServiceCategoryContent>> getListServiceCate();
   Future<List<ServiceContent>> getListServiceContentByCateId(int cateId);
-
-  //=========================News===============================================
+//=========================News===============================================
   Future<List<NewsContent>> getListNewsByType(String type);
 //===========================Abtraction=========================================
   Future<List<AbtractionContent>> getListAbtraction();
@@ -45,4 +46,7 @@ abstract class Repository {
 //===============================Alarm==========================================
   Future<int> insertAlarm(AlarmContent alarmContent);
   Future<int> deleteAlarm(AlarmContent alarmContent);
+//=================================FeedBack=====================================
+  Future<List<FeedbackContent>> getListFeedbackContent();
+  Future<int> insertCustomerFeedback(CustomerFeedback customerFeedback);
 }
