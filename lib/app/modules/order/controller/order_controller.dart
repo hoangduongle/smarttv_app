@@ -112,7 +112,7 @@ class OrderController extends BaseController {
     if (orders.value.length <= 1) {
       fetchOrderDetails(orders.value.first.id!);
     }
-    debugPrint("Order ${DateTimeUtils.currentDate()}");
+    debugPrint("Order ${DateTimeUtils.currentDateTimeSecond()}");
 
     update();
   }

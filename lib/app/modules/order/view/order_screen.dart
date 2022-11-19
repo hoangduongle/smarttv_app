@@ -31,11 +31,15 @@ class OrderScreen extends GetView<OrderController> {
             color: AppColors.background,
             child: Column(
               children: [
-                TitleScreen(
-                  name:
-                      "Mã Hoá Đơn: #${controller.orders.value.length == 1 ? controller.orders.value.first.id : naController.orderid}", //${controller.order.value?.id ?? '00000'}
-                  //${controller.order.value?.id ?? '00000'}${naController.orderid}
-                ),
+                controller.orders.value.isEmpty
+                    ? TitleScreen(
+                        name: "",
+                      )
+                    : TitleScreen(
+                        name:
+                            "Mã Hoá Đơn: #${controller.orders.value.length == 1 ? controller.orders.value.first.id : naController.orderid}", //${controller.order.value?.id ?? '00000'}
+                        //${controller.order.value?.id ?? '00000'}${naController.orderid}
+                      ),
                 SizedBox(
                   height: 30.h,
                 ),
@@ -151,71 +155,77 @@ class OrderScreen extends GetView<OrderController> {
                       flex: 3,
                       child: Container(),
                     ),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            NumberUtils.vnd(controller.getOrderTotal(
-                                controller.orders.value.length <= 1
-                                    ? controller.orders.value[0].id!
-                                    : naController.orderid.toInt())),
-                            style: AppStyles.h4.copyWith(
-                                fontSize: 20.sp,
-                                color: AppColors.white,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: Align(
+                    //     alignment: Alignment.center,
+                    //     child: Text(
+                    //         NumberUtils.vnd(controller.getOrderTotal(
+                    //             controller.orders.value.length <= 1
+                    //                 ? controller.orders.value[0].id!
+                    //                 : naController.orderid.toInt())),
+                    //         style: AppStyles.h4.copyWith(
+                    //             fontSize: 20.sp,
+                    //             color: AppColors.white,
+                    //             fontWeight: FontWeight.bold)),
+                    //   ),
+                    // ),
                   ],
                 ),
-                SizedBox(
-                  width: 170.w,
-                  height: 50.h,
-                  child: Material(
-                    color: controller.getStatusByOrderId(
-                            controller.orders.value.length <= 1
-                                ? controller.orders.value.first.id!
-                                : naController.orderid.toInt())
-                        ? AppColors.green
-                        : AppColors.focus,
-                    borderRadius: BorderRadius.circular(10.r),
-                    child: InkWell(
-                      focusColor: controller.getStatusByOrderId(
-                              controller.orders.value.length <= 1
-                                  ? controller.orders.value.first.id!
-                                  : naController.orderid.toInt())
-                          ? AppColors.greenFocus
-                          : AppColors.orangeColor,
-                      borderRadius: BorderRadius.circular(10.r),
-                      onTap: () {
-                        if (controller.getStatusByOrderId(
-                            controller.orders.value.length <= 1
-                                ? controller.orders.value.first.id!
-                                : naController.orderid.toInt())) {
-                          naController.current_index = 5.obs;
-                        } else {
-                          OrderDialog().showOrderDialog(context);
-                        }
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            controller.getStatusByOrderId(
+                controller.orders.value.isEmpty
+                    ? SizedBox(
+                        width: 170.w,
+                        height: 50.h,
+                      )
+                    : SizedBox(
+                        width: 170.w,
+                        height: 50.h,
+                        child: Material(
+                          color: controller.getStatusByOrderId(
+                                  controller.orders.value.length <= 1
+                                      ? controller.orders.value.first.id!
+                                      : naController.orderid.toInt())
+                              ? AppColors.green
+                              : AppColors.focus,
+                          borderRadius: BorderRadius.circular(10.r),
+                          child: InkWell(
+                            focusColor: controller.getStatusByOrderId(
                                     controller.orders.value.length <= 1
                                         ? controller.orders.value.first.id!
                                         : naController.orderid.toInt())
-                                ? 'Đã thanh toán'
-                                : 'pay'.tr,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                color: AppColors.black),
+                                ? AppColors.greenFocus
+                                : AppColors.orangeColor,
+                            borderRadius: BorderRadius.circular(10.r),
+                            onTap: () {
+                              if (controller.getStatusByOrderId(
+                                  controller.orders.value.length <= 1
+                                      ? controller.orders.value.first.id!
+                                      : naController.orderid.toInt())) {
+                                naController.current_index = 5.obs;
+                              } else {
+                                OrderDialog().showOrderDialog(context);
+                              }
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  controller.getStatusByOrderId(
+                                          controller.orders.value.length <= 1
+                                              ? controller
+                                                  .orders.value.first.id!
+                                              : naController.orderid.toInt())
+                                      ? 'Đã thanh toán'
+                                      : 'pay'.tr,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20.sp,
+                                      color: AppColors.black),
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                ),
                 SizedBox(
                   height: 20.h,
                 ),

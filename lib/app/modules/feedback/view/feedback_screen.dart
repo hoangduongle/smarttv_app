@@ -66,17 +66,21 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                             ),
                                           ),
                                           for (int i = 0; i < 4; i++)
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 5.h),
-                                              child: SizedBox(
-                                                height: 30.h,
-                                                child: TitleFeedback(
-                                                  name:
-                                                      "${controller.listFeedback.value[i].content}",
-                                                ),
-                                              ),
-                                            ),
+                                            controller
+                                                    .listFeedback.value.isEmpty
+                                                ? Container()
+                                                : Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: 5.h),
+                                                    child: SizedBox(
+                                                      height: 30.h,
+                                                      child: TitleFeedback(
+                                                        name:
+                                                            "${controller.listFeedback.value[i].content}",
+                                                      ),
+                                                    ),
+                                                  ),
                                         ],
                                       ),
                                     ),
@@ -197,17 +201,21 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                             ),
                                           ),
                                           for (int i = 4; i < 9; i++)
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 5.h),
-                                              child: SizedBox(
-                                                height: 30.h,
-                                                child: TitleFeedback(
-                                                  name:
-                                                      "${controller.listFeedback.value[i].content}",
-                                                ),
-                                              ),
-                                            ),
+                                            controller
+                                                    .listFeedback.value.isEmpty
+                                                ? Container()
+                                                : Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: 5.h),
+                                                    child: SizedBox(
+                                                      height: 30.h,
+                                                      child: TitleFeedback(
+                                                        name:
+                                                            "${controller.listFeedback.value[i].content}",
+                                                      ),
+                                                    ),
+                                                  ),
                                         ],
                                       ),
                                     ),

@@ -141,7 +141,8 @@ class TaxiDialog extends StatelessWidget {
                             focusColor: AppColors.orangeColor,
                             borderRadius: BorderRadius.circular(10.r),
                             onTap: () {
-                              controller.orderService(serviceContent);
+                              controller.orderService(serviceContent, index);
+                              // controller.checkTaxiService();
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

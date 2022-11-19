@@ -21,6 +21,7 @@ import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/promotion/controller/promotion_controller.dart';
 import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
+import 'package:smarttv_app/app/modules/taxi/controller/taxi_controller.dart';
 
 class MainController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
@@ -55,7 +56,7 @@ class MainController extends BaseController {
       (timer) {
         if (DateTime.now().minute == 30 && DateTime.now().second == 1) {
           debugPrint("${DateTime.now().minute}:${DateTime.now().second}");
-          debugPrint("Time to refesh fetch Api");
+          // debugPrint("Time to refesh fetch Api");
           fetchAllApi();
         }
       },
@@ -113,7 +114,7 @@ class MainController extends BaseController {
     OrderController orderController = Get.find();
     orderController.onInit();
     Future.delayed(
-      const Duration(seconds: 10),
+      const Duration(seconds: 5),
       () => Get.back(),
     );
   }

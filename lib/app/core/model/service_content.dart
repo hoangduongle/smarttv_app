@@ -73,4 +73,9 @@ class ServiceContent {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'ServiceContent(id: $id, name: $name, price: $price, description: $description, status: $status, majorGroup: $majorGroup, image: $image, createDate: $createDate, updateDate: $updateDate, createBy: $createBy, lastModifyBy: $lastModifyBy, serviceCategory: $serviceCategory)';
+  }
 }

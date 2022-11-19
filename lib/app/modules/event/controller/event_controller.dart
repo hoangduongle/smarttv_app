@@ -57,7 +57,7 @@ class EventController extends BaseController {
         default:
       }
     }
-    debugPrint("Event ${DateTimeUtils.currentDate()}");
+    debugPrint("Event ${DateTimeUtils.currentDateTimeSecond()}");
 
     // DateTime currentDay = DateTime.now();
     // for (int i = 0; i < eventList.value.length; i++) {

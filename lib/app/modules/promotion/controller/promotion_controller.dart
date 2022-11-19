@@ -28,6 +28,6 @@ class PromotionController extends BaseController {
       onError: ((dioError) {}),
     );
     promotionList(result);
-    debugPrint("Promotion ${DateTimeUtils.currentDate()}");
+    debugPrint("Promotion ${DateTimeUtils.currentDateTimeSecond()}");
   }
 }

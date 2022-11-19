@@ -29,6 +29,6 @@ class AbtractionController extends BaseController {
       onError: ((dioError) {}),
     );
     abtractions(result);
-    debugPrint("Abtraction ${DateTimeUtils.currentDate()}");
+    debugPrint("Abtraction ${DateTimeUtils.currentDateTimeSecond()}");
   }
 }

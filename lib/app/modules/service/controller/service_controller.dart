@@ -40,7 +40,7 @@ class ServiceController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceCateListTMP(result);
-    debugPrint("Service ${DateTimeUtils.currentDate()}");
+    debugPrint("Service ${DateTimeUtils.currentDateTimeSecond()}");
     fandB();
   }
 

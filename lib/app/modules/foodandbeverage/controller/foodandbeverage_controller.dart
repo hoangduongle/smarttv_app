@@ -73,7 +73,7 @@ class FoodandBeverageController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceListFood(result);
-    debugPrint("Food ${DateTimeUtils.currentDate()}");
+    debugPrint("Food ${DateTimeUtils.currentDateTimeSecond()}");
   }
 
   Future<void> fetchServicesDrink() async {
@@ -87,7 +87,7 @@ class FoodandBeverageController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceListDrink(result);
-    debugPrint("Drink ${DateTimeUtils.currentDate()}");
+    debugPrint("Drink ${DateTimeUtils.currentDateTimeSecond()}");
   }
 
   void createMajor() {
