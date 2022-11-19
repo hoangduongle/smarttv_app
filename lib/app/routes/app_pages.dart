@@ -2,7 +2,6 @@
 
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/modules/momo/binding/momo_binding.dart';
-import 'package:smarttv_app/app/modules/momo/controller/momo_controller.dart';
 import 'package:smarttv_app/app/modules/momo/view/momo_screen.dart';
 import 'package:smarttv_app/app/modules/order/binding/order_binding.dart';
 import 'package:smarttv_app/app/modules/cart/binding/cart_bindings.dart';

@@ -151,7 +151,7 @@ class PromotionDialog extends StatelessWidget {
                             ),
                             for (var description in arrDescription)
                               if (description != '')
-                                Container(
+                                SizedBox(
                                   width: 360.w,
                                   // height: 40.h,
                                   child: Padding(

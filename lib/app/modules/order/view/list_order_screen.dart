@@ -143,7 +143,7 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                     Expanded(
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text("${NumberUtils.vnd(controller.total)}",
+                        child: Text(NumberUtils.vnd(controller.total),
                             style: AppStyles.h4.copyWith(
                                 fontSize: 20.sp,
                                 color: AppColors.white,

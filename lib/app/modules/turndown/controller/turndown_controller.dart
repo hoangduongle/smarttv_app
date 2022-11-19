@@ -80,16 +80,16 @@ class TurndownController extends BaseController {
     countMinute--;
   }
 
-  Future<void> fetchImage(String type) async {
-    var overview = _repository.getListImageByType(type);
-    List<ImageContent> result = [];
-    await callDataService(
-      overview,
-      onSuccess: (List<ImageContent> response) {
-        result = response;
-      },
-      onError: ((dioError) {}),
-    );
-    imageTurndown(result);
-  }
+  // Future<void> fetchImage(String type) async {
+  //   var overview = _repository.getListImageByType(type);
+  //   List<ImageContent> result = [];
+  //   await callDataService(
+  //     overview,
+  //     onSuccess: (List<ImageContent> response) {
+  //       result = response;
+  //     },
+  //     onError: ((dioError) {}),
+  //   );
+  //   imageTurndown(result);
+  // }
 }

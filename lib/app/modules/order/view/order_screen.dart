@@ -155,20 +155,22 @@ class OrderScreen extends GetView<OrderController> {
                       flex: 3,
                       child: Container(),
                     ),
-                    // Expanded(
-                    //   child: Align(
-                    //     alignment: Alignment.center,
-                    //     child: Text(
-                    //         NumberUtils.vnd(controller.getOrderTotal(
-                    //             controller.orders.value.length <= 1
-                    //                 ? controller.orders.value[0].id!
-                    //                 : naController.orderid.toInt())),
-                    //         style: AppStyles.h4.copyWith(
-                    //             fontSize: 20.sp,
-                    //             color: AppColors.white,
-                    //             fontWeight: FontWeight.bold)),
-                    //   ),
-                    // ),
+                    controller.orders.value.isEmpty
+                        ? Expanded(child: Container())
+                        : Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                  NumberUtils.vnd(controller.getOrderTotal(
+                                      controller.orders.value.length <= 1
+                                          ? controller.orders.value[0].id!
+                                          : naController.orderid.toInt())),
+                                  style: AppStyles.h4.copyWith(
+                                      fontSize: 20.sp,
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
                   ],
                 ),
                 controller.orders.value.isEmpty

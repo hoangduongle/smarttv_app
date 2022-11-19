@@ -1,6 +1,5 @@
 // ignore_for_file: unused_element, unused_local_variable
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
@@ -12,7 +11,6 @@ import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
-import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/momo_content.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
@@ -80,24 +78,24 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
   }
 
-  @override
-  Future<List<ImageContent>> getListImageByType(String type) {
-    var endpoint = "${DioProvider.baseUrl}/image";
-    var data = {"type": type};
-    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
-    try {
-      return callApi(dioCall).then((response) {
-        var result = <ImageContent>[];
+  // @override
+  // Future<List<ImageContent>> getListImageByType(String type) {
+  //   var endpoint = "${DioProvider.baseUrl}/image";
+  //   var data = {"type": type};
+  //   var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+  //   try {
+  //     return callApi(dioCall).then((response) {
+  //       var result = <ImageContent>[];
 
-        for (var element in (response.data as List<dynamic>)) {
-          result.add(ImageContent.fromJson(element));
-        }
-        return result;
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
+  //       for (var element in (response.data as List<dynamic>)) {
+  //         result.add(ImageContent.fromJson(element));
+  //       }
+  //       return result;
+  //     });
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
 
   @override
   Future<MomoContent> momoPayment(int orderId, int orderInfo) {

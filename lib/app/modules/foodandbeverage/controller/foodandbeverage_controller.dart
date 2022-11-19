@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
@@ -49,18 +51,18 @@ class FoodandBeverageController extends BaseController {
     }
   }
 
-  Future<void> fetchImage(String type) async {
-    var overview = _repository.getListImageByType(type);
-    List<ImageContent> result = [];
-    await callDataService(
-      overview,
-      onSuccess: (List<ImageContent> response) {
-        result = response;
-      },
-      onError: ((dioError) {}),
-    );
-    imageFandB(result);
-  }
+  // Future<void> fetchImage(String type) async {
+  //   var overview = _repository.getListImageByType(type);
+  //   List<ImageContent> result = [];
+  //   await callDataService(
+  //     overview,
+  //     onSuccess: (List<ImageContent> response) {
+  //       result = response;
+  //     },
+  //     onError: ((dioError) {}),
+  //   );
+  //   imageFandB(result);
+  // }
 
   Future<void> fetchServicesFood() async {
     var services = _repository.getListServiceContentByCateId(1);

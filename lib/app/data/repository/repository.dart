@@ -7,18 +7,15 @@ import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
-
-import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/momo_content.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
-
 import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/model/vnpay.dart';
 
 abstract class Repository {
-  Future<List<ImageContent>> getListImageByType(String type);
+  // Future<List<ImageContent>> getListImageByType(String type);
 //========================Service=============================================
   Future<List<ServiceCategoryContent>> getListServiceCate();
   Future<List<ServiceContent>> getListServiceContentByCateId(int cateId);

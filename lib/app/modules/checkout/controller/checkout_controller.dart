@@ -18,7 +18,7 @@ class CheckoutController extends BaseController {
   void onInit() async {
     final prefs = await SharedPreferences.getInstance();
     bookingId = await prefs.getInt("bookingId");
-    fetchImage("img_checkout");
+    // fetchImage("img_checkout");
     super.onInit();
   }
 
@@ -37,7 +37,7 @@ class CheckoutController extends BaseController {
         const CheckoutDialogWidget().showUncheckDialog(Get.context!);
       }
     } catch (e) {
-     debugPrint("Error Checkout: ${e.toString()}");
+      debugPrint("Error Checkout: ${e.toString()}");
       Get.back();
       const CheckoutDialogWidget().showUncheckDialog(Get.context!);
     }
@@ -55,16 +55,16 @@ class CheckoutController extends BaseController {
     );
   }
 
-  Future<void> fetchImage(String type) async {
-    var overview = _repository.getListImageByType(type);
-    List<ImageContent> result = [];
-    await callDataService(
-      overview,
-      onSuccess: (List<ImageContent> response) {
-        result = response;
-      },
-      onError: ((dioError) {}),
-    );
-    imageCheckout(result);
-  }
+  // Future<void> fetchImage(String type) async {
+  //   var overview = _repository.getListImageByType(type);
+  //   List<ImageContent> result = [];
+  //   await callDataService(
+  //     overview,
+  //     onSuccess: (List<ImageContent> response) {
+  //       result = response;
+  //     },
+  //     onError: ((dioError) {}),
+  //   );
+  //   imageCheckout(result);
+  // }
 }
