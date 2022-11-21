@@ -1,5 +1,6 @@
-// ignore_for_file: unused_element, unused_local_variable
+// ignore_for_file: unused_element, unused_local_variable, unnecessary_brace_in_string_interps
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
@@ -98,20 +99,16 @@ class RepositoryImpl extends BaseRepository implements Repository {
   // }
 
   @override
-  Future<MomoContent> momoPayment(int orderId, int orderInfo) {
+  Future<MomoContent> momoPayment(int orderId) {
     var endpoint = "${DioProvider.baseUrl}/momo";
     var data = {
-      "lang": "vi",
       "orderId": orderId,
-      "orderInfo": orderInfo,
-      "storeId": 1,
     };
-    var fromData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    // var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
         var result = <MomoContent>[];
-        // debugPrint("${response.statusCode}");
         return MomoContent.fromJson(response.data);
       });
     } catch (e) {
@@ -392,6 +389,44 @@ class RepositoryImpl extends BaseRepository implements Repository {
     try {
       return callApi(dioCall).then((response) {
         return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> queryTransaction(String partnerCode, int requestId, int orderId,
+      String lang, String signature) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "https://test-payment.momo.vn/v2/gateway/api/query";
+    var data = {
+      "partnerCode": partnerCode,
+      "requestId": requestId,
+      "orderId": orderId,
+      "lang": lang,
+      "signature": signature
+    };
+    var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.data['resultCode'] ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<OrderContent> getOrderId(int id) {
+    var endpoint = "${DioProvider.baseUrl}/order/${id}";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        return OrderContent.fromJson(response.data);
       });
     } catch (e) {
       rethrow;

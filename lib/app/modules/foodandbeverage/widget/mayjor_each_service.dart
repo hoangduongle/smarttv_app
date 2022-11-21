@@ -30,6 +30,7 @@ class MayjorEachService extends StatelessWidget {
           focusColor: AppColors.title,
           onTap: () {
             DialogWidget(
+              serviceContent: serviceContent,
               index: index,
             ).showServiceDialog(context, serviceContent);
           },

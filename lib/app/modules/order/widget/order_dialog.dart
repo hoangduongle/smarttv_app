@@ -13,7 +13,7 @@ class OrderDialog extends StatelessWidget {
     return Container();
   }
 
-  void showOrderDialog(BuildContext context) {
+  void showOrderDialog(BuildContext context, int orderId) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -60,7 +60,7 @@ class OrderDialog extends StatelessWidget {
                         onTap: () {
                           debugPrint("Payment Method: MoMo");
                           Get.back();
-                          const MomoScreen().MomoDialog(context);
+                          const MomoScreen().MomoDialog(context, orderId);
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.r),

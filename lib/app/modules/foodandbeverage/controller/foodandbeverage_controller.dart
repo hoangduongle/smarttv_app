@@ -128,8 +128,20 @@ class FoodandBeverageController extends BaseController {
 
   void filter() {
     String food = "";
+
+    if (serviceKhaivi.value.isNotEmpty) {
+      serviceKhaivi.value.clear();
+    }
+    if (serviceMonchinh.value.isNotEmpty) {
+      serviceMonchinh.value.clear();
+    }
+    if (serviceTrangmieng.value.isNotEmpty) {
+      serviceTrangmieng.value.clear();
+    }
+
     for (var element in serviceListFood.value) {
-      if (element.status == false) {
+      debugPrint("Food: ${element.status}");
+      if (element.status == true) {
         food = element.majorGroup.toString();
         switch (food) {
           case "appetizer": //appetizer
@@ -145,12 +157,29 @@ class FoodandBeverageController extends BaseController {
       }
     }
     String drink = "";
+    if (serviceCafe.value.isNotEmpty) {
+      serviceCafe.value.clear();
+    }
+    if (serviceNuoctra.value.isNotEmpty) {
+      serviceNuoctra.value.clear();
+    }
+    if (serviceNuocsuoi.value.isNotEmpty) {
+      serviceNuocsuoi.value.clear();
+    }
+    if (serviceNuocmocktails.value.isNotEmpty) {
+      serviceNuocsuoi.value.clear();
+    }
+    if (serviceBia.value.isNotEmpty) {
+      serviceNuocsuoi.value.clear();
+    }
+
     for (var element in serviceListDrink.value) {
-      if (element.status == false) {
+      if (element.status == true) {
         drink = element.majorGroup.toString();
         switch (drink) {
           case "coffee": //coffee
             serviceCafe.value.add(element);
+            // debugPrint(element.toString());
             break;
           case "tea": //tea
             serviceNuoctra.value.add(element);

@@ -1,58 +1,58 @@
-// ignore_for_file: unnecessary_this, prefer_collection_literals
+// ignore_for_file: prefer_collection_literals, unnecessary_this
 
 class MomoContent {
-  String? partnerCode;
-  String? orderId;
-  String? requestId;
   int? amount;
-  String? responseTime;
-  String? message;
-  int? resultCode;
-  String? payUrl;
   String? deeplink;
-  String? qrCodeUrl;
   String? deeplinkMiniApp;
+  String? message;
+  String? orderId;
+  String? partnerCode;
+  String? payUrl;
+  String? qrCodeUrl;
+  String? requestId;
+  String? responseTime;
+  int? resultCode;
 
   MomoContent(
-      {this.partnerCode,
-      this.orderId,
-      this.requestId,
-      this.amount,
-      this.responseTime,
-      this.message,
-      this.resultCode,
-      this.payUrl,
+      {this.amount,
       this.deeplink,
+      this.deeplinkMiniApp,
+      this.message,
+      this.orderId,
+      this.partnerCode,
+      this.payUrl,
       this.qrCodeUrl,
-      this.deeplinkMiniApp});
+      this.requestId,
+      this.responseTime,
+      this.resultCode});
 
   MomoContent.fromJson(Map<String, dynamic> json) {
-    partnerCode = json['partnerCode'];
-    orderId = json['orderId'];
-    requestId = json['requestId'];
     amount = json['amount'];
-    responseTime = json['responseTime'];
-    message = json['message'];
-    resultCode = json['resultCode'];
-    payUrl = json['payUrl'];
     deeplink = json['deeplink'];
-    qrCodeUrl = json['qrCodeUrl'];
     deeplinkMiniApp = json['deeplinkMiniApp'];
+    message = json['message'];
+    orderId = json['orderId'];
+    partnerCode = json['partnerCode'];
+    payUrl = json['payUrl'];
+    qrCodeUrl = json['qrCodeUrl'];
+    requestId = json['requestId'];
+    responseTime = json['responseTime'];
+    resultCode = json['resultCode'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['partnerCode'] = this.partnerCode;
-    data['orderId'] = this.orderId;
-    data['requestId'] = this.requestId;
     data['amount'] = this.amount;
-    data['responseTime'] = this.responseTime;
-    data['message'] = this.message;
-    data['resultCode'] = this.resultCode;
-    data['payUrl'] = this.payUrl;
     data['deeplink'] = this.deeplink;
-    data['qrCodeUrl'] = this.qrCodeUrl;
     data['deeplinkMiniApp'] = this.deeplinkMiniApp;
+    data['message'] = this.message;
+    data['orderId'] = this.orderId;
+    data['partnerCode'] = this.partnerCode;
+    data['payUrl'] = this.payUrl;
+    data['qrCodeUrl'] = this.qrCodeUrl;
+    data['requestId'] = this.requestId;
+    data['responseTime'] = this.responseTime;
+    data['resultCode'] = this.resultCode;
     return data;
   }
 }

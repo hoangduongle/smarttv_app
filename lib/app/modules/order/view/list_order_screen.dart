@@ -168,7 +168,8 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                       onTap: () {
                         controller.isPayall
                             ? null
-                            : OrderDialog().showOrderDialog(context);
+                            : OrderDialog().showOrderDialog(
+                                context, naController.orderid.toInt());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

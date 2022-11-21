@@ -25,6 +25,7 @@ abstract class Repository {
   Future<List<AbtractionContent>> getListAbtraction();
 //==============================Order============================================
   Future<List<OrderContent>> getOrderByBookingId(int bookingId);
+  Future<OrderContent> getOrderId(int Id);
   Future<List<OrderDetailContent>> getOrderdetailByOrderId(int orderId);
   Future<int> updateOrderByOrderId(OrderContent orderContent);
   Future<int> insertOrderdetail(OrderDetailContent orderDetailContent);
@@ -34,7 +35,16 @@ abstract class Repository {
 //===============================Notification===================================
   Future<List<MessageContent>> getListMessage(int bookingId);
 //==============================================================================
-  Future<MomoContent> momoPayment(int orderId, int orderInfo);
+  Future<MomoContent> momoPayment(
+    int orderId,
+  );
+  Future<int> queryTransaction(
+    String partnerCode,
+    int requestId,
+    int orderId,
+    String lang,
+    String signature,
+  );
   Future<VNPayContent> vnPayPayment(int orderId, int orderInfo);
 //============================Request Service===================================
   Future<int> requestService(int bookingId, String dateTime, int id,

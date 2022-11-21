@@ -1,4 +1,4 @@
-// ignore_for_file: unrelated_type_equality_checks
+// ignore_for_file: unrelated_type_equality_checks, unused_local_variable
 
 import 'dart:async';
 
@@ -6,26 +6,51 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/momo_content.dart';
+import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
+import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 
 class MomoController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
+  Rx<OrderContent?> order = Rx<OrderContent?>(null);
 
   Rx<MomoContent?> momo = Rx<MomoContent?>(null);
-
-  Future<void> fetchPaymentMomo(int orderId, int orderInfo) async {
-    var overview = _repository.momoPayment(orderId, orderInfo);
+  Timer? timerCheck;
+  Future<void> fetchPaymentMomo(int orderId) async {
+    var overview = _repository.momoPayment(orderId);
     await callDataService(
       overview,
       onSuccess: (MomoContent response) {
+        // debugPrint("${response.payUrl}");
+
         momo(response);
       },
       onError: ((dioError) {}),
     );
-    debugPrint("${momo.value?.payUrl.toString()}");
-    if (momo.value != null) {
-      // startTimer();
-    }
+
+    timerCheck =
+        Timer.periodic(const Duration(seconds: 5), (Timer timer) async {
+      await queryOrder(orderId);
+      if (order.value!.status == "1") {
+        Get.back();
+        timerCheck?.cancel();
+        OrderController orderController = Get.find();
+        orderController.onInit();
+        if (Get.isDialogOpen == true) {}
+      }
+    });
+  }
+
+  Future<void> queryOrder(int orderId) async {
+    var overview = _repository.getOrderId(orderId);
+
+    await callDataService(
+      overview,
+      onSuccess: (OrderContent response) {
+        order(response);
+      },
+      onError: ((dioError) {}),
+    );
   }
 
   Timer? timerMinutes;
@@ -52,8 +77,6 @@ class MomoController extends BaseController {
       } else {
         seconds--;
       }
-
-      // debugPrint("${minutes.toInt()}:${seconds.toInt()}");
     });
   }
 }

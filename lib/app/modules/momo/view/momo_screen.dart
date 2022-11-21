@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:smarttv_app/app/core/model/momo_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/momo/controller/momo_controller.dart';
 
@@ -15,12 +16,11 @@ class MomoScreen extends GetView<MomoController> {
     throw UnimplementedError();
   }
 
-  Future<void> MomoDialog(BuildContext context) async {
-    if (controller.momo.value == null) {
-      // final prefs = await SharedPreferences.getInstance();
-      // // var orderId = await prefs.getInt("orderId");
-      // controller.fetchPaymentMomo(8, 1);
-    }
+  Future<void> MomoDialog(BuildContext context, int orderId) async {
+    // if (controller.momo.value!.payUrl!.isNotEmpty) {
+    //   controller.momo = Rx<MomoContent?>(null);
+    // }
+    controller.fetchPaymentMomo(orderId);
     showDialog(
       context: context,
       barrierDismissible: false,

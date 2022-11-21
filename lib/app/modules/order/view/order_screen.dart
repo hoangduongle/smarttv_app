@@ -24,6 +24,13 @@ class OrderScreen extends GetView<OrderController> {
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
     ScrollController scrollController = ScrollController();
+    int orderId = 0;
+    if (controller.orders.value.length == 1) {
+      orderId = controller.orders.value.first.id!.toInt();
+    } else {
+      orderId = naController.orderid.toInt();
+    }
+
     return Obx(
       () {
         return Scaffold(
@@ -37,7 +44,7 @@ class OrderScreen extends GetView<OrderController> {
                       )
                     : TitleScreen(
                         name:
-                            "Mã Hoá Đơn: #${controller.orders.value.length == 1 ? controller.orders.value.first.id : naController.orderid}", //${controller.order.value?.id ?? '00000'}
+                            "Mã Hoá Đơn: #${orderId}", //${controller.order.value?.id ?? '00000'}
                         //${controller.order.value?.id ?? '00000'}${naController.orderid}
                       ),
                 SizedBox(
@@ -204,7 +211,7 @@ class OrderScreen extends GetView<OrderController> {
                                       : naController.orderid.toInt())) {
                                 naController.current_index = 5.obs;
                               } else {
-                                OrderDialog().showOrderDialog(context);
+                                OrderDialog().showOrderDialog(context, orderId);
                               }
                             },
                             child: Row(

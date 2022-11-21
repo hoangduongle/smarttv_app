@@ -4,17 +4,20 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/service_components/controller/cart_dialog_controller.dart';
-import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class DialogWidget extends StatelessWidget {
   int index;
+  ServiceContent serviceContent;
   DialogWidget({
     Key? key,
     required this.index,
+    required this.serviceContent,
   }) : super(key: key);
 
   @override
@@ -44,8 +47,9 @@ class DialogWidget extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.r),
                 child: CachedNetworkImage(
-                  imageUrl:
-                      'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcSxLr0EfOo_znMX-DYtQVeYFvNzAF4Xw3Ny8nm9RZqlS0QdgFMCBN81LtQxXfqj_1EviZSW9_zWBuBi6wLLtjA',
+                  imageUrl: serviceContent.image!.isEmpty
+                      ? "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"
+                      : "${serviceContent.image![0].pictureUrl}",
                   height: 150,
                   fit: BoxFit.cover,
                   // placeholder: (context, url) =>
