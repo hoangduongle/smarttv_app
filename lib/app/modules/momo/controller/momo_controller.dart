@@ -21,7 +21,7 @@ class MomoController extends BaseController {
     await callDataService(
       overview,
       onSuccess: (MomoContent response) {
-        // debugPrint("${response.payUrl}");
+        debugPrint("${response.payUrl}");
 
         momo(response);
       },
@@ -32,7 +32,7 @@ class MomoController extends BaseController {
         Timer.periodic(const Duration(seconds: 5), (Timer timer) async {
       await queryOrder(orderId);
       if (order.value!.status == "1") {
-        Get.back();
+        // Get.back();
         timerCheck?.cancel();
         OrderController orderController = Get.find();
         orderController.onInit();

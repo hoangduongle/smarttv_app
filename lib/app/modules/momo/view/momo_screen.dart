@@ -17,10 +17,9 @@ class MomoScreen extends GetView<MomoController> {
   }
 
   Future<void> MomoDialog(BuildContext context, int orderId) async {
-    // if (controller.momo.value!.payUrl!.isNotEmpty) {
-    //   controller.momo = Rx<MomoContent?>(null);
-    // }
+    controller.momo = Rx<MomoContent?>(null);
     controller.fetchPaymentMomo(orderId);
+    // WebView.platform = AndroidWebView();
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -31,8 +30,8 @@ class MomoScreen extends GetView<MomoController> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: SizedBox(
-            width: 380.w,
-            height: 400.h,
+            width: double.infinity.w,
+            height: double.infinity.h,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -48,61 +47,66 @@ class MomoScreen extends GetView<MomoController> {
                         color: AppColors.title),
                   ),
                 ),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 80.w, vertical: 15.h),
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: AppColors.pink.withOpacity(.85),
-                              borderRadius: BorderRadius.circular(10.r)),
-                          height: 200.h,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                height: 120.h,
-                                decoration: BoxDecoration(
-                                    color: AppColors.white,
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(10.r),
-                                        bottomRight: Radius.circular(10.r))),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Obx(
-                        () {
-                          return controller.momo.value == null
-                              ? Container(
-                                  width: 300,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.background,
-                                      borderRadius: BorderRadius.circular(8.r)),
-                                  child: Lottie.asset(
-                                      "assets/lotties/loading.json"))
-                              : Align(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(10.r),
-                                    child: QrImage(
-                                      backgroundColor: AppColors.white,
-                                      foregroundColor: AppColors.black,
-                                      data:
-                                          "${controller.momo.value?.payUrl}", //
-                                      version: QrVersions.auto,
-                                      size: 190.0,
-                                    ),
-                                  ),
-                                );
-                        },
-                      )
-                    ],
-                  ),
-                ),
+                // Container(
+                //   width: 800.w,
+                //   height: 400.h,
+                //   child:
+                // ),
+                // Padding(
+                //   padding:
+                //       EdgeInsets.symmetric(horizontal: 80.w, vertical: 15.h),
+                //   child: Stack(
+                //     children: [
+                //       ClipRRect(
+                //         child: Container(
+                //           decoration: BoxDecoration(
+                //               color: AppColors.pink.withOpacity(.85),
+                //               borderRadius: BorderRadius.circular(10.r)),
+                //           height: 200.h,
+                //           child: Column(
+                //             mainAxisAlignment: MainAxisAlignment.end,
+                //             children: [
+                //               Container(
+                //                 height: 120.h,
+                //                 decoration: BoxDecoration(
+                //                     color: AppColors.white,
+                //                     borderRadius: BorderRadius.only(
+                //                         bottomLeft: Radius.circular(10.r),
+                //                         bottomRight: Radius.circular(10.r))),
+                //               ),
+                //             ],
+                //           ),
+                //         ),
+                //       ),
+                //       Obx(
+                //         () {
+                //           return controller.momo.value == null
+                //               ? Container(
+                //                   width: 300,
+                //                   height: 200,
+                //                   decoration: BoxDecoration(
+                //                       color: AppColors.background,
+                //                       borderRadius: BorderRadius.circular(8.r)),
+                //                   child: Lottie.asset(
+                //                       "assets/lotties/loading.json"))
+                //               : Align(
+                //                   child: Padding(
+                //                     padding: EdgeInsets.all(10.r),
+                //                     child: QrImage(
+                //                       backgroundColor: AppColors.white,
+                //                       foregroundColor: AppColors.black,
+                //                       data:
+                //                           "${controller.momo.value?.payUrl}", //
+                //                       version: QrVersions.auto,
+                //                       size: 190.0,
+                //                     ),
+                //                   ),
+                //                 );
+                //         },
+                //       )
+                //     ],
+                //   ),
+                // ),
                 // Obx(
                 //   () => SizedBox(
                 //     height: 35.h,

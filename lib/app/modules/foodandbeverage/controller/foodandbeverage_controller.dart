@@ -140,7 +140,6 @@ class FoodandBeverageController extends BaseController {
     }
 
     for (var element in serviceListFood.value) {
-      debugPrint("Food: ${element.status}");
       if (element.status == true) {
         food = element.majorGroup.toString();
         switch (food) {

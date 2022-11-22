@@ -60,6 +60,7 @@ dependencies:
   connectivity_plus: ^3.0.2
   android_alarm_manager_plus: ^2.1.0
   video_player: ^2.4.7
+  url_launcher: ^6.1.7
 
 flutter_icons:
   android: "launcher_icon"
