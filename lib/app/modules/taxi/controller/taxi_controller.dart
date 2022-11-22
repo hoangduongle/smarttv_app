@@ -88,25 +88,26 @@ class TaxiController extends BaseController {
   }
 
   Rx<List<OrderDetailContent>> orderDetails = Rx<List<OrderDetailContent>>([]);
-  Rx<List<OrderContent>> orders = Rx<List<OrderContent>>([]);
+  Rx<List<OrderContent>> ordersForTaxi = Rx<List<OrderContent>>([]);
 
   Future<void> checkTaxiService() async {
     bool flagBreak = false;
-    OrderController orderController = Get.find();
-    List<OrderContent> listOrder = orderController.orders.value;
-    // debugPrint("${listOrder}");
-    if (listOrder.isNotEmpty) {
-      for (int i = 0; i < listOrder.length; i++) {
-        await fetchOrderDetails(listOrder[i].id!);
+    final prefs = await SharedPreferences.getInstance();
+    var bookingId = prefs.getInt("bookingId");
+
+    await fetchOrder(bookingId!.toInt());
+    if (ordersForTaxi.value.isNotEmpty) {
+      for (int i = 0; i < ordersForTaxi.value.length; i++) {
+        await fetchOrderDetails(ordersForTaxi.value[i].id!);
         for (int j = 0; j < orderDetails.value.length; j++) {
-          if (orderDetails.value[j].service!.serviceCategory!.id == 4) {
+          if (orderDetails.value[j].service!.id == 57) {
+            debugPrint(orderDetails.value[j].toString());
+            statusTaxi[0] = true;
             flagBreak = true;
-            if (orderDetails.value[j].service!.id == 57) {
-              statusTaxi[0] = true;
-            }
-            if (orderDetails.value[j].service!.id == 58) {
-              statusTaxi[1] = true;
-            }
+          } else if (orderDetails.value[j].service!.id == 58) {
+            debugPrint(orderDetails.value[j].toString());
+            statusTaxi[1] = true;
+            flagBreak = true;
           }
         }
         if (flagBreak) {
@@ -115,14 +116,19 @@ class TaxiController extends BaseController {
         }
       }
     }
-    //   List<OrderDetailContent> listOrderDetails = orderDetails.value;
-    //   for (int j = 0; j < listOrderDetails.length; j++) {
-    //     if (listOrderDetails[j].service!.serviceCategory!.id == 4) {
-    //       debugPrint("Đã có");
-    //     } else {
-    //       debugPrint("Đặt dịch vụ");
-    //     }
-    //   }
+  }
+
+  Future<void> fetchOrder(int bookingId) async {
+    var overview = _repository.getOrderByBookingId(bookingId);
+    List<OrderContent> result = [];
+    await callDataService(
+      overview,
+      onSuccess: (List<OrderContent> response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+    ordersForTaxi(result);
   }
 
   Future<void> fetchOrderDetails(int orderId) async {

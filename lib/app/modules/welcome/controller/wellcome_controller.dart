@@ -22,7 +22,8 @@ class WellcomeController extends BaseController {
   var formattedDate = "".obs;
 
   var nameCus;
-  var welcomeContent = "Xin chào buổi chiều ";
+  var welcomeContent = "Xin chào ";
+  var timeforsession = "";
   var birthdayContent = "Chúc mừng sinh nhật ";
   var title = "";
   var content = "";
@@ -47,9 +48,22 @@ class WellcomeController extends BaseController {
   void loadTitle() {
     //chỉnh lại so sánh day month không so sánh thêm year
     String currentDay = DateFormat('dd/MM').format(DateTime.now());
+    int formattedHours = int.parse(DateFormat('HH').format(DateTime.now()));
     nameCus =
-        "${bookingContent.value?.customer?.gender == 0 ? 'Chị' : 'Anh'} ${bookingContent.value?.customer?.lastName}";
-    title = welcomeContent + nameCus;
+        "${bookingContent.value?.customer?.gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customer?.lastName}";
+    if (formattedHours >= 04) {
+      timeforsession = 'buổi sáng';
+    }
+    if (formattedHours >= 12) {
+      timeforsession = 'buổi trưa';
+    }
+    if (formattedHours >= 13) {
+      timeforsession = 'buổi chiều';
+    }
+    if (formattedHours >= 18) {
+      timeforsession = 'buổi tối';
+    }
+    title = welcomeContent + timeforsession + nameCus;
     String? birthday =
         bookingContent.value?.customer?.birthDate?.substring(0, 5);
     if (birthday == currentDay) {
