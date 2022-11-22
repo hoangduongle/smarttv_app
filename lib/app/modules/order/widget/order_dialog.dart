@@ -58,7 +58,6 @@ class OrderDialog extends StatelessWidget {
                         focusColor: AppColors.orangeColor,
                         borderRadius: BorderRadius.circular(10.r),
                         onTap: () {
-                          debugPrint("Payment Method: MoMo");
                           Get.back();
                           const MomoScreen().MomoDialog(context, orderId);
                         },

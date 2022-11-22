@@ -45,10 +45,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     String initialRoute = AppPages.INITIAL;
-    bool welcome = true;
-    if (welcome) {
-      initialRoute = Routes.WELCOME;
-    }
+    // bool welcome = true;
+    // if (welcome) {
+    //   initialRoute = Routes.WELCOME;
+    // }
 
     return ScreenUtilInit(
       designSize: const Size(960, 540),

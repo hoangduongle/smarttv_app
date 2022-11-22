@@ -67,9 +67,7 @@ class OrderController extends BaseController {
   }
 
   bool getStatusByOrderId(int orderId) {
-    //0 false 1 true
     bool result = false;
-    // debugPrint(orders.value.toList().toString());
     for (int i = 0; i < orders.value.length; i++) {
       if (orders.value[i].id == orderId) {
         if (orders.value[i].status == "1") {
@@ -107,8 +105,6 @@ class OrderController extends BaseController {
     double total = searchOrderIdByStatus("0").totalAmount ?? 0;
     var prefs = await SharedPreferences.getInstance();
     await prefs.setDouble("totalOrder", total); //
-    // debugPrint("Order new Total: $total");
-
     if (orders.value.length <= 1) {
       fetchOrderDetails(orders.value.first.id!);
     }

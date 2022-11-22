@@ -101,7 +101,7 @@ class _WellcomeBuildState extends State<WellcomeBuild> {
                             ? FontWeight.bold
                             : FontWeight.normal,
                         color: isFocus[widget.index]
-                            ? AppColors.title
+                            ? AppColors.white
                             : AppColors.greyColor,
                         fontSize: (size.width * 0.02).sp),
                   ),
@@ -113,12 +113,12 @@ class _WellcomeBuildState extends State<WellcomeBuild> {
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 100),
                 curve: Curves.easeIn,
-                width: isFocus[widget.index] ? 120.w : 90.w,
+                width: isFocus[widget.index] ? 110.w : 80.w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
                       color: isFocus[widget.index]
-                          ? AppColors.orangeColor
+                          ? AppColors.greyColor
                           : AppColors.white,
                       width: 2.w),
                   image: DecorationImage(

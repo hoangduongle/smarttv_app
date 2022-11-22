@@ -8,6 +8,7 @@ import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/momo_content.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
+import 'package:smarttv_app/app/modules/momo/view/momo_screen.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 
 class MomoController extends BaseController {
@@ -15,6 +16,14 @@ class MomoController extends BaseController {
   Rx<OrderContent?> order = Rx<OrderContent?>(null);
 
   Rx<MomoContent?> momo = Rx<MomoContent?>(null);
+
+  void createOrder(int orderId) {
+    momo = Rx<MomoContent?>(null);
+
+    fetchPaymentMomo(orderId);
+    update();
+  }
+
   Timer? timerCheck;
   Future<void> fetchPaymentMomo(int orderId) async {
     var overview = _repository.momoPayment(orderId);
@@ -32,11 +41,12 @@ class MomoController extends BaseController {
         Timer.periodic(const Duration(seconds: 5), (Timer timer) async {
       await queryOrder(orderId);
       if (order.value!.status == "1") {
-        // Get.back();
         timerCheck?.cancel();
+        debugPrint("MoMo onReady: ${order.value!.status}");
+        Get.back();
+        const MomoScreen().showThanksDialog(Get.context!);
         OrderController orderController = Get.find();
         orderController.onInit();
-        if (Get.isDialogOpen == true) {}
       }
     });
   }

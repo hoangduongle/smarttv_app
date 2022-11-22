@@ -174,7 +174,9 @@ class PromotionDialog extends StatelessWidget {
                   SizedBox(
                     height: 15.h,
                   ),
-                  NavigatorBack(),
+                  NavigatorBack(
+                    autoFocus: true,
+                  ),
                 ],
               )),
         );

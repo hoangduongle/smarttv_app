@@ -103,10 +103,11 @@ class _WelcomePageState extends State<WelcomePage> {
                             ),
                             Text(
                               AppConstants.title,
-                              style: AppStyles.h1.copyWith(
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: (size.width * 1 / 35).sp),
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 35.sp,
+                              ),
                             ),
                           ],
                         ),
@@ -115,8 +116,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           child: Text(
                             controller.title,
                             style: AppStyles.h4.copyWith(
-                                color: AppColors.white,
-                                fontSize: (size.width * 1 / 25).sp),
+                                color: AppColors.white, fontSize: 40.sp),
                           ),
                         ),
                         Padding(
@@ -124,8 +124,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           child: Text(
                             controller.content,
                             style: AppStyles.h4.copyWith(
-                                color: AppColors.greyColor,
-                                fontSize: (size.width * 1 / 45).sp),
+                                color: AppColors.greyColor, fontSize: 20.sp),
                           ),
                         ),
                         SizedBox(

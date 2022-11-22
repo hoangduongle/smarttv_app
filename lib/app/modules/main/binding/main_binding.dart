@@ -33,22 +33,17 @@ class MainBinding implements Bindings {
     OrderBinding().dependencies();
     FeedbackBinding().dependencies();
 //===============================================================
-//===============================================================
-//===============================================================
-//===============================================================
-
     NotificationBinding().dependencies();
-
     ListServiceBinding().dependencies();
     FoodandBeverageBinding().dependencies();
     CartBinding().dependencies();
 
     MomoBinding().dependencies();
     PoolBinding().dependencies();
-    TaxiBinding().dependencies();
     MassageBinding().dependencies();
     TurndownBinding().dependencies();
     CheckoutBinding().dependencies();
     AlarmBinding().dependencies();
+    TaxiBinding().dependencies();
   }
 }

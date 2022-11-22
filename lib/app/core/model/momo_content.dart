@@ -55,4 +55,9 @@ class MomoContent {
     data['resultCode'] = this.resultCode;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'MomoContent(amount: $amount, deeplink: $deeplink, deeplinkMiniApp: $deeplinkMiniApp, message: $message, orderId: $orderId, partnerCode: $partnerCode, payUrl: $payUrl, qrCodeUrl: $qrCodeUrl, requestId: $requestId, responseTime: $responseTime, resultCode: $resultCode)';
+  }
 }

@@ -23,8 +23,8 @@ class TaxiController extends BaseController {
 
   @override
   void onInit() async {
-    await checkTaxiService();
     fetchServiceTaxi(4);
+    Future.delayed(const Duration(seconds: 5), () => checkTaxiService());
     super.onInit();
   }
 
@@ -94,25 +94,25 @@ class TaxiController extends BaseController {
     bool flagBreak = false;
     OrderController orderController = Get.find();
     List<OrderContent> listOrder = orderController.orders.value;
-    for (int i = 0; i < listOrder.length; i++) {
-      // debugPrint("Order Id:${listOrder[i].id}");
-
-      await fetchOrderDetails(listOrder[i].id!);
-      for (int j = 0; j < orderDetails.value.length; j++) {
-        if (orderDetails.value[j].service!.serviceCategory!.id == 4) {
-          // debugPrint("Order Details: ${orderDetails.value[j].service}");
-          flagBreak = true;
-          if (orderDetails.value[j].service!.id == 57) {
-            statusTaxi[0] = true;
-          }
-          if (orderDetails.value[j].service!.id == 58) {
-            statusTaxi[1] = true;
+    // debugPrint("${listOrder}");
+    if (listOrder.isNotEmpty) {
+      for (int i = 0; i < listOrder.length; i++) {
+        await fetchOrderDetails(listOrder[i].id!);
+        for (int j = 0; j < orderDetails.value.length; j++) {
+          if (orderDetails.value[j].service!.serviceCategory!.id == 4) {
+            flagBreak = true;
+            if (orderDetails.value[j].service!.id == 57) {
+              statusTaxi[0] = true;
+            }
+            if (orderDetails.value[j].service!.id == 58) {
+              statusTaxi[1] = true;
+            }
           }
         }
-      }
-      if (flagBreak) {
-        // debugPrint("${statusTaxi}");
-        break;
+        if (flagBreak) {
+          // debugPrint("${statusTaxi}");
+          break;
+        }
       }
     }
     //   List<OrderDetailContent> listOrderDetails = orderDetails.value;

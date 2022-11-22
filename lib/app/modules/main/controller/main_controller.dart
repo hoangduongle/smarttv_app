@@ -96,6 +96,9 @@ class MainController extends BaseController {
   void fetchAllApi() async {
     debugPrint("Refesh fetch Api");
     loadingDialog();
+    OrderController orderController = Get.find();
+    orderController.onInit();
+
     FoodandBeverageController foodandBeverageController = Get.find();
     foodandBeverageController.onInit();
 
@@ -111,8 +114,6 @@ class MainController extends BaseController {
     AbtractionController abtractionController = Get.find();
     abtractionController.onInit();
 
-    OrderController orderController = Get.find();
-    orderController.onInit();
     Future.delayed(
       const Duration(seconds: 5),
       () => Get.back(),

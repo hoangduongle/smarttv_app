@@ -41,7 +41,7 @@ class ImageBuild extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(10.r),
                         bottomRight: Radius.circular(10.r)),
-                    color: AppColors.navigabackground.withOpacity(0.8.r),
+                    color: AppColors.navigabackground.withOpacity(0.r),
                   ),
                   width: 1000,
                   height: 140,

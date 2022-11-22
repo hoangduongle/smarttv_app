@@ -1,6 +1,5 @@
 // ignore_for_file: unused_element, unused_local_variable, unnecessary_brace_in_string_interps
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
@@ -147,8 +146,8 @@ class RepositoryImpl extends BaseRepository implements Repository {
       "requestServiceType": type,
       "status": status
     };
-    var fromData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    // var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
         var result = <RequestServiceContent>[];
