@@ -91,6 +91,7 @@ class OrderScreen extends GetView<OrderController> {
                 SizedBox(
                   height: 15.h,
                 ),
+                //&& controller.orderPayment == null
                 controller.orderDetails.value.isEmpty
                     ? Expanded(
                         child: Lottie.asset("assets/lotties/loading.json"))
@@ -113,6 +114,8 @@ class OrderScreen extends GetView<OrderController> {
                                 itemCount: controller.orderDetails.value.length,
                                 itemBuilder: (context, index) =>
                                     ListOrderDetail(
+                                      // orderPaymentContent:
+                                      //     controller.orderPayment.value!,
                                       orderDetailContent:
                                           controller.orderDetails.value[index],
                                       orderController: controller,
@@ -137,10 +140,23 @@ class OrderScreen extends GetView<OrderController> {
                 ),
                 Row(
                   children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(),
-                    ),
+                    controller.getStatusByOrderId(
+                            controller.orders.value.length <= 1
+                                ? controller.orders.value.first.id!
+                                : naController.orderid.toInt())
+                        ? Expanded(
+                            flex: 2,
+                            child: Align(
+                              alignment: Alignment(-0.6, 1),
+                              child: Text('Phương thức thanh toán'.tr,
+                                  style: AppStyles.h4.copyWith(
+                                      fontSize: 20.sp,
+                                      color: AppColors.greyColor,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          )
+                        : Expanded(flex: 2, child: Container()),
+                    Expanded(flex: 1, child: Container()),
                     Expanded(
                       child: Align(
                         alignment: Alignment.center,
@@ -158,10 +174,23 @@ class OrderScreen extends GetView<OrderController> {
                 ),
                 Row(
                   children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(),
-                    ),
+                    controller.getStatusByOrderId(
+                            controller.orders.value.length <= 1
+                                ? controller.orders.value.first.id!
+                                : naController.orderid.toInt())
+                        ? Expanded(
+                            flex: 2,
+                            child: Align(
+                              alignment: Alignment(-0.35, 1),
+                              child: Text("Momo",
+                                  style: AppStyles.h4.copyWith(
+                                      fontSize: 20.sp,
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          )
+                        : Expanded(flex: 2, child: Container()),
+                    Expanded(flex: 1, child: Container()),
                     controller.orders.value.isEmpty
                         ? Expanded(child: Container())
                         : Expanded(

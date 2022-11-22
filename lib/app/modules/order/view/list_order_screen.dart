@@ -166,10 +166,8 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                           : AppColors.orangeColor,
                       borderRadius: BorderRadius.circular(10.r),
                       onTap: () {
-                        controller.isPayall
-                            ? null
-                            : OrderDialog().showOrderDialog(
-                                context, naController.orderid.toInt());
+                        controller.isPayall ? null : null;
+                        //OrderDialog().showOrderDialog(context, naController.orderid.toInt());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

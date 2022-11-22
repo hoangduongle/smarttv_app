@@ -13,6 +13,7 @@ import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/model/momo_content.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
+import 'package:smarttv_app/app/core/model/order_payment_content.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/dio/dio_provider.dart';
@@ -77,25 +78,6 @@ class RepositoryImpl extends BaseRepository implements Repository {
       rethrow;
     }
   }
-
-  // @override
-  // Future<List<ImageContent>> getListImageByType(String type) {
-  //   var endpoint = "${DioProvider.baseUrl}/image";
-  //   var data = {"type": type};
-  //   var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
-  //   try {
-  //     return callApi(dioCall).then((response) {
-  //       var result = <ImageContent>[];
-
-  //       for (var element in (response.data as List<dynamic>)) {
-  //         result.add(ImageContent.fromJson(element));
-  //       }
-  //       return result;
-  //     });
-  //   } catch (e) {
-  //     rethrow;
-  //   }
-  // }
 
   @override
   Future<MomoContent> momoPayment(int orderId) {
@@ -426,6 +408,19 @@ class RepositoryImpl extends BaseRepository implements Repository {
     try {
       return callApi(dioCall).then((response) {
         return OrderContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<OrderPaymentContent> getOrderPaymentByOrderId(int orderId) {
+    var endpoint = "${DioProvider.baseUrl}/billPayment/${orderId}";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        return OrderPaymentContent.fromJson(response.data);
       });
     } catch (e) {
       rethrow;

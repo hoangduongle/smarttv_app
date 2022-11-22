@@ -2,22 +2,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
+import 'package:smarttv_app/app/core/model/order_payment_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
-import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
+import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 
 class ListOrderDetail extends StatelessWidget {
   OrderController orderController;
   OrderDetailContent orderDetailContent;
+  // OrderPaymentContent orderPaymentContent;
   int index;
 
   ListOrderDetail({
     Key? key,
     required this.orderController,
     required this.orderDetailContent,
+    // required this.orderPaymentContent,
     required this.index,
   }) : super(key: key);
 
@@ -44,7 +48,7 @@ class ListOrderDetail extends StatelessWidget {
                   children: [
                     AnimatedPadding(
                         padding: EdgeInsets.only(
-                            left: naController.select ? 15.w : 10.w),
+                            left: naController.select ? 30.w : 40.w),
                         duration: const Duration(milliseconds: 500)),
                     SizedBox(
                       width: 160.w,
@@ -60,7 +64,7 @@ class ListOrderDetail extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  width: naController.select ? 25.w : 55.w,
+                  width: naController.select ? 10.w : 35.w,
                 ),
                 SizedBox(
                   width: 30.w,
@@ -73,7 +77,7 @@ class ListOrderDetail extends StatelessWidget {
                 ),
                 AnimatedContainer(
                     duration: const Duration(milliseconds: 500),
-                    width: naController.select ? 100.w : 135.w),
+                    width: naController.select ? 95.w : 125.w),
                 SizedBox(
                   width: 92.w,
                   child: Text(

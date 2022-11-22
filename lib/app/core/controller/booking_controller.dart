@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
@@ -16,6 +15,7 @@ class BookingController extends BaseController {
     super.onInit();
   }
 
+  //check booking status
   Future<void> fetchBooking(int roomId) async {
     var overview = _repository.getBookingByRoomId(roomId);
     await callDataService(
