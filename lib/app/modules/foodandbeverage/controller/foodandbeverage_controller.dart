@@ -8,6 +8,7 @@ import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class FoodandBeverageController extends BaseController {
@@ -35,15 +36,24 @@ class FoodandBeverageController extends BaseController {
   @override
   void onInit() async {
     _loadData();
-    // await fetchImage("img_fandb");
     createMajor();
     var futures = await Future.wait([
       fetchServicesFood(),
       fetchServicesDrink(),
     ]);
-    filter();
+    // filter();
     super.onInit();
   }
+
+  // Stream<List<ServiceContent>> serviceFBStream() async* {
+  //   while (true) {
+  //     await Future.delayed(const Duration(seconds: SECONDS));
+  //     List<ServiceContent> foodServices = await fetchServicesFood();
+  //     List<ServiceContent> drinkServices = await fetchServicesDrink();
+  //       createMajor();
+  //     yield drinkServices;
+  //   }
+  // }
 
   void _loadData() {
     if (!TokenManager.instance.hasToken) {
@@ -51,20 +61,7 @@ class FoodandBeverageController extends BaseController {
     }
   }
 
-  // Future<void> fetchImage(String type) async {
-  //   var overview = _repository.getListImageByType(type);
-  //   List<ImageContent> result = [];
-  //   await callDataService(
-  //     overview,
-  //     onSuccess: (List<ImageContent> response) {
-  //       result = response;
-  //     },
-  //     onError: ((dioError) {}),
-  //   );
-  //   imageFandB(result);
-  // }
-
-  Future<void> fetchServicesFood() async {
+  Future<List<ServiceContent>> fetchServicesFood() async {
     var services = _repository.getListServiceContentByCateId(1);
     List<ServiceContent> result = [];
     await callDataService(
@@ -76,9 +73,10 @@ class FoodandBeverageController extends BaseController {
     );
     serviceListFood(result);
     debugPrint("Food ${DateTimeUtils.currentDateTimeSecond()}");
+    return result;
   }
 
-  Future<void> fetchServicesDrink() async {
+  Future<List<ServiceContent>> fetchServicesDrink() async {
     var services = _repository.getListServiceContentByCateId(2);
     List<ServiceContent> result = [];
     await callDataService(
@@ -90,6 +88,7 @@ class FoodandBeverageController extends BaseController {
     );
     serviceListDrink(result);
     debugPrint("Drink ${DateTimeUtils.currentDateTimeSecond()}");
+    return result;
   }
 
   void createMajor() {

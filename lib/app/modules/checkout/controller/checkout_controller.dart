@@ -18,7 +18,6 @@ class CheckoutController extends BaseController {
   void onInit() async {
     final prefs = await SharedPreferences.getInstance();
     bookingId = await prefs.getInt("bookingId");
-    // fetchImage("img_checkout");
     super.onInit();
   }
 
@@ -54,17 +53,4 @@ class CheckoutController extends BaseController {
       onError: ((dioError) {}),
     );
   }
-
-  // Future<void> fetchImage(String type) async {
-  //   var overview = _repository.getListImageByType(type);
-  //   List<ImageContent> result = [];
-  //   await callDataService(
-  //     overview,
-  //     onSuccess: (List<ImageContent> response) {
-  //       result = response;
-  //     },
-  //     onError: ((dioError) {}),
-  //   );
-  //   imageCheckout(result);
-  // }
 }

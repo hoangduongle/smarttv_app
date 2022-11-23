@@ -13,26 +13,18 @@ import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class AlarmController extends BaseController {
+  final Repository _repository = Get.find(tag: (Repository).toString());
+
   var hours = 0.obs;
   var minutes = 0.obs;
   int idAlarm = 0;
-
   late Timer _timer;
   List<AlarmContent> alarmed = [];
-
   AudioPlayer player = AudioPlayer();
   AudioCache musicCache = AudioCache();
-
-  void sort() {
-    // debugPrint("Chua sort $alarmed");
-
-    alarmed.sort(
-      (a, b) => b.date!.compareTo(a.date!),
-    );
-    // debugPrint("Da sort $alarmed");
-  }
 
   @override
   void onInit() async {
@@ -41,6 +33,53 @@ class AlarmController extends BaseController {
     super.onInit();
   }
 
+  Future<int> insertRoomAlarm(AlarmContent alarmContent) async {
+    int result = -1;
+    var overview = _repository.insertAlarm(alarmContent);
+    await callDataService(
+      overview,
+      onSuccess: (response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+    return result;
+  }
+
+  Future<int> deleteRoomAlarm(int id) async {
+    int result = -1;
+    var overview = _repository.deleteAlarm(id);
+    await callDataService(
+      overview,
+      onSuccess: (response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+    return result;
+  }
+
+  Future<int> updateRoomAlarm(AlarmContent alarmContent) async {
+    int result = -1;
+    var overview = _repository.updateAlarm(alarmContent);
+    await callDataService(
+      overview,
+      onSuccess: (response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+    return result;
+  }
+
+  // Stream<List<AbtractionContent>> abtractionStream() async* {
+  //   while (true) {
+  //     await Future.delayed(const Duration(hours: 9999999999));
+  //     List<AbtractionContent> someProduct = await fetchAbtractions();
+  //     yield someProduct;
+  //   }
+  // }
+
   void timing() async {
     _timer = Timer.periodic(
       const Duration(milliseconds: 600),
@@ -48,10 +87,6 @@ class AlarmController extends BaseController {
         changeUpdate();
       },
     );
-  }
-
-  void alarmOff() {
-    player.stop();
   }
 
   void changeUpdate() {
@@ -71,24 +106,102 @@ class AlarmController extends BaseController {
     }
   }
 
-  void audio() async {
-    String audioasset = "assets/audios/alarm.mp3";
-    Uint8List? audiobytes;
-    ByteData bytes = await rootBundle.load(audioasset);
-    audiobytes =
-        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
-    player.setVolume(10);
-
-    if (player.state == PlayerState.PLAYING) {
-      player.stop();
-      musicCache = AudioCache(prefix: "assets/audios/");
-      player = await musicCache.loop("alarm.mp3");
-      // await player.playBytes(audiobytes);
-    } else {
-      musicCache = AudioCache(prefix: "assets/audios/");
-      player = await musicCache.loop("alarm.mp3");
-      // await player.playBytes(audiobytes);
+  void updateAlarm(int hours, int minutes, int alarmId) async {
+    DateTime currentDateTime = DateTime.now();
+    DateTime timeAlarm = DateTime(
+      currentDateTime.year,
+      currentDateTime.month,
+      currentDateTime.day,
+      hours,
+      minutes,
+    );
+    if (currentDateTime.isAfter(timeAlarm)) {
+      timeAlarm = DateTime(
+        currentDateTime.year,
+        currentDateTime.month,
+        currentDateTime.day + 1,
+        hours,
+        minutes,
+      );
     }
+    AndroidAlarmManager.oneShotAt(
+        DateTime(currentDateTime.year, currentDateTime.month,
+            currentDateTime.day, hours, minutes),
+        alarmId,
+        firedAlarm,
+        wakeup: true,
+        exact: true);
+
+    for (var element in alarmed) {
+      if (element.id == alarmId) {
+        element.status = true;
+        element.date =
+            "${NumberUtils.time(timeAlarm.day)}/${NumberUtils.time(timeAlarm.month)}/${timeAlarm.year} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00";
+      }
+    }
+    sort();
+    update();
+  }
+
+  void setalarm(int hours, int minutes) async {
+    DateTime currentDateTime = DateTime.now();
+    idAlarm += 1;
+    DateTime timeAlarm = DateTime(
+      currentDateTime.year,
+      currentDateTime.month,
+      currentDateTime.day,
+      hours,
+      minutes,
+    );
+    if (currentDateTime.isAfter(timeAlarm)) {
+      timeAlarm = DateTime(
+        currentDateTime.year,
+        currentDateTime.month,
+        currentDateTime.day + 1,
+        hours,
+        minutes,
+      );
+    }
+    AndroidAlarmManager.oneShotAt(
+      DateTime(currentDateTime.year, currentDateTime.month, currentDateTime.day,
+          hours, minutes),
+      idAlarm,
+      firedAlarm,
+      wakeup: true,
+      exact: true,
+      rescheduleOnReboot: true,
+    );
+
+    alarmed.add(AlarmContent(
+      id: idAlarm,
+      date:
+          "${NumberUtils.time(timeAlarm.day)}/${NumberUtils.time(timeAlarm.month)}/${timeAlarm.year} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
+      status: true,
+    ));
+
+    sort();
+    update();
+  }
+
+  void removeAlarm(int id) {
+    // Future<int> result = deleteRoomAlarm(id);
+    alarmed.removeWhere((element) => element.id == id);
+
+    // if (result == 200) {
+    //   debugPrint("Room Alarm: Delete Success id: $id");
+    // } else {
+    //   debugPrint("Room Alarm: Delete Fail id: $id");
+    // }
+  }
+
+  void alarmOff() {
+    player.stop();
+  }
+
+  void sort() {
+    alarmed.sort(
+      (a, b) => b.date!.compareTo(a.date!),
+    );
   }
 
   void dialogWhenFired(String time) {
@@ -166,143 +279,29 @@ class AlarmController extends BaseController {
     );
   }
 
-  void updateAlarm(int hours, int minutes, int alarmId) async {
-    DateTime currentDateTime = DateTime.now();
-    DateTime timeAlarm = DateTime(
-      currentDateTime.year,
-      currentDateTime.month,
-      currentDateTime.day,
-      hours,
-      minutes,
-    );
-    if (currentDateTime.isAfter(timeAlarm)) {
-      timeAlarm = DateTime(
-        currentDateTime.year,
-        currentDateTime.month,
-        currentDateTime.day + 1,
-        hours,
-        minutes,
-      );
-    }
-    AndroidAlarmManager.oneShotAt(
-        DateTime(currentDateTime.year, currentDateTime.month,
-            currentDateTime.day, hours, minutes),
-        alarmId,
-        firedAlarm,
-        wakeup: true,
-        exact: true);
-
-    for (var element in alarmed) {
-      if (element.id == alarmId) {
-        element.status = true;
-        element.date =
-            "${NumberUtils.time(timeAlarm.day)}/${NumberUtils.time(timeAlarm.month)}/${timeAlarm.year} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00";
-      }
-    }
-    sort();
-    update();
-  }
-
-  void setalarm(int hours, int minutes) async {
-    DateTime currentDateTime = DateTime.now();
-    idAlarm += 1;
-
-    DateTime timeAlarm = DateTime(
-      currentDateTime.year,
-      currentDateTime.month,
-      currentDateTime.day,
-      hours,
-      minutes,
-    );
-
-    if (currentDateTime.isAfter(timeAlarm)) {
-      timeAlarm = DateTime(
-        currentDateTime.year,
-        currentDateTime.month,
-        currentDateTime.day + 1,
-        hours,
-        minutes,
-      );
-    }
-    AndroidAlarmManager.oneShotAt(
-      DateTime(currentDateTime.year, currentDateTime.month, currentDateTime.day,
-          hours, minutes),
-      idAlarm,
-      firedAlarm,
-      wakeup: true,
-      exact: true,
-      rescheduleOnReboot: true,
-    );
-
-    alarmed.add(AlarmContent(
-      id: idAlarm,
-      date:
-          "${NumberUtils.time(timeAlarm.day)}/${NumberUtils.time(timeAlarm.month)}/${timeAlarm.year} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
-      status: true,
-    ));
-    sort();
-    update();
-  }
-
   static firedAlarm() {
     debugPrint("On Time Fired");
   }
 
-  void removeAlarm(int id) {
-    alarmed.removeWhere((element) => element.id == id);
-  }
+  void audio() async {
+    String audioasset = "assets/audios/alarm.mp3";
+    Uint8List? audiobytes;
+    ByteData bytes = await rootBundle.load(audioasset);
+    audiobytes =
+        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    player.setVolume(10);
 
-  // void openDialog() {
-  //   Get.dialog(Dialog(
-  //     elevation: 2,
-  //     backgroundColor: AppColors.navigabackground,
-  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-  //     child: SizedBox(
-  //       width: 150.w,
-  //       child: Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-  //           Lottie.asset("assets/lotties/alarm.json", width: 100),
-  //           SizedBox(
-  //             height: 20.h,
-  //           ),
-  //           SizedBox(
-  //             width: 100.w,
-  //             height: 30.h,
-  //             child: Material(
-  //               color: AppColors.focus,
-  //               borderRadius: BorderRadius.circular(10.r),
-  //               child: InkWell(
-  //                 autofocus: true,
-  //                 focusColor: AppColors.orangeColor,
-  //                 borderRadius: BorderRadius.circular(10.r),
-  //                 onTap: () {
-  //                   Get.back();
-  //                 },
-  //                 child: Row(
-  //                   mainAxisAlignment: MainAxisAlignment.center,
-  //                   children: [
-  //                     Text(
-  //                       'Tắt báo thức'.tr,
-  //                       style: TextStyle(
-  //                           fontWeight: FontWeight.bold,
-  //                           fontSize: 15.sp,
-  //                           color: AppColors.black),
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //           SizedBox(
-  //             height: 20.h,
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   ));
-  // }
+    if (player.state == PlayerState.PLAYING) {
+      player.stop();
+      musicCache = AudioCache(prefix: "assets/audios/");
+      player = await musicCache.loop("alarm.mp3");
+      // await player.playBytes(audiobytes);
+    } else {
+      musicCache = AudioCache(prefix: "assets/audios/");
+      player = await musicCache.loop("alarm.mp3");
+      // await player.playBytes(audiobytes);
+    }
+  }
 
   void incrementHours() {
     hours++;

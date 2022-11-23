@@ -17,10 +17,8 @@ class TurndownController extends BaseController {
   var bookingId;
   @override
   void onInit() async {
-    // fetchImage("img_turndown");
     final prefs = await SharedPreferences.getInstance();
     bookingId = await prefs.getInt("bookingId");
-
     super.onInit();
   }
 
@@ -58,7 +56,6 @@ class TurndownController extends BaseController {
       onError: ((dioError) {}),
     );
     // debugPrint("Request Service: ${result.toString()}");
-    // debugPrint("$order");
   }
 
   var countHours = 8.obs;
@@ -79,17 +76,4 @@ class TurndownController extends BaseController {
   void decrementMinute() {
     countMinute--;
   }
-
-  // Future<void> fetchImage(String type) async {
-  //   var overview = _repository.getListImageByType(type);
-  //   List<ImageContent> result = [];
-  //   await callDataService(
-  //     overview,
-  //     onSuccess: (List<ImageContent> response) {
-  //       result = response;
-  //     },
-  //     onError: ((dioError) {}),
-  //   );
-  //   imageTurndown(result);
-  // }
 }

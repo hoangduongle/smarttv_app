@@ -27,128 +27,145 @@ class _EventScreenState extends State<EventScreen> {
     Size size = MediaQuery.of(context).size;
     return GetBuilder<EventController>(
       builder: (controller) {
-        return Container(
-            color: AppColors.background,
-            child: Column(
-              children: [
-                TitleScreen(
-                  name: "event".tr,
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(30.w, 10.h, 30.w, 0.h),
-                      child: Column(
-                        children: [
-                          //===================================================
-                          TitleEvent(
-                            name: "Đang diễn ra",
-                            indexType: 0,
-                            isFocus: isFocus[0],
-                          ),
-                          controller.eventListOn.value.isEmpty
-                              ? const SkeletonEvent()
-                              : Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 15.h),
-                                  child: SizedBox(
-                                    width: size.width.w,
-                                    height: 150.h,
-                                    child: ListView.builder(
-                                      primary: true,
-                                      itemCount:
-                                          controller.eventListOn.value.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.only(right: 10.w),
-                                          child: _buildEvent(
-                                              0,
-                                              index,
-                                              controller
-                                                  .eventListOn.value[index],
-                                              controller,
-                                              scrollController,
-                                              size),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                          //====================================================
-                          TitleEvent(
-                            name: "Sắp diễn ra",
-                            indexType: 1,
-                            isFocus: isFocus[1],
-                          ),
-                          controller.eventListReady.value.isEmpty
-                              ? const SkeletonEvent()
-                              : Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 15.h),
-                                  child: SizedBox(
-                                    width: size.width.w,
-                                    height: 150.h,
-                                    child: ListView.builder(
-                                      itemCount: controller
-                                          .eventListReady.value.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.only(right: 10.w),
-                                          child: _buildEvent(
-                                              1,
-                                              index,
-                                              controller
-                                                  .eventListReady.value[index],
-                                              controller,
-                                              scrollController,
-                                              size),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                          //====================================================
-                          TitleEvent(
-                            name: "Đã diễn ra",
-                            indexType: 2,
-                            isFocus: isFocus[2],
-                          ),
-                          controller.eventListDone.value.isEmpty
-                              ? const SkeletonEvent()
-                              : Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 15.h),
-                                  child: SizedBox(
-                                    width: size.width,
-                                    height: 150.h,
-                                    child: ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount:
-                                          controller.eventListDone.value.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.only(right: 10.w),
-                                          child: _buildEvent(
-                                              2,
-                                              index,
-                                              controller
-                                                  .eventListDone.value[index],
-                                              controller,
-                                              scrollController,
-                                              size),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                        ],
+        final Stream<List<NewsContent>> eventsStream =
+            controller.eventsStream();
+        return StreamBuilder<List<NewsContent>>(
+            stream: eventsStream,
+            builder: (context, snapshot) {
+              List<NewsContent>? listEvents = [];
+              if (snapshot.hasData) {
+                listEvents = snapshot.data;
+                debugPrint("Has Data");
+              }
+              return Container(
+                  color: AppColors.background,
+                  child: Column(
+                    children: [
+                      TitleScreen(
+                        name: "event".tr,
                       ),
-                    ),
-                  ),
-                ),
-              ],
-            ));
+                      Expanded(
+                        child: SingleChildScrollView(
+                          controller: scrollController,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(30.w, 10.h, 30.w, 0.h),
+                            child: Column(
+                              children: [
+                                //===================================================
+                                TitleEvent(
+                                  name: "Đang diễn ra",
+                                  indexType: 0,
+                                  isFocus: isFocus[0],
+                                ),
+                                controller.eventListOn.value.isEmpty
+                                    ? const SkeletonEvent()
+                                    : Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 15.h),
+                                        child: SizedBox(
+                                          width: size.width.w,
+                                          height: 150.h,
+                                          child: ListView.builder(
+                                            primary: true,
+                                            itemCount: controller
+                                                .eventListOn.value.length,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: 10.w),
+                                                child: _buildEvent(
+                                                    0,
+                                                    index,
+                                                    controller.eventListOn
+                                                        .value[index],
+                                                    controller,
+                                                    scrollController,
+                                                    size),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                //====================================================
+                                TitleEvent(
+                                  name: "Sắp diễn ra",
+                                  indexType: 1,
+                                  isFocus: isFocus[1],
+                                ),
+                                controller.eventListReady.value.isEmpty
+                                    ? const SkeletonEvent()
+                                    : Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 15.h),
+                                        child: SizedBox(
+                                          width: size.width.w,
+                                          height: 150.h,
+                                          child: ListView.builder(
+                                            itemCount: controller
+                                                .eventListReady.value.length,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: 10.w),
+                                                child: _buildEvent(
+                                                    1,
+                                                    index,
+                                                    controller.eventListReady
+                                                        .value[index],
+                                                    controller,
+                                                    scrollController,
+                                                    size),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                //====================================================
+                                TitleEvent(
+                                  name: "Đã diễn ra",
+                                  indexType: 2,
+                                  isFocus: isFocus[2],
+                                ),
+                                controller.eventListDone.value.isEmpty
+                                    ? const SkeletonEvent()
+                                    : Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 15.h),
+                                        child: SizedBox(
+                                          width: size.width,
+                                          height: 150.h,
+                                          child: ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: controller
+                                                .eventListDone.value.length,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: 10.w),
+                                                child: _buildEvent(
+                                                    2,
+                                                    index,
+                                                    controller.eventListDone
+                                                        .value[index],
+                                                    controller,
+                                                    scrollController,
+                                                    size),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ));
+            });
       },
     );
   }

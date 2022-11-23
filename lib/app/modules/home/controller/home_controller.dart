@@ -33,26 +33,6 @@ class HomeController extends BaseController {
   ]);
 
   var currentInt = 0.obs;
-
-  // @override
-  // void onInit() {
-  //   // fetchOverViews();
-  //   super.onInit();
-  // }
-
-  // Future<void> fetchOverViews() async {
-  //   var overview = _repository.getListOverview();
-  //   List<OverviewContent> result = [];
-
-  //   await callDataService(
-  //     overview,
-  //     onSuccess: (List<OverviewContent> response) {
-  //       result = response;
-  //     },
-  //     onError: ((dioError) {}),
-  //   );
-  //   overviewList(result);
-  // }
 }
 
 

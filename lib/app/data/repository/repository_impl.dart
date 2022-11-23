@@ -297,6 +297,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
   }
 
+//ALARM
   @override
   Future<int> insertAlarm(AlarmContent alarmContent) async {
     if (!TokenManager.instance.hasToken) {
@@ -304,12 +305,12 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
     var endpoint = "${DioProvider.baseUrl}/roomAlarm";
     var data = {
-      "booking_Id": alarmContent.booking!.id,
-      "dateTime": alarmContent.date,
+      'booking_Id': alarmContent.booking!.id,
+      'dateTime': alarmContent.date,
+      'id': 0,
       'status': alarmContent.status,
     };
-    var fromData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
         return response.statusCode ?? 0;
@@ -320,12 +321,35 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<int> deleteAlarm(AlarmContent alarmContent) async {
+  Future<int> deleteAlarm(int id) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/roomAlarm/${alarmContent.id}";
+    var endpoint = "${DioProvider.baseUrl}/roomAlarm/$id";
     var dioCall = dioTokenClient.delete(endpoint);
+
+    try {
+      return callApi(dioCall).then((response) {
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> updateAlarm(AlarmContent alarmContent) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/roomAlarm";
+    var data = {
+      'booking_Id': alarmContent.booking!.id,
+      'dateTime': alarmContent.date,
+      'id': alarmContent.id,
+      'status': alarmContent.status,
+    };
+    var dioCall = dioTokenClient.put(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
         return response.statusCode ?? 0;

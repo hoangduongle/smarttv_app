@@ -24,7 +24,7 @@ class TaxiController extends BaseController {
   @override
   void onInit() async {
     fetchServiceTaxi(4);
-    Future.delayed(const Duration(seconds: 5), () => checkTaxiService());
+    checkTaxiService();
     super.onInit();
   }
 
@@ -101,11 +101,11 @@ class TaxiController extends BaseController {
         await fetchOrderDetails(ordersForTaxi.value[i].id!);
         for (int j = 0; j < orderDetails.value.length; j++) {
           if (orderDetails.value[j].service!.id == 57) {
-            debugPrint(orderDetails.value[j].toString());
+            // debugPrint(orderDetails.value[j].toString());
             statusTaxi[0] = true;
             flagBreak = true;
           } else if (orderDetails.value[j].service!.id == 58) {
-            debugPrint(orderDetails.value[j].toString());
+            // debugPrint(orderDetails.value[j].toString());
             statusTaxi[1] = true;
             flagBreak = true;
           }

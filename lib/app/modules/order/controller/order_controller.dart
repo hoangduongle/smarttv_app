@@ -7,6 +7,7 @@ import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/order_payment_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class OrderController extends BaseController {
@@ -17,6 +18,8 @@ class OrderController extends BaseController {
   Rx<OrderPaymentContent?> orderPayment = Rx<OrderPaymentContent?>(null);
 
   int result = 0;
+  OrderContent findOrder(int id) =>
+      orders.value.firstWhere((order) => order.id == id);
 
   get total {
     String x;
@@ -89,6 +92,16 @@ class OrderController extends BaseController {
     super.onInit();
   }
 
+  Stream<List<OrderContent>> ordersStream() async* {
+    while (true) {
+      await Future.delayed(const Duration(seconds: SECONDS));
+      final prefs = await SharedPreferences.getInstance();
+      var bookingId = await prefs.getInt("bookingId");
+      List<OrderContent> events = await fetchOrder(bookingId!);
+      yield events;
+    }
+  }
+
   Future<void> fetchOrderPayment(int orderId) async {
     var overview = _repository.getOrderPaymentByOrderId(orderId);
     await callDataService(
@@ -107,7 +120,7 @@ class OrderController extends BaseController {
     }); //fetchOrderPayment(orderId)
   }
 
-  Future<void> fetchOrder(int bookingId) async {
+  Future<List<OrderContent>> fetchOrder(int bookingId) async {
     var overview = _repository.getOrderByBookingId(bookingId);
     List<OrderContent> result = [];
     await callDataService(
@@ -126,6 +139,7 @@ class OrderController extends BaseController {
     }
     debugPrint("Order ${DateTimeUtils.currentDateTimeSecond()}");
     update();
+    return result;
   }
 
   Future<void> fetchOrderDetails(int orderId) async {

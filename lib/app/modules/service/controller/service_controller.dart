@@ -6,12 +6,11 @@ import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class ServiceController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
-  Rx<List<ImageContent>> imageServiceCategoriesTMP = Rx<List<ImageContent>>([]);
-  Rx<List<ImageContent>> imageServiceCategories = Rx<List<ImageContent>>([]);
   bool canRequestFocus = false;
 
   Rx<List<ServiceCategoryContent>> serviceCateList =
@@ -25,11 +24,19 @@ class ServiceController extends BaseController {
     super.onInit();
   }
 
+  Stream<List<ServiceCategoryContent>> serviceCategoriesStream() async* {
+    while (true) {
+      await Future.delayed(const Duration(seconds: SECONDS));
+      List<ServiceCategoryContent> serviceCates = await fetchServiceCategory();
+      yield serviceCates;
+    }
+  }
+
   void reload() {
     onInit();
   }
 
-  Future<void> fetchServiceCategory() async {
+  Future<List<ServiceCategoryContent>> fetchServiceCategory() async {
     var servicecate = _repository.getListServiceCate();
     List<ServiceCategoryContent> result = [];
     await callDataService(
@@ -42,6 +49,7 @@ class ServiceController extends BaseController {
     serviceCateListTMP(result);
     debugPrint("Service ${DateTimeUtils.currentDateTimeSecond()}");
     fandB();
+    return result;
   }
 
   void fandB() {

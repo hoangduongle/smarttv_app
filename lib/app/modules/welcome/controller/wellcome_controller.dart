@@ -29,6 +29,14 @@ class WellcomeController extends BaseController {
   var content = "";
   AudioPlayer player = AudioPlayer();
 
+  @override
+  void onInit() async {
+    timing();
+    await fetchBooking(11);
+    loadTitle();
+    super.onInit();
+  }
+
   void audio() async {
     String audioasset = "assets/audios/audio.mp3";
     Uint8List? audiobytes;
@@ -72,14 +80,6 @@ class WellcomeController extends BaseController {
     }
     content =
         "Chúc ${bookingContent.value?.customer?.gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
-  }
-
-  @override
-  void onInit() async {
-    timing();
-    await fetchBooking(11);
-    loadTitle();
-    super.onInit();
   }
 
   Future<void> fetchBooking(int roomId) async {
