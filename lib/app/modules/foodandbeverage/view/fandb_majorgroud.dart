@@ -10,9 +10,9 @@ import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/mayjor_each_service.dart';
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
-import 'package:smarttv_app/app/modules/service_components/loading/skeleton_loading.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
+import 'package:smarttv_app/app/widget/skeleton_loading.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class FandBMayjorScreen extends StatefulWidget {

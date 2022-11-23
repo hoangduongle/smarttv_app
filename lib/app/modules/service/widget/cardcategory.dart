@@ -19,8 +19,6 @@ import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
 import 'package:smarttv_app/app/widget/skeleton_loading.dart';
-import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
-import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/widget/cached_image.dart';
 

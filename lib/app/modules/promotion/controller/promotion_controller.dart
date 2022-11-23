@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
-import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class PromotionController extends BaseController {
@@ -16,15 +15,7 @@ class PromotionController extends BaseController {
     super.onInit();
   }
 
-  Stream<List<NewsContent>> promotionsStream() async* {
-    while (true) {
-      await Future.delayed(const Duration(seconds: SECONDS));
-      List<NewsContent> promotions = await fetchNewsPromotion();
-      yield promotions;
-    }
-  }
-
-  Future<List<NewsContent>> fetchNewsPromotion() async {
+  Future<void> fetchNewsPromotion() async {
     promotionList.value.clear();
     var overview = _repository.getListNewsByType("promotion");
     List<NewsContent> result = [];
@@ -38,6 +29,5 @@ class PromotionController extends BaseController {
     );
     promotionList(result);
     debugPrint("Promotion ${DateTimeUtils.currentDateTimeSecond()}");
-    return result;
   }
 }

@@ -14,9 +14,7 @@ import 'package:smarttv_app/app/modules/momo/binding/momo_binding.dart';
 import 'package:smarttv_app/app/modules/notification/binding/notification_binding.dart';
 import 'package:smarttv_app/app/modules/pool/binding/pool_binding.dart';
 import 'package:smarttv_app/app/modules/promotion/binding/promotion_binding.dart';
-
 import 'package:smarttv_app/app/modules/service/binding/service_binding.dart';
-import 'package:smarttv_app/app/modules/service_components/binding/list_service_binding.dart';
 import 'package:smarttv_app/app/modules/taxi/binding/taxi_binding.dart';
 import 'package:smarttv_app/app/modules/turndown/binding/turndown_binding.dart';
 
@@ -34,7 +32,7 @@ class MainBinding implements Bindings {
     FeedbackBinding().dependencies();
 //===============================================================
     NotificationBinding().dependencies();
-    ListServiceBinding().dependencies();
+    // ListServiceBinding().dependencies();
     FoodandBeverageBinding().dependencies();
     CartBinding().dependencies();
 

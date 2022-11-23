@@ -16,9 +16,8 @@ import 'package:smarttv_app/app/modules/abtraction/binding/abtraction_binding.da
 import 'package:smarttv_app/app/modules/abtraction/view/abtraction_screen.dart';
 import 'package:smarttv_app/app/modules/main/binding/main_binding.dart';
 import 'package:smarttv_app/app/modules/main/view/main_screen.dart';
-import 'package:smarttv_app/app/modules/order/view/order_main_screen.dart';
-import 'package:smarttv_app/app/modules/service_components/binding/list_service_binding.dart';
-import 'package:smarttv_app/app/modules/service_components/view/list_service_screen.dart';
+import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
+
 import 'package:smarttv_app/app/modules/splash/bindings/splash_binding.dart';
 import 'package:smarttv_app/app/modules/splash/views/splash_view.dart';
 import 'package:smarttv_app/app/modules/welcome/binding/wellcome_binding.dart';
@@ -51,12 +50,12 @@ class AppPages {
       binding: MainBinding(),
       transition: Transition.noTransition,
     ),
-    GetPage(
-      name: _Paths.SERVICE_COMPONENT,
-      page: () => ListServiceScreen(cateName: Get.parameters['cateName']!),
-      binding: ListServiceBinding(),
-      transition: Transition.noTransition,
-    ),
+    // GetPage(
+    //   name: _Paths.SERVICE_COMPONENT,
+    //   page: () => ListServiceScreen(cateName: Get.parameters['cateName']!),
+    //   binding: ListServiceBinding(),
+    //   transition: Transition.noTransition,
+    // ),
     GetPage(
       name: _Paths.FANDB,
       page: () => FandBScreen(),
@@ -83,7 +82,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ORDER,
-      page: () => OrderMainScreen(),
+      page: () => OrderScreen(),
       binding: OrderBinding(),
       transition: Transition.noTransition,
     ),

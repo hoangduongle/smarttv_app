@@ -93,13 +93,13 @@ class OrderController extends BaseController {
   }
 
   Stream<List<OrderContent>> ordersStream() async* {
-    while (true) {
-      await Future.delayed(const Duration(seconds: SECONDS));
-      final prefs = await SharedPreferences.getInstance();
-      var bookingId = await prefs.getInt("bookingId");
-      List<OrderContent> events = await fetchOrder(bookingId!);
-      yield events;
-    }
+    // while (true) {
+    //   await Future.delayed(const Duration(seconds: SECONDS));
+    //   final prefs = await SharedPreferences.getInstance();
+    //   var bookingId = await prefs.getInt("bookingId");
+    //   List<OrderContent> events = await fetchOrder(bookingId!);
+    //   yield events;
+    // }
   }
 
   Future<void> fetchOrderPayment(int orderId) async {

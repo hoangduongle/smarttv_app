@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
-import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class NotificationController extends BaseController {
@@ -26,13 +25,13 @@ class NotificationController extends BaseController {
 
   void refreshMessage() {
     _timer = Timer.periodic(
-      const Duration(seconds: SECONDS),
+      const Duration(minutes: 1),
       (timer) async {
         // debugPrint("${DateTime.now().minute} ${DateTime.now().second}");
         final prefs = await SharedPreferences.getInstance();
         var bookingId = await prefs.getInt("bookingId");
         fetchMessages(bookingId!);
-        // debugPrint("Auto refersh Notification");
+        debugPrint("Auto refersh Notification");
         update();
       },
     );

@@ -14,7 +14,7 @@ import 'package:smarttv_app/app/core/values/app_const.dart';
 
 const hotelId = 1;
 
-const SECONDS = 30;
+const SECONDS = 9999;
 
 RoomContent roomContent = RoomContent(
   id: 11,

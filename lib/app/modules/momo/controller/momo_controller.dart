@@ -13,6 +13,7 @@ import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 
 class MomoController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
+  Rx<OrderContent?> order = Rx<OrderContent?>(null);
 
   Rx<MomoContent?> momo = Rx<MomoContent?>(null);
 
@@ -38,17 +39,28 @@ class MomoController extends BaseController {
 
     timerCheck =
         Timer.periodic(const Duration(seconds: 5), (Timer timer) async {
-      OrderController orderController = Get.find();
-      OrderContent order = orderController.findOrder(orderId);
-      if (order.status == "1") {
+      await queryOrder(orderId);
+      if (order.value!.status == "1") {
         timerCheck?.cancel();
-        // debugPrint("MoMo onReady: ${order.status}");
+        // debugPrint("MoMo onReady: ${order.value!.status}");
         Get.back();
         const MomoScreen().showThanksDialog(Get.context!);
         OrderController orderController = Get.find();
         orderController.onInit();
       }
     });
+  }
+
+  Future<void> queryOrder(int orderId) async {
+    var overview = _repository.getOrderId(orderId);
+
+    await callDataService(
+      overview,
+      onSuccess: (OrderContent response) {
+        order(response);
+      },
+      onError: ((dioError) {}),
+    );
   }
 
   Timer? timerMinutes;

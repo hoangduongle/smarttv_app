@@ -16,7 +16,7 @@ import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/navigation/widget/widget_navigationslider.dart';
 import 'package:smarttv_app/app/modules/massage/view/massage_screen.dart';
-import 'package:smarttv_app/app/modules/order/view/order_main_screen.dart';
+import 'package:smarttv_app/app/modules/order/view/list_order_screen.dart';
 import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
 import 'package:smarttv_app/app/modules/pool/view/pool_screen.dart';
 import 'package:smarttv_app/app/modules/promotion/view/promotion_screen.dart';
@@ -442,7 +442,7 @@ class _MainScreenState extends State<MainScreen> {
                         excluding: naController.current_index.toInt() == 5
                             ? false
                             : true,
-                        child: OrderMainScreen(),
+                        child: ListOrderScreen(),
                       ),
                       ExcludeFocus(
                           //feedback
@@ -493,7 +493,6 @@ class _MainScreenState extends State<MainScreen> {
                               ? false
                               : true,
                           child: OrderScreen()),
-                      // OrderScreen()
                     ],
                   ),
                 ),

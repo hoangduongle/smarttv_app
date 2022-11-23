@@ -9,7 +9,7 @@ import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/widget/skeleton_loading.dart';
 
-import 'package:smarttv_app/app/modules/service_components/controller/cart_dialog_controller.dart';
+import 'package:smarttv_app/app/core/controller/cart_dialog_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class DialogCart extends StatelessWidget {
@@ -49,8 +49,6 @@ class DialogCart extends StatelessWidget {
                       'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcSxLr0EfOo_znMX-DYtQVeYFvNzAF4Xw3Ny8nm9RZqlS0QdgFMCBN81LtQxXfqj_1EviZSW9_zWBuBi6wLLtjA',
                   height: 130,
                   fit: BoxFit.fill,
-                  placeholder: (context, url) =>
-                      SkeletonLoading(Size(220, 130)),
                 ),
               ),
             ),

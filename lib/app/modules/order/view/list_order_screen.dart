@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
@@ -85,38 +86,38 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                       SizedBox(
                         height: 10.h,
                       ),
-                      // controller.orders.value.isEmpty
-                      //     ? Expanded(
-                      //         child: Lottie.asset("assets/lotties/loading.json",
-                      //             width: 200.w))
-                      //     :
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: SizedBox(
-                          width: 900.w,
-                          height: 300.h,
-                          child: RawScrollbar(
-                            thumbColor: AppColors.greyColor,
-                            thumbVisibility: true,
-                            radius: Radius.circular(100.r),
-                            thickness: 10,
-                            controller: scrollOrderController,
-                            child: ListView.separated(
-                                controller: scrollOrderController,
-                                separatorBuilder: (context, index) => SizedBox(
-                                      height: 25.h,
-                                    ),
-                                itemCount: controller.orders.value.length,
-                                itemBuilder: (context, index) {
-                                  return ListOrder(
-                                      orderController: controller,
-                                      orderContent:
-                                          controller.orders.value[index],
-                                      index: index);
-                                }),
-                          ),
-                        ),
-                      ),
+                      controller.orders.value.isEmpty
+                          ? Expanded(
+                              child: Lottie.asset("assets/lotties/loading.json",
+                                  width: 200.w))
+                          : Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15.w),
+                              child: SizedBox(
+                                width: 900.w,
+                                height: 300.h,
+                                child: RawScrollbar(
+                                  thumbColor: AppColors.greyColor,
+                                  thumbVisibility: true,
+                                  radius: Radius.circular(100.r),
+                                  thickness: 10,
+                                  controller: scrollOrderController,
+                                  child: ListView.separated(
+                                      controller: scrollOrderController,
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                            height: 25.h,
+                                          ),
+                                      itemCount: controller.orders.value.length,
+                                      itemBuilder: (context, index) {
+                                        return ListOrder(
+                                            orderController: controller,
+                                            orderContent:
+                                                controller.orders.value[index],
+                                            index: index);
+                                      }),
+                                ),
+                              ),
+                            ),
                       SizedBox(
                         height: 7.h,
                       ),

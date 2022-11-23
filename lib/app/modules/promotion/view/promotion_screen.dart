@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/promotion/controller/promotion_controller.dart';
@@ -19,64 +18,53 @@ class PromotionScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return GetBuilder<PromotionController>(
       builder: (controller) {
-        final Stream<List<NewsContent>> promotionsStream =
-            controller.promotionsStream();
-        return StreamBuilder<List<NewsContent>>(
-            stream: promotionsStream,
-            builder: (context, snapshot) {
-              List<NewsContent>? listPromotions = [];
-              if (snapshot.hasData) {
-                listPromotions = snapshot.data;
-              }
-              return Scaffold(
-                body: Container(
-                  color: AppColors.background,
-                  child: Column(
-                    children: [
-                      Expanded(
-                          child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TitleScreen(
-                            name: "Tin tức",
-                          ),
-                          listPromotions!.isEmpty
-                              ? const PromotionLoading()
-                              : Expanded(
-                                  child: SizedBox(
-                                  width: size.width,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 40.w,
-                                    ),
-                                    child: GridView.builder(
-                                      itemCount:
-                                          controller.promotionList.value.length,
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount:
-                                            naController.select ? 2 : 3,
-                                        crossAxisSpacing: 40.w,
-                                        mainAxisExtent: 300,
-                                        mainAxisSpacing: 30.h,
-                                      ),
-                                      itemBuilder: (context, index) {
-                                        return BuildPromotion(
-                                          index: index,
-                                          newsContent: controller
-                                              .promotionList.value[index],
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                )),
-                        ],
-                      ))
-                    ],
-                  ),
-                ),
-              );
-            });
+        return Scaffold(
+          body: Container(
+            color: AppColors.background,
+            child: Column(
+              children: [
+                Expanded(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TitleScreen(
+                      name: "Tin tức",
+                    ),
+                    controller.promotionList.value.isEmpty
+                        ? const PromotionLoading()
+                        : Expanded(
+                            child: SizedBox(
+                            width: size.width,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 40.w,
+                              ),
+                              child: GridView.builder(
+                                itemCount:
+                                    controller.promotionList.value.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: naController.select ? 2 : 3,
+                                  crossAxisSpacing: 40.w,
+                                  mainAxisExtent: 300,
+                                  mainAxisSpacing: 30.h,
+                                ),
+                                itemBuilder: (context, index) {
+                                  return BuildPromotion(
+                                    index: index,
+                                    newsContent:
+                                        controller.promotionList.value[index],
+                                  );
+                                },
+                              ),
+                            ),
+                          )),
+                  ],
+                ))
+              ],
+            ),
+          ),
+        );
       },
     );
   }

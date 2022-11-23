@@ -20,7 +20,6 @@ import 'package:smarttv_app/app/modules/notification/controller/notification_con
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/promotion/controller/promotion_controller.dart';
 import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
-import 'package:smarttv_app/app/modules/service_components/controller/list_service_controller.dart';
 import 'package:smarttv_app/app/modules/taxi/controller/taxi_controller.dart';
 
 class MainController extends BaseController {
@@ -34,7 +33,7 @@ class MainController extends BaseController {
   @override
   void onInit() {
     timing();
-    // timingDependencies();
+    timingDependencies();
     super.onInit();
   }
 
@@ -55,7 +54,7 @@ class MainController extends BaseController {
       const Duration(milliseconds: 1000),
       (timer) {
         if (DateTime.now().minute == 30 && DateTime.now().second == 1) {
-          // debugPrint("${DateTime.now().minute}:${DateTime.now().second}");
+          debugPrint("${DateTime.now().minute}:${DateTime.now().second}");
           // debugPrint("Time to refesh fetch Api");
           fetchAllApi();
         }
@@ -94,13 +93,13 @@ class MainController extends BaseController {
   }
 
   void fetchAllApi() async {
-    // debugPrint("Refesh fetch Api");
-    // loadingDialog();
+    debugPrint("Refesh fetch Api");
+    loadingDialog();
     // OrderController orderController = Get.find();
     // orderController.onInit();
 
-    FoodandBeverageController foodandBeverageController = Get.find();
-    foodandBeverageController.onInit();
+    // FoodandBeverageController foodandBeverageController = Get.find();
+    // foodandBeverageController.onInit();
 
     // ServiceController serviceController = Get.find();
     // serviceController.onInit();
@@ -114,10 +113,10 @@ class MainController extends BaseController {
     // AbtractionController abtractionController = Get.find();
     // abtractionController.onInit();
 
-    // Future.delayed(
-    //   const Duration(seconds: 5),
-    //   () => Get.back(),
-    // );
+    Future.delayed(
+      const Duration(seconds: 5),
+      () => Get.back(),
+    );
   }
 }
   // var language = "vietnamese".obs;

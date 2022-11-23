@@ -49,83 +49,67 @@ class _ServiceScreenState extends State<ServiceScreen> {
     ScrollController scrollControllerService = ScrollController();
     return GetBuilder<ServiceController>(
       builder: (controller) {
-        final Stream<List<ServiceCategoryContent>> serviceCatesStream =
-            controller.serviceCategoriesStream();
-        return StreamBuilder<List<ServiceCategoryContent>>(
-            stream: serviceCatesStream,
-            builder: (context, snapshot) {
-              List<ServiceCategoryContent>? listServiceCategories = [];
-              if (snapshot.hasData) {
-                listServiceCategories = snapshot.data;
-              }
-              return Scaffold(
-                  body: Container(
+        return Scaffold(
+            body: Container(
+                color: AppColors.background,
+                child: Column(
+                  children: [
+                    Expanded(
+                        child: Container(
                       color: AppColors.background,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                              child: Container(
-                            color: AppColors.background,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TitleScreen(
-                                  name: "services".tr,
-                                ),
-                                listServiceCategories!.isEmpty
-                                    ? SkeletonCategoryService()
-                                    : Expanded(
-                                        child: SizedBox(
-                                        width: size.width,
-                                        child: RawScrollbar(
-                                          controller: scrollControllerService,
-                                          thumbColor: AppColors.title,
-                                          thumbVisibility: true,
-                                          radius: Radius.circular(100.r),
-                                          thickness: 10,
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: naController.select
-                                                    ? 15.w
-                                                    : 30.w,
-                                                vertical: 0.h),
-                                            child: GridView.builder(
-                                              controller:
-                                                  scrollControllerService,
-                                              itemCount: controller
-                                                  .serviceCateList.value.length,
-                                              gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount:
-                                                    naController.select ? 3 : 4,
-                                                crossAxisSpacing:
-                                                    naController.select
-                                                        ? 50.w
-                                                        : 30.w,
-                                                mainAxisSpacing: 30.h,
-                                              ),
-                                              itemBuilder: (context, index) {
-                                                return CardCategory(
-                                                    // image: controller
-                                                    //     .imageServiceCategories
-                                                    //     .value[0],
-                                                    index: index,
-                                                    serviceCategory: controller
-                                                        .serviceCateList
-                                                        .value[index],
-                                                    focusNode:
-                                                        focusNodes[index]);
-                                              },
-                                            ),
-                                          ),
+                          TitleScreen(
+                            name: "services".tr,
+                          ),
+                          controller.serviceCateListTMP.value.isEmpty
+                              ? SkeletonCategoryService()
+                              : Expanded(
+                                  child: SizedBox(
+                                  width: size.width,
+                                  child: RawScrollbar(
+                                    controller: scrollControllerService,
+                                    thumbColor: AppColors.title,
+                                    thumbVisibility: true,
+                                    radius: Radius.circular(100.r),
+                                    thickness: 10,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              naController.select ? 15.w : 30.w,
+                                          vertical: 0.h),
+                                      child: GridView.builder(
+                                        controller: scrollControllerService,
+                                        itemCount: controller
+                                            .serviceCateList.value.length,
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount:
+                                              naController.select ? 3 : 4,
+                                          crossAxisSpacing:
+                                              naController.select ? 50.w : 30.w,
+                                          mainAxisSpacing: 30.h,
                                         ),
-                                      )),
-                              ],
-                            ),
-                          )),
+                                        itemBuilder: (context, index) {
+                                          return CardCategory(
+                                              // image: controller
+                                              //     .imageServiceCategories
+                                              //     .value[0],
+                                              index: index,
+                                              serviceCategory: controller
+                                                  .serviceCateList.value[index],
+                                              focusNode: focusNodes[index]);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                )),
                         ],
-                      )));
-            });
+                      ),
+                    )),
+                  ],
+                )));
       },
     );
   }

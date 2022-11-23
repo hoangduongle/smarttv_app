@@ -280,7 +280,7 @@ class AlarmController extends BaseController {
   }
 
   static firedAlarm() {
-    debugPrint("On Time Fired");
+    // debugPrint("On Time Fired");
   }
 
   void audio() async {

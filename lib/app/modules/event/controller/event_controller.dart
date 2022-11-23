@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
-import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class EventController extends BaseController {
@@ -23,15 +22,7 @@ class EventController extends BaseController {
     super.onInit();
   }
 
-  Stream<List<NewsContent>> eventsStream() async* {
-    while (true) {
-      await Future.delayed(const Duration(seconds: SECONDS));
-      List<NewsContent> events = await fetchNewsEvent();
-      yield events;
-    }
-  }
-
-  Future<List<NewsContent>> fetchNewsEvent() async {
+  Future<void> fetchNewsEvent() async {
     var overview = _repository.getListNewsByType("event");
     List<NewsContent> result = [];
 
@@ -44,21 +35,14 @@ class EventController extends BaseController {
     );
     eventList(result);
     filterEvent();
-    return eventList(result);
   }
 
   // var isFocus = [false, false, false];
 
   void filterEvent() {
-    if (eventListOn.value.isNotEmpty) {
-      eventListOn.value.clear();
-    }
-    if (eventListReady.value.isNotEmpty) {
-      eventListReady.value.clear();
-    }
-    if (eventListDone.value.isNotEmpty) {
-      eventListDone.value.clear();
-    }
+    eventListOn.value.clear();
+    eventListReady.value.clear();
+    eventListDone.value.clear();
     for (int i = 0; i < eventList.value.length; i++) {
       switch (eventList.value[i].status) {
         case "ON":
