@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/alarm/controller/alarm_controller.dart';
@@ -204,14 +205,9 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                     controller.setalarm(
                                         controller.hours.toInt(),
                                         controller.minutes.toInt());
-                                    AlarmDialogWidget().showAlarmOnDialog(
-                                        context,
-                                        controller.hours.toInt(),
-                                        controller.minutes.toInt());
                                   } else {
-                                    controller.dialogWhenFired("time");
-                                    // AlarmDialogWidget()
-                                    //     .showAlarmOffDialog(context);
+                                    AlarmDialogWidget()
+                                        .showAlarmOffDialog(context);
                                   }
                                 },
                                 child: Row(
@@ -263,7 +259,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                         return AlarmBuilder(
                                             index: index,
                                             alarmContent:
-                                                controller.alarmed[index]);
+                                                controller.alarmed[0]);
                                       },
                                     ),
                                   ),

@@ -53,10 +53,10 @@ abstract class Repository {
       String name, String type, String status);
   Future<RequestServiceContent> getRequestService(int bookingId);
 //===============================Alarm==========================================
-  Future<int> insertAlarm(AlarmContent alarmContent);
+  Future<AlarmContent> insertAlarm(AlarmContent alarmContent);
   Future<int> deleteAlarm(int id);
   Future<int> updateAlarm(AlarmContent alarmContent);
-
+  Future<List<AlarmContent>> getListAlarm();
 //=================================FeedBack=====================================
   Future<List<FeedbackContent>> getListFeedbackContent();
   Future<int> insertCustomerFeedback(CustomerFeedback customerFeedback);

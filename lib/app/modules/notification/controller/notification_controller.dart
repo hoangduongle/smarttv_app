@@ -31,7 +31,7 @@ class NotificationController extends BaseController {
         final prefs = await SharedPreferences.getInstance();
         var bookingId = await prefs.getInt("bookingId");
         fetchMessages(bookingId!);
-        debugPrint("Auto refersh Notification");
+        // debugPrint("Auto refersh Notification");
         update();
       },
     );

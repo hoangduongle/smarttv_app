@@ -615,7 +615,8 @@ class _MainScreenState extends State<MainScreen> {
                           excluding: naController.current_index.toInt() == 13
                               ? false
                               : true,
-                          child: OrderScreen()),
+                          child: Container()),
+                      //OrderScreen()
                     ],
                   ),
                 ),

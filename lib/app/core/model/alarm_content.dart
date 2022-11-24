@@ -1,42 +1,31 @@
 // ignore_for_file: prefer_collection_literals, unnecessary_this
 
-import 'package:smarttv_app/app/core/model/booking_content.dart';
-
 class AlarmContent {
   int? id;
-  String? date;
-  BookingContent? booking;
+  String? dateTime;
   bool? status;
+  int? bookingId;
 
-  AlarmContent({
-    this.id,
-    this.date,
-    this.booking,
-    this.status,
-  });
+  AlarmContent({this.id, this.dateTime, this.status, this.bookingId});
 
   AlarmContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-
-    date = json['date'];
-    booking = json['booking'] != null
-        ? BookingContent.fromJson(json['booking'])
-        : null;
+    dateTime = json['dateTime'];
     status = json['status'];
+    bookingId = json['booking_id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
-    data['date'] = this.date;
-    if (this.booking != null) {
-      data['booking'] = this.booking!.toJson();
-    }
+    data['dateTime'] = this.dateTime;
+    data['status'] = this.status;
+    data['booking_id'] = this.bookingId;
     return data;
   }
 
   @override
   String toString() {
-    return 'AlarmContent(id: $id, date: $date, booking: $booking, status: $status)';
+    return 'AlarmContent(id: $id, dateTime: $dateTime, status: $status, bookingId: $bookingId)';
   }
 }

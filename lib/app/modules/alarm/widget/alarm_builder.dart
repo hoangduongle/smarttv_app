@@ -20,7 +20,7 @@ class AlarmBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> time = alarmContent.date!.split(" ");
+    List<String> time = alarmContent.dateTime!.split(" ");
     int hours = int.parse(time[1].substring(0, 2));
     int minutes = int.parse(time[1].substring(3, 5));
     return GetBuilder<AlarmController>(

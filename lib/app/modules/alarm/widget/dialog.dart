@@ -367,9 +367,6 @@ class AlarmDialogWidget extends StatelessWidget {
                         onTap: () {
                           controller.updateAlarm(hcount.toInt(), mcount.toInt(),
                               alarmContent.id!.toInt());
-                          Get.back();
-                          AlarmDialogWidget().showAlarmOnDialog(
-                              context, hcount.toInt(), mcount.toInt());
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -403,7 +400,6 @@ class AlarmDialogWidget extends StatelessWidget {
                     focusColor: AppColors.red,
                     onTap: () {
                       controller.removeAlarm(alarmContent.id ?? 0);
-                      Get.back();
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

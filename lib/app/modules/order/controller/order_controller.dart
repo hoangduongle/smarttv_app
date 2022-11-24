@@ -113,7 +113,7 @@ class OrderController extends BaseController {
       },
       onError: ((dioError) {}),
     );
-    ordersTMP(result);
+    orders(result);
     double total = searchOrderIdByStatus("0").totalAmount ?? 0;
     var prefs = await SharedPreferences.getInstance();
     await prefs.setDouble("totalOrder", total); //
@@ -121,7 +121,7 @@ class OrderController extends BaseController {
       fetchOrderDetails(orders.value.first.id!);
     }
     debugPrint("Order ${DateTimeUtils.currentDateTimeSecond()}");
-    filterStatusDONE();
+    // filterStatusDONE();
     update();
     return result;
   }
@@ -131,9 +131,10 @@ class OrderController extends BaseController {
       orders.value.clear();
     }
     for (int i = 0; i < ordersTMP.value.length; i++) {
-      if (ordersTMP.value[i].status == "DONE") {
-        orders.value.add(ordersTMP.value[i]);
-      }
+      // if (ordersTMP.value[i].status == "DONE") {
+
+      // }
+      orders.value.add(ordersTMP.value[i]);
     }
   }
 

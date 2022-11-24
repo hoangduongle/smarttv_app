@@ -329,21 +329,41 @@ class RepositoryImpl extends BaseRepository implements Repository {
 
 //ALARM
   @override
-  Future<int> insertAlarm(AlarmContent alarmContent) async {
+  Future<AlarmContent> insertAlarm(AlarmContent alarmContent) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
     var endpoint = "${DioProvider.baseUrl}/roomAlarm";
     var data = {
-      'booking_Id': alarmContent.booking!.id,
-      'dateTime': alarmContent.date,
+      'booking_Id': alarmContent.bookingId,
+      'dateTime': alarmContent.dateTime,
       'id': 0,
       'status': alarmContent.status,
     };
     var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
-        return response.statusCode ?? 0;
+        return AlarmContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<AlarmContent>> getListAlarm() async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/roomAlarms";
+    var dioCall = dioTokenClient.get(endpoint);
+    var result = <AlarmContent>[];
+    try {
+      return callApi(dioCall).then((response) {
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(AlarmContent.fromJson(element));
+        }
+        return result;
       });
     } catch (e) {
       rethrow;
@@ -374,8 +394,8 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
     var endpoint = "${DioProvider.baseUrl}/roomAlarm";
     var data = {
-      'booking_Id': alarmContent.booking!.id,
-      'dateTime': alarmContent.date,
+      'booking_Id': alarmContent.bookingId,
+      'dateTime': alarmContent.dateTime,
       'id': alarmContent.id,
       'status': alarmContent.status,
     };
