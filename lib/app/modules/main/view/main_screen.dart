@@ -3,7 +3,10 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:smarttv_app/app/data/data.dart';
+import 'package:smarttv_app/app/modules/abtraction/controller/abtraction_controller.dart';
 import 'package:smarttv_app/app/modules/alarm/view/alarm_screen.dart';
+import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
 import 'package:smarttv_app/app/modules/notification/controller/notification_controller.dart';
 import 'package:smarttv_app/app/modules/notification/view/notification_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
@@ -16,10 +19,13 @@ import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/navigation/widget/widget_navigationslider.dart';
 import 'package:smarttv_app/app/modules/massage/view/massage_screen.dart';
+import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/order/view/list_order_screen.dart';
 import 'package:smarttv_app/app/modules/order/view/order_screen.dart';
 import 'package:smarttv_app/app/modules/pool/view/pool_screen.dart';
+import 'package:smarttv_app/app/modules/promotion/controller/promotion_controller.dart';
 import 'package:smarttv_app/app/modules/promotion/view/promotion_screen.dart';
+import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
 import 'package:smarttv_app/app/modules/service/view/service_screen.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
@@ -42,8 +48,6 @@ class _MainScreenState extends State<MainScreen> {
   FocusNode viewNode = FocusNode();
   FocusScopeNode navigaScope = FocusScopeNode();
   FocusScopeNode viewScope = FocusScopeNode();
-
-  // MainController maController = Get.find();
   NavigatorController naController =
       Get.find(tag: (NavigatorController).toString());
 
@@ -65,6 +69,7 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
+  bool waitonTap = true;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -186,24 +191,24 @@ class _MainScreenState extends State<MainScreen> {
         return Scaffold(
           floatingActionButton: Stack(
             children: [
-              // Align(
-              //   alignment: Alignment(0.5.w, -0.92.h),
-              //   child: Material(
-              //     color: AppColors.transparent,
-              //     child: InkWell(
-              //       borderRadius: BorderRadius.circular(100.r),
-              //       focusColor: AppColors.orangeColor,
-              //       onTap: () {
-              //         maController.fetchAllApi();
-              //       },
-              //       child: Icon(
-              //         Icons.refresh,
-              //         size: 30.r,
-              //         color: AppColors.white,
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              Align(
+                alignment: Alignment(0.5.w, -0.92.h),
+                child: Material(
+                  color: AppColors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(100.r),
+                    focusColor: AppColors.orangeColor,
+                    onTap: () {
+                      maController.fetchAllApi();
+                    },
+                    child: Icon(
+                      Icons.refresh,
+                      size: 30.r,
+                      color: AppColors.white,
+                    ),
+                  ),
+                ),
+              ),
               Stack(
                 children: [
                   Align(
@@ -356,6 +361,124 @@ class _MainScreenState extends State<MainScreen> {
                                             setState(() {
                                               naController.current_index =
                                                   index.obs;
+                                              switch (index) {
+                                                case 0:
+                                                  break;
+                                                case 1:
+                                                  if (waitonTap) {
+                                                    waitonTap = false;
+                                                    ServiceController
+                                                        serviceController =
+                                                        Get.find();
+                                                    Future.wait([
+                                                      serviceController
+                                                          .reload(),
+                                                    ]);
+                                                    Future.delayed(
+                                                      Duration(
+                                                          seconds:
+                                                              seconds_ServiceCate),
+                                                      () {
+                                                        waitonTap = true;
+                                                      },
+                                                    );
+                                                  } else {
+                                                    debugPrint(
+                                                        "Wait for Service Category Load Api");
+                                                  }
+                                                  break;
+                                                case 2:
+                                                  if (waitonTap) {
+                                                    waitonTap = false;
+                                                    EventController
+                                                        eventController =
+                                                        Get.find();
+                                                    Future.wait([
+                                                      eventController.reload(),
+                                                    ]);
+                                                    Future.delayed(
+                                                      Duration(
+                                                          seconds:
+                                                              seconds_ServiceCate),
+                                                      () {
+                                                        waitonTap = true;
+                                                      },
+                                                    );
+                                                  } else {
+                                                    debugPrint(
+                                                        "Wait for Event Load Api");
+                                                  }
+                                                  break;
+                                                case 3:
+                                                  if (waitonTap) {
+                                                    waitonTap = false;
+                                                    AbtractionController
+                                                        abtractionController =
+                                                        Get.find();
+                                                    Future.wait([
+                                                      abtractionController
+                                                          .reload(),
+                                                    ]);
+                                                    Future.delayed(
+                                                      Duration(
+                                                          seconds:
+                                                              seconds_ServiceCate),
+                                                      () {
+                                                        waitonTap = true;
+                                                      },
+                                                    );
+                                                  } else {
+                                                    debugPrint(
+                                                        "Wait for Abtraction Load Api");
+                                                  }
+                                                  break;
+                                                case 4:
+                                                  if (waitonTap) {
+                                                    waitonTap = false;
+                                                    PromotionController
+                                                        promotionController =
+                                                        Get.find();
+                                                    Future.wait([
+                                                      promotionController
+                                                          .reload(),
+                                                    ]);
+                                                    Future.delayed(
+                                                      Duration(
+                                                          seconds:
+                                                              seconds_ServiceCate),
+                                                      () {
+                                                        waitonTap = true;
+                                                      },
+                                                    );
+                                                  } else {
+                                                    debugPrint(
+                                                        "Wait for Promotion Load Api");
+                                                  }
+                                                  break;
+                                                case 5:
+                                                  if (waitonTap) {
+                                                    waitonTap = false;
+                                                    OrderController
+                                                        orderController =
+                                                        Get.find();
+                                                    Future.wait([
+                                                      orderController.reload(),
+                                                    ]);
+                                                    Future.delayed(
+                                                      Duration(
+                                                          seconds:
+                                                              seconds_ServiceCate),
+                                                      () {
+                                                        waitonTap = true;
+                                                      },
+                                                    );
+                                                  } else {
+                                                    debugPrint(
+                                                        "Wait for Orders Load Api");
+                                                  }
+                                                  break;
+                                                default:
+                                              }
                                             });
                                           },
                                           child: BuildNavigation(

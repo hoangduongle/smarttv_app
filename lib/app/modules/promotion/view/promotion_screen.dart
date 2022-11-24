@@ -16,6 +16,7 @@ class PromotionScreen extends StatelessWidget {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
+    // debugPrint("Build Promotion");
     return GetBuilder<PromotionController>(
       builder: (controller) {
         return Scaffold(

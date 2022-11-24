@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
-import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
@@ -18,16 +17,16 @@ class ServiceController extends BaseController {
       Rx<List<ServiceCategoryContent>>([]);
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     fetchServiceCategory();
     super.onInit();
   }
 
-  void reload() {
+  Future<void> reload() async {
     onInit();
   }
 
-  Future<void> fetchServiceCategory() async {
+  Future<List<ServiceCategoryContent>> fetchServiceCategory() async {
     var servicecate = _repository.getListServiceCate();
     List<ServiceCategoryContent> result = [];
     await callDataService(
@@ -40,6 +39,7 @@ class ServiceController extends BaseController {
     serviceCateListTMP(result);
     debugPrint("Service ${DateTimeUtils.currentDateTimeSecond()}");
     fandB();
+    return result;
   }
 
   void fandB() {

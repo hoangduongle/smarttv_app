@@ -27,6 +27,8 @@ class OrderScreen extends GetView<OrderController> {
     int orderId = 0;
     if (controller.orders.value.length == 1) {
       orderId = controller.orders.value.first.id!.toInt();
+    } else if (controller.orders == null) {
+      orderId = -1;
     } else {
       orderId = naController.orderid.toInt();
     }

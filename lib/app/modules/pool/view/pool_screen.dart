@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,7 +27,7 @@ class PoolScreen extends GetView<PoolController> {
               child: Material(
                 color: AppColors.transparent,
                 child: InkWell(
-                  onTap: () {},
+                  // onTap: () {},
                   child: Column(
                     children: [
                       Row(

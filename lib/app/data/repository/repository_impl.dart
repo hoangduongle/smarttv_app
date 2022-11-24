@@ -23,7 +23,10 @@ import 'package:smarttv_app/app/core/model/service_category_content.dart';
 
 class RepositoryImpl extends BaseRepository implements Repository {
   @override
-  Future<List<ServiceCategoryContent>> getListServiceCate() {
+  Future<List<ServiceCategoryContent>> getListServiceCate() async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/serviceCategories";
     var dioCall = dioTokenClient.get(endpoint);
 
@@ -43,7 +46,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<ServiceContent>> getListServiceContentByCateId(int cateId) {
+  Future<List<ServiceContent>> getListServiceContentByCateId(int cateId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/service";
     var data = {"cate_id": cateId};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
@@ -62,7 +68,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<AbtractionContent>> getListAbtraction() {
+  Future<List<AbtractionContent>> getListAbtraction() async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/abstractions";
     var dioCall = dioTokenClient.get(endpoint);
     try {
@@ -80,7 +89,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<MomoContent> momoPayment(int orderId) {
+  Future<MomoContent> momoPayment(int orderId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/momo";
     var data = {
       "orderId": orderId,
@@ -98,7 +110,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<BookingContent> getBookingByRoomId(int roomId) {
+  Future<BookingContent> getBookingByRoomId(int roomId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/booking";
     var data = {"room_id": roomId};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
@@ -141,7 +156,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<NewsContent>> getListNewsByType(String type) {
+  Future<List<NewsContent>> getListNewsByType(String type) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/new";
     var data = {"type": type};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
@@ -159,7 +177,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<OrderContent>> getOrderByBookingId(int bookingId) {
+  Future<List<OrderContent>> getOrderByBookingId(int bookingId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/orderByBooking";
     var data = {'booking_id': bookingId};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
@@ -241,7 +262,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<int> updateOrderByOrderId(OrderContent orderContent) {
+  Future<int> updateOrderByOrderId(OrderContent orderContent) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/order";
     var data = {
       "booking_Id": orderContent.booking?.id,
@@ -265,7 +289,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<RequestServiceContent> getRequestService(int bookingId) {
+  Future<RequestServiceContent> getRequestService(int bookingId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/requestService";
     var data = {"bookingId": bookingId};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
@@ -279,7 +306,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<MessageContent>> getListMessage(int bookingId) {
+  Future<List<MessageContent>> getListMessage(int bookingId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/messagesByBooking";
     var data = {"booking_id": bookingId};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
@@ -365,7 +395,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<FeedbackContent>> getListFeedbackContent() {
+  Future<List<FeedbackContent>> getListFeedbackContent() async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/feedbackContents";
     var dioCall = dioTokenClient.get(endpoint);
 
@@ -426,7 +459,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<OrderContent> getOrderId(int id) {
+  Future<OrderContent> getOrderId(int id) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/order/${id}";
     var dioCall = dioTokenClient.get(endpoint);
     try {
@@ -439,7 +475,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<OrderPaymentContent> getOrderPaymentByOrderId(int orderId) {
+  Future<OrderPaymentContent> getOrderPaymentByOrderId(int orderId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
     var endpoint = "${DioProvider.baseUrl}/billPayment/${orderId}";
     var dioCall = dioTokenClient.get(endpoint);
     try {

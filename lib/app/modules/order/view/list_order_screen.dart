@@ -29,180 +29,172 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
     ScrollController scrollOrderController = ScrollController();
     return GetBuilder<OrderController>(
       builder: (controller) {
-        final Stream<List<OrderContent>> ordersStream =
-            controller.ordersStream();
-        return StreamBuilder(
-            stream: ordersStream,
-            builder: (context, snapshot) {
-              return Scaffold(
-                body: Container(
-                  color: AppColors.background,
-                  child: Column(
-                    children: [
-                      TitleScreen(
-                        name: "Hoá đơn",
+        return Scaffold(
+          body: Container(
+            color: AppColors.background,
+            child: Column(
+              children: [
+                TitleScreen(
+                  name: "Hoá đơn",
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'STT.'.tr,
+                      style: AppStyles.h4.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.sp,
+                        color: AppColors.title,
                       ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'STT.'.tr,
-                            style: AppStyles.h4.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.sp,
-                              color: AppColors.title,
-                            ),
-                          ),
-                          Text('Mã hoá đơn'.tr,
-                              style: AppStyles.h4.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                color: AppColors.title,
-                              )),
-                          Text('Tổng tiền'.tr,
-                              style: AppStyles.h4.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                color: AppColors.title,
-                              )),
-                          Text('Ngày',
-                              style: AppStyles.h4.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                color: AppColors.title,
-                              )),
-                          Text('Trạng thái'.tr,
-                              style: AppStyles.h4.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                                color: AppColors.title,
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      controller.orders.value.isEmpty
-                          ? Expanded(
-                              child: Lottie.asset("assets/lotties/loading.json",
-                                  width: 200.w))
-                          : Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15.w),
-                              child: SizedBox(
-                                width: 900.w,
-                                height: 300.h,
-                                child: RawScrollbar(
-                                  thumbColor: AppColors.greyColor,
-                                  thumbVisibility: true,
-                                  radius: Radius.circular(100.r),
-                                  thickness: 10,
-                                  controller: scrollOrderController,
-                                  child: ListView.separated(
-                                      controller: scrollOrderController,
-                                      separatorBuilder: (context, index) =>
-                                          SizedBox(
-                                            height: 25.h,
-                                          ),
-                                      itemCount: controller.orders.value.length,
-                                      itemBuilder: (context, index) {
-                                        return ListOrder(
-                                            orderController: controller,
-                                            orderContent:
-                                                controller.orders.value[index],
-                                            index: index);
-                                      }),
-                                ),
-                              ),
-                            ),
-                      SizedBox(
-                        height: 7.h,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Container(),
-                          ),
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text('totalcost'.tr,
-                                  style: AppStyles.h4.copyWith(
-                                      fontSize: 20.sp,
-                                      color: AppColors.title,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Container(),
-                          ),
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(NumberUtils.vnd(controller.total),
-                                  style: AppStyles.h4.copyWith(
-                                      fontSize: 20.sp,
-                                      color: AppColors.white,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 170.w,
-                        height: 50.h,
-                        child: Material(
-                          color: controller.isPayall
-                              ? AppColors.green
-                              : AppColors.focus,
-                          borderRadius: BorderRadius.circular(10.r),
-                          child: InkWell(
-                            focusColor: controller.getStatusByOrderId(
-                                    naController.orderid.toInt())
-                                ? AppColors.greenFocus
-                                : AppColors.orangeColor,
-                            borderRadius: BorderRadius.circular(10.r),
-                            onTap: () {
-                              controller.isPayall ? null : null;
-                              //OrderDialog().showOrderDialog(context, naController.orderid.toInt());
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  controller.isPayall
-                                      ? 'Đã thanh toán'
-                                      : 'Thanh toán tất cả',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.sp,
-                                      color: AppColors.black),
-                                ),
-                              ],
-                            ),
+                    ),
+                    Text('Mã hoá đơn'.tr,
+                        style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title,
+                        )),
+                    Text('Tổng tiền'.tr,
+                        style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title,
+                        )),
+                    Text('Ngày',
+                        style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title,
+                        )),
+                    Text('Trạng thái'.tr,
+                        style: AppStyles.h4.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp,
+                          color: AppColors.title,
+                        )),
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                controller.orders.value.isEmpty
+                    ? Expanded(
+                        child: Lottie.asset("assets/lotties/loading.json",
+                            width: 200.w))
+                    : Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
+                        child: SizedBox(
+                          width: 900.w,
+                          height: 300.h,
+                          child: RawScrollbar(
+                            thumbColor: AppColors.greyColor,
+                            thumbVisibility: true,
+                            radius: Radius.circular(100.r),
+                            thickness: 10,
+                            controller: scrollOrderController,
+                            child: ListView.separated(
+                                controller: scrollOrderController,
+                                separatorBuilder: (context, index) => SizedBox(
+                                      height: 25.h,
+                                    ),
+                                itemCount: controller.orders.value.length,
+                                itemBuilder: (context, index) {
+                                  return ListOrder(
+                                      orderController: controller,
+                                      orderContent:
+                                          controller.orders.value[index],
+                                      index: index);
+                                }),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 20.h,
+                SizedBox(
+                  height: 7.h,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Container(),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text('totalcost'.tr,
+                            style: AppStyles.h4.copyWith(
+                                fontSize: 20.sp,
+                                color: AppColors.title,
+                                fontWeight: FontWeight.bold)),
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Container(),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(NumberUtils.vnd(controller.total),
+                            style: AppStyles.h4.copyWith(
+                                fontSize: 20.sp,
+                                color: AppColors.white,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 170.w,
+                  height: 50.h,
+                  child: Material(
+                    color:
+                        controller.isPayall ? AppColors.green : AppColors.focus,
+                    borderRadius: BorderRadius.circular(10.r),
+                    child: InkWell(
+                      focusColor: controller
+                              .getStatusByOrderId(naController.orderid.toInt())
+                          ? AppColors.greenFocus
+                          : AppColors.orangeColor,
+                      borderRadius: BorderRadius.circular(10.r),
+                      onTap: () {
+                        controller.isPayall ? null : null;
+                        //OrderDialog().showOrderDialog(context, naController.orderid.toInt());
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            controller.isPayall
+                                ? 'Đã thanh toán'
+                                : 'Thanh toán tất cả',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.sp,
+                                color: AppColors.black),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              );
-            });
+                SizedBox(
+                  height: 20.h,
+                ),
+              ],
+            ),
+          ),
+        );
       },
     );
   }

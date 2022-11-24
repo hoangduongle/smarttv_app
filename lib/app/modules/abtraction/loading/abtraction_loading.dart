@@ -23,7 +23,7 @@ class AbtractionLoading extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.r),
             child: InkWell(
               borderRadius: BorderRadius.circular(10.r),
-              onTap: () {},
+              // onTap: () {},
               child: Container(
                 margin: EdgeInsets.all(2.r),
                 width: 400.w,

@@ -17,7 +17,7 @@ class PromotionLoading extends GetView<PromotionController> {
         child: Material(
       color: AppColors.transparent,
       child: InkWell(
-        onTap: () {},
+        // onTap: () {},
         child: SizedBox(
           width: MediaQuery.of(context).size.width.w,
           child: Padding(

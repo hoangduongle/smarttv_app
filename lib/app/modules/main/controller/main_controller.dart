@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
@@ -33,7 +34,6 @@ class MainController extends BaseController {
   @override
   void onInit() {
     timing();
-    timingDependencies();
     super.onInit();
   }
 
@@ -44,20 +44,23 @@ class MainController extends BaseController {
         Intl.defaultLocale = 'en_US';
         initializeDateFormatting();
         formattedTime = DateFormat('hh:mm a').format(DateTime.now()).obs;
-        update();
-      },
-    );
-  }
-
-  void timingDependencies() {
-    _timer = Timer.periodic(
-      const Duration(milliseconds: 1000),
-      (timer) {
         if (DateTime.now().minute == 30 && DateTime.now().second == 1) {
           debugPrint("${DateTime.now().minute}:${DateTime.now().second}");
           // debugPrint("Time to refesh fetch Api");
-          fetchAllApi();
+          // fetchAllApi();
+        } else {
+          if ((DateTime.now().minute == 10 && DateTime.now().second == 1) ||
+              (DateTime.now().minute == 20 && DateTime.now().second == 1) ||
+              (DateTime.now().minute == 30 && DateTime.now().second == 1) ||
+              (DateTime.now().minute == 40 && DateTime.now().second == 1) ||
+              (DateTime.now().minute == 50 && DateTime.now().second == 1) ||
+              (DateTime.now().minute == 00 && DateTime.now().second == 1)) {
+            if (!TokenManager.instance.hasToken) {
+              TokenManager.instance.init();
+            }
+          }
         }
+        update();
       },
     );
   }
@@ -95,8 +98,8 @@ class MainController extends BaseController {
   void fetchAllApi() async {
     debugPrint("Refesh fetch Api");
     loadingDialog();
-    // OrderController orderController = Get.find();
-    // orderController.onInit();
+    OrderController orderController = Get.find();
+    orderController.onInit();
 
     // FoodandBeverageController foodandBeverageController = Get.find();
     // foodandBeverageController.onInit();
@@ -104,14 +107,14 @@ class MainController extends BaseController {
     // ServiceController serviceController = Get.find();
     // serviceController.onInit();
 
-    // EventController eventController = Get.find();
-    // eventController.onInit();
+    EventController eventController = Get.find();
+    eventController.onInit();
 
-    // PromotionController promotionController = Get.find();
-    // promotionController.onInit();
+    PromotionController promotionController = Get.find();
+    promotionController.onInit();
 
-    // AbtractionController abtractionController = Get.find();
-    // abtractionController.onInit();
+    AbtractionController abtractionController = Get.find();
+    abtractionController.onInit();
 
     Future.delayed(
       const Duration(seconds: 5),

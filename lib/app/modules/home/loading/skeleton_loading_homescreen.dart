@@ -27,7 +27,7 @@ Widget SkeletonLoadingHomeScreen() {
             return Material(
                 color: AppColors.transparent,
                 child: InkWell(
-                    onTap: () {},
+                    // onTap: () {},
                     focusColor: AppColors.transparent,
                     child: buildImageSkeleton()));
           },

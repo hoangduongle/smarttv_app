@@ -10,9 +10,13 @@ class PromotionController extends BaseController {
   Rx<List<NewsContent>> promotionList = Rx<List<NewsContent>>([]);
 
   @override
-  void onInit() {
-    fetchNewsPromotion();
+  Future<void> onInit() async {
+    await fetchNewsPromotion();
     super.onInit();
+  }
+
+  Future<void> reload() async {
+    onInit();
   }
 
   Future<void> fetchNewsPromotion() async {

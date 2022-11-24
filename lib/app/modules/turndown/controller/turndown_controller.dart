@@ -17,8 +17,8 @@ class TurndownController extends BaseController {
   var bookingId;
   @override
   void onInit() async {
-    // final prefs = await SharedPreferences.getInstance();
-    // bookingId = await prefs.getInt("bookingId");
+    final prefs = await SharedPreferences.getInstance();
+    bookingId = await prefs.getInt("bookingId");
     super.onInit();
   }
 

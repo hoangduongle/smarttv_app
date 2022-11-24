@@ -17,9 +17,13 @@ class EventController extends BaseController {
   int indexMarker = 0;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     fetchNewsEvent();
     super.onInit();
+  }
+
+  Future<void> reload() async {
+    await onInit();
   }
 
   Future<void> fetchNewsEvent() async {

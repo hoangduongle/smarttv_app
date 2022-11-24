@@ -22,7 +22,7 @@ class ImageBuild extends StatelessWidget {
       child: Material(
         color: AppColors.transparent,
         child: InkWell(
-          onTap: () {},
+          // onTap: () {},
           child: Stack(
             children: [
               ClipRRect(

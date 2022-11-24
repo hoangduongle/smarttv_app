@@ -84,7 +84,7 @@ class NotificationScreen extends StatelessWidget {
     );
   }
 
-  void openDetailNoti(BuildContext context) {
+  void openDetailNoti(BuildContext context, String infoDescription) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -122,7 +122,7 @@ class NotificationScreen extends StatelessWidget {
                           color: AppColors.background,
                           borderRadius: BorderRadius.circular(10.r)),
                       child: Text(
-                        "Đây là message content chi tiết",
+                        infoDescription,
                         style:
                             TextStyle(color: AppColors.white, fontSize: 20.sp),
                       ),
@@ -162,7 +162,8 @@ class BuildMessage extends StatelessWidget {
           focusColor: AppColors.orangeColor,
           borderRadius: BorderRadius.circular(10.r),
           onTap: () {
-            const NotificationScreen().openDetailNoti(context);
+            const NotificationScreen().openDetailNoti(
+                context, messageContent.messageContent.toString());
           },
           autofocus: index == 0,
           child: Container(

@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
             translations: Messages(),
             locale: const Locale('vi', 'Vi'),
             // locale: Locale('en', 'US'),
-            fallbackLocale: const Locale('vi', 'Vi'),
+            // fallbackLocale: const Locale('vi', 'Vi'),
             initialBinding: InitiaBinding(),
             initialRoute: initialRoute,
             getPages: AppPages.routes,

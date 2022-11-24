@@ -7,13 +7,13 @@ import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/order_payment_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
-import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class OrderController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
 
   Rx<List<OrderDetailContent>> orderDetails = Rx<List<OrderDetailContent>>([]);
+  Rx<List<OrderContent>> ordersTMP = Rx<List<OrderContent>>([]);
   Rx<List<OrderContent>> orders = Rx<List<OrderContent>>([]);
   Rx<OrderPaymentContent?> orderPayment = Rx<OrderPaymentContent?>(null);
 
@@ -85,32 +85,15 @@ class OrderController extends BaseController {
   }
 
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     final prefs = await SharedPreferences.getInstance();
     var bookingId = await prefs.getInt("bookingId");
     fetchOrder(bookingId ?? 0);
     super.onInit();
   }
 
-  Stream<List<OrderContent>> ordersStream() async* {
-    // while (true) {
-    //   await Future.delayed(const Duration(seconds: SECONDS));
-    //   final prefs = await SharedPreferences.getInstance();
-    //   var bookingId = await prefs.getInt("bookingId");
-    //   List<OrderContent> events = await fetchOrder(bookingId!);
-    //   yield events;
-    // }
-  }
-
-  Future<void> fetchOrderPayment(int orderId) async {
-    var overview = _repository.getOrderPaymentByOrderId(orderId);
-    await callDataService(
-      overview,
-      onSuccess: (OrderPaymentContent response) {
-        orderPayment(response);
-      },
-      onError: ((dioError) {}),
-    );
+  Future<void> reload() async {
+    onInit();
   }
 
   void loadOrderdetails(int orderId) async {
@@ -130,7 +113,7 @@ class OrderController extends BaseController {
       },
       onError: ((dioError) {}),
     );
-    orders(result);
+    ordersTMP(result);
     double total = searchOrderIdByStatus("0").totalAmount ?? 0;
     var prefs = await SharedPreferences.getInstance();
     await prefs.setDouble("totalOrder", total); //
@@ -138,8 +121,20 @@ class OrderController extends BaseController {
       fetchOrderDetails(orders.value.first.id!);
     }
     debugPrint("Order ${DateTimeUtils.currentDateTimeSecond()}");
+    filterStatusDONE();
     update();
     return result;
+  }
+
+  void filterStatusDONE() {
+    if (orders.value.isNotEmpty) {
+      orders.value.clear();
+    }
+    for (int i = 0; i < ordersTMP.value.length; i++) {
+      if (ordersTMP.value[i].status == "DONE") {
+        orders.value.add(ordersTMP.value[i]);
+      }
+    }
   }
 
   Future<void> fetchOrderDetails(int orderId) async {

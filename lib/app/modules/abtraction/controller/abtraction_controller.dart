@@ -12,9 +12,13 @@ class AbtractionController extends BaseController {
   Rx<List<AbtractionContent>> abtractions = Rx<List<AbtractionContent>>([]);
   int indexMarker = 0;
   @override
-  void onInit() {
+  Future<void> onInit() async {
     fetchAbtractions();
     super.onInit();
+  }
+
+  Future<void> reload() async {
+    onInit();
   }
 
   Future<void> fetchAbtractions() async {

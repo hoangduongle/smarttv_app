@@ -19,7 +19,7 @@ class SkeletonCategoryService extends StatelessWidget {
       child: Material(
         color: AppColors.transparent,
         child: InkWell(
-          onTap: () {},
+          // onTap: () {},
           child: SizedBox(
             width: size.width,
             child: Padding(
