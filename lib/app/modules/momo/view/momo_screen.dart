@@ -15,12 +15,9 @@ class MomoScreen extends GetView<MomoController> {
     throw UnimplementedError();
   }
 
-  Future<void> MomoDialog(BuildContext context, int orderId) async {
-    // if (controller.momo.value!.payUrl!.isNotEmpty) {
-    //   controller.momo = Rx<MomoContent?>(null);
-    // }
-    // controller.fetchPaymentMomo(orderId);
-    controller.createOrder(orderId);
+  Future<void> MomoDialog(
+      BuildContext context, List<String> orderId, double amount) async {
+    controller.createOrder(orderId, amount);
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -103,19 +100,6 @@ class MomoScreen extends GetView<MomoController> {
                     ],
                   ),
                 ),
-                // Obx(
-                //   () => SizedBox(
-                //     height: 35.h,
-                //     child: Text(
-                //       "Đơn hàng sẽ hết hạn sau ${NumberUtils.time(controller.minutes.toInt())}:${NumberUtils.time(controller.seconds.toInt())}",
-                //       textAlign: TextAlign.center,
-                //       style: TextStyle(
-                //           fontSize: 17.sp,
-                //           fontWeight: FontWeight.normal,
-                //           color: AppColors.orangeColor),
-                //     ),
-                //   ),
-                // ),
                 SizedBox(
                   height: 35.h,
                   width: 120.w,

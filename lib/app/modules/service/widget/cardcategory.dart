@@ -26,13 +26,11 @@ class CardCategory extends StatefulWidget {
   int index;
   ServiceCategoryContent serviceCategory;
   FocusNode focusNode;
-  // ImageContent image;
   CardCategory({
     Key? key,
     required this.index,
     required this.serviceCategory,
     required this.focusNode,
-    // required this.image,
   }) : super(key: key);
 
   @override
@@ -117,7 +115,7 @@ class _CardCategoryState extends State<CardCategory> {
                           : BorderRadius.circular(10.r),
                       child: CachedNetworkImage(
                         imageUrl:
-                            "https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg",
+                            "${widget.serviceCategory.images![0].pictureUrl}", //
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             height: naController.select ? 180.h : 160.h,
@@ -128,6 +126,21 @@ class _CardCategoryState extends State<CardCategory> {
                                   : BorderRadius.circular(10.r),
                               image: DecorationImage(
                                 image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        },
+                        placeholder: (context, url) {
+                          return Container(
+                            height: naController.select ? 180.h : 160.h,
+                            width: 200.w,
+                            decoration: BoxDecoration(
+                              borderRadius: widget.focusNode.hasFocus
+                                  ? BorderRadius.circular(0.r)
+                                  : BorderRadius.circular(10.r),
+                              image: DecorationImage(
+                                image: AssetImage(AppAssets.loadImage),
                                 fit: BoxFit.cover,
                               ),
                             ),

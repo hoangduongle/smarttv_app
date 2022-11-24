@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/modules/vnpay/controller/vnpay_controller.dart';
 
-class VNPayScreen extends StatelessWidget {
+class VNPayScreen extends GetView<VNPayController> {
   const VNPayScreen({super.key});
 
   @override
@@ -11,7 +14,8 @@ class VNPayScreen extends StatelessWidget {
     return Container();
   }
 
-  Future<void> vnPayDialog(BuildContext context) async {
+  Future<void> vnPayDialog(BuildContext context, int orderId) async {
+    controller.createOrder(orderId);
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -22,8 +26,8 @@ class VNPayScreen extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: SizedBox(
-            width: 380.w,
-            height: 400.h,
+            width: 350.w,
+            height: 330.h,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -49,12 +53,12 @@ class VNPayScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: AppColors.pink.withOpacity(.85),
                               borderRadius: BorderRadius.circular(10.r)),
-                          height: 200.h,
+                          height: 190.h,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Container(
-                                height: 120.h,
+                                height: 100.h,
                                 decoration: BoxDecoration(
                                     color: AppColors.white,
                                     borderRadius: BorderRadius.only(
@@ -65,46 +69,32 @@ class VNPayScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // Obx(
-                      //   () {
-                      //     return controller.momo.value == null
-                      //         ? Container(
-                      //             width: 300,
-                      //             height: 200,
-                      //             decoration: BoxDecoration(
-                      //                 color: AppColors.background,
-                      //                 borderRadius: BorderRadius.circular(8.r)),
-                      //             child: Lottie.asset(
-                      //                 "assets/lotties/loading.json"))
-                      //         : Align(
-                      //             child: Padding(
-                      //               padding: EdgeInsets.all(10.r),
-                      //               child: QrImage(
-                      //                 backgroundColor: AppColors.white,
-                      //                 foregroundColor: AppColors.black,
-                      //                 data: "${controller.momo.value?.payUrl}",
-                      //                 version: QrVersions.auto,
-                      //                 size: 190.0,
-                      //               ),
-                      //             ),
-                      //           );
-                      //   },
-                      // )
+                      Obx(
+                        () {
+                          return controller.vnPay.value == null
+                              ? Container(
+                                  width: 300,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.background,
+                                      borderRadius: BorderRadius.circular(8.r)),
+                                  child: Lottie.asset(
+                                      "assets/lotties/loading.json"))
+                              : Align(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5.r),
+                                    child: QrImage(
+                                      backgroundColor: AppColors.white,
+                                      foregroundColor: AppColors.black,
+                                      data: "${controller.vnPay.value?.url}", //
+                                      version: QrVersions.auto,
+                                      size: 180.0,
+                                    ),
+                                  ),
+                                );
+                        },
+                      )
                     ],
-                  ),
-                ),
-                Obx(
-                  () => SizedBox(
-                    height: 35.h,
-                    child: Text(
-                      "Đơn hàng sẽ hết hạn sau ",
-                      //${NumberUtils.time(controller.minutes.toInt())}:${NumberUtils.time(controller.seconds.toInt())}
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.normal,
-                          color: AppColors.orangeColor),
-                    ),
                   ),
                 ),
                 SizedBox(
@@ -145,6 +135,98 @@ class VNPayScreen extends StatelessWidget {
               ],
             ),
           ),
+        );
+      },
+    );
+  }
+
+  void showThanksDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return Dialog(
+          elevation: 5,
+          backgroundColor: AppColors.navigabackground,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+          child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              width: 460.w,
+              height: 290.h,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Lottie.asset("assets/lotties/done.json", width: 130),
+                  Container(
+                    padding: EdgeInsets.only(top: 10.h),
+                    width: 800.w,
+                    child: Text(
+                      "Giao dịch thành công",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.title),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 00.h),
+                    width: 800.w,
+                    child: Text(
+                      "Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.greyColor),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  SizedBox(
+                    height: 35.h,
+                    width: 120.w,
+                    child: Material(
+                      color: AppColors.green,
+                      borderRadius: BorderRadius.circular(10.r),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(10.r),
+                        focusColor: AppColors.greenFocus,
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              size: 20.r,
+                              color: AppColors.black,
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(
+                              'back'.tr,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.sp,
+                                  color: AppColors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )),
         );
       },
     );

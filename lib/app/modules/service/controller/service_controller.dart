@@ -37,16 +37,23 @@ class ServiceController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceCateListTMP(result);
-    debugPrint("Service ${DateTimeUtils.currentDateTimeSecond()}");
+    debugPrint("Service Category ${DateTimeUtils.currentDateTimeSecond()}");
     fandB();
     return result;
   }
 
   void fandB() {
-    serviceCateList.value.clear();
-    serviceCateList.value.add(ServiceCategoryContent(
-        id: 1, description: "fandb", name: "Thức ăn và đồ uống"));
+    if (serviceCateList.value.isNotEmpty) {
+      serviceCateList.value.clear();
+    }
     for (var element in serviceCateListTMP.value) {
+      if (element.id == 1) {
+        serviceCateList.value.add(ServiceCategoryContent(
+            id: 1,
+            description: "fandb",
+            name: "Thức ăn và đồ uống",
+            images: element.images));
+      }
       if (element.id != 1 && element.id != 2) {
         if (element.status == true) {
           serviceCateList.value.add(element);

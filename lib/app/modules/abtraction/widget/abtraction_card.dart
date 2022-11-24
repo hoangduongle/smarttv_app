@@ -54,7 +54,7 @@ class AbtractionCard extends StatelessWidget {
               ClipRRect(
                 child: CachedNetworkImage(
                   imageUrl:
-                      "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
+                      "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png",
                   imageBuilder: (context, imageProvider) {
                     return Container(
                       height: 120.h,
@@ -75,7 +75,7 @@ class AbtractionCard extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 10.h),
                 child: Text(
-                  "${abtractionContent.name}",//
+                  "${abtractionContent.name}", //
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17.sp,

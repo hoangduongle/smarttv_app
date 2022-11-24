@@ -43,32 +43,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final List<FocusNode> focusNodes = [];
-  FocusNode navigaNode = FocusNode();
-  FocusNode viewNode = FocusNode();
-  FocusScopeNode navigaScope = FocusScopeNode();
-  FocusScopeNode viewScope = FocusScopeNode();
   NavigatorController naController =
       Get.find(tag: (NavigatorController).toString());
-
-  @override
-  void initState() {
-    super.initState();
-    for (int i = 0; i < 9; i++) {
-      FocusNode focus = FocusNode();
-      focusNodes.add(focus);
-    }
-    navigaNode.requestFocus();
-  }
-
-  @override
-  void dispose() {
-    for (int i = 0; i < 9; i++) {
-      focusNodes[i].dispose();
-    }
-    super.dispose();
-  }
-
   bool waitonTap = true;
   @override
   Widget build(BuildContext context) {
@@ -347,7 +323,6 @@ class _MainScreenState extends State<MainScreen> {
                                       child: Material(
                                         color: AppColors.navigabackground,
                                         child: InkWell(
-                                          focusNode: focusNodes[index],
                                           borderRadius:
                                               BorderRadius.circular(12),
                                           focusColor: AppColors.greyColor,
@@ -537,8 +512,7 @@ class _MainScreenState extends State<MainScreen> {
                         excluding: naController.current_index.toInt() == 1
                             ? false
                             : true,
-                        child: ServiceScreen(
-                            isFocus: naController.current_index.toInt() == 1),
+                        child: ServiceScreen(),
                       ),
                       ExcludeFocus(
                         //event
@@ -615,7 +589,7 @@ class _MainScreenState extends State<MainScreen> {
                           excluding: naController.current_index.toInt() == 13
                               ? false
                               : true,
-                          child: Container()),
+                          child: OrderScreen()),
                       //OrderScreen()
                     ],
                   ),

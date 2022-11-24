@@ -34,7 +34,8 @@ class PoolScreen extends GetView<PoolController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ImageNetwork(
-                              url: "https://i.ibb.co/T1VK1mc/hoboi1.jpg",
+                              url:
+                                  "https://elephantshotel.com/wp-content/uploads/2020/11/h%E1%BB%93-b%C6%A1i-2.jpg",
                               width: 300.w,
                               height: 180.h),
                           SizedBox(

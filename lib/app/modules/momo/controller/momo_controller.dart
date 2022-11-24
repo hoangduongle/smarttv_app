@@ -17,21 +17,20 @@ class MomoController extends BaseController {
 
   Rx<MomoContent?> momo = Rx<MomoContent?>(null);
 
-  void createOrder(int orderId) {
+  void createOrder(List<String> orderId, double amount) {
     momo = Rx<MomoContent?>(null);
 
-    fetchPaymentMomo(orderId);
+    fetchPaymentMomo(orderId, amount);
     update();
   }
 
   Timer? timerCheck;
-  Future<void> fetchPaymentMomo(int orderId) async {
-    var overview = _repository.momoPayment(orderId);
+  Future<void> fetchPaymentMomo(List<String> orderId, double amount) async {
+    var overview = _repository.momoPayment(amount, orderId);
     await callDataService(
       overview,
       onSuccess: (MomoContent response) {
         debugPrint("${response.payUrl}");
-
         momo(response);
       },
       onError: ((dioError) {}),
@@ -39,8 +38,8 @@ class MomoController extends BaseController {
 
     timerCheck =
         Timer.periodic(const Duration(seconds: 5), (Timer timer) async {
-      await queryOrder(orderId);
-      if (order.value!.status == "1") {
+      await queryOrder(int.parse(orderId[0]));
+      if (order.value!.orderPayment != null) {
         timerCheck?.cancel();
         // debugPrint("MoMo onReady: ${order.value!.status}");
         Get.back();

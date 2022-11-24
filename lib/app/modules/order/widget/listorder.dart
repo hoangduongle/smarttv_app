@@ -120,12 +120,12 @@ class _ListOrderState extends State<ListOrder> {
                   SizedBox(
                     width: 110.w,
                     child: Text(
-                      widget.orderContent.status == "0"
+                      widget.orderContent.orderPayment == null
                           ? "Chờ thanh toán"
                           : "Đã thanh toán",
                       textAlign: TextAlign.center,
                       style: AppStyles.h5.copyWith(
-                          color: widget.orderContent.status == "0"
+                          color: widget.orderContent.orderPayment == null
                               ? AppColors.lighBlue
                               : AppColors.greenFocus,
                           fontWeight: FontWeight.bold),

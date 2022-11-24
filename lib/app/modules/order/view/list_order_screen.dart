@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
@@ -159,25 +158,28 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                   height: 50.h,
                   child: Material(
                     color:
-                        controller.isPayall ? AppColors.green : AppColors.focus,
+                        controller.isPayall ? AppColors.focus : AppColors.green,
                     borderRadius: BorderRadius.circular(10.r),
                     child: InkWell(
-                      focusColor: controller
-                              .getStatusByOrderId(naController.orderid.toInt())
-                          ? AppColors.greenFocus
-                          : AppColors.orangeColor,
+                      focusColor: controller.isPayall
+                          ? AppColors.orangeColor
+                          : AppColors.greenFocus,
                       borderRadius: BorderRadius.circular(10.r),
                       onTap: () {
-                        controller.isPayall ? null : null;
-                        //OrderDialog().showOrderDialog(context, naController.orderid.toInt());
+                        controller.isPayall
+                            ? OrderDialog().showOrderDialog(
+                                context,
+                                controller.getAllOrderIdNotPay(),
+                                controller.total)
+                            : null;
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             controller.isPayall
-                                ? 'Đã thanh toán'
-                                : 'Thanh toán tất cả',
+                                ? 'Thanh toán tất cả'
+                                : 'Đã thanh toán',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.sp,

@@ -44,7 +44,8 @@ class BuildPromotion extends StatelessWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: ImageNetwork(
-                    url: "https://i.ibb.co/P5Cbjk0/tree-736885-480.jpg",
+                    url:
+                        "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png",
                     width: size.width.w,
                     height: naController.select ? 200.h : 160.h,
                   ),

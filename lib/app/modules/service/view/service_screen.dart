@@ -19,10 +19,8 @@ import 'package:smarttv_app/app/modules/service/widget/cardcategory.dart';
 import 'package:smarttv_app/app/widget/titile_screen.dart';
 
 class ServiceScreen extends StatefulWidget {
-  bool isFocus;
-  ServiceScreen({
+  const ServiceScreen({
     Key? key,
-    this.isFocus = false,
   }) : super(key: key);
 
   @override

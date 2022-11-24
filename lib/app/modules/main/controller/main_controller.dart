@@ -47,14 +47,9 @@ class MainController extends BaseController {
         if (DateTime.now().minute == 30 && DateTime.now().second == 1) {
           debugPrint("${DateTime.now().minute}:${DateTime.now().second}");
           // debugPrint("Time to refesh fetch Api");
-          // fetchAllApi();
+          fetchAllApi();
         } else {
-          if ((DateTime.now().minute == 10 && DateTime.now().second == 1) ||
-              (DateTime.now().minute == 20 && DateTime.now().second == 1) ||
-              (DateTime.now().minute == 30 && DateTime.now().second == 1) ||
-              (DateTime.now().minute == 40 && DateTime.now().second == 1) ||
-              (DateTime.now().minute == 50 && DateTime.now().second == 1) ||
-              (DateTime.now().minute == 00 && DateTime.now().second == 1)) {
+          if (DateTime.now().minute == 55 && DateTime.now().second == 1) {
             if (!TokenManager.instance.hasToken) {
               TokenManager.instance.init();
             }
@@ -83,9 +78,13 @@ class MainController extends BaseController {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Lottie.asset("assets/lotties/loadingImage.json", width: 150),
-                  SizedBox(
-                    height: 20.h,
-                  ),
+                  Text(
+                    "Đang tải...",
+                    style: TextStyle(
+                        color: AppColors.greyColor,
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.normal),
+                  )
                 ],
               ),
             ),
@@ -98,23 +97,23 @@ class MainController extends BaseController {
   void fetchAllApi() async {
     debugPrint("Refesh fetch Api");
     loadingDialog();
-    OrderController orderController = Get.find();
-    orderController.onInit();
+    // OrderController orderController = Get.find();
+    // orderController.onInit();
 
-    // FoodandBeverageController foodandBeverageController = Get.find();
-    // foodandBeverageController.onInit();
+    FoodandBeverageController foodandBeverageController = Get.find();
+    foodandBeverageController.onInit();
 
     // ServiceController serviceController = Get.find();
     // serviceController.onInit();
 
-    EventController eventController = Get.find();
-    eventController.onInit();
+    // EventController eventController = Get.find();
+    // eventController.onInit();
 
-    PromotionController promotionController = Get.find();
-    promotionController.onInit();
+    // PromotionController promotionController = Get.find();
+    // promotionController.onInit();
 
-    AbtractionController abtractionController = Get.find();
-    abtractionController.onInit();
+    // AbtractionController abtractionController = Get.find();
+    // abtractionController.onInit();
 
     Future.delayed(
       const Duration(seconds: 5),

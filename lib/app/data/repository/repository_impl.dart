@@ -1,5 +1,6 @@
 // ignore_for_file: unused_element, unused_local_variable, unnecessary_brace_in_string_interps
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
@@ -89,12 +90,13 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<MomoContent> momoPayment(int orderId) async {
+  Future<MomoContent> momoPayment(double amount, List<String> orderId) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
     var endpoint = "${DioProvider.baseUrl}/momo";
     var data = {
+      "amount": amount,
       "orderId": orderId,
     };
     // var fromData = FormData.fromMap(data);
@@ -266,9 +268,11 @@ class RepositoryImpl extends BaseRepository implements Repository {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
+    final prefs = await SharedPreferences.getInstance();
+    var bookingId = await prefs.getInt("bookingId");
     var endpoint = "${DioProvider.baseUrl}/order";
     var data = {
-      "booking_Id": orderContent.booking?.id,
+      "booking_Id": bookingId,
       "createBy": orderContent.createBy,
       "createDate": orderContent.createDate,
       "id": orderContent.id,
@@ -410,8 +414,27 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<VNPayContent> vnPayPayment(int orderId, int orderInfo) {
-    throw UnimplementedError();
+  Future<VNPayContent> vnPayPayment(int orderId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/vnpay";
+    var data = {
+      "vnp_BankCode": "VnPayQR",
+      "vnp_IpAddr": "192.168.1.1",
+      "vnp_Locale": "vn",
+      "vnp_OrderInfo": "Thanh toán VNPay",
+      "orderId": orderId,
+    };
+    var dioCall = dioTokenClient.post(endpoint, data: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <VNPayContent>[];
+        return VNPayContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

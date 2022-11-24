@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable, must_be_immutable, deprecated_member_use, prefer_const_constructors_in_immutables, unnecessary_brace_in_string_interps
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_local_variable, must_be_immutable, deprecated_member_use, prefer_const_constructors_in_immutables, unnecessary_brace_in_string_interps, unnecessary_null_comparison
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -24,14 +24,14 @@ class OrderScreen extends GetView<OrderController> {
         Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
     ScrollController scrollController = ScrollController();
-    int orderId = 0;
-    if (controller.orders.value.length == 1) {
-      orderId = controller.orders.value.first.id!.toInt();
-    } else if (controller.orders == null) {
-      orderId = -1;
-    } else {
-      orderId = naController.orderid.toInt();
-    }
+    int orderId = naController.orderid.toInt();
+    // if (controller.orders.value.length == 1) {
+    //   orderId = controller.orders.value.first.id!.toInt();
+    // } else if (controller.orders == null) {
+    //   orderId = -1;
+    // } else {
+    //   orderId = naController.orderid.toInt();
+    // }
     return Scaffold(
       body: Container(
         color: AppColors.background,
@@ -137,7 +137,7 @@ class OrderScreen extends GetView<OrderController> {
             ),
             Row(
               children: [
-                controller.getStatusByOrderId(
+                controller.getOrderPaymentByOrderId(
                         controller.orders.value.length <= 1
                             ? controller.orders.value.first.id!
                             : naController.orderid.toInt())
@@ -171,7 +171,7 @@ class OrderScreen extends GetView<OrderController> {
             ),
             Row(
               children: [
-                controller.getStatusByOrderId(
+                controller.getOrderPaymentByOrderId(
                         controller.orders.value.length <= 1
                             ? controller.orders.value.first.id!
                             : naController.orderid.toInt())
@@ -215,7 +215,7 @@ class OrderScreen extends GetView<OrderController> {
                     width: 170.w,
                     height: 50.h,
                     child: Material(
-                      color: controller.getStatusByOrderId(
+                      color: controller.getOrderPaymentByOrderId(
                               controller.orders.value.length <= 1
                                   ? controller.orders.value.first.id!
                                   : naController.orderid.toInt())
@@ -223,7 +223,7 @@ class OrderScreen extends GetView<OrderController> {
                           : AppColors.focus,
                       borderRadius: BorderRadius.circular(10.r),
                       child: InkWell(
-                        focusColor: controller.getStatusByOrderId(
+                        focusColor: controller.getOrderPaymentByOrderId(
                                 controller.orders.value.length <= 1
                                     ? controller.orders.value.first.id!
                                     : naController.orderid.toInt())
@@ -231,20 +231,23 @@ class OrderScreen extends GetView<OrderController> {
                             : AppColors.orangeColor,
                         borderRadius: BorderRadius.circular(10.r),
                         onTap: () {
-                          if (controller.getStatusByOrderId(
+                          if (controller.getOrderPaymentByOrderId(
                               controller.orders.value.length <= 1
                                   ? controller.orders.value.first.id!
                                   : naController.orderid.toInt())) {
                             naController.current_index = 5.obs;
                           } else {
-                            OrderDialog().showOrderDialog(context, orderId);
+                            List<String> listorderId = [];
+                            listorderId.add(orderId.toString());
+                            OrderDialog().showOrderDialog(context, listorderId,
+                                controller.getOrderTotal(orderId));
                           }
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              controller.getStatusByOrderId(
+                              controller.getOrderPaymentByOrderId(
                                       controller.orders.value.length <= 1
                                           ? controller.orders.value.first.id!
                                           : naController.orderid.toInt())

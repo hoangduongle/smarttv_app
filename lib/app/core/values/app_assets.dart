@@ -24,4 +24,7 @@ class AppAssets {
   static const String overview_service = imagePath + 'Overview_service.webp';
   static const String overview_food = imagePath + 'Overview_food.jpg';
   static const String overview_event = imagePath + 'Overview_event.jpg';
+
+  //load Image
+  static const String loadImage = imagePath + 'loadimage.png';
 }

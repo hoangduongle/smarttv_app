@@ -224,7 +224,7 @@ class AlarmController extends BaseController {
 
   void removeAlarm(int id) async {
     Get.back();
-    LoadingDialog().showLoadingDialog(Get.context!);
+    const LoadingDialog().showLoadingDialog(Get.context!);
     int result = await deleteRoomAlarm(id);
     if (result == 200) {
       alarmed.removeWhere((element) => element.id == id);

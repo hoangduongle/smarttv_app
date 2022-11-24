@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_this, prefer_collection_literals, file_names
+// ignore_for_file: unnecessary_this, prefer_collection_literals
 
 class OrderRequest {
   int? bookingId;
@@ -7,6 +7,7 @@ class OrderRequest {
   int? id;
   String? lastModifyBy;
   List<LorderDetailRequests>? lorderDetailRequests;
+  int? orderPaymentId;
   String? status;
   double? totalAmount;
   String? updateDate;
@@ -18,6 +19,7 @@ class OrderRequest {
       this.id,
       this.lastModifyBy,
       this.lorderDetailRequests,
+      this.orderPaymentId,
       this.status,
       this.totalAmount,
       this.updateDate});
@@ -34,6 +36,7 @@ class OrderRequest {
         lorderDetailRequests!.add(LorderDetailRequests.fromJson(v));
       });
     }
+    orderPaymentId = json['orderPayment_Id'];
     status = json['status'];
     totalAmount = json['totalAmount'];
     updateDate = json['updateDate'];
@@ -50,15 +53,11 @@ class OrderRequest {
       data['lorderDetailRequests'] =
           this.lorderDetailRequests!.map((v) => v.toJson()).toList();
     }
+    data['orderPayment_Id'] = this.orderPaymentId;
     data['status'] = this.status;
     data['totalAmount'] = this.totalAmount;
     data['updateDate'] = this.updateDate;
     return data;
-  }
-
-  @override
-  String toString() {
-    return 'OrderRequest(bookingId: $bookingId, createBy: $createBy, createDate: $createDate, id: $id, lastModifyBy: $lastModifyBy, lorderDetailRequests: $lorderDetailRequests, status: $status, totalAmount: $totalAmount, updateDate: $updateDate)\n';
   }
 }
 
@@ -100,10 +99,5 @@ class LorderDetailRequests {
     data['quantity'] = this.quantity;
     data['service_Id'] = this.serviceId;
     return data;
-  }
-
-  @override
-  String toString() {
-    return 'LorderDetailRequests($amount,$id,$orderDate,$orderId,$price,$quantity,$serviceId)\n';
   }
 }

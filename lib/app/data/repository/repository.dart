@@ -38,7 +38,8 @@ abstract class Repository {
   Future<List<MessageContent>> getListMessage(int bookingId);
 //==============================================================================
   Future<MomoContent> momoPayment(
-    int orderId,
+    double amount,
+    List<String> orderId,
   );
   Future<int> queryTransaction(
     String partnerCode,
@@ -47,7 +48,7 @@ abstract class Repository {
     String lang,
     String signature,
   );
-  Future<VNPayContent> vnPayPayment(int orderId, int orderInfo);
+  Future<VNPayContent> vnPayPayment(int orderId);
 //============================Request Service===================================
   Future<int> requestService(int bookingId, String dateTime, int id,
       String name, String type, String status);

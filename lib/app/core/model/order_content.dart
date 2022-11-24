@@ -1,10 +1,12 @@
-// ignore_for_file: prefer_collection_literals, unnecessary_this
+// ignore_for_file: unnecessary_this, prefer_collection_literals
 
-import 'package:smarttv_app/app/core/model/booking_content.dart';
+import 'package:smarttv_app/app/core/model/order_detail_content.dart';
+import 'package:smarttv_app/app/core/model/payment_method_content.dart';
 
 class OrderContent {
   int? id;
-  BookingContent? booking;
+  OrderPayment? orderPayment;
+  List<OrderDetailContent>? orderDetails;
   double? totalAmount;
   String? createDate;
   String? updateDate;
@@ -14,7 +16,8 @@ class OrderContent {
 
   OrderContent(
       {this.id,
-      this.booking,
+      this.orderPayment,
+      this.orderDetails,
       this.totalAmount,
       this.createDate,
       this.updateDate,
@@ -24,9 +27,15 @@ class OrderContent {
 
   OrderContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    booking = json['booking'] != null
-        ? BookingContent.fromJson(json['booking'])
+    orderPayment = json['orderPayment'] != null
+        ? OrderPayment.fromJson(json['orderPayment'])
         : null;
+    if (json['orderDetails'] != null) {
+      orderDetails = <OrderDetailContent>[];
+      json['orderDetails'].forEach((v) {
+        orderDetails!.add(OrderDetailContent.fromJson(v));
+      });
+    }
     totalAmount = json['totalAmount'];
     createDate = json['createDate'];
     updateDate = json['updateDate'];
@@ -38,7 +47,12 @@ class OrderContent {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
-    data['booking_Id'] = this.booking!.id;
+    if (this.orderPayment != null) {
+      data['orderPayment'] = this.orderPayment!.toJson();
+    }
+    if (this.orderDetails != null) {
+      data['orderDetails'] = this.orderDetails!.map((v) => v.toJson()).toList();
+    }
     data['totalAmount'] = this.totalAmount;
     data['createDate'] = this.createDate;
     data['updateDate'] = this.updateDate;
@@ -47,9 +61,34 @@ class OrderContent {
     data['status'] = this.status;
     return data;
   }
+}
 
-  @override
-  String toString() {
-    return 'OrderContent(id: $id, booking: $booking, totalAmount: $totalAmount, createDate: $createDate, updateDate: $updateDate, createBy: $createBy, lastModifyBy: $lastModifyBy, status: $status)';
+class OrderPayment {
+  int? id;
+  double? paymentAmount;
+  String? dateTime;
+  PaymentMethodContent? paymentMethod;
+
+  OrderPayment(
+      {this.id, this.paymentAmount, this.dateTime, this.paymentMethod});
+
+  OrderPayment.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    paymentAmount = json['paymentAmount'];
+    dateTime = json['dateTime'];
+    paymentMethod = json['paymentMethod'] != null
+        ? PaymentMethodContent.fromJson(json['paymentMethod'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = this.id;
+    data['paymentAmount'] = this.paymentAmount;
+    data['dateTime'] = this.dateTime;
+    if (this.paymentMethod != null) {
+      data['paymentMethod'] = this.paymentMethod!.toJson();
+    }
+    return data;
   }
 }

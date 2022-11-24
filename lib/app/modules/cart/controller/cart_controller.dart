@@ -108,7 +108,7 @@ class CartController extends BaseController {
     );
   }
 
-  Future<void> insertOrderRequest(OrderRequest orderRequest) async {
+  Future<int> insertOrderRequest(OrderRequest orderRequest) async {
     var overview = _repository.insertOrderRequest(orderRequest);
     await callDataService(
       overview,
@@ -117,6 +117,7 @@ class CartController extends BaseController {
       },
       onError: ((dioError) {}),
     );
+    return result;
   }
 
   void addNewOrder() async {
@@ -141,6 +142,7 @@ class CartController extends BaseController {
         var prefs = await SharedPreferences.getInstance();
         var bookingId = await prefs.getInt("bookingId");
         OrderRequest orderRequest = OrderRequest(
+            orderPaymentId: null,
             bookingId: bookingId,
             createBy: "Duong",
             createDate: DateTimeUtils.currentDate(),
@@ -150,7 +152,10 @@ class CartController extends BaseController {
             status: "BOOKED",
             totalAmount: total,
             updateDate: DateTimeUtils.currentDate());
-        await insertOrderRequest(orderRequest);
+        int result = await insertOrderRequest(orderRequest);
+        if (result != 200) {
+          throw Exception();
+        }
         OrderController orderController = Get.find();
         orderController.onInit();
         Get.back();
@@ -164,61 +169,8 @@ class CartController extends BaseController {
         Get.back();
       }
     } catch (e) {
+      Get.back();
       const DialogCart().showFailDialog(Get.context!);
     }
   }
 }
-
-/**
-  void addtoBil() async {
-    if (_service.isNotEmpty) {
-      const LoadingDialog().showLoadingDialog(Get.context!);
-      OrderController orderController = Get.find();
-      int? orderId = orderController.searchOrderIdByStatus("0").id;
-      double newTotal = 0;
-      // debugPrint(DateTimeUtils.currentDate());
-      if (orderId != 0) {
-        for (int i = 0; i < _service.length; i++) {
-          ServiceContent serContent = _service.keys.toList()[i];
-          int quantity = _service.values.toList()[i];
-          await insertOrderdetails(OrderDetailContent(
-            amount: (serContent.price! * quantity),
-            orderDate: DateTimeUtils.currentDate(),
-            orderId: orderId,
-            id: 0,
-            price: serContent.price,
-            quantity: quantity,
-            service: serContent,
-          ));
-
-          newTotal += (serContent.price! * quantity);
-          debugPrint(orderId.toString());
-        }
-
-        var prefs = await SharedPreferences.getInstance();
-        double? totalOrder = await prefs.getDouble("totalOrder");
-        newTotal += totalOrder!;
-        var bookingId = await prefs.getInt("bookingId");
-
-        // await insertOrder(OrderContent(
-        //     booking: BookingContent(id: bookingId),
-        //     id: orderId,
-        //     createBy: "Duong",
-        //     createDate: "",
-        //     lastModifyBy: "Duong",
-        //     totalAmount: newTotal,
-        //     status: "1",
-        //     updateDate: DateTimeUtils.currentDate()));
-        orderController.onInit();
-        Get.back();
-        removeAllSerivce();
-        const ThankCustomer().showThanksDialog(Get.context!);
-        Future.delayed(const Duration(seconds: 3), () {
-          Get.back();
-          Get.back();
-        });
-      }
-    }
-  }
-  
- */

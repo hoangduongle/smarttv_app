@@ -21,36 +21,6 @@ class OrderController extends BaseController {
   OrderContent findOrder(int id) =>
       orders.value.firstWhere((order) => order.id == id);
 
-  get total {
-    String x;
-    double y = 0;
-    try {
-      for (int i = 0; i < orders.value.length; i++) {
-        if (orders.value[i].status == "0") {
-          y += orders.value[i].totalAmount!;
-        }
-      }
-    } catch (e) {
-      y;
-    }
-    return y;
-  }
-
-  get isPayall {
-    bool x = true;
-    try {
-      for (int i = 0; i < orders.value.length; i++) {
-        if (orders.value[i].status == "0") {
-          x = false;
-          break;
-        }
-      }
-    } catch (e) {
-      x;
-    }
-    return x;
-  }
-
   double getOrderTotal(int id) {
     double result = 0;
     for (var element in orders.value) {
@@ -61,22 +31,31 @@ class OrderController extends BaseController {
     return result;
   }
 
-  OrderContent searchOrderIdByStatus(String status) {
-    //0 pay 1 unpay
-    OrderContent result = OrderContent();
+  List<String> getAllOrderIdNotPay() {
+    List<String> listOrderId = [];
     for (int i = 0; i < orders.value.length; i++) {
-      if (orders.value[i].status == status) {
-        result = orders.value[i];
+      if (orders.value[i].orderPayment == null) {
+        listOrderId.add(orders.value[i].id.toString());
       }
     }
-    return result;
+    return listOrderId;
   }
 
-  bool getStatusByOrderId(int orderId) {
+  String getPaymentMethodByOrderId(int orderId) {
+    for (int i = 0; i < orders.value.length; i++) {
+      if (orders.value[i].id == orderId) {
+        return orders.value[i].orderPayment!.paymentMethod!.method.toString();
+      }
+    }
+    return "";
+  }
+
+  bool getOrderPaymentByOrderId(int orderId) {
     bool result = false;
     for (int i = 0; i < orders.value.length; i++) {
       if (orders.value[i].id == orderId) {
-        if (orders.value[i].status == "1") {
+        if (orders.value[i].orderPayment != null) {
+          //co orderPayment
           result = true;
         }
       }
@@ -113,15 +92,13 @@ class OrderController extends BaseController {
       },
       onError: ((dioError) {}),
     );
-    orders(result);
-    double total = searchOrderIdByStatus("0").totalAmount ?? 0;
-    var prefs = await SharedPreferences.getInstance();
-    await prefs.setDouble("totalOrder", total); //
-    if (orders.value.length <= 1) {
-      fetchOrderDetails(orders.value.first.id!);
-    }
+    ordersTMP(result);
+    // double total = searchOrderIdByStatus("0").totalAmount ?? 0;
+    // var prefs = await SharedPreferences.getInstance();
+    // await prefs.setDouble("totalOrder", total); //
+    filterStatusDONE();
     debugPrint("Order ${DateTimeUtils.currentDateTimeSecond()}");
-    // filterStatusDONE();
+
     update();
     return result;
   }
@@ -131,10 +108,10 @@ class OrderController extends BaseController {
       orders.value.clear();
     }
     for (int i = 0; i < ordersTMP.value.length; i++) {
-      // if (ordersTMP.value[i].status == "DONE") {
-
-      // }
-      orders.value.add(ordersTMP.value[i]);
+      debugPrint("${ordersTMP.value[i].status}");
+      if (ordersTMP.value[i].status == "DONE") {
+        orders.value.add(ordersTMP.value[i]);
+      }
     }
   }
 
@@ -150,6 +127,36 @@ class OrderController extends BaseController {
     );
     orderDetails(result);
     update();
+  }
+
+  get isPayall {
+    bool x = false;
+    try {
+      for (int i = 0; i < orders.value.length; i++) {
+        if (orders.value[i].orderPayment == null) {
+          x = true;
+          break;
+        }
+      }
+    } catch (e) {
+      x;
+    }
+    return x;
+  }
+
+  get total {
+    String x;
+    double y = 0;
+    try {
+      for (int i = 0; i < orders.value.length; i++) {
+        if (orders.value[i].orderPayment == null) {
+          y += orders.value[i].totalAmount!;
+        }
+      }
+    } catch (e) {
+      y;
+    }
+    return y;
   }
 
   // Future<void> fetchinsertOrder(OrderContent orderContent) async {
