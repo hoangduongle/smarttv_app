@@ -108,11 +108,15 @@ class OrderController extends BaseController {
       orders.value.clear();
     }
     for (int i = 0; i < ordersTMP.value.length; i++) {
-      debugPrint("${ordersTMP.value[i].status}");
       if (ordersTMP.value[i].status == "DONE") {
         orders.value.add(ordersTMP.value[i]);
       }
     }
+    orders.value.sort(
+      (a, b) => a.orderPayment != null ? 1 : 0,
+    );
+
+    debugPrint("Orderrr: ${orders.value.toString()}");
   }
 
   Future<void> fetchOrderDetails(int orderId) async {

@@ -226,7 +226,7 @@ class _EventScreenState extends State<EventScreen> {
                                   newsContent.newName.toString(),
                                   style: AppStyles.h4.copyWith(
                                       color: AppColors.white,
-                                      fontSize: 12.sp,
+                                      fontSize: 10.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(

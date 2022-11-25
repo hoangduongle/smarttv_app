@@ -171,10 +171,8 @@ class OrderScreen extends GetView<OrderController> {
             ),
             Row(
               children: [
-                controller.getOrderPaymentByOrderId(
-                        controller.orders.value.length <= 1
-                            ? controller.orders.value.first.id!
-                            : naController.orderid.toInt())
+                controller
+                        .getOrderPaymentByOrderId(naController.orderid.toInt())
                     ? Expanded(
                         flex: 2,
                         child: Align(
@@ -182,13 +180,13 @@ class OrderScreen extends GetView<OrderController> {
                           child: Text("Momo",
                               style: AppStyles.h4.copyWith(
                                   fontSize: 20.sp,
-                                  color: AppColors.white,
+                                  color: AppColors.title,
                                   fontWeight: FontWeight.bold)),
                         ),
                       )
                     : Expanded(flex: 2, child: Container()),
                 Expanded(flex: 1, child: Container()),
-                controller.orders.value.isEmpty
+                controller.orderDetails.value.isEmpty
                     ? Expanded(child: Container())
                     : Expanded(
                         child: Align(
@@ -206,7 +204,7 @@ class OrderScreen extends GetView<OrderController> {
                       ),
               ],
             ),
-            controller.orders.value.isEmpty
+            controller.orderDetails.value.isEmpty
                 ? SizedBox(
                     width: 170.w,
                     height: 50.h,
@@ -219,7 +217,7 @@ class OrderScreen extends GetView<OrderController> {
                               controller.orders.value.length <= 1
                                   ? controller.orders.value.first.id!
                                   : naController.orderid.toInt())
-                          ? AppColors.green
+                          ? AppColors.greyColor
                           : AppColors.focus,
                       borderRadius: BorderRadius.circular(10.r),
                       child: InkWell(
@@ -227,7 +225,7 @@ class OrderScreen extends GetView<OrderController> {
                                 controller.orders.value.length <= 1
                                     ? controller.orders.value.first.id!
                                     : naController.orderid.toInt())
-                            ? AppColors.greenFocus
+                            ? AppColors.greyColor
                             : AppColors.orangeColor,
                         borderRadius: BorderRadius.circular(10.r),
                         onTap: () {
@@ -235,7 +233,7 @@ class OrderScreen extends GetView<OrderController> {
                               controller.orders.value.length <= 1
                                   ? controller.orders.value.first.id!
                                   : naController.orderid.toInt())) {
-                            naController.current_index = 5.obs;
+                            return;
                           } else {
                             List<String> listorderId = [];
                             listorderId.add(orderId.toString());

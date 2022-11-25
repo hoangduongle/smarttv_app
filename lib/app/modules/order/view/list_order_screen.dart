@@ -157,13 +157,14 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                   width: 170.w,
                   height: 50.h,
                   child: Material(
-                    color:
-                        controller.isPayall ? AppColors.focus : AppColors.green,
+                    color: controller.isPayall
+                        ? AppColors.focus
+                        : AppColors.greyColor,
                     borderRadius: BorderRadius.circular(10.r),
                     child: InkWell(
                       focusColor: controller.isPayall
                           ? AppColors.orangeColor
-                          : AppColors.greenFocus,
+                          : AppColors.greyColor,
                       borderRadius: BorderRadius.circular(10.r),
                       onTap: () {
                         controller.isPayall

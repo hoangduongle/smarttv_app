@@ -61,6 +61,11 @@ class OrderContent {
     data['status'] = this.status;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'OrderContent(id: $id, orderPayment: $orderPayment, orderDetails: $orderDetails, totalAmount: $totalAmount, createDate: $createDate, updateDate: $updateDate, createBy: $createBy, lastModifyBy: $lastModifyBy, status: $status)';
+  }
 }
 
 class OrderPayment {

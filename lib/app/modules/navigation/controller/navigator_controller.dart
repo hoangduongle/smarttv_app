@@ -13,7 +13,7 @@ class NavigatorController extends GetxController {
   final List<FocusScopeNode> focusNodeScope = [];
   final List<FocusNode> focusNodesService = [];
   var current_index = 0.obs;
-  var orderid = 0.obs;
+  var orderid = (-1).obs;
   bool select = true.obs.isTrue;
   @override
   void onInit() {

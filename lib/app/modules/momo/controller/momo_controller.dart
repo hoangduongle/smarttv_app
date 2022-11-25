@@ -43,9 +43,9 @@ class MomoController extends BaseController {
         timerCheck?.cancel();
         // debugPrint("MoMo onReady: ${order.value!.status}");
         Get.back();
-        const MomoScreen().showThanksDialog(Get.context!);
         OrderController orderController = Get.find();
         orderController.onInit();
+        const MomoScreen().showThanksDialog(Get.context!);
       }
     });
   }

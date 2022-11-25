@@ -21,7 +21,7 @@ const seconds_Promotion = 10;
 const seconds_News = 10;
 const seconds_Orders = 10;
 
-RoomContent roomContent = RoomContent(
+final RoomContent roomContentConst = RoomContent(
   id: 11,
   name: "R011",
   roomNo: "001",
@@ -42,9 +42,9 @@ DeviceContent device = DeviceContent(
     brand: "Sony",
     description: "TV Sony",
     status: true,
-    room: roomContent);
+    room: roomContentConst);
 
-enum StatusService { BOOKED, PROCESSING, DONE }
+enum StatusService { BOOKED, PROCESSING, DONE, CANCEL }
 
 enum StatusBooking { BOOKED, CANCELED, NOSHOW, CHECKIN, CHECKOUT }
 

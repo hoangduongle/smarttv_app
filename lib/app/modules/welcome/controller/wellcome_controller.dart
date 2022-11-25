@@ -9,6 +9,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:weather/weather.dart';
 
@@ -32,7 +33,7 @@ class WellcomeController extends BaseController {
   @override
   void onInit() async {
     timing();
-    await fetchBooking(11);
+    await fetchBooking(roomContentConst.id!);
     loadTitle();
     super.onInit();
   }
