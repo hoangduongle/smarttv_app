@@ -49,10 +49,7 @@ class VNPayScreen extends GetView<VNPayController> {
                   child: Stack(
                     children: [
                       ClipRRect(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: AppColors.pink.withOpacity(.85),
-                              borderRadius: BorderRadius.circular(10.r)),
+                        child: SizedBox(
                           height: 190.h,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,

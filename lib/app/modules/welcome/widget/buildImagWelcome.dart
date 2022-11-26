@@ -44,37 +44,41 @@ class _WellcomeBuildState extends State<WellcomeBuild> {
         });
       },
       onTap: () {
-        switch (widget.index) {
-          case 0: // abtraction
-            controller.stopAudio();
-            naController.current_index = 3.obs;
-            Get.toNamed('/mainscreen');
-            break;
-          case 1: //promotion
-            controller.stopAudio();
-            naController.current_index = 2.obs;
-            Get.toNamed('/mainscreen');
-            break;
-          case 2: //home
-            controller.stopAudio();
-            naController.current_index = 0.obs;
-            Get.toNamed('/mainscreen');
-            break;
-          case 3: //service
-            controller.stopAudio();
-            naController.current_index = 1.obs;
-            Get.toNamed('/mainscreen');
-            break;
-          case 4: //event
-            controller.stopAudio();
-            naController.current_index = 2.obs;
-            Get.toNamed('/mainscreen');
-            break;
-          default:
-            controller.stopAudio();
-            naController.current_index = 0.obs;
-            Get.toNamed('/mainscreen');
-            break;
+        if (controller.bookingContent.value == null) {
+          debugPrint("Booking tại Room 11 đã được Check Out");
+        } else {
+          switch (widget.index) {
+            case 0: // abtraction
+              controller.stopAudio();
+              naController.current_index = 3.obs;
+              Get.toNamed('/mainscreen');
+              break;
+            case 1: //promotion
+              controller.stopAudio();
+              naController.current_index = 2.obs;
+              Get.toNamed('/mainscreen');
+              break;
+            case 2: //home
+              controller.stopAudio();
+              naController.current_index = 0.obs;
+              Get.toNamed('/mainscreen');
+              break;
+            case 3: //service
+              controller.stopAudio();
+              naController.current_index = 1.obs;
+              Get.toNamed('/mainscreen');
+              break;
+            case 4: //event
+              controller.stopAudio();
+              naController.current_index = 2.obs;
+              Get.toNamed('/mainscreen');
+              break;
+            default:
+              controller.stopAudio();
+              naController.current_index = 0.obs;
+              Get.toNamed('/mainscreen');
+              break;
+          }
         }
       },
       child: SizedBox(
