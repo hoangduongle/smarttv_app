@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/momo/view/momo_screen.dart';
+import 'package:smarttv_app/app/modules/vnpay/view/vnpay_screen.dart';
 
 class OrderDialog extends StatelessWidget {
   const OrderDialog({super.key});
@@ -78,6 +79,8 @@ class OrderDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.r),
                         onTap: () {
                           debugPrint("Payment Method: VNPay");
+                          const VNPayScreen()
+                              .vnPayDialog(context, int.parse(orderId[0]));
                         },
                         child: Container(
                           margin: EdgeInsets.all(3.r),

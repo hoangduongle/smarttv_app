@@ -17,6 +17,7 @@ import 'package:smarttv_app/app/modules/promotion/binding/promotion_binding.dart
 import 'package:smarttv_app/app/modules/service/binding/service_binding.dart';
 import 'package:smarttv_app/app/modules/taxi/binding/taxi_binding.dart';
 import 'package:smarttv_app/app/modules/turndown/binding/turndown_binding.dart';
+import 'package:smarttv_app/app/modules/vnpay/binding/vnpay_binding.dart';
 
 class MainBinding implements Bindings {
   @override
@@ -37,6 +38,7 @@ class MainBinding implements Bindings {
     CartBinding().dependencies();
 
     MomoBinding().dependencies();
+    VNPayBinding().dependencies();
     PoolBinding().dependencies();
     MassageBinding().dependencies();
     TurndownBinding().dependencies();

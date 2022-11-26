@@ -110,7 +110,7 @@ class MomoScreen extends GetView<MomoController> {
                       borderRadius: BorderRadius.circular(10.r),
                       focusColor: AppColors.greenFocus,
                       onTap: () {
-                        Get.back();
+                        controller.stopTimer();
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

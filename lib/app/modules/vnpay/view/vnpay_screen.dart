@@ -55,12 +55,10 @@ class VNPayScreen extends GetView<VNPayController> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Container(
-                                height: 100.h,
+                                height: 190.h,
                                 decoration: BoxDecoration(
                                     color: AppColors.white,
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(10.r),
-                                        bottomRight: Radius.circular(10.r))),
+                                    borderRadius: BorderRadius.circular(10.r)),
                               ),
                             ],
                           ),
@@ -83,7 +81,7 @@ class VNPayScreen extends GetView<VNPayController> {
                                     child: QrImage(
                                       backgroundColor: AppColors.white,
                                       foregroundColor: AppColors.black,
-                                      data: "${controller.vnPay.value?.url}", //
+                                      data: "aaa", //
                                       version: QrVersions.auto,
                                       size: 180.0,
                                     ),

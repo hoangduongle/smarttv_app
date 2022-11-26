@@ -50,6 +50,12 @@ class MomoController extends BaseController {
     });
   }
 
+  void stopTimer() {
+    timerCheck?.cancel();
+    debugPrint("Cancel");
+    Get.back();
+  }
+
   Future<void> queryOrder(int orderId) async {
     var overview = _repository.getOrderId(orderId);
 
