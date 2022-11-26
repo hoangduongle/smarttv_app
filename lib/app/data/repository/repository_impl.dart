@@ -1,4 +1,4 @@
-// ignore_for_file: unused_element, unused_local_variable, unnecessary_brace_in_string_interps
+// ignore_for_file: unused_element, unused_local_variable, unnecessary_brace_in_string_interps, await_only_futures
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
@@ -414,7 +414,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<VNPayContent> vnPayPayment(int orderId) async {
+  Future<VNPayContent> vnPayPayment(int orderId, double amount) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
@@ -424,6 +424,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
       "vnp_IpAddr": "192.168.1.1",
       "vnp_Locale": "vn",
       "vnp_OrderInfo": "Thanh toán VNPay",
+      "vnp_amount": amount,
       "orderId": orderId,
     };
     var dioCall = dioTokenClient.post(endpoint, data: data);

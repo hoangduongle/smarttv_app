@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_this, prefer_collection_literals
+// ignore_for_file: prefer_collection_literals, unnecessary_this, file_names
 
 class OrderRequest {
   int? bookingId;

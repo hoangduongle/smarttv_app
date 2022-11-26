@@ -25,8 +25,7 @@ class BookingController extends BaseController {
       },
       onError: ((dioError) {}),
     );
-
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt("bookingId", bookingContent.value?.id ?? 0);
+    await prefs.setInt("bookingId", bookingContent.value?.id ?? (-1));
   }
 }

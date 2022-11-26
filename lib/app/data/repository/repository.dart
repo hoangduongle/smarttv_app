@@ -48,7 +48,7 @@ abstract class Repository {
     String lang,
     String signature,
   );
-  Future<VNPayContent> vnPayPayment(int orderId);
+  Future<VNPayContent> vnPayPayment(int orderId, double amount);
 //============================Request Service===================================
   Future<int> requestService(int bookingId, String dateTime, int id,
       String name, String type, String status);
