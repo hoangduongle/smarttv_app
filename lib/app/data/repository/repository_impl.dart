@@ -355,11 +355,11 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<AlarmContent>> getListAlarm() async {
+  Future<List<AlarmContent>> getListAlarm(int bookingId) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/roomAlarms";
+    var endpoint = "${DioProvider.baseUrl}/roomAlarmByBooking/$bookingId";
     var dioCall = dioTokenClient.get(endpoint);
     var result = <AlarmContent>[];
     try {

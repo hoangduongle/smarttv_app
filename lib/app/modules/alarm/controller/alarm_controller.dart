@@ -40,8 +40,10 @@ class AlarmController extends BaseController {
   }
 
   Future<void> getListRoomAlarm() async {
+    final prefs = await SharedPreferences.getInstance();
+    var bookingId = await prefs.getInt("bookingId");
     AlarmContent result = AlarmContent();
-    var overview = _repository.getListAlarm();
+    var overview = _repository.getListAlarm(bookingId!.toInt());
     await callDataService(
       overview,
       onSuccess: (List<AlarmContent> response) {
