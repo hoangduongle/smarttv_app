@@ -52,7 +52,7 @@ class CartController extends BaseController {
               fontWeight: FontWeight.bold),
         ),
         backgroundColor: AppColors.focus.withOpacity(.8),
-        duration: const Duration(seconds: 2));
+        duration: const Duration(milliseconds: 1000));
   }
 
   void removeSerivce(ServiceContent serviceContent) {
