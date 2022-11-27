@@ -56,11 +56,12 @@ class _CardCategoryState extends State<CardCategory> {
             focusColor: AppColors.title,
             borderRadius: BorderRadius.circular(10.r),
             onTap: () async {
-              // final prefs = await SharedPreferences.getInstance();
-              // prefs.setInt('cateId', serviceCategory.id!);
               switch (widget.serviceCategory.id) {
                 case 1: //F&B
                   fbController.numberSelected = 0.obs;
+                  FoodandBeverageController foodandBeverageController =
+                      Get.find();
+                  foodandBeverageController.onInit();
                   Get.toNamed('${Routes.FANDB}');
                   break;
                 case 3: //Ho boi

@@ -167,24 +167,24 @@ class _MainScreenState extends State<MainScreen> {
         return Scaffold(
           floatingActionButton: Stack(
             children: [
-              Align(
-                alignment: Alignment(0.5.w, -0.92.h),
-                child: Material(
-                  color: AppColors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(100.r),
-                    focusColor: AppColors.orangeColor,
-                    onTap: () {
-                      maController.fetchAllApi();
-                    },
-                    child: Icon(
-                      Icons.refresh,
-                      size: 30.r,
-                      color: AppColors.white,
-                    ),
-                  ),
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment(0.5.w, -0.92.h),
+              //   child: Material(
+              //     color: AppColors.transparent,
+              //     child: InkWell(
+              //       borderRadius: BorderRadius.circular(100.r),
+              //       focusColor: AppColors.orangeColor,
+              //       onTap: () {
+              //         maController.fetchAllApi();
+              //       },
+              //       child: Icon(
+              //         Icons.refresh,
+              //         size: 30.r,
+              //         color: AppColors.white,
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Stack(
                 children: [
                   Align(

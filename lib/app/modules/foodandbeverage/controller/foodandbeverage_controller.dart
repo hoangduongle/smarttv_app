@@ -35,9 +35,8 @@ class FoodandBeverageController extends BaseController {
   @override
   void onInit() async {
     _loadData();
-    // await fetchImage("img_fandb");
     createMajor();
-    var futures = await Future.wait([
+    await Future.wait([
       fetchServicesFood(),
       fetchServicesDrink(),
     ]);
@@ -50,19 +49,6 @@ class FoodandBeverageController extends BaseController {
       TokenManager.instance.init();
     }
   }
-
-  // Future<void> fetchImage(String type) async {
-  //   var overview = _repository.getListImageByType(type);
-  //   List<ImageContent> result = [];
-  //   await callDataService(
-  //     overview,
-  //     onSuccess: (List<ImageContent> response) {
-  //       result = response;
-  //     },
-  //     onError: ((dioError) {}),
-  //   );
-  //   imageFandB(result);
-  // }
 
   Future<void> fetchServicesFood() async {
     var services = _repository.getListServiceContentByCateId(1);
@@ -128,7 +114,6 @@ class FoodandBeverageController extends BaseController {
 
   void filter() {
     String food = "";
-
     if (serviceKhaivi.value.isNotEmpty) {
       serviceKhaivi.value.clear();
     }
@@ -166,10 +151,10 @@ class FoodandBeverageController extends BaseController {
       serviceNuocsuoi.value.clear();
     }
     if (serviceNuocmocktails.value.isNotEmpty) {
-      serviceNuocsuoi.value.clear();
+      serviceNuocmocktails.value.clear();
     }
     if (serviceBia.value.isNotEmpty) {
-      serviceNuocsuoi.value.clear();
+      serviceBia.value.clear();
     }
 
     for (var element in serviceListDrink.value) {

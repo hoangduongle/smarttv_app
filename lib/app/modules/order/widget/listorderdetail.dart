@@ -12,14 +12,12 @@ import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 class ListOrderDetail extends StatelessWidget {
   OrderController orderController;
   OrderDetailContent orderDetailContent;
-  // OrderPaymentContent orderPaymentContent;
   int index;
 
   ListOrderDetail({
     Key? key,
     required this.orderController,
     required this.orderDetailContent,
-    // required this.orderPaymentContent,
     required this.index,
   }) : super(key: key);
 
@@ -31,7 +29,7 @@ class ListOrderDetail extends StatelessWidget {
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(10.r),
       child: InkWell(
-        // onTap: () {},
+        onTap: () {},
         borderRadius: BorderRadius.circular(10.r),
         focusColor: AppColors.focus,
         child: Container(
