@@ -53,8 +53,7 @@ class ServiceController extends BaseController {
             description: "fandb",
             name: "Thức ăn và đồ uống",
             images: element.images));
-      }
-      if (element.id != 1 && element.id != 2) {
+      } else if (element.id != 1 && element.id != 2 && element.id != 12) {
         if (element.status == true) {
           serviceCateList.value.add(element);
         }

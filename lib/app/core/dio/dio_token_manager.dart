@@ -4,15 +4,16 @@ import 'package:dio/dio.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
+import 'package:smarttv_app/app/data/data.dart';
 
 class TokenManager extends Interceptor {
   static final TokenManager _instance = TokenManager._internal();
   static TokenManager get instance => _instance;
   TokenManager._internal();
 
-  static const username = '123';
-  static const password = '123';
-  static const baseURL = "https://hotelservice-v5.herokuapp.com/api/v1/login?";
+  static const username = userNameApi;
+  static const password = passwordApi;
+  static const baseURL = urlApi;
 
   String? _token;
 

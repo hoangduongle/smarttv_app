@@ -359,8 +359,9 @@ class RepositoryImpl extends BaseRepository implements Repository {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/roomAlarmByBooking/$bookingId";
-    var dioCall = dioTokenClient.get(endpoint);
+    var endpoint = "${DioProvider.baseUrl}/roomAlarmByBooking";
+    var data = {'booking_Id': bookingId};
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
     var result = <AlarmContent>[];
     try {
       return callApi(dioCall).then((response) {
@@ -460,17 +461,39 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<int> insertCustomerFeedback(CustomerFeedback customerFeedback) async {
+  Future<List<CustomerFeedback>> insertCustomerFeedback(
+      CustomerFeedback customerFeedback) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
     var endpoint = "${DioProvider.baseUrl}/customerFeedBack";
     var data = customerFeedback.toJson();
-    var fromData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: fromData);
+    // var fromData = FormData.fromMap(data);
+    var result = <CustomerFeedback>[];
+    var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
-        return response.statusCode ?? 0;
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(CustomerFeedback.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> updateCustomerFeedback(CustomerFeedback customerFeedback) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/customerFeedBack";
+    var data = customerFeedback.toJson();
+    var dioCall = dioTokenClient.put(endpoint, data: data);
+    try {
+      return callApi(dioCall).then((response) {
+        return response.data['resultCode'] ?? 0;
       });
     } catch (e) {
       rethrow;

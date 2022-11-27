@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/bindings/initia_bindings.dart';
@@ -13,7 +12,6 @@ import 'package:smarttv_app/config/map_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.remove();
   MapConfig mapConfig = MapConfig(
     mapboxUrlTemplate:
         'https://api.mapbox.com/styles/v1/lehhoangduong/cl9xnm59q00j714o2ltpm3mdp/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ',
@@ -45,11 +43,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     String initialRoute = AppPages.INITIAL;
-    bool welcome = true;
-    if (welcome) {
-      initialRoute = Routes.WELCOME;
-    }
-
     return ScreenUtilInit(
       designSize: const Size(960, 540),
       minTextAdapt: true,
@@ -63,8 +56,6 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             translations: Messages(),
             locale: const Locale('vi', 'Vi'),
-            // locale: Locale('en', 'US'),
-            // fallbackLocale: const Locale('vi', 'Vi'),
             initialBinding: InitiaBinding(),
             initialRoute: initialRoute,
             getPages: AppPages.routes,

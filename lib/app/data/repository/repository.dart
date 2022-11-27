@@ -60,5 +60,7 @@ abstract class Repository {
   Future<List<AlarmContent>> getListAlarm(int bookingId);
 //=================================FeedBack=====================================
   Future<List<FeedbackContent>> getListFeedbackContent();
-  Future<int> insertCustomerFeedback(CustomerFeedback customerFeedback);
+  Future<List<CustomerFeedback>> insertCustomerFeedback(
+      CustomerFeedback customerFeedback);
+  Future<int> updateCustomerFeedback(CustomerFeedback customerFeedback);
 }

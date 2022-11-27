@@ -17,7 +17,6 @@ class AnimatedMapController extends GetxController
   }
 
   move(LatLng destLocation, double destZoom) {
-    
     final latTween = Tween<double>(
         begin: _controller.center.latitude, end: destLocation.latitude);
     final lngTween = Tween<double>(

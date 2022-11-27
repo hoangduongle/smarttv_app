@@ -91,9 +91,6 @@ class _ServiceScreenState extends State<ServiceScreen> {
                                         ),
                                         itemBuilder: (context, index) {
                                           return CardCategory(
-                                              // image: controller
-                                              //     .imageServiceCategories
-                                              //     .value[0],
                                               index: index,
                                               serviceCategory: controller
                                                   .serviceCateList.value[index],

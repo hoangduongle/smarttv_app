@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class BookingController extends BaseController {
@@ -10,12 +11,11 @@ class BookingController extends BaseController {
 
   @override
   void onInit() async {
-    fetchBooking(11);
-    // debugPrint("${bookingContent.value?.order!.id}");
+    fetchBooking(roomId);
+
     super.onInit();
   }
 
-  //check booking status
   Future<void> fetchBooking(int roomId) async {
     var overview = _repository.getBookingByRoomId(roomId);
     await callDataService(
@@ -26,6 +26,6 @@ class BookingController extends BaseController {
       onError: ((dioError) {}),
     );
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt("bookingId", bookingContent.value?.id ?? (-1));
+    await prefs.setInt(bookId, bookingContent.value?.id ?? (-1));
   }
 }

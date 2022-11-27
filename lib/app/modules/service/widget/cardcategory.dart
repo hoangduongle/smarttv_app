@@ -14,6 +14,7 @@ import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
@@ -54,9 +55,6 @@ class _CardCategoryState extends State<CardCategory> {
             focusNode: widget.focusNode,
             focusColor: AppColors.title,
             borderRadius: BorderRadius.circular(10.r),
-            onFocusChange: (value) {
-              setState(() {});
-            },
             onTap: () async {
               // final prefs = await SharedPreferences.getInstance();
               // prefs.setInt('cateId', serviceCategory.id!);
@@ -87,11 +85,12 @@ class _CardCategoryState extends State<CardCategory> {
             },
             child: Container(
               padding: EdgeInsets.only(bottom: 5.h),
+              // height: 400.h,
               child: Stack(
                 children: [
                   Container(
                     color: AppColors.transparent,
-                    height: (size.height - 100).h,
+                    height: 400.h,
                     width: size.width.w,
                     child: Align(
                       alignment: Alignment.bottomCenter,
@@ -99,7 +98,7 @@ class _CardCategoryState extends State<CardCategory> {
                         widget
                             .serviceCategory.name!.tr, //<------ set controller
                         style: TextStyle(
-                            fontSize: naController.select ? 20.sp : 17.sp,
+                            fontSize: naController.select ? 17.sp : 15.sp,
                             fontWeight: FontWeight.bold,
                             color: AppColors.white),
                       ),
@@ -115,7 +114,7 @@ class _CardCategoryState extends State<CardCategory> {
                           : BorderRadius.circular(10.r),
                       child: CachedNetworkImage(
                         imageUrl:
-                            "${widget.serviceCategory.images![0].pictureUrl}", //
+                            "${widget.serviceCategory.images!.isNotEmpty ? widget.serviceCategory.images![0].pictureUrl : urlLoadingImage}", //urlLoadingImage
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             height: naController.select ? 180.h : 160.h,

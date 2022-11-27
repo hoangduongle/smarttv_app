@@ -33,16 +33,16 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TitleScreen(name: "Đánh giá"),
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(vertical: 10.h),
-                  child: Text(
-                    "Đánh giá của quý khách sẽ được lưu lại khi thực hiện chech-out",
-                    style: TextStyle(
-                        color: AppColors.orangeColor.withOpacity(0.8),
-                        fontSize: 17.sp),
-                  ),
-                ),
+                // Container(
+                //   alignment: Alignment.center,
+                //   padding: EdgeInsets.symmetric(vertical: 10.h),
+                //   child: Text(
+                //     "Đánh giá của quý khách sẽ được lưu lại khi thực hiện chech-out",
+                //     style: TextStyle(
+                //         color: AppColors.orangeColor.withOpacity(0.8),
+                //         fontSize: 17.sp),
+                //   ),
+                // ),
                 Expanded(
                     child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -334,6 +334,33 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     ),
                                   ],
                                 )),
+                            SizedBox(
+                              width: 80.w,
+                              height: 25.h,
+                              child: Material(
+                                color: AppColors.focus,
+                                borderRadius: BorderRadius.circular(10.r),
+                                child: InkWell(
+                                  focusColor: AppColors.orangeColor,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  onTap: () {
+                                    controller.updateFeedback();
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Gửi',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15.sp,
+                                            color: AppColors.black),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ))),
               ],

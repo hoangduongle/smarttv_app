@@ -50,7 +50,6 @@ dependencies:
   intl: ^0.17.0
   flutter_launcher_icons: ^0.10.0
   audioplayers: ^0.20.1
-  get_storage: ^2.0.3
   lottie: ^1.4.3
   qr_flutter: ^4.0.0
   weather: ^2.0.1
@@ -59,8 +58,6 @@ dependencies:
   latlong2: ^0.8.1
   connectivity_plus: ^3.0.2
   android_alarm_manager_plus: ^2.1.0
-  video_player: ^2.4.7
-  url_launcher: ^6.1.7
 
 flutter_icons:
   android: "launcher_icon"

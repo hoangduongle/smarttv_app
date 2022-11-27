@@ -13,26 +13,12 @@ import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_const.dart';
 
 const hotelId = 1;
+const roomId = 11;
+const bookId = "bookingId";
 
-const SECONDS = 10;
-const seconds_ServiceCate = 10;
-const seconds_Event = 10;
-const seconds_Promotion = 10;
-const seconds_News = 10;
-const seconds_Orders = 10;
-
-final RoomContent roomContentConst = RoomContent(
-  id: 11,
-  name: "R011",
-  roomNo: "001",
-  createBy: "Duong",
-  createDate: "28/10/2022",
-  description: "Phong Deluxe 001",
-  hotelId: hotelId,
-  lastModifyBy: "Long",
-  roomTypeId: 3,
-  updateDate: "28/10/2022",
-);
+const userNameApi = '123';
+const passwordApi = '123';
+const urlApi = 'https://hotelservice-v5.herokuapp.com/api/v1/login?';
 
 DeviceContent device = DeviceContent(
     id: 3,
@@ -42,11 +28,23 @@ DeviceContent device = DeviceContent(
     brand: "Sony",
     description: "TV Sony",
     status: true,
-    room: roomContentConst);
+    room: null);
 
-enum StatusService { BOOKED, PROCESSING, DONE, CANCEL }
+const mapboxUrlTemplate =
+    'https://api.mapbox.com/styles/v1/lehhoangduong/cl9xnm59q00j714o2ltpm3mdp/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ';
+const mapboxAccessToken =
+    'pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ';
+const mapboxId = 'mapbox.mapbox-streets-v8';
 
-enum StatusBooking { BOOKED, CANCELED, NOSHOW, CHECKIN, CHECKOUT }
+const SECONDS = 10;
+const seconds_ServiceCate = 10;
+const seconds_Event = 10;
+const seconds_Promotion = 10;
+const seconds_News = 10;
+const seconds_Orders = 10;
+
+const urlLoadingImage =
+    'https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png';
 
 const List<NavigationContent> listNavigationContent = [
   NavigationContent(
