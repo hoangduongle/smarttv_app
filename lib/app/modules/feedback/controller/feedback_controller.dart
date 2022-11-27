@@ -18,7 +18,7 @@ class FeedbackController extends BaseController {
 
   FeedbackState state = FeedbackState.normal;
   List<FeedbackState> list = [FeedbackState.normal];
-
+  bool checkLoadingApi = true;
   @override
   void onInit() async {
     for (int i = 0; i < 9; i++) {
@@ -36,17 +36,21 @@ class FeedbackController extends BaseController {
   }
 
   void updateFeedback() async {
-    final prefs = await SharedPreferences.getInstance();
-    var bookingId = await prefs.getInt(bookId);
-    for (int i = 0; i < listFeedback.value.length; i++) {
-      CustomerFeedback customerFeedback = CustomerFeedback(
-        booking: customerFeedBack.value[i].booking,
-        dateTime: DateTimeUtils.currentDateTime(),
-        feedbackContent: listFeedback.value[i],
-        id: customerFeedBack.value[i].id,
-        rating: list[i].index + 1,
-      );
-      updateCustomerFeedBack(customerFeedback);
+    if (checkLoadingApi) {
+      checkLoadingApi = false;
+      final prefs = await SharedPreferences.getInstance();
+      var bookingId = await prefs.getInt(bookId);
+      for (int i = 0; i < listFeedback.value.length; i++) {
+        CustomerFeedback customerFeedback = CustomerFeedback(
+          booking: customerFeedBack.value[i].booking,
+          dateTime: DateTimeUtils.currentDateTime(),
+          feedbackContent: listFeedback.value[i],
+          id: customerFeedBack.value[i].id,
+          rating: list[i].index + 1,
+        );
+        await updateCustomerFeedBack(customerFeedback);
+      }
+      checkLoadingApi = true;
     }
   }
 
