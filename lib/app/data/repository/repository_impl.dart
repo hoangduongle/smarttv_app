@@ -19,6 +19,7 @@ import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/dio/dio_provider.dart';
 import 'package:smarttv_app/app/core/model/vnpay.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 
@@ -269,7 +270,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
       await TokenManager.instance.init();
     }
     final prefs = await SharedPreferences.getInstance();
-    var bookingId = await prefs.getInt("bookingId");
+    var bookingId = await prefs.getInt(bookId);
     var endpoint = "${DioProvider.baseUrl}/order";
     var data = {
       "booking_Id": bookingId,

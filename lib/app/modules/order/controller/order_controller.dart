@@ -7,6 +7,7 @@ import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/order_payment_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class OrderController extends BaseController {
@@ -66,7 +67,7 @@ class OrderController extends BaseController {
   @override
   Future<void> onInit() async {
     final prefs = await SharedPreferences.getInstance();
-    var bookingId = await prefs.getInt("bookingId");
+    var bookingId = await prefs.getInt(bookId);
     fetchOrder(bookingId ?? 0);
     super.onInit();
   }

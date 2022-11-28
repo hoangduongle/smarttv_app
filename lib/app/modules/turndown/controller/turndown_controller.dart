@@ -6,6 +6,7 @@ import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/turndown/widget/dialog.dart';
 import 'package:smarttv_app/app/widget/loading_dialog.dart';
@@ -18,7 +19,7 @@ class TurndownController extends BaseController {
   @override
   void onInit() async {
     final prefs = await SharedPreferences.getInstance();
-    bookingId = await prefs.getInt("bookingId");
+    bookingId = await prefs.getInt(bookId);
     super.onInit();
   }
 

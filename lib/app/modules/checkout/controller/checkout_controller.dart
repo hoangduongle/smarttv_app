@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/checkout/widget/dialog.dart';
 import 'package:smarttv_app/app/widget/loading_dialog.dart';
@@ -17,7 +18,7 @@ class CheckoutController extends BaseController {
   @override
   void onInit() async {
     final prefs = await SharedPreferences.getInstance();
-    bookingId = await prefs.getInt("bookingId");
+    bookingId = await prefs.getInt(bookId);
     super.onInit();
   }
 

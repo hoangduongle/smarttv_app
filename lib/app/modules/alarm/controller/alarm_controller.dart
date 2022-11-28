@@ -13,6 +13,7 @@ import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/alarm/widget/dialog.dart';
 import 'package:smarttv_app/app/widget/loading_dialog.dart';
@@ -41,7 +42,7 @@ class AlarmController extends BaseController {
 
   Future<void> getListRoomAlarm() async {
     final prefs = await SharedPreferences.getInstance();
-    var bookingId = await prefs.getInt("bookingId");
+    var bookingId = await prefs.getInt(bookId);
     AlarmContent result = AlarmContent();
     var overview = _repository.getListAlarm(bookingId!.toInt());
     await callDataService(
@@ -200,7 +201,7 @@ class AlarmController extends BaseController {
       );
     }
     final prefs = await SharedPreferences.getInstance();
-    int? bookingId = await prefs.getInt("bookingId");
+    int? bookingId = await prefs.getInt(bookId);
     AlarmContent newAlarm = await insertRoomAlarm(AlarmContent(
         id: 0,
         dateTime:

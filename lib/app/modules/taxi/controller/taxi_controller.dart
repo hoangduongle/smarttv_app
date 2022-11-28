@@ -9,6 +9,7 @@ import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
 import 'package:smarttv_app/app/modules/taxi/widget/taxi_dialog.dart';
@@ -55,7 +56,7 @@ class TaxiController extends BaseController {
         serviceId: service.id,
       ));
       var prefs = await SharedPreferences.getInstance();
-      var bookingId = await prefs.getInt("bookingId");
+      var bookingId = await prefs.getInt(bookId);
       OrderRequest orderRequest = OrderRequest(
           bookingId: bookingId,
           createBy: "Duong",
@@ -93,25 +94,24 @@ class TaxiController extends BaseController {
   Future<void> checkTaxiService() async {
     bool flagBreak = false;
     final prefs = await SharedPreferences.getInstance();
-    var bookingId = prefs.getInt("bookingId");
+    var bookingId = prefs.getInt(bookId);
 
     await fetchOrder(bookingId!.toInt());
     if (ordersForTaxi.value.isNotEmpty) {
       for (int i = 0; i < ordersForTaxi.value.length; i++) {
         await fetchOrderDetails(ordersForTaxi.value[i].id!);
         for (int j = 0; j < orderDetails.value.length; j++) {
-          if (orderDetails.value[j].service!.id == 57) {
-            // debugPrint(orderDetails.value[j].toString());
+          if (orderDetails.value[j].service!.id == 57 ||
+              orderDetails.value[j].service!.id == 70) {
             statusTaxi[0] = true;
             flagBreak = true;
-          } else if (orderDetails.value[j].service!.id == 58) {
-            // debugPrint(orderDetails.value[j].toString());
+          } else if (orderDetails.value[j].service!.id == 58 ||
+              orderDetails.value[j].service!.id == 71) {
             statusTaxi[1] = true;
             flagBreak = true;
           }
         }
         if (flagBreak) {
-          // debugPrint("${statusTaxi}");
           break;
         }
       }

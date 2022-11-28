@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class NotificationController extends BaseController {
@@ -16,7 +17,7 @@ class NotificationController extends BaseController {
   @override
   Future<void> onInit() async {
     final prefs = await SharedPreferences.getInstance();
-    var bookingId = await prefs.getInt("bookingId");
+    var bookingId = await prefs.getInt(bookId);
     fetchMessages(bookingId!);
     refreshMessage();
     super.onInit();
@@ -28,7 +29,7 @@ class NotificationController extends BaseController {
       (timer) async {
         // debugPrint("${DateTime.now().minute} ${DateTime.now().second}");
         final prefs = await SharedPreferences.getInstance();
-        var bookingId = await prefs.getInt("bookingId");
+        var bookingId = await prefs.getInt(bookId);
         fetchMessages(bookingId!);
         // debugPrint("Auto refersh Notification");
         update();

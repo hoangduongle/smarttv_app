@@ -14,6 +14,7 @@ import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/cart/widget/dialog.dart';
 import 'package:smarttv_app/app/modules/order/binding/order_binding.dart';
@@ -139,7 +140,7 @@ class CartController extends BaseController {
           listlorderDetailRequests.add(lorderDetailRequests);
         }
         var prefs = await SharedPreferences.getInstance();
-        var bookingId = await prefs.getInt("bookingId");
+        var bookingId = await prefs.getInt(bookId);
         OrderRequest orderRequest = OrderRequest(
             orderPaymentId: null,
             bookingId: bookingId,
