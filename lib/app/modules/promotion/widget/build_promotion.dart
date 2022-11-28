@@ -39,8 +39,6 @@ class BuildPromotion extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //  width: size.width.w,
-                //     height: naController.select ? 200.h : 160.h,
                 Align(
                   alignment: Alignment.topCenter,
                   child: ImageNetwork(
@@ -69,7 +67,8 @@ class BuildPromotion extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Text(
-                    "${newsContent.description}", //<------ set controller
+                    "${newsContent.description}",
+                    maxLines: naController.select ? 2 : 5,
                     style: TextStyle(
                         fontSize: naController.select ? 15.sp : 13.sp,
                         fontWeight: FontWeight.normal,

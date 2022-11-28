@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/core/controller/cart_dialog_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
@@ -195,7 +196,7 @@ class DialogCart extends StatelessWidget {
                   SizedBox(
                     height: 15.h,
                   ),
-                  Lottie.asset("assets/lotties/uncheck.json", width: 130),
+                  Lottie.asset(AppAssets.uncheck, width: 130),
                   Container(
                     padding: EdgeInsets.only(top: 10.h),
                     width: 800.w,
@@ -281,7 +282,7 @@ class DialogCart extends StatelessWidget {
                   SizedBox(
                     height: 15.h,
                   ),
-                  Lottie.asset("assets/lotties/done.json", width: 130),
+                  Lottie.asset(AppAssets.done, width: 130),
                   Container(
                     padding: EdgeInsets.only(top: 10.h),
                     width: 800.w,

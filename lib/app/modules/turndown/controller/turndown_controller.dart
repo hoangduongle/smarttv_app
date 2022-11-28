@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
+import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
@@ -13,7 +14,6 @@ import 'package:smarttv_app/app/widget/loading_dialog.dart';
 
 class TurndownController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
-  Rx<List<ImageContent>> imageTurndown = Rx<List<ImageContent>>([]);
   Rx<RequestServiceContent?> requestService = Rx<RequestServiceContent?>(null);
   var bookingId;
   @override
@@ -29,10 +29,9 @@ class TurndownController extends BaseController {
       const LoadingDialog().showLoadingDialog(Get.context!);
       DateTime dateTime = DateTime.now();
       await fetchRequest(
-          "${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}",
+          "${DateTimeUtils.currentDate()} ${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}",
           "TurnDown");
       Get.back();
-      // debugPrint("Request Service: ${result.toString()}");
       if (result == 200) {
         const TurndownDialogWidget()
             .showTurndownDialog(Get.context!, hours, minutes);
@@ -56,7 +55,17 @@ class TurndownController extends BaseController {
       },
       onError: ((dioError) {}),
     );
-    // debugPrint("Request Service: ${result.toString()}");
+  }
+
+  Future<void> getRequestService() async {
+    var overview = _repository.getRequestService(bookingId);
+    await callDataService(
+      overview,
+      onSuccess: (RequestServiceContent response) {
+        requestService(response);
+      },
+      onError: ((dioError) {}),
+    );
   }
 
   var countHours = 8.obs;

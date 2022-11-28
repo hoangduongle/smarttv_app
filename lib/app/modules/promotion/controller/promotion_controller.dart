@@ -20,7 +20,7 @@ class PromotionController extends BaseController {
   }
 
   Future<void> fetchNewsPromotion() async {
-    promotionList.value.clear();
+    // promotionList.value.clear();
     var overview = _repository.getListNewsByType("promotion");
     List<NewsContent> result = [];
 

@@ -11,6 +11,7 @@ import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/abtraction/controller/abtraction_controller.dart';
@@ -77,7 +78,7 @@ class MainController extends BaseController {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Lottie.asset("assets/lotties/loadingImage.json", width: 150),
+                  Lottie.asset(AppAssets.loadingImage, width: 150),
                   Text(
                     "Đang tải...",
                     style: TextStyle(

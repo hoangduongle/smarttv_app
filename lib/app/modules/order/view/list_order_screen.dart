@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
@@ -82,8 +83,7 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                 ),
                 controller.orders.value.isEmpty
                     ? Expanded(
-                        child: Lottie.asset("assets/lotties/loading.json",
-                            width: 200.w))
+                        child: Lottie.asset(AppAssets.loading, width: 200.w))
                     : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15.w),
                         child: SizedBox(

@@ -46,6 +46,15 @@ const seconds_Orders = 10;
 const urlLoadingImage =
     'https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png';
 
+const wellcomeAbtraction = 'https://i.ibb.co/L69PWnr/local.png';
+const wellcomeNews = 'https://i.ibb.co/F3FN8vx/promotion.png';
+const wellcomeHomePage =
+    'https://www.saigonprincehotel.com/files/images/page/1/tmiads.vn-entrance-home-1538966188.jpg';
+const wellcomeService =
+    'https://www.evenement.com/wp-content/uploads/2022/08/restaurant-interior-758x534.jpg';
+const wellcomeEvent =
+    'https://seaevent.vn/wp-content/uploads/2019/12/welcome-to-sea-event-banner.jpg';
+
 const List<NavigationContent> listNavigationContent = [
   NavigationContent(
       title: 'home',

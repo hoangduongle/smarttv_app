@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class CheckoutDialogWidget extends StatelessWidget {
@@ -30,7 +31,7 @@ class CheckoutDialogWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset("assets/lotties/done.json", width: 100.w),
+              Lottie.asset(AppAssets.done, width: 100.w),
               Text(
                 "Nhân viên đã nhận được yêu cầu check-out của quý khách",
                 style: TextStyle(
@@ -110,7 +111,7 @@ class CheckoutDialogWidget extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              Lottie.asset("assets/lotties/uncheck.json", width: 80.w),
+              Lottie.asset(AppAssets.uncheck, width: 80.w),
               SizedBox(
                 height: 10.h,
               ),

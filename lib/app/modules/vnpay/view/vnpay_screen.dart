@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/vnpay/controller/vnpay_controller.dart';
 
@@ -73,15 +74,14 @@ class VNPayScreen extends GetView<VNPayController> {
                                   decoration: BoxDecoration(
                                       color: AppColors.background,
                                       borderRadius: BorderRadius.circular(8.r)),
-                                  child: Lottie.asset(
-                                      "assets/lotties/loading.json"))
+                                  child: Lottie.asset(AppAssets.loading))
                               : Align(
                                   child: Padding(
                                     padding: EdgeInsets.all(5.r),
                                     child: QrImage(
                                       backgroundColor: AppColors.white,
                                       foregroundColor: AppColors.black,
-                                      data: "aaa", //
+                                      data: "${controller.vnPay.value!.url}", //
                                       version: QrVersions.auto,
                                       size: 180.0,
                                     ),
@@ -154,7 +154,7 @@ class VNPayScreen extends GetView<VNPayController> {
                   SizedBox(
                     height: 15.h,
                   ),
-                  Lottie.asset("assets/lotties/done.json", width: 130),
+                  Lottie.asset(AppAssets.done, width: 130),
                   Container(
                     padding: EdgeInsets.only(top: 10.h),
                     width: 800.w,

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/modules/alarm/controller/alarm_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
@@ -33,7 +34,7 @@ class AlarmDialogWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset("assets/lotties/done.json", width: 100.w),
+              Lottie.asset(AppAssets.done, width: 100.w),
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
@@ -118,7 +119,7 @@ class AlarmDialogWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset("assets/lotties/loadingdongho.json", width: 100.w),
+              Lottie.asset(AppAssets.loadingDongHo, width: 100.w),
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(

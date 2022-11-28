@@ -44,8 +44,8 @@ class WellcomeController extends BaseController {
     ByteData bytes = await rootBundle.load(audioasset);
     audiobytes =
         bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
-    debugPrint(audiobytes.toString());
-    debugPrint(bytes.toString());
+    // debugPrint(audiobytes.toString());
+    debugPrint("Bytes: ${bytes.toString()}");
     player.setVolume(40);
     await player.playBytes(audiobytes);
   }

@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+
 class TurndownDialogWidget extends StatelessWidget {
   const TurndownDialogWidget({
     Key? key,
@@ -31,7 +33,7 @@ class TurndownDialogWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset("assets/lotties/done.json", width: 100.w),
+              Lottie.asset(AppAssets.done, width: 100.w),
               Text(
                 "Yêu cầu dọn phòng nhanh của quý khách sẽ được thực hiện vào lúc",
                 // textAlign: TextAlign.left,
@@ -122,7 +124,7 @@ class TurndownDialogWidget extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              Lottie.asset("assets/lotties/uncheck.json", width: 80.w),
+              Lottie.asset(AppAssets.uncheck, width: 80.w),
               SizedBox(
                 height: 10.h,
               ),

@@ -20,7 +20,6 @@ class PromotionDialog extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        // Size size = MediaQuery.of(context).size;
         List<String> arrDescription = newsContent.description!.split("+");
         return Dialog(
           elevation: 2,
@@ -39,7 +38,7 @@ class PromotionDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.r),
                         child: CachedNetworkImage(
                           imageUrl:
-                              "https://toanthaydinh.com/wp-content/uploads/2020/04/hinh-anh-buon.png6_.jpg",
+                              "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png",
                           imageBuilder: (context, imageProvider) {
                             return Container(
                               height: 330.h,

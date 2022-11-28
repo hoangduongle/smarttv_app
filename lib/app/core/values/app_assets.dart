@@ -8,16 +8,9 @@ class AppAssets {
   //png file
   static const String logo = imagePath + 'logo.png';
   static const String logoforeground = imagePath + 'logo_foreground.png';
-  static const String promotionWelcome = imagePath + 'promotion.png';
-  static const String localWelcome = imagePath + 'local.png';
   static const String splash = 'assets/mp4/splash.mp4';
   // jpg file
   static const String home_masterWelcome = imagePath + 'home_master.jpg';
-  static const String homepageWelcome = imagePath + 'homepage.jpg';
-  static const String serviceWelcome = imagePath + 'service.jpg';
-  static const String eventWelcome = imagePath + 'event.jpg';
-
-  // jpge file
 
   // overview page
   static const String overview_hotel = imagePath + 'Overview_hotel.jpg';
@@ -27,4 +20,13 @@ class AppAssets {
 
   //load Image
   static const String loadImage = imagePath + 'loadimage.png';
+
+  static const String lottiesPath = 'assets/lotties/';
+
+  static const String loadingDongHo = '${lottiesPath}loadingdongho.json';
+  static const String loadingImage = '${lottiesPath}loadingImage.json';
+  static const String loading = '${lottiesPath}loading.json';
+  static const String alarm = '${lottiesPath}alarm.json';
+  static const String done = '${lottiesPath}done.json';
+  static const String uncheck = '${lottiesPath}uncheck.json';
 }

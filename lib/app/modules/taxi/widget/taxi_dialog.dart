@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/taxi/controller/taxi_controller.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
@@ -183,7 +184,7 @@ class TaxiDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset("assets/lotties/done.json", width: 100.w),
+              Lottie.asset(AppAssets.done, width: 100.w),
               Text(
                 "Yêu cầu dịch vụ đưa đón đã được thông báo đến lễ tân",
                 // textAlign: TextAlign.left,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class Loading extends StatefulWidget {
@@ -14,6 +15,6 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.background,
-        body: Center(child: Lottie.asset("assets/lotties/loading.json")));
+        body: Center(child: Lottie.asset(AppAssets.loading)));
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
+import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/welcome/controller/wellcome_controller.dart';
 
@@ -22,11 +23,11 @@ class WellcomeBuild extends StatefulWidget {
 class _WellcomeBuildState extends State<WellcomeBuild> {
   var isFocus = [false, false, true, false, false];
   var image = [
-    "https://i.ibb.co/L69PWnr/local.png",
-    "https://i.ibb.co/F3FN8vx/promotion.png",
-    "https://i.ibb.co/hCf5LTX/homepage.jpg",
-    "https://i.ibb.co/pxdphfN/service.jpg",
-    "https://i.ibb.co/NKzWxKQ/event.jpg",
+    wellcomeAbtraction, //local
+    wellcomeNews, //promotion
+    wellcomeHomePage, //homepage
+    wellcomeService, //service
+    wellcomeEvent, //event
   ];
   var name = ["Địa điểm", "Tin tức", "Trang chủ", "Dịch vụ", "Sự kiện"];
   @override

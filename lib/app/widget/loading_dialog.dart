@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 
 class LoadingDialog extends StatelessWidget {
@@ -33,7 +34,7 @@ class LoadingDialog extends StatelessWidget {
                 SizedBox(
                   height: 10.h,
                 ),
-                Lottie.asset("assets/lotties/loadingImage.json", width: 100.w),
+                Lottie.asset(AppAssets.loadingImage, width: 100.w),
                 Text(
                   "Hệ thống đang xử lý",
                   style: TextStyle(

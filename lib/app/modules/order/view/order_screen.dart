@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
@@ -92,7 +93,7 @@ class OrderScreen extends GetView<OrderController> {
             ),
             //&& controller.orderPayment == null
             controller.orderDetails.value.isEmpty
-                ? Expanded(child: Lottie.asset("assets/lotties/loading.json"))
+                ? Expanded(child: Lottie.asset(AppAssets.loading))
                 : Expanded(
                     child: RawScrollbar(
                     thumbColor: AppColors.greyColor,
