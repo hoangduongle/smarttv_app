@@ -39,12 +39,6 @@ class AppPages {
       binding: MainBinding(),
       transition: Transition.noTransition,
     ),
-    // GetPage(
-    //   name: _Paths.SERVICE_COMPONENT,
-    //   page: () => ListServiceScreen(cateName: Get.parameters['cateName']!),
-    //   binding: ListServiceBinding(),
-    //   transition: Transition.noTransition,
-    // ),
     GetPage(
       name: _Paths.FANDB,
       page: () => FandBScreen(),

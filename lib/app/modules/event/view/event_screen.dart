@@ -189,7 +189,7 @@ class _EventScreenState extends State<EventScreen> {
           borderRadius: BorderRadius.circular(10.r),
           child: CachedNetworkImage(
             imageUrl:
-                "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png",
+                "${newsContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : newsContent.images![0].pictureUrl}", //
             imageBuilder: (context, imageProvider) {
               return Container(
                 margin: EdgeInsets.all(2.r),

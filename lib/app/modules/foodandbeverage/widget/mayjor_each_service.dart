@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/dialog.dart';
 
@@ -49,10 +50,34 @@ class MayjorEachService extends StatelessWidget {
                       imageUrl: serviceContent.image!.isEmpty
                           ? "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"
                           : "${serviceContent.image![0].pictureUrl}",
-                      //
-                      height: 105.h,
-                      width: 148.w,
-                      fit: BoxFit.cover,
+                      imageBuilder: (context, imageProvider) {
+                        return Container(
+                          alignment: Alignment.topCenter,
+                          height: 105.h,
+                          width: 148.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                      placeholder: (context, url) {
+                        return Container(
+                          alignment: Alignment.topCenter,
+                          height: 105.h,
+                          width: 148.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            image: const DecorationImage(
+                              image: AssetImage(AppAssets.loadImage),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),

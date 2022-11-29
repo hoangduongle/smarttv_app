@@ -1,4 +1,6 @@
-// ignore_for_file: unnecessary_this, prefer_collection_literals
+// ignore_for_file: prefer_collection_literals, unnecessary_this
+
+import 'package:smarttv_app/app/core/model/image_content.dart';
 
 class AbtractionContent {
   int? id;
@@ -9,17 +11,20 @@ class AbtractionContent {
   String? closeTime;
   String? address;
   String? description;
+  int? hotelId;
+  List<ImageContent>? images;
 
-  AbtractionContent({
-    this.id,
-    this.name,
-    this.longtitude,
-    this.latidute,
-    this.openTime,
-    this.closeTime,
-    this.address,
-    this.description,
-  });
+  AbtractionContent(
+      {this.id,
+      this.name,
+      this.longtitude,
+      this.latidute,
+      this.openTime,
+      this.closeTime,
+      this.address,
+      this.description,
+      this.hotelId,
+      this.images});
 
   AbtractionContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -30,6 +35,13 @@ class AbtractionContent {
     closeTime = json['closeTime'];
     address = json['address'];
     description = json['description'];
+    hotelId = json['hotel_Id'];
+    if (json['images'] != null) {
+      images = <ImageContent>[];
+      json['images'].forEach((v) {
+        images!.add(ImageContent.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +54,10 @@ class AbtractionContent {
     data['closeTime'] = this.closeTime;
     data['address'] = this.address;
     data['description'] = this.description;
+    data['hotel_Id'] = this.hotelId;
+    if (this.images != null) {
+      data['images'] = this.images!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

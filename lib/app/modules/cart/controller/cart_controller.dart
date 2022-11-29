@@ -149,7 +149,7 @@ class CartController extends BaseController {
             id: 0,
             lastModifyBy: "Duong",
             lorderDetailRequests: listlorderDetailRequests,
-            status: "BOOKED",
+            status: BOOKED,
             totalAmount: total,
             updateDate: DateTimeUtils.currentDate());
         int result = await insertOrderRequest(orderRequest);

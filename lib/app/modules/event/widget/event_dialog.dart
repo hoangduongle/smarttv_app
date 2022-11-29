@@ -36,7 +36,7 @@ class EventDialog extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.r),
                     child: CachedNetworkImage(
                       imageUrl:
-                          "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png",
+                          "${newsContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : newsContent.images![0].pictureUrl}",
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           height: 200.h,

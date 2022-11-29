@@ -89,6 +89,20 @@ class _CardEachServiceState extends State<CardEachService> {
                           ),
                         );
                       },
+                      placeholder: (context, url) {
+                        return Container(
+                          alignment: Alignment.topCenter,
+                          width: 200.w,
+                          height: 160.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            image: DecorationImage(
+                              image: AssetImage(AppAssets.loadImage),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),

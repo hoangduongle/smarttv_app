@@ -45,7 +45,7 @@ class DialogCart extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.r),
                 child: CachedNetworkImage(
                   imageUrl:
-                      'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcSxLr0EfOo_znMX-DYtQVeYFvNzAF4Xw3Ny8nm9RZqlS0QdgFMCBN81LtQxXfqj_1EviZSW9_zWBuBi6wLLtjA',
+                      '${serviceContent.image!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : serviceContent.image![0].pictureUrl}',
                   height: 130,
                   fit: BoxFit.fill,
                 ),

@@ -112,8 +112,6 @@ class OrderScreen extends GetView<OrderController> {
                                 ),
                             itemCount: controller.orderDetails.value.length,
                             itemBuilder: (context, index) => ListOrderDetail(
-                                  // orderPaymentContent:
-                                  //     controller.orderPayment.value!,
                                   orderDetailContent:
                                       controller.orderDetails.value[index],
                                   orderController: controller,
@@ -138,10 +136,7 @@ class OrderScreen extends GetView<OrderController> {
             ),
             Row(
               children: [
-                controller.getOrderPaymentByOrderId(
-                        controller.orders.value.length <= 1
-                            ? controller.orders.value.first.id!
-                            : naController.orderid.toInt())
+                controller.getOrderPaymentByOrderId(orderId)
                     ? Expanded(
                         flex: 2,
                         child: Align(
@@ -172,19 +167,21 @@ class OrderScreen extends GetView<OrderController> {
             ),
             Row(
               children: [
-                controller
-                        .getOrderPaymentByOrderId(naController.orderid.toInt())
-                    ? Expanded(
-                        flex: 2,
-                        child: Align(
-                          alignment: Alignment(-0.35, 1),
-                          child: Text("Momo",
-                              style: AppStyles.h4.copyWith(
-                                  fontSize: 20.sp,
-                                  color: AppColors.title,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                      )
+                controller.orderDetails.value.isEmpty
+                    ? controller.getOrderPaymentByOrderId(orderId)
+                        ? Expanded(
+                            flex: 2,
+                            child: Align(
+                              alignment: Alignment(-0.35, 1),
+                              child: Text(
+                                  controller.getPaymentMethodByOrderId(orderId),
+                                  style: AppStyles.h4.copyWith(
+                                      fontSize: 20.sp,
+                                      color: AppColors.title,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          )
+                        : Container()
                     : Expanded(flex: 2, child: Container()),
                 Expanded(flex: 1, child: Container()),
                 controller.orderDetails.value.isEmpty
@@ -193,10 +190,8 @@ class OrderScreen extends GetView<OrderController> {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                              NumberUtils.vnd(controller.getOrderTotal(
-                                  controller.orders.value.length <= 1
-                                      ? controller.orders.value[0].id!
-                                      : naController.orderid.toInt())),
+                              NumberUtils.vnd(
+                                  controller.getOrderTotal(orderId)),
                               style: AppStyles.h4.copyWith(
                                   fontSize: 20.sp,
                                   color: AppColors.white,
@@ -214,26 +209,17 @@ class OrderScreen extends GetView<OrderController> {
                     width: 170.w,
                     height: 50.h,
                     child: Material(
-                      color: controller.getOrderPaymentByOrderId(
-                              controller.orders.value.length <= 1
-                                  ? controller.orders.value.first.id!
-                                  : naController.orderid.toInt())
+                      color: controller.getOrderPaymentByOrderId(orderId)
                           ? AppColors.greyColor
                           : AppColors.focus,
                       borderRadius: BorderRadius.circular(10.r),
                       child: InkWell(
-                        focusColor: controller.getOrderPaymentByOrderId(
-                                controller.orders.value.length <= 1
-                                    ? controller.orders.value.first.id!
-                                    : naController.orderid.toInt())
+                        focusColor: controller.getOrderPaymentByOrderId(orderId)
                             ? AppColors.greyColor
                             : AppColors.orangeColor,
                         borderRadius: BorderRadius.circular(10.r),
                         onTap: () {
-                          if (controller.getOrderPaymentByOrderId(
-                              controller.orders.value.length <= 1
-                                  ? controller.orders.value.first.id!
-                                  : naController.orderid.toInt())) {
+                          if (controller.getOrderPaymentByOrderId(orderId)) {
                             return;
                           } else {
                             List<String> listorderId = [];
@@ -246,10 +232,7 @@ class OrderScreen extends GetView<OrderController> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              controller.getOrderPaymentByOrderId(
-                                      controller.orders.value.length <= 1
-                                          ? controller.orders.value.first.id!
-                                          : naController.orderid.toInt())
+                              controller.getOrderPaymentByOrderId(orderId)
                                   ? 'Đã thanh toán'
                                   : 'pay'.tr,
                               style: TextStyle(
@@ -268,10 +251,6 @@ class OrderScreen extends GetView<OrderController> {
           ],
         ),
       ),
-      // return Obx(
-      //   () {
-
-      //   },);
     );
   }
 }

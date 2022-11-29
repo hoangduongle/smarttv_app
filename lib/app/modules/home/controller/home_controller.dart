@@ -8,7 +8,7 @@ import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class HomeController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
-  // List<OverviewContent> overviewList = [];
+
   Rx<List<OverviewContent>> overviewList = Rx<List<OverviewContent>>([
     OverviewContent(
         id: 1,

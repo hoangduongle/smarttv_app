@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
+import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
 import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
@@ -28,8 +29,8 @@ class CheckoutController extends BaseController {
       const LoadingDialog().showLoadingDialog(Get.context!);
       DateTime dateTime = DateTime.now();
       await fetchRequest(
-          "${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}",
-          "CheckOut");
+          "${DateTimeUtils.currentDate()} ${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}:00",
+          "CHECK OUT");
       Get.back();
       if (result == 200) {
         const CheckoutDialogWidget().showCheckoutDialog(Get.context!);

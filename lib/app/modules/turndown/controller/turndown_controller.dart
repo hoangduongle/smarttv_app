@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
-import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
@@ -29,14 +28,14 @@ class TurndownController extends BaseController {
       const LoadingDialog().showLoadingDialog(Get.context!);
       DateTime dateTime = DateTime.now();
       await fetchRequest(
-          "${DateTimeUtils.currentDate()} ${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}",
-          "TurnDown");
+          "${DateTimeUtils.currentDate()} ${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}:00",
+          TURNDOWN);
       Get.back();
       if (result == 200) {
         const TurndownDialogWidget()
             .showTurndownDialog(Get.context!, hours, minutes);
-      } else {
-        const TurndownDialogWidget().showTurndownDialogFail(Get.context!);
+      } else if (result == 208) {
+        const TurndownDialogWidget().showTurndownDialogBooked(Get.context!);
       }
     } catch (e) {
       debugPrint("Error Turn Down: ${e.toString()}");
@@ -46,8 +45,8 @@ class TurndownController extends BaseController {
   }
 
   Future<void> fetchRequest(String dateTime, String name) async {
-    var overview = _repository.requestService(
-        bookingId, dateTime, 0, name, name, "BOOKED");
+    var overview =
+        _repository.requestService(bookingId, dateTime, 0, name, name, BOOKED);
     await callDataService(
       overview,
       onSuccess: (int response) {

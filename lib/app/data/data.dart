@@ -55,6 +55,10 @@ const wellcomeService =
 const wellcomeEvent =
     'https://seaevent.vn/wp-content/uploads/2019/12/welcome-to-sea-event-banner.jpg';
 
+const BOOKED = 'BOOKED';
+const DONE = 'DONE';
+const TURNDOWN = 'TURN DOWN';
+
 const List<NavigationContent> listNavigationContent = [
   NavigationContent(
       title: 'home',

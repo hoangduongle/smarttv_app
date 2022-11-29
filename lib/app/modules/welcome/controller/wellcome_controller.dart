@@ -76,7 +76,7 @@ class WellcomeController extends BaseController {
       if (formattedHours >= 18) {
         timeforsession = 'buổi tối';
       }
-      title = welcomeContent + timeforsession + nameCus;
+      title = welcomeContent + 'buổi trưa' + nameCus;
       String? birthday =
           bookingContent.value?.customer?.birthDate?.substring(0, 5);
       if (birthday == currentDay) {

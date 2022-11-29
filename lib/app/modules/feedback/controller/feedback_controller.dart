@@ -33,11 +33,11 @@ class FeedbackController extends BaseController {
     super.onInit();
   }
 
-  @override
-  void onReady() async {
-    // await insertAllFeedback();
-    super.onReady();
-  }
+  // @override
+  // void onReady() async {
+  //   // await insertAllFeedback();
+  //   super.onReady();
+  // }
 
   void updateFeedback() async {
     if (checkLoadingApi) {

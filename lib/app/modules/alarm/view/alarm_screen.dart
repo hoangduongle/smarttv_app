@@ -205,6 +205,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                         controller.hours.toInt(),
                                         controller.minutes.toInt());
                                   } else {
+                                    controller.alarmOffSound();
                                     AlarmDialogWidget()
                                         .showAlarmOffDialog(context);
                                   }

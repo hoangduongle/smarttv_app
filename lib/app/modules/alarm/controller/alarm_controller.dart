@@ -245,6 +245,12 @@ class AlarmController extends BaseController {
     updateRoomAlarm(alarmContent);
   }
 
+  void alarmOffSound() {
+    player.pause();
+    player.stop();
+    debugPrint("Pause");
+  }
+
   void sort() {
     alarmed.sort(
       (a, b) => b.dateTime!.compareTo(a.dateTime!),
@@ -337,17 +343,18 @@ class AlarmController extends BaseController {
     audiobytes =
         bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
     player.setVolume(10);
-
     if (player.state == PlayerState.PLAYING) {
       player.stop();
-      musicCache = AudioCache(prefix: "assets/audios/");
-      player = await musicCache.loop("alarm.mp3");
-      // await player.playBytes(audiobytes);
-    } else {
-      musicCache = AudioCache(prefix: "assets/audios/");
-      player = await musicCache.loop("alarm.mp3");
       // await player.playBytes(audiobytes);
     }
+
+    musicCache = AudioCache(prefix: "assets/audios/");
+    player = await musicCache.loop("alarm.mp3");
+    // else {
+    //   musicCache = AudioCache(prefix: "assets/audios/");
+    //   player = await musicCache.loop("alarm.mp3");
+    //   // await player.playBytes(audiobytes);
+    // }
   }
 
   void incrementHours() {

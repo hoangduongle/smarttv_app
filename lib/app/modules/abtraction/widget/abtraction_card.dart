@@ -54,7 +54,7 @@ class AbtractionCard extends StatelessWidget {
               ClipRRect(
                 child: CachedNetworkImage(
                   imageUrl:
-                      "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png",
+                      "${abtractionContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : abtractionContent.images![0].pictureUrl}",
                   imageBuilder: (context, imageProvider) {
                     return Container(
                       height: 120.h,

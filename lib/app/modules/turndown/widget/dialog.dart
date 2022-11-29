@@ -106,7 +106,7 @@ class TurndownDialogWidget extends StatelessWidget {
     );
   }
 
-  void showTurndownDialogFail(BuildContext context) {
+  void showTurndownDialogBooked(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -129,7 +129,7 @@ class TurndownDialogWidget extends StatelessWidget {
                 height: 10.h,
               ),
               Text(
-                "Xin lỗi quý khách, hệ thống đang trục trặc",
+                "Quý khách đã yêu cầu dịch vụ trước đó",
                 // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
@@ -140,7 +140,7 @@ class TurndownDialogWidget extends StatelessWidget {
                 height: 15.h,
               ),
               Text(
-                "Xin quý khách thử lại sau",
+                "Nhân viên sẽ sớm hoàn tất công việc dọn phòng",
                 // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
@@ -182,7 +182,86 @@ class TurndownDialogWidget extends StatelessWidget {
                 height: 20.h,
               ),
             ],
-            // caController.addService(serviceContent);
+          ),
+        ),
+      ),
+    );
+  }
+
+  void showTurndownDialogFail(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Dialog(
+        elevation: 2,
+        backgroundColor: AppColors.navigabackground,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+        child: SizedBox(
+          width: 350.w,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 10.h,
+              ),
+              Lottie.asset(AppAssets.uncheck, width: 80.w),
+              SizedBox(
+                height: 10.h,
+              ),
+              Text(
+                "Xin lỗi quý khách, hệ thống đang trục trặc",
+                style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.white),
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              Text(
+                "Xin quý khách thử lại sau",
+                style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.greyColor),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              SizedBox(
+                width: 100.w,
+                height: 30.h,
+                child: Material(
+                  color: AppColors.focus,
+                  borderRadius: BorderRadius.circular(10.r),
+                  child: InkWell(
+                    autofocus: true,
+                    focusColor: AppColors.orangeColor,
+                    borderRadius: BorderRadius.circular(10.r),
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'back'.tr,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.sp,
+                              color: AppColors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+            ],
           ),
         ),
       ),
