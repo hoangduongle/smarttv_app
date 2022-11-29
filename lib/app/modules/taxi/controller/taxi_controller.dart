@@ -64,7 +64,7 @@ class TaxiController extends BaseController {
           id: 0,
           lastModifyBy: "Duong",
           lorderDetailRequests: listlorderDetailRequests,
-          status: "0",
+          status: BOOKED,
           totalAmount: service.price,
           updateDate: DateTimeUtils.currentDate());
       statusTaxi[index] = true;

@@ -29,6 +29,7 @@ class TurndownController extends BaseController {
       DateTime dateTime = DateTime.now();
       await fetchRequest(
           "${DateTimeUtils.currentDate()} ${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}:00",
+          "Dọn phòng nhanh",
           TURNDOWN);
       Get.back();
       if (result == 200) {
@@ -44,9 +45,9 @@ class TurndownController extends BaseController {
     }
   }
 
-  Future<void> fetchRequest(String dateTime, String name) async {
+  Future<void> fetchRequest(String dateTime, String name, String type) async {
     var overview =
-        _repository.requestService(bookingId, dateTime, 0, name, name, BOOKED);
+        _repository.requestService(bookingId, dateTime, 0, name, type, BOOKED);
     await callDataService(
       overview,
       onSuccess: (int response) {

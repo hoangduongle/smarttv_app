@@ -30,6 +30,7 @@ class CheckoutController extends BaseController {
       DateTime dateTime = DateTime.now();
       await fetchRequest(
           "${DateTimeUtils.currentDate()} ${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}:00",
+          "Check out tại phòng",
           "CHECK OUT");
       Get.back();
       if (result == 200) {
@@ -44,9 +45,9 @@ class CheckoutController extends BaseController {
     }
   }
 
-  Future<void> fetchRequest(String dateTime, String name) async {
-    var overview = _repository.requestService(
-        bookingId, dateTime, 0, name, name, "BOOKED");
+  Future<void> fetchRequest(String dateTime, String name, String type) async {
+    var overview =
+        _repository.requestService(bookingId, dateTime, 0, name, type, BOOKED);
     await callDataService(
       overview,
       onSuccess: (int response) {
