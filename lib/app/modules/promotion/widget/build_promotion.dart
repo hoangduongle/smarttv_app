@@ -1,8 +1,10 @@
 // ignore_for_file: must_be_immutable
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/promotion/widget/promotion_dialog.dart';
@@ -41,11 +43,38 @@ class BuildPromotion extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.topCenter,
-                  child: ImageNetwork(
-                    url:
-                        "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png",
-                    width: size.width.w,
-                    height: naController.select ? 200.h : 160.h,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.r),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "${newsContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : newsContent.images![0].pictureUrl}",
+                      imageBuilder: (context, imageProvider) {
+                        return Container(
+                          height: naController.select ? 200.h : 160.h,
+                          width: size.width.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        );
+                      },
+                      placeholder: (context, url) {
+                        return Container(
+                          height: naController.select ? 200.h : 160.h,
+                          width: size.width.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            image: const DecorationImage(
+                              image: AssetImage(AppAssets.loadImage),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(

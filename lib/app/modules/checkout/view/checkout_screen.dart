@@ -69,15 +69,16 @@ class CheckoutScreen extends GetView<CheckoutController> {
                                       SizedBox(
                                         height: 30.h,
                                       ),
-                                      Text(
-                                        '''
-                                Nhân viên sẽ đến tận phòng để thực hiên thủ tục
-                                        check-out khi quý khách yêu cầu''',
-                                        textAlign: TextAlign.center,
-                                        style: AppStyles.h4.copyWith(
-                                            color: AppColors.white,
-                                            fontSize: 15.sp,
-                                            fontWeight: FontWeight.normal),
+                                      SizedBox(
+                                        width: 330.w,
+                                        child: Text(
+                                          "Nhân viên sẽ đến tận phòng để thực hiện thủ tục \ncheck-out khi quý khách yêu cầu",
+                                          textAlign: TextAlign.center,
+                                          style: AppStyles.h4.copyWith(
+                                              color: AppColors.white,
+                                              fontSize: 15.sp,
+                                              fontWeight: FontWeight.normal),
+                                        ),
                                       ),
                                     ],
                                   ),

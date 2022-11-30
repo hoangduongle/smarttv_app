@@ -84,7 +84,7 @@ class WellcomeController extends BaseController {
         audio();
       }
       content =
-          "Chúc ${bookingContent.value?.customer?.gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
+          "Chúc ${bookingContent.value?.customerStayBooking![0].gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
     }
   }
 

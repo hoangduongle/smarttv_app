@@ -3,6 +3,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
 
@@ -38,7 +39,7 @@ class PromotionDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.r),
                         child: CachedNetworkImage(
                           imageUrl:
-                              "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png",
+                              "${newsContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : newsContent.images![0].pictureUrl}",
                           imageBuilder: (context, imageProvider) {
                             return Container(
                               height: 330.h,
@@ -47,6 +48,19 @@ class PromotionDialog extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10.r),
                                 image: DecorationImage(
                                   image: imageProvider,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            );
+                          },
+                          placeholder: (context, url) {
+                            return Container(
+                              height: 330.h,
+                              width: 320.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.r),
+                                image: const DecorationImage(
+                                  image: AssetImage(AppAssets.loadImage),
                                   fit: BoxFit.fill,
                                 ),
                               ),

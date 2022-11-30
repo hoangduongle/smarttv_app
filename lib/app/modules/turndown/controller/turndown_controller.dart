@@ -26,9 +26,8 @@ class TurndownController extends BaseController {
   Future<void> requestTurndown(int hours, int minutes) async {
     try {
       const LoadingDialog().showLoadingDialog(Get.context!);
-      DateTime dateTime = DateTime.now();
       await fetchRequest(
-          "${DateTimeUtils.currentDate()} ${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}:00",
+          "${DateTimeUtils.currentDate()} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
           "Dọn phòng nhanh",
           TURNDOWN);
       Get.back();
