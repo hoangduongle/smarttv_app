@@ -43,6 +43,7 @@ class FeedbackController extends BaseController {
     if (checkLoadingApi) {
       showThanksDialog(Get.context!);
       checkLoadingApi = false;
+      insertAllFeedback();
       // final prefs = await SharedPreferences.getInstance();
       // var bookingId = await prefs.getInt(bookId);
       // for (int i = 0; i < listFeedback.value.length; i++) {

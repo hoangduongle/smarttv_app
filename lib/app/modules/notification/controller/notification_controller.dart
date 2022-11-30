@@ -25,7 +25,7 @@ class NotificationController extends BaseController {
 
   void refreshMessage() {
     _timer = Timer.periodic(
-      const Duration(minutes: 1),
+      const Duration(seconds: 30),
       (timer) async {
         // debugPrint("${DateTime.now().minute} ${DateTime.now().second}");
         final prefs = await SharedPreferences.getInstance();

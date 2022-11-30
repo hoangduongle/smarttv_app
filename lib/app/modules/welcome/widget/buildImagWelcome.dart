@@ -46,7 +46,7 @@ class _WellcomeBuildState extends State<WellcomeBuild> {
       },
       onTap: () {
         if (controller.bookingContent.value == null) {
-          debugPrint("Booking tại Room 11 đã được Check Out");
+          debugPrint("Booking tại Room $roomId đã được Check Out");
         } else {
           switch (widget.index) {
             case 0: // abtraction

@@ -63,8 +63,8 @@ class WellcomeController extends BaseController {
       content = "Phòng hiện tại chưa được Check-In";
     } else {
       nameCus =
-          "${bookingContent.value?.customer?.gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customer?.lastName}";
-      if (formattedHours >= 04) {
+          "${bookingContent.value?.customerStayBooking![0].gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customerStayBooking![0].lastName}";
+      if (formattedHours >= 00) {
         timeforsession = 'buổi sáng';
       }
       if (formattedHours >= 12) {
@@ -76,9 +76,9 @@ class WellcomeController extends BaseController {
       if (formattedHours >= 18) {
         timeforsession = 'buổi tối';
       }
-      title = welcomeContent + 'buổi trưa' + nameCus;
-      String? birthday =
-          bookingContent.value?.customer?.birthDate?.substring(0, 5);
+      title = welcomeContent + timeforsession + nameCus;
+      String? birthday = bookingContent.value?.customerStayBooking![0].birthDate
+          ?.substring(0, 5);
       if (birthday == currentDay) {
         title = birthdayContent + nameCus;
         audio();
