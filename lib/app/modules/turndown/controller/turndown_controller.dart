@@ -2,7 +2,9 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
@@ -27,23 +29,31 @@ class TurndownController extends BaseController {
 
   var result;
   Future<void> requestTurndown(int hours, int minutes) async {
-    try {
-      const LoadingDialog().showLoadingDialog(Get.context!);
-      await fetchRequest(
-          "${DateTimeUtils.currentDate()} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
-          "Dọn phòng nhanh",
-          TURNDOWN);
-      Get.back();
-      if (result == 200) {
-        const TurndownDialogWidget()
-            .showTurndownDialog(Get.context!, hours, minutes);
-      } else if (result == 208) {
-        const TurndownDialogWidget().showTurndownDialogBooked(Get.context!);
+    DateTime currentDay = DateTime.now();
+    DateTime cusTime = DateFormat('dd/MM/yyyy HH:mm')
+        .parse("${DateTimeUtils.currentDate()} $hours:${minutes + 1}");
+    if (currentDay.isAfter(cusTime)) {
+      const TurndownDialogWidget().showTurndownDialogOverTime(Get.context!);
+      return;
+    } else {
+      try {
+        const LoadingDialog().showLoadingDialog(Get.context!);
+        await fetchRequest(
+            "${DateTimeUtils.currentDate()} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
+            "Dọn phòng nhanh",
+            TURNDOWN);
+        Get.back();
+        if (result == 200) {
+          const TurndownDialogWidget()
+              .showTurndownDialog(Get.context!, hours, minutes);
+        } else if (result == 208) {
+          const TurndownDialogWidget().showTurndownDialogBooked(Get.context!);
+        }
+      } catch (e) {
+        debugPrint("Error Turn Down: ${e.toString()}");
+        Get.back();
+        const TurndownDialogWidget().showTurndownDialogFail(Get.context!);
       }
-    } catch (e) {
-      debugPrint("Error Turn Down: ${e.toString()}");
-      Get.back();
-      const TurndownDialogWidget().showTurndownDialogFail(Get.context!);
     }
   }
 

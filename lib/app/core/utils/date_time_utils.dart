@@ -44,6 +44,13 @@ class DateTimeUtils {
     return formattedDate;
   }
 
+  static String currentDateTimeSecond24() {
+    var now = DateTime.now();
+    var formatter = DateFormat('dd/MM/yyyy HH:mm:ss');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
+
   static String currentTimeAdd({int? second}) {
     initializeDateFormatting();
     var today = DateTime.now();

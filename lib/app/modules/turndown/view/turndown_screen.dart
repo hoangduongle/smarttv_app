@@ -301,10 +301,11 @@ class _TurndownScreenState extends State<TurndownScreen> {
                                       : AppColors.greyColor,
                                   borderRadius: BorderRadius.circular(10.r),
                                   onTap: () {
-                                    controller.isWork ? null : null;
-                                    // controller.requestTurndown(
-                                    //     controller.countHours.toInt(),
-                                    //     controller.countMinute.toInt());
+                                    controller.isWork
+                                        ? controller.requestTurndown(
+                                            controller.countHours.toInt(),
+                                            controller.countMinute.toInt())
+                                        : null;
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
