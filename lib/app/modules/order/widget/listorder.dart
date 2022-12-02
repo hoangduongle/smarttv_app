@@ -107,7 +107,7 @@ class _ListOrderState extends State<ListOrder> {
                   SizedBox(
                     width: 86.w,
                     child: Text(
-                      "${widget.orderContent.updateDate}",
+                      "${widget.orderContent.createDate?.substring(0, 10)}",
                       textAlign: TextAlign.center,
                       style: AppStyles.h5.copyWith(
                           color: AppColors.greyColor,

@@ -25,6 +25,7 @@ class CheckoutController extends BaseController {
 
   var result;
   Future<void> requestCheckout() async {
+    //check departualDateBooking of booking compare current date to check out
     try {
       const LoadingDialog().showLoadingDialog(Get.context!);
       DateTime dateTime = DateTime.now();

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
@@ -70,10 +71,13 @@ class EventController extends BaseController {
     //   DateTime parseStart = DateFormat('dd/MM/yyyy')
     //       .parse(eventList.value[i].startDate.toString());
     //   if (currentDay.isBefore(parseStart)) {
-    //     eventListReady.value.add(eventList.value[i]);
+    //     eventListReady.value.add(eventList.value[i]); //sap dien ra
     //   }
     //   if (currentDay.isAfter(parseStart) && currentDay.isBefore(parseEnd)) {
-    //     eventListOn.value.add(eventList.value[i]);
+    //     eventListOn.value.add(eventList.value[i]); // dang dien ra
+    //   }
+    //   if (currentDay.isAfter(parseStart)) {
+    //     eventListDone.value.add(eventList.value[i]); //da dien ra
     //   }
     // }
   }

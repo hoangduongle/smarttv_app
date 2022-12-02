@@ -78,9 +78,8 @@ class OrderController extends BaseController {
 
   void loadOrderdetails(int orderId) async {
     orderDetails.value.clear();
-    Future.wait({
-      fetchOrderDetails(orderId),
-    }); //fetchOrderPayment(orderId)
+    fetchOrderDetails(orderId);
+    Future.wait({}); //fetchOrderPayment(orderId)
   }
 
   Future<List<OrderContent>> fetchOrder(int bookingId) async {
@@ -117,7 +116,7 @@ class OrderController extends BaseController {
       (a, b) => a.orderPayment != null ? 1 : 0,
     );
 
-    debugPrint("Orderrr: ${orders.value.toString()}");
+    // debugPrint("Orderrr: ${orders.value.toString()}");
   }
 
   Future<void> fetchOrderDetails(int orderId) async {

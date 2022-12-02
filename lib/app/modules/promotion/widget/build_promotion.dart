@@ -8,7 +8,6 @@ import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/promotion/widget/promotion_dialog.dart';
-import 'package:smarttv_app/app/widget/cached_image.dart';
 
 class BuildPromotion extends StatelessWidget {
   int index;

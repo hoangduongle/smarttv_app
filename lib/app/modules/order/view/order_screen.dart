@@ -168,7 +168,8 @@ class OrderScreen extends GetView<OrderController> {
             Row(
               children: [
                 controller.orderDetails.value.isEmpty
-                    ? controller.getOrderPaymentByOrderId(orderId)
+                    ? Expanded(flex: 2, child: Container())
+                    : controller.getOrderPaymentByOrderId(orderId)
                         ? Expanded(
                             flex: 2,
                             child: Align(
@@ -181,8 +182,7 @@ class OrderScreen extends GetView<OrderController> {
                                       fontWeight: FontWeight.bold)),
                             ),
                           )
-                        : Container()
-                    : Expanded(flex: 2, child: Container()),
+                        : Expanded(flex: 2, child: Container()),
                 Expanded(flex: 1, child: Container()),
                 controller.orderDetails.value.isEmpty
                     ? Expanded(child: Container())

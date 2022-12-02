@@ -4,33 +4,36 @@ import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 
 import 'package:smarttv_app/app/core/model/overview_content.dart';
+import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
+import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
 
 class HomeController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
+  Rx<List<OverviewContent>> overviewList = Rx<List<OverviewContent>>([]);
+  @override
+  void onInit() {
+    getall();
+    super.onInit();
+  }
 
-  Rx<List<OverviewContent>> overviewList = Rx<List<OverviewContent>>([
-    OverviewContent(
-        id: 1,
-        title: "hotel",
-        description: "hotel",
-        imageUrl: "assets/svg/Overview_hotel.svg"),
-    OverviewContent(
-        id: 2,
-        title: "food",
-        description: "food",
-        imageUrl: "assets/svg/Overview_food.svg"),
-    OverviewContent(
-        id: 3,
-        title: "service",
-        description: "service",
-        imageUrl: "assets/svg/Overview_service.svg"),
-    OverviewContent(
-        id: 4,
-        title: "event",
-        description: "event",
-        imageUrl: "assets/svg/Overview_event.svg"),
-  ]);
+  void getall() {
+    ServiceController serviceController = Get.find();
+    Future.delayed(
+      const Duration(seconds: 10),
+      () {
+        List<ServiceCategoryContent> serviceCateList =
+            serviceController.serviceCateList.value;
+        for (int i = 0; i < serviceCateList.length; i++) {
+          overviewList.value.add(OverviewContent(
+              id: i,
+              imageUrl: serviceCateList[i].images![0].pictureUrl,
+              description: "${serviceCateList[i].description}.",
+              title: serviceCateList[i].name));
+        }
+      },
+    );
+  }
 
   var currentInt = 0.obs;
 }

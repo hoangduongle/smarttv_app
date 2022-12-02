@@ -13,8 +13,9 @@ import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_const.dart';
 
 const hotelId = 1;
-const roomId = 2;
+const roomId = 1;
 const bookId = "bookingId";
+const departualDateBooking = "DepartualDateBooking";
 
 const userNameApi = '123';
 const passwordApi = '123';

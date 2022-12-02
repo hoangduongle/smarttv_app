@@ -33,7 +33,7 @@ class CheckoutDialogWidget extends StatelessWidget {
             children: [
               Lottie.asset(AppAssets.done, width: 100.w),
               Text(
-                "Nhân viên đã nhận được yêu cầu check-out của quý khách",
+                "Lễ tân đã nhận được yêu cầu check-out của quý khách",
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,

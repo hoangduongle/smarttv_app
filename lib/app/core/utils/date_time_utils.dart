@@ -9,6 +9,20 @@ String formattedDate = formatter.format(now);
  */
 
 class DateTimeUtils {
+  static String currentTime12() {
+    var now = DateTime.now();
+    var formatter = DateFormat('hh:mm:ss');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
+
+  static String currentTime24() {
+    var now = DateTime.now();
+    var formatter = DateFormat('HH:mm:ss');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
+
   static String currentDate() {
     var now = DateTime.now();
     var formatter = DateFormat('dd/MM/yyyy');

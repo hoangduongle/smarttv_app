@@ -42,6 +42,10 @@ class ServiceController extends BaseController {
     return result;
   }
 
+  void timeOut() {
+    //het thoi gian lam viec
+  }
+
   void fandB() {
     if (serviceCateList.value.isNotEmpty) {
       serviceCateList.value.clear();
@@ -50,7 +54,7 @@ class ServiceController extends BaseController {
       if (element.id == 1) {
         serviceCateList.value.add(ServiceCategoryContent(
             id: 1,
-            description: "fandb",
+            description: element.description,
             name: "Thức ăn và đồ uống",
             images: element.images));
       } else if (element.id != 1 && element.id != 2 && element.id != 12) {

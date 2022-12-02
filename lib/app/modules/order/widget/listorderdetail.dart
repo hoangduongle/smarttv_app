@@ -90,7 +90,7 @@ class ListOrderDetail extends StatelessWidget {
                 SizedBox(
                   width: 86.w,
                   child: Text(
-                    "${orderDetailContent.orderDate}",
+                    "${orderDetailContent.orderDate?.substring(0, 10)}",
                     textAlign: TextAlign.center,
                     style: AppStyles.h5.copyWith(
                         color: AppColors.white, fontWeight: FontWeight.bold),

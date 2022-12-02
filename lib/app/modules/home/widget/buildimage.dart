@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings, unnecessary_brace_in_string_interps, must_be_immutable
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smarttv_app/app/core/model/overview_content.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/data/data.dart';
 
 class ImageBuild extends StatelessWidget {
   OverviewContent overviewContent;
@@ -27,25 +29,80 @@ class ImageBuild extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.r),
-                child: SvgPicture.asset(
-                  overviewContent.imageUrl.toString(),
-                  width: 1000,
-                  fit: BoxFit.fill,
+                child: CachedNetworkImage(
+                  imageUrl:
+                      "${overviewContent.imageUrl!.isNotEmpty ? overviewContent.imageUrl : urlLoadingImage}", //urlLoadingImage
+                  imageBuilder: (context, imageProvider) {
+                    return Container(
+                      width: 1000.w,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
+                  placeholder: (context, url) {
+                    return Container(
+                      width: 1000.w,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(AppAssets.loadImage),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10.r),
-                        bottomRight: Radius.circular(10.r)),
-                    color: AppColors.navigabackground.withOpacity(0.r),
-                  ),
-                  width: 1000,
-                  height: 140,
-                ),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10.r),
+                          bottomRight: Radius.circular(10.r)),
+                      color: AppColors.navigabackground.withOpacity(0.8.r),
+                    ),
+                    width: 1000,
+                    height: 140,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(10.r),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                overviewContent.title ?? "",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.title,
+                                  fontSize: 25.sp,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              SizedBox(
+                                width: 700.w,
+                                height: 70.h,
+                                child: Text(
+                                  overviewContent.description ?? "",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    color: AppColors.white,
+                                    fontSize: 16.sp,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )),
               ),
             ],
           ),
