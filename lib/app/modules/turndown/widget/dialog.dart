@@ -36,7 +36,6 @@ class TurndownDialogWidget extends StatelessWidget {
               Lottie.asset(AppAssets.done, width: 100.w),
               Text(
                 "Yêu cầu dọn phòng nhanh của quý khách sẽ được thực hiện vào lúc",
-                // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
@@ -47,7 +46,6 @@ class TurndownDialogWidget extends StatelessWidget {
               ),
               Text(
                 "${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}",
-                // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
@@ -58,7 +56,6 @@ class TurndownDialogWidget extends StatelessWidget {
               ),
               Text(
                 "Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi",
-                // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
@@ -99,7 +96,6 @@ class TurndownDialogWidget extends StatelessWidget {
                 height: 20.h,
               ),
             ],
-            // caController.addService(serviceContent);
           ),
         ),
       ),
@@ -130,7 +126,6 @@ class TurndownDialogWidget extends StatelessWidget {
               ),
               Text(
                 "Quý khách đã yêu cầu dịch vụ trước đó",
-                // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
@@ -141,7 +136,6 @@ class TurndownDialogWidget extends StatelessWidget {
               ),
               Text(
                 "Nhân viên sẽ sớm hoàn tất công việc dọn phòng",
-                // textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
