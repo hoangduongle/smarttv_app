@@ -29,4 +29,10 @@ class AppAssets {
   static const String alarm = '${lottiesPath}alarm.json';
   static const String done = '${lottiesPath}done.json';
   static const String uncheck = '${lottiesPath}uncheck.json';
+
+  //svg file
+  static const String svgPath = 'assets/svg/';
+
+  static const String markerRed = '${svgPath}marker_red.svg';
+  static const String markerCircle = '${svgPath}marker_circle.svg';
 }
