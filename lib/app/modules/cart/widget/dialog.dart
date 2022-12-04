@@ -21,6 +21,18 @@ class DialogCart extends StatelessWidget {
     return Container();
   }
 
+  SizedBox _sizedboxHeight(double height) {
+    return SizedBox(
+      height: height.h,
+    );
+  }
+
+  SizedBox _sizedboxWidth(double width) {
+    return SizedBox(
+      width: width.w,
+    );
+  }
+
   void showCartDialog(
       BuildContext context, ServiceContent serviceContent, int quantity) {
     CartController caController = Get.find();
@@ -51,9 +63,7 @@ class DialogCart extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 5,
-            ),
+            _sizedboxHeight(5),
             SizedBox(
               width: 120,
               child: Text(
@@ -127,9 +137,7 @@ class DialogCart extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 25,
-                ),
+                _sizedboxWidth(25),
                 SizedBox(
                   width: 100.w,
                   height: 30.h,
@@ -209,9 +217,7 @@ class DialogCart extends StatelessWidget {
                           color: AppColors.title),
                     ),
                   ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
+                  _sizedboxHeight(20),
                   Container(
                     padding: EdgeInsets.only(top: 00.h),
                     width: 800.w,
@@ -224,9 +230,7 @@ class DialogCart extends StatelessWidget {
                           color: AppColors.greyColor),
                     ),
                   ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
+                  _sizedboxHeight(20),
                   SizedBox(
                     width: 100.w,
                     height: 40.h,
@@ -279,9 +283,7 @@ class DialogCart extends StatelessWidget {
               height: 250.h,
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 15.h,
-                  ),
+                  _sizedboxHeight(15),
                   Lottie.asset(AppAssets.done, width: 130),
                   Container(
                     padding: EdgeInsets.only(top: 10.h),
@@ -295,9 +297,7 @@ class DialogCart extends StatelessWidget {
                           color: AppColors.title),
                     ),
                   ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
+                  _sizedboxHeight(20),
                   Container(
                     padding: EdgeInsets.only(top: 00.h),
                     width: 800.w,

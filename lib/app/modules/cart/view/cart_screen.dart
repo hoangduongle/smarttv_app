@@ -29,17 +29,13 @@ class CartScreen extends GetView<CartController> {
                     color: AppColors.header,
                     fontSize: (size.width * 40 / 1000).sp)),
           ),
-          SizedBox(
-            height: 38.h,
-          ),
+          _sizeboxHeight(38),
           Container(
             child: Column(
               children: [
                 Row(
                   children: [
-                    SizedBox(
-                      width: 80.w,
-                    ),
+                    _sizeboxWidth(80),
                     Text(
                       'STT.',
                       style: AppStyles.h4.copyWith(
@@ -47,9 +43,7 @@ class CartScreen extends GetView<CartController> {
                           fontSize: 20.sp,
                           color: AppColors.title),
                     ),
-                    SizedBox(
-                      width: 30.w,
-                    ),
+                    _sizeboxWidth(30),
                     Text(
                       'namefood'.tr,
                       style: AppStyles.h4.copyWith(
@@ -57,25 +51,19 @@ class CartScreen extends GetView<CartController> {
                           fontSize: 20.sp,
                           color: AppColors.title),
                     ),
-                    SizedBox(
-                      width: 200.w,
-                    ),
+                    _sizeboxWidth(200),
                     Text('unitprice'.tr,
                         style: AppStyles.h4.copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.sp,
                             color: AppColors.title)),
-                    SizedBox(
-                      width: 110.w,
-                    ),
+                    _sizeboxWidth(110),
                     Text('quantity'.tr,
                         style: AppStyles.h4.copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.sp,
                             color: AppColors.title)),
-                    SizedBox(
-                      width: 100.w,
-                    ),
+                    _sizeboxWidth(100),
                     Text('totalamout'.tr,
                         style: AppStyles.h4.copyWith(
                             fontWeight: FontWeight.bold,
@@ -134,9 +122,7 @@ class CartScreen extends GetView<CartController> {
               thickness: 1,
             ),
           ),
-          SizedBox(
-            height: 10.w,
-          ),
+          _sizeboxHeight(10),
           Row(
             children: [
               Expanded(
@@ -155,9 +141,7 @@ class CartScreen extends GetView<CartController> {
               ),
             ],
           ),
-          SizedBox(
-            height: 5.h,
-          ),
+          _sizeboxHeight(5),
           Row(
             children: [
               Expanded(
@@ -245,6 +229,18 @@ class CartScreen extends GetView<CartController> {
       ),
     );
   }
+
+  SizedBox _sizeboxHeight(double height) {
+    return SizedBox(
+      height: height.h,
+    );
+  }
+
+  SizedBox _sizeboxWidth(double width) {
+    return SizedBox(
+      width: width.w,
+    );
+  }
 }
 
 class CartService extends StatelessWidget {
@@ -294,9 +290,7 @@ class CartService extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 40.w,
-                ),
+                _sizeboxWidth(40),
                 //NAME
                 SizedBox(
                   width: 200.w,
@@ -308,9 +302,7 @@ class CartService extends StatelessWidget {
                         color: AppColors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
-                  width: 65.w,
-                ),
+                _sizeboxWidth(65),
                 //PRICE
                 SizedBox(
                   width: 92.w,
@@ -321,9 +313,7 @@ class CartService extends StatelessWidget {
                         color: AppColors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
-                  width: 120.w,
-                ),
+                _sizeboxWidth(120),
                 //QUANTIY
                 SizedBox(
                   width: 30.w,
@@ -341,9 +331,7 @@ class CartService extends StatelessWidget {
                     color: AppColors.background,
                   ),
                 ),
-                SizedBox(
-                  width: 105.w,
-                ),
+                _sizeboxWidth(105),
                 //TOTAL
                 SizedBox(
                   width: 92.w,
@@ -359,6 +347,12 @@ class CartService extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  SizedBox _sizeboxWidth(double width) {
+    return SizedBox(
+      width: width.w,
     );
   }
 }
