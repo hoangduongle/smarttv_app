@@ -11,9 +11,10 @@ class AbtractionController extends BaseController {
 
   Rx<List<AbtractionContent>> abtractions = Rx<List<AbtractionContent>>([]);
   int indexMarker = 0;
+  bool isLoading = true;
   @override
   Future<void> onInit() async {
-    // fetchAbtractions();
+    fetchAbtractions();
     super.onInit();
   }
 
@@ -27,6 +28,12 @@ class AbtractionController extends BaseController {
 
     await callDataService(
       overview,
+      onStart: () {
+        isLoading = true;
+      },
+      onComplete: () {
+        isLoading = false;
+      },
       onSuccess: (List<AbtractionContent> response) {
         result = response;
       },

@@ -60,4 +60,9 @@ class AbtractionContent {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'AbtractionContent(id: $id, name: $name, longtitude: $longtitude, latidute: $latidute, openTime: $openTime, closeTime: $closeTime, address: $address, description: $description, hotelId: $hotelId, images: $images)';
+  }
 }

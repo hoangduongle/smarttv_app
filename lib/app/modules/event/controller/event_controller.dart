@@ -14,7 +14,6 @@ class EventController extends BaseController {
   Rx<List<NewsContent>> eventListOn = Rx<List<NewsContent>>([]);
   Rx<List<NewsContent>> eventListReady = Rx<List<NewsContent>>([]);
   Rx<List<NewsContent>> eventListDone = Rx<List<NewsContent>>([]);
-
   int indexMarker = 0;
 
   @override
@@ -42,43 +41,26 @@ class EventController extends BaseController {
     filterEvent();
   }
 
-  // var isFocus = [false, false, false];
-
   void filterEvent() {
     eventListOn.value.clear();
     eventListReady.value.clear();
     eventListDone.value.clear();
+    DateTime currentDay = DateTime.now();
     for (int i = 0; i < eventList.value.length; i++) {
-      switch (eventList.value[i].status) {
-        case "ON":
-          eventListOn.value.add(eventList.value[i]);
-          break;
-        case "READY":
-          eventListReady.value.add(eventList.value[i]);
-          break;
-        case "DONE":
-          eventListDone.value.add(eventList.value[i]);
-          break;
-        default:
+      DateTime parseEnd =
+          DateFormat('dd/MM/yyyy').parse(eventList.value[i].endDate.toString());
+
+      DateTime parseStart = DateFormat('dd/MM/yyyy')
+          .parse(eventList.value[i].startDate.toString());
+      if (currentDay.isBefore(parseStart)) {
+        eventListReady.value.add(eventList.value[i]); //sap dien ra
+      } else if (currentDay.isAfter(parseStart) &&
+          currentDay.isBefore(parseEnd)) {
+        eventListOn.value.add(eventList.value[i]); // dang dien ra
+      } else {
+        eventListDone.value.add(eventList.value[i]); //da dien ra
       }
     }
     debugPrint("Event ${DateTimeUtils.currentDateTimeSecond()}");
-
-    // DateTime currentDay = DateTime.now();
-    // for (int i = 0; i < eventList.value.length; i++) {
-    //   DateTime parseEnd =
-    //       DateFormat('dd/MM/yyyy').parse(eventList.value[i].endDate.toString());
-    //   DateTime parseStart = DateFormat('dd/MM/yyyy')
-    //       .parse(eventList.value[i].startDate.toString());
-    //   if (currentDay.isBefore(parseStart)) {
-    //     eventListReady.value.add(eventList.value[i]); //sap dien ra
-    //   }
-    //   if (currentDay.isAfter(parseStart) && currentDay.isBefore(parseEnd)) {
-    //     eventListOn.value.add(eventList.value[i]); // dang dien ra
-    //   }
-    //   if (currentDay.isAfter(parseStart)) {
-    //     eventListDone.value.add(eventList.value[i]); //da dien ra
-    //   }
-    // }
   }
 }

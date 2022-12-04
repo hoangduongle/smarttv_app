@@ -18,6 +18,8 @@ class OrderController extends BaseController {
   Rx<List<OrderContent>> orders = Rx<List<OrderContent>>([]);
   Rx<OrderPaymentContent?> orderPayment = Rx<OrderPaymentContent?>(null);
 
+  bool isLoading = true;
+
   int result = 0;
   OrderContent findOrder(int id) =>
       orders.value.firstWhere((order) => order.id == id);
@@ -86,11 +88,17 @@ class OrderController extends BaseController {
     var overview = _repository.getOrderByBookingId(bookingId);
     List<OrderContent> result = [];
     await callDataService(
+      onStart: () {
+        isLoading = true;
+      },
       overview,
       onSuccess: (List<OrderContent> response) {
         result = response;
       },
       onError: ((dioError) {}),
+      onComplete: () {
+        isLoading = false;
+      },
     );
     ordersTMP(result);
     filterStatusDONE();

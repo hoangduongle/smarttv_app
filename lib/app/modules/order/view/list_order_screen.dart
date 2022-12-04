@@ -81,38 +81,66 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                controller.orders.value.isEmpty
+                controller.isLoading
                     ? Expanded(
                         child: Lottie.asset(AppAssets.loading, width: 200.w))
-                    : Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: SizedBox(
-                          width: 900.w,
-                          height: 300.h,
-                          child: RawScrollbar(
-                            thumbColor: AppColors.greyColor,
-                            thumbVisibility: true,
-                            radius: Radius.circular(100.r),
-                            thickness: 10,
-                            controller: scrollOrderController,
-                            child: ListView.separated(
+                    : controller.orders.value.isEmpty
+                        ? Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15.w),
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: 900.w,
+                              height: 300.h,
+                              child: Text(
+                                "Hoá đơn trống",
+                                style: TextStyle(
+                                    color: AppColors.greyColor,
+                                    fontSize: 20.sp),
+                              ),
+                            ),
+                          )
+                        : Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 15.w),
+                            child: SizedBox(
+                              width: 900.w,
+                              height: 300.h,
+                              child: RawScrollbar(
+                                thumbColor: AppColors.greyColor,
+                                thumbVisibility: true,
+                                radius: Radius.circular(100.r),
+                                thickness: 10,
                                 controller: scrollOrderController,
-                                separatorBuilder: (context, index) => SizedBox(
-                                      height: 25.h,
-                                    ),
-                                itemCount: controller.orders.value.length,
-                                itemBuilder: (context, index) {
-                                  return ListOrder(
-                                      orderController: controller,
-                                      orderContent:
-                                          controller.orders.value[index],
-                                      index: index);
-                                }),
+                                child: ListView.separated(
+                                    controller: scrollOrderController,
+                                    separatorBuilder: (context, index) =>
+                                        SizedBox(
+                                          height: 25.h,
+                                        ),
+                                    itemCount: controller.orders.value.length,
+                                    itemBuilder: (context, index) {
+                                      return ListOrder(
+                                          orderController: controller,
+                                          orderContent:
+                                              controller.orders.value[index],
+                                          index: index);
+                                    }),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
+                // SizedBox(
+                //   height: 7.h,
+                // ),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.w),
+                  child: Divider(
+                    color: AppColors.greyColor,
+                    height: 0.h,
+                    thickness: 1,
+                  ),
+                ),
                 SizedBox(
-                  height: 7.h,
+                  height: 10.h,
                 ),
                 Row(
                   children: [
@@ -133,7 +161,7 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 10.h,
+                  height: 5.h,
                 ),
                 Row(
                   children: [
