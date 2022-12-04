@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, must_call_super, unused_field
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 
@@ -17,11 +18,15 @@ class HomeController extends BaseController {
     super.onInit();
   }
 
+  Future<void> reload() async {
+    onInit();
+  }
+
   void getall() {
-    ServiceController serviceController = Get.find();
     Future.delayed(
       const Duration(seconds: 10),
       () {
+        ServiceController serviceController = Get.find();
         List<ServiceCategoryContent> serviceCateList =
             serviceController.serviceCateList.value;
         for (int i = 0; i < serviceCateList.length; i++) {

@@ -13,7 +13,7 @@ class AbtractionController extends BaseController {
   int indexMarker = 0;
   @override
   Future<void> onInit() async {
-    fetchAbtractions();
+    // fetchAbtractions();
     super.onInit();
   }
 

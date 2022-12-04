@@ -7,6 +7,7 @@ import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/modules/abtraction/controller/abtraction_controller.dart';
 import 'package:smarttv_app/app/modules/alarm/view/alarm_screen.dart';
 import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
+import 'package:smarttv_app/app/modules/home/controller/home_controller.dart';
 import 'package:smarttv_app/app/modules/notification/controller/notification_controller.dart';
 import 'package:smarttv_app/app/modules/notification/view/notification_screen.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
@@ -338,6 +339,26 @@ class _MainScreenState extends State<MainScreen> {
                                                   index.obs;
                                               switch (index) {
                                                 case 0:
+                                                  if (waitonTap) {
+                                                    waitonTap = false;
+                                                    HomeController
+                                                        homeController =
+                                                        Get.find();
+                                                    Future.wait([
+                                                      homeController.reload(),
+                                                    ]);
+                                                    Future.delayed(
+                                                      Duration(
+                                                          seconds:
+                                                              seconds_ServiceCate),
+                                                      () {
+                                                        waitonTap = true;
+                                                      },
+                                                    );
+                                                  } else {
+                                                    debugPrint(
+                                                        "Wait for Service Category Load Api");
+                                                  }
                                                   break;
                                                 case 1:
                                                   if (waitonTap) {

@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
-import 'package:smarttv_app/app/widget/shimmer_loading.dart';
 
 class AbtractionLoading extends StatelessWidget {
   const AbtractionLoading({super.key});
@@ -24,6 +23,7 @@ class AbtractionLoading extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.r),
             child: InkWell(
               borderRadius: BorderRadius.circular(10.r),
+              // onTap: () {},
               child: Container(
                 margin: EdgeInsets.all(2.r),
                 width: 400.w,
@@ -34,22 +34,58 @@ class AbtractionLoading extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const ShimmerLoading(height: 100, width: 450),
-                    _sizeHeight(),
-                    const ShimmerLoading(height: 30, width: 200),
-                    _sizeHeight(),
-                    const ShimmerLoading(height: 30, width: 150),
+                    Shimmer.fromColors(
+                      baseColor: AppColors.greyColor.withOpacity(0.5),
+                      highlightColor: AppColors.white,
+                      period: const Duration(milliseconds: 1500),
+                      child: Container(
+                        height: 100.h,
+                        width: 450.w,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10.r),
+                                topRight: Radius.circular(10.r)),
+                            color: AppColors.greyColor),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Shimmer.fromColors(
+                      baseColor: AppColors.greyColor.withOpacity(0.5),
+                      highlightColor: AppColors.white,
+                      period: const Duration(milliseconds: 1500),
+                      child: Container(
+                        height: 30.h,
+                        width: 200.w,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: AppColors.greyColor),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Shimmer.fromColors(
+                      baseColor: AppColors.greyColor.withOpacity(0.5),
+                      highlightColor: AppColors.white,
+                      period: const Duration(milliseconds: 1500),
+                      child: Container(
+                        height: 30.h,
+                        width: 150.w,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: AppColors.greyColor),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
         ));
-  }
-
-  SizedBox _sizeHeight() {
-    return SizedBox(
-      height: 10.h,
-    );
   }
 }

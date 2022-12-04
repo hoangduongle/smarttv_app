@@ -93,9 +93,6 @@ class OrderController extends BaseController {
       onError: ((dioError) {}),
     );
     ordersTMP(result);
-    // double total = searchOrderIdByStatus("0").totalAmount ?? 0;
-    // var prefs = await SharedPreferences.getInstance();
-    // await prefs.setDouble("totalOrder", total); //
     filterStatusDONE();
     debugPrint("Order ${DateTimeUtils.currentDateTimeSecond()}");
 
