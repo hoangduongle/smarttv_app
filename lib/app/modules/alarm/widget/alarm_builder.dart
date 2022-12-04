@@ -30,67 +30,82 @@ class AlarmBuilder extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.r),
           child: InkWell(
             onTap: () {
-              const AlarmDialogWidget().showAlarmEditDialog(
-                  context,
-                  controller,
-                  index,
-                  controller.alarmed[index],
-                  hours, //dateTime.hour
-                  minutes); //dateTime.minute
+              const AlarmDialogWidget().showAlarmEditDialog(context, controller,
+                  index, controller.alarmed[index], hours, minutes);
             },
             focusColor: AppColors.title,
             borderRadius: BorderRadius.circular(10.r),
-            child: Container(
-              padding: EdgeInsets.all(15.r),
-              margin: EdgeInsets.all(2.r),
-              width: 100.w,
-              height: 110.h,
-              decoration: BoxDecoration(
-                color: AppColors.background,
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        time[1].substring(0, 5), //dateTime.hour.toString()
-                        style: TextStyle(
-                          color: AppColors.title,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35.sp,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        "Báo thức",
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 18.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Icon(
-                    alarmContent.status! ? Icons.alarm_on : Icons.alarm_off,
-                    size: 35.sp,
-                    color: AppColors.orangeColor,
-                  ),
-                  Icon(
-                    Icons.edit,
-                    size: 25.sp,
-                    color: AppColors.greyColor,
-                  ),
-                ],
-              ),
-            ),
+            child: _container(time),
           ),
         );
       },
+    );
+  }
+
+  Container _container(List<String> time) {
+    return Container(
+      padding: EdgeInsets.all(15.r),
+      margin: EdgeInsets.all(2.r),
+      width: 100.w,
+      height: 110.h,
+      decoration: BoxDecoration(
+        color: AppColors.background,
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+      child: _row(time),
+    );
+  }
+
+  Row _row(List<String> time) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _textTime(time),
+            _sizeboxHeight(),
+            _textTitle(),
+          ],
+        ),
+        Icon(
+          alarmContent.status! ? Icons.alarm_on : Icons.alarm_off,
+          size: 35.sp,
+          color: AppColors.orangeColor,
+        ),
+        Icon(
+          Icons.edit,
+          size: 25.sp,
+          color: AppColors.greyColor,
+        ),
+      ],
+    );
+  }
+
+  Text _textTime(List<String> time) {
+    return Text(
+      time[1].substring(0, 5), //dateTime.hour.toString()
+      style: TextStyle(
+        color: AppColors.title,
+        fontWeight: FontWeight.bold,
+        fontSize: 35.sp,
+      ),
+    );
+  }
+
+  Text _textTitle() {
+    return Text(
+      "Báo thức",
+      style: TextStyle(
+        color: AppColors.white,
+        fontSize: 18.sp,
+      ),
+    );
+  }
+
+  SizedBox _sizeboxHeight() {
+    return SizedBox(
+      height: 5.h,
     );
   }
 }

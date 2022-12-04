@@ -19,89 +19,97 @@ class AlarmDialogWidget extends StatelessWidget {
     return Container();
   }
 
+  SizedBox _sizeboxHeight(double height) {
+    return SizedBox(height: height.w);
+  }
+
+  SizedBox _sizeboxWidth(double width) {
+    return SizedBox(width: width.w);
+  }
+
+  Dialog _dialog(Widget child) {
+    return Dialog(
+      elevation: 2,
+      backgroundColor: AppColors.navigabackground,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+      child: child,
+    );
+  }
+
+  Row _rowBack() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'back'.tr,
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15.sp,
+              color: AppColors.black),
+        ),
+      ],
+    );
+  }
+
+  SizedBox _sizeboxButton() {
+    return SizedBox(
+      width: 100.w,
+      height: 30.h,
+      child: Material(
+        color: AppColors.focus,
+        borderRadius: BorderRadius.circular(10.r),
+        child: InkWell(
+            autofocus: true,
+            focusColor: AppColors.orangeColor,
+            borderRadius: BorderRadius.circular(10.r),
+            onTap: () {
+              Get.back();
+            },
+            child: _rowBack()),
+      ),
+    );
+  }
+
   void showAlarmOnDialog(BuildContext context, int hours, int minutes) {
     showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Dialog(
-        elevation: 2,
-        backgroundColor: AppColors.navigabackground,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-        child: SizedBox(
-          width: 500.w,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Lottie.asset(AppAssets.done, width: 100.w),
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  style: TextStyle(color: AppColors.white, fontSize: 15.sp),
-                  children: <TextSpan>[
-                    TextSpan(text: "Báo thức sẽ được thực hiện vào lúc "),
-                    TextSpan(
-                        text:
-                            "${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.orangeColor)),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                "Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi",
-                style: TextStyle(
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.greyColor),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              SizedBox(
-                width: 100.w,
-                height: 30.h,
-                child: Material(
-                  color: AppColors.focus,
-                  borderRadius: BorderRadius.circular(10.r),
-                  child: InkWell(
-                    autofocus: true,
-                    focusColor: AppColors.orangeColor,
-                    borderRadius: BorderRadius.circular(10.r),
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'back'.tr,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15.sp,
-                              color: AppColors.black),
-                        ),
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => _dialog(SizedBox(
+              width: 500.w,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset(AppAssets.done, width: 100.w),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: TextStyle(color: AppColors.white, fontSize: 15.sp),
+                      children: <TextSpan>[
+                        TextSpan(text: "Báo thức sẽ được thực hiện vào lúc "),
+                        TextSpan(
+                            text:
+                                "${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.orangeColor)),
                       ],
                     ),
                   ),
-                ),
+                  _sizeboxHeight(15),
+                  Text(
+                    "Cám ơn quý khách đã sử dụng dịch vụ của chúng tôi",
+                    style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.greyColor),
+                  ),
+                  _sizeboxHeight(20),
+                  _sizeboxButton(),
+                  _sizeboxHeight(20),
+                ],
               ),
-              SizedBox(
-                height: 20.h,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+            )));
   }
 
   void showAlarmOffDialog(BuildContext context) {
@@ -132,12 +140,7 @@ class AlarmDialogWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 5.h,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
+              _sizeboxHeight(15),
               Text(
                 "Xin hãy chọn chế độ bật báo thức",
                 style: TextStyle(
@@ -145,40 +148,9 @@ class AlarmDialogWidget extends StatelessWidget {
                     fontWeight: FontWeight.normal,
                     color: AppColors.greyColor),
               ),
-              SizedBox(
-                height: 20.h,
-              ),
-              SizedBox(
-                width: 100.w,
-                height: 30.h,
-                child: Material(
-                  color: AppColors.focus,
-                  borderRadius: BorderRadius.circular(10.r),
-                  child: InkWell(
-                    autofocus: true,
-                    focusColor: AppColors.orangeColor,
-                    borderRadius: BorderRadius.circular(10.r),
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'back'.tr,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15.sp,
-                              color: AppColors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
+              _sizeboxHeight(20),
+              _sizeboxButton(),
+              _sizeboxHeight(20),
             ],
           ),
         ),
@@ -204,9 +176,7 @@ class AlarmDialogWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 20.h,
-              ),
+              _sizeboxHeight(20),
               Text(
                 "Chỉnh sửa báo thức",
                 style: TextStyle(
@@ -214,9 +184,7 @@ class AlarmDialogWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: AppColors.greyColor),
               ),
-              SizedBox(
-                height: 5.h,
-              ),
+              _sizeboxHeight(5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -262,7 +230,7 @@ class AlarmDialogWidget extends StatelessWidget {
                         icon: Icon(Icons.add_circle, size: 20.sp),
                         focusColor: AppColors.orangeColor),
                   ),
-                  Container(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Text(
                       ":",
@@ -316,9 +284,7 @@ class AlarmDialogWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 10.h,
-              ),
+              _sizeboxHeight(10),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -352,9 +318,7 @@ class AlarmDialogWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 25,
-                  ),
+                  _sizeboxWidth(25),
                   SizedBox(
                     width: 80.w,
                     height: 30.h,
@@ -386,37 +350,38 @@ class AlarmDialogWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 20.h,
-              ),
-              SizedBox(
-                width: 110.w,
-                height: 30.h,
-                child: Material(
-                  color: AppColors.red.withOpacity(.7),
-                  borderRadius: BorderRadius.circular(5.r),
-                  elevation: 0,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: InkWell(
-                    focusColor: AppColors.red,
-                    onTap: () {
-                      controller.removeAlarm(alarmContent.id ?? 0);
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Xoá báo thức",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
+              _sizeboxHeight(20),
+              _sizeboxDeleteAlarm(controller, alarmContent),
+              _sizeboxHeight(20),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  SizedBox _sizeboxDeleteAlarm(
+      AlarmController controller, AlarmContent alarmContent) {
+    return SizedBox(
+      width: 110.w,
+      height: 30.h,
+      child: Material(
+        color: AppColors.red.withOpacity(.7),
+        borderRadius: BorderRadius.circular(5.r),
+        elevation: 0,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: InkWell(
+          focusColor: AppColors.red,
+          onTap: () {
+            controller.removeAlarm(alarmContent.id ?? 0);
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Xoá báo thức",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
             ],
           ),

@@ -40,20 +40,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                       flex: 2,
                       child: Column(
                         children: [
-                          SizedBox(
-                            width: 250.w,
-                            height: 250.h,
-                            child: CustomPaint(
-                              painter: ClockPainter(
-                                  dateTime: DateTime(
-                                0,
-                                0,
-                                0,
-                                controller.hours.toInt(),
-                                controller.minutes.toInt(),
-                              )),
-                            ),
-                          ),
+                          _sizeboxClockPainter(controller),
                           SizedBox(
                             width: 300.w,
                             height: 40.h,
@@ -76,18 +63,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                       icon: const Icon(Icons.remove_circle),
                                       focusColor: AppColors.orangeColor),
                                 ),
-                                Container(
-                                  color: AppColors.white,
-                                  alignment: Alignment.center,
-                                  width: 40.w,
-                                  height: 30.h,
-                                  child: Text(
-                                      "${NumberUtils.time(controller.hours.toInt())}",
-                                      style: TextStyle(
-                                          fontSize: 20.sp,
-                                          color: AppColors.black,
-                                          fontWeight: FontWeight.bold)),
-                                ),
+                                _containerShowtime(controller.hours.toInt()),
                                 Material(
                                   color: AppColors.transparent,
                                   child: IconButton(
@@ -105,16 +81,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                       icon: const Icon(Icons.add_circle),
                                       focusColor: AppColors.orangeColor),
                                 ),
-                                Container(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 10.w),
-                                  child: Text(
-                                    ":",
-                                    style: TextStyle(
-                                        color: AppColors.white,
-                                        fontSize: 30.sp),
-                                  ),
-                                ),
+                                _paddingText(),
                                 Material(
                                   color: AppColors.transparent,
                                   child: IconButton(
@@ -131,18 +98,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                                       icon: const Icon(Icons.remove_circle),
                                       focusColor: AppColors.orangeColor),
                                 ),
-                                Container(
-                                  color: AppColors.white,
-                                  alignment: Alignment.center,
-                                  width: 40.w,
-                                  height: 30.h,
-                                  child: Text(
-                                      "${NumberUtils.time(controller.minutes.toInt())}",
-                                      style: TextStyle(
-                                          fontSize: 20.sp,
-                                          color: AppColors.black,
-                                          fontWeight: FontWeight.bold)),
-                                ),
+                                _containerShowtime(controller.minutes.toInt()),
                                 Material(
                                   color: AppColors.transparent,
                                   child: IconButton(
@@ -163,9 +119,7 @@ class _AlarmScreenState extends State<AlarmScreen> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
+                          _sizeboxHeight(),
                           ToggleButtons(
                             children: alarms,
                             isSelected: _selectedAlarm,
@@ -187,87 +141,13 @@ class _AlarmScreenState extends State<AlarmScreen> {
                               });
                             },
                           ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          SizedBox(
-                            width: 170.w,
-                            height: 50.h,
-                            child: Material(
-                              color: AppColors.focus,
-                              borderRadius: BorderRadius.circular(10.r),
-                              child: InkWell(
-                                focusColor: AppColors.orangeColor,
-                                borderRadius: BorderRadius.circular(10.r),
-                                onTap: () {
-                                  if (_selectedAlarm[0]) {
-                                    controller.setalarm(
-                                        controller.hours.toInt(),
-                                        controller.minutes.toInt());
-                                  } else {
-                                    controller.alarmOffSound();
-                                    AlarmDialogWidget()
-                                        .showAlarmOffDialog(context);
-                                  }
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Đặt báo thức',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20.sp,
-                                          color: AppColors.black),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                          _sizeboxHeight(),
+                          _sizeboxButton(context, _selectedAlarm, controller),
                         ],
                       )),
                   controller.alarmed.isEmpty
                       ? Container()
-                      : Expanded(
-                          child: SizedBox(
-                          height: 470.h,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 15.h, horizontal: 10.w),
-                                width: 300.w,
-                                height: 470.h,
-                                child: RawScrollbar(
-                                  controller: scrollControllerAlarm,
-                                  thumbColor: AppColors.title,
-                                  thumbVisibility: true,
-                                  radius: Radius.circular(100.r),
-                                  thickness: 6,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(right: 10.w),
-                                    child: ListView.separated(
-                                      controller: scrollControllerAlarm,
-                                      itemCount: controller.alarmed.length,
-                                      separatorBuilder: (context, index) =>
-                                          SizedBox(
-                                        height: 15.h,
-                                      ),
-                                      itemBuilder: (context, index) {
-                                        return AlarmBuilder(
-                                            index: index,
-                                            alarmContent:
-                                                controller.alarmed[0]);
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )),
+                      : _expandedListAlarm(scrollControllerAlarm, controller),
                 ],
               ),
             )
@@ -276,6 +156,133 @@ class _AlarmScreenState extends State<AlarmScreen> {
       },
     );
   }
+}
+
+Container _containerShowtime(int time) {
+  return Container(
+    color: AppColors.white,
+    alignment: Alignment.center,
+    width: 40.w,
+    height: 30.h,
+    child: Text("${NumberUtils.time(time)}",
+        style: TextStyle(
+            fontSize: 20.sp,
+            color: AppColors.black,
+            fontWeight: FontWeight.bold)),
+  );
+}
+
+SizedBox _sizeboxButton(BuildContext context, List<bool> selectedAlarm,
+    AlarmController controller) {
+  return SizedBox(
+    width: 170.w,
+    height: 50.h,
+    child: Material(
+      color: AppColors.focus,
+      borderRadius: BorderRadius.circular(10.r),
+      child: InkWell(
+        focusColor: AppColors.orangeColor,
+        borderRadius: BorderRadius.circular(10.r),
+        onTap: () {
+          if (selectedAlarm[0]) {
+            controller.setalarm(
+                controller.hours.toInt(), controller.minutes.toInt());
+          } else {
+            controller.alarmOffSound();
+            AlarmDialogWidget().showAlarmOffDialog(context);
+          }
+        },
+        child: _rowText(),
+      ),
+    ),
+  );
+}
+
+Row _rowText() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text(
+        'Đặt báo thức',
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20.sp,
+            color: AppColors.black),
+      ),
+    ],
+  );
+}
+
+Expanded _expandedListAlarm(
+    ScrollController scrollControllerAlarm, AlarmController controller) {
+  return Expanded(
+      child: SizedBox(
+    height: 470.h,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 10.w),
+          width: 300.w,
+          height: 470.h,
+          child: RawScrollbar(
+            controller: scrollControllerAlarm,
+            thumbColor: AppColors.title,
+            thumbVisibility: true,
+            radius: Radius.circular(100.r),
+            thickness: 6,
+            child: Padding(
+              padding: EdgeInsets.only(right: 10.w),
+              child: ListView.separated(
+                controller: scrollControllerAlarm,
+                itemCount: controller.alarmed.length,
+                separatorBuilder: (context, index) => SizedBox(
+                  height: 15.h,
+                ),
+                itemBuilder: (context, index) {
+                  return AlarmBuilder(
+                      index: index, alarmContent: controller.alarmed[0]);
+                },
+              ),
+            ),
+          ),
+        )
+      ],
+    ),
+  ));
+}
+
+SizedBox _sizeboxHeight() {
+  return SizedBox(
+    height: 20.h,
+  );
+}
+
+Padding _paddingText() {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: 10.w),
+    child: Text(
+      ":",
+      style: TextStyle(color: AppColors.white, fontSize: 30.sp),
+    ),
+  );
+}
+
+SizedBox _sizeboxClockPainter(AlarmController controller) {
+  return SizedBox(
+    width: 250.w,
+    height: 250.h,
+    child: CustomPaint(
+      painter: ClockPainter(
+          dateTime: DateTime(
+        0,
+        0,
+        0,
+        controller.hours.toInt(),
+        controller.minutes.toInt(),
+      )),
+    ),
+  );
 }
 
 class ClockPainter extends CustomPainter {
