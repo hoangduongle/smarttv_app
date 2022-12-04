@@ -10,6 +10,7 @@ import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/momo/view/momo_screen.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
+import 'package:smarttv_app/app/widget/loading.dart';
 
 class MomoController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
@@ -41,7 +42,6 @@ class MomoController extends BaseController {
       await queryOrder(int.parse(orderId[0]));
       if (order.value!.orderPayment != null) {
         timerCheck?.cancel();
-        // debugPrint("MoMo onReady: ${order.value!.status}");
         Get.back();
         OrderController orderController = Get.find();
         orderController.onInit();
