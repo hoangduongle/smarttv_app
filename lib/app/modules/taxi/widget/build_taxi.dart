@@ -62,6 +62,7 @@ class _BuildTaxiState extends State<BuildTaxi> {
                       borderRadius: BorderRadius.circular(10.r),
                       child: CachedNetworkImage(
                         imageUrl:
+                            // "https://i.ibb.co/BnHQBFX/duadonsanbay.jpg",
                             "${widget.serviceContent.image == null ? AppAssets.loadImageNetWork : widget.serviceContent.image?.pictureUrl}",
                         imageBuilder: (context, imageProvider) {
                           return Container(

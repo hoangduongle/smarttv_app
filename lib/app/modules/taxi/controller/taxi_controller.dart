@@ -22,6 +22,7 @@ class TaxiController extends BaseController {
   List<bool> statusTaxi = [false, false];
 
   bool checkbox = false;
+  bool isLoading = true;
 
   @override
   void onInit() async {
@@ -90,17 +91,20 @@ class TaxiController extends BaseController {
   }
 
   Rx<List<OrderDetailContent>> orderDetails = Rx<List<OrderDetailContent>>([]);
-  Rx<List<OrderContent>> ordersForTaxi = Rx<List<OrderContent>>([]);
 
   Future<void> checkTaxiService() async {
     bool flagBreak = false;
-    final prefs = await SharedPreferences.getInstance();
-    var bookingId = prefs.getInt(bookId);
-
-    await fetchOrder(bookingId!.toInt());
-    if (ordersForTaxi.value.isNotEmpty) {
-      for (int i = 0; i < ordersForTaxi.value.length; i++) {
-        await fetchOrderDetails(ordersForTaxi.value[i].id!);
+    OrderController orderController = Get.find();
+    if (orderController.ordersTMP.value.isEmpty) {
+      Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          return checkTaxiService();
+        },
+      );
+    } else {
+      for (var element in orderController.ordersTMP.value) {
+        await fetchOrderDetails(element.id!);
         for (int j = 0; j < orderDetails.value.length; j++) {
           if (orderDetails.value[j].service!.id == 57 ||
               orderDetails.value[j].service!.id == 70) {
@@ -117,19 +121,6 @@ class TaxiController extends BaseController {
         }
       }
     }
-  }
-
-  Future<void> fetchOrder(int bookingId) async {
-    var overview = _repository.getOrderByBookingId(bookingId);
-    List<OrderContent> result = [];
-    await callDataService(
-      overview,
-      onSuccess: (List<OrderContent> response) {
-        result = response;
-      },
-      onError: ((dioError) {}),
-    );
-    ordersForTaxi(result);
   }
 
   Future<void> fetchOrderDetails(int orderId) async {
@@ -151,21 +142,38 @@ class TaxiController extends BaseController {
 
     await callDataService(
       overview,
+      onStart: () {
+        isLoading = true;
+      },
       onSuccess: (List<ServiceContent> response) {
         result = response;
       },
       onError: ((dioError) {}),
     );
     taxiContent(result);
+    debugPrint("Taxii ${taxiContent.toString()}");
     addImage();
     debugPrint("Taxi ${DateTimeUtils.currentDateTimeSecond()}");
   }
 
   void addImage() {
     ImageController imageController = Get.find();
-    for (var element in taxiContent.value) {
-      element.image = imageController.getImageById("service_${element.id}");
-      debugPrint("${imageController.getImageById("service_${element.id}")}");
+    if (imageController.imageContent.value.isEmpty) {
+      Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          return addImage();
+        },
+      );
+    } else {
+      for (int i = 0; i < taxiContent.value.length; i++) {
+        taxiContent.value[i].image =
+            imageController.getImageById("service_${taxiContent.value[i].id}");
+      }
     }
+
+    isLoading = false;
+
+    update();
   }
 }

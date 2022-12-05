@@ -14,35 +14,43 @@ class TaxiScreen extends GetView<TaxiController> {
     // NavigatorController naController =
     //     Get.find(tag: (NavigatorController).toString());
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Container(
-        color: AppColors.background,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TitleScreen(
-              name: "Đưa đón sân bay",
-            ),
-            Expanded(
-                child: Container(
-              padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 30.w),
-              width: size.width,
-              child: ListView.separated(
-                itemCount: controller.taxiContent.value.length,
-                separatorBuilder: (context, index) => SizedBox(
-                  height: 15.h,
+    return GetBuilder<TaxiController>(
+      builder: (controller) {
+        return Scaffold(
+          body: Container(
+            color: AppColors.background,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TitleScreen(
+                  name: "Đưa đón sân bay",
                 ),
-                itemBuilder: (context, index) {
-                  return BuildTaxi(
-                    index: index,
-                    serviceContent: controller.taxiContent.value[index],
-                  );
-                },
-              ),
-            )),
-          ],
-        ),
-      ),
+                controller.isLoading
+                    ? Expanded(child: Container())
+                    : Expanded(
+                        child: Container(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 15.h, horizontal: 30.w),
+                        width: size.width,
+                        child: ListView.separated(
+                          itemCount: controller.taxiContent.value.length,
+                          separatorBuilder: (context, index) => SizedBox(
+                            height: 15.h,
+                          ),
+                          itemBuilder: (context, index) {
+                            return BuildTaxi(
+                              index: index,
+                              serviceContent:
+                                  controller.taxiContent.value[index],
+                            );
+                          },
+                        ),
+                      )),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

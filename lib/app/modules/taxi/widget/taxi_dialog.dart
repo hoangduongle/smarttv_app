@@ -44,6 +44,7 @@ class TaxiDialog extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.r),
                           child: CachedNetworkImage(
                             imageUrl:
+                                // "https://i.ibb.co/BnHQBFX/duadonsanbay.jpg",
                                 "${serviceContent.image == null ? AppAssets.loadImageNetWork : serviceContent.image?.pictureUrl}",
                             imageBuilder: (context, imageProvider) {
                               return Container(
