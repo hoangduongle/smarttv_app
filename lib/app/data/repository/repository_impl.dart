@@ -6,6 +6,7 @@ import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/model/customer_feedback.dart';
 import 'package:smarttv_app/app/core/model/feedback_content.dart';
+import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
@@ -469,7 +470,6 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
     var endpoint = "${DioProvider.baseUrl}/customerFeedBack";
     var data = customerFeedback.toJson();
-    // var fromData = FormData.fromMap(data);
     var result = <CustomerFeedback>[];
     var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
@@ -552,6 +552,29 @@ class RepositoryImpl extends BaseRepository implements Repository {
     try {
       return callApi(dioCall).then((response) {
         return OrderPaymentContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<ImageContent>> getListImage() async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+
+    var endpoint = "${DioProvider.baseUrl}/getImageByImageTypeContain";
+    var data = {'type': 'img'};
+    var result = <ImageContent>[];
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <ImageContent>[];
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(ImageContent.fromJson(element));
+        }
+        return result;
       });
     } catch (e) {
       rethrow;

@@ -30,6 +30,12 @@ class _FandBScreenState extends State<FandBScreen> {
         Get.find(tag: (NavigatorController).toString());
     MainController maController = Get.find();
     FoodandBeverageController controller = Get.find();
+    /*
+      return Obx(
+      () {
+        return GetBuilder<FoodandBeverageController>(
+      builder: (controller) {
+    */
     return Obx(
       () {
         return Scaffold(
@@ -105,7 +111,6 @@ class _FandBScreenState extends State<FandBScreen> {
                       height: 20.h,
                     ),
                     Align(
-                      // alignment: Alignment.center,
                       child: Container(
                         height: 35.h,
                         width: 262.w,
@@ -142,7 +147,6 @@ class _FandBScreenState extends State<FandBScreen> {
                               child: Text(
                                 "Thức ăn",
                                 style: AppStyles.h4.copyWith(
-                                    //title
                                     color:
                                         controller.numberSelected.toInt() == 0
                                             ? AppColors.black

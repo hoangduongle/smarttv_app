@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/core/controller/cart_dialog_controller.dart';
@@ -47,9 +48,9 @@ class DialogWidget extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.r),
                 child: CachedNetworkImage(
-                  imageUrl: serviceContent.image!.isEmpty
+                  imageUrl: serviceContent.image == null
                       ? "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"
-                      : "${serviceContent.image![0].pictureUrl}",
+                      : "${serviceContent.image?.pictureUrl}",
                   height: 150,
                   fit: BoxFit.cover,
                   // placeholder: (context, url) =>

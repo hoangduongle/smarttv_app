@@ -47,9 +47,9 @@ class MayjorEachService extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.r),
                     child: CachedNetworkImage(
-                      imageUrl: serviceContent.image!.isEmpty
+                      imageUrl: serviceContent.image == null
                           ? "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"
-                          : "${serviceContent.image![0].pictureUrl}",
+                          : "${serviceContent.image?.pictureUrl}",
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           alignment: Alignment.topCenter,

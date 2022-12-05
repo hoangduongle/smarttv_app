@@ -43,7 +43,8 @@ class TaxiDialog extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.r),
                           child: CachedNetworkImage(
-                            imageUrl: "${serviceContent.image![0].pictureUrl}",
+                            imageUrl:
+                                "${serviceContent.image == null ? AppAssets.loadImageNetWork : serviceContent.image?.pictureUrl}",
                             imageBuilder: (context, imageProvider) {
                               return Container(
                                 height: 150.h,
@@ -143,7 +144,6 @@ class TaxiDialog extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10.r),
                             onTap: () {
                               controller.orderService(serviceContent, index);
-                              // controller.checkTaxiService();
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

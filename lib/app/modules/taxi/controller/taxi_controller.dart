@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/controller/image_controller.dart';
 import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
@@ -156,6 +157,15 @@ class TaxiController extends BaseController {
       onError: ((dioError) {}),
     );
     taxiContent(result);
+    addImage();
     debugPrint("Taxi ${DateTimeUtils.currentDateTimeSecond()}");
+  }
+
+  void addImage() {
+    ImageController imageController = Get.find();
+    for (var element in taxiContent.value) {
+      element.image = imageController.getImageById("service_${element.id}");
+      debugPrint("${imageController.getImageById("service_${element.id}")}");
+    }
   }
 }

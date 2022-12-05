@@ -5,6 +5,9 @@
 class AppAssets {
   // ignore: prefer_const_declarations
   static const String imagePath = 'assets/images/';
+  static const String loadImageNetWork =
+      'https://img.idesign.vn/2018/10/23/id-loading-1.gif';
+
   //png file
   static const String logo = imagePath + 'logo.png';
   static const String logoforeground = imagePath + 'logo_foreground.png';

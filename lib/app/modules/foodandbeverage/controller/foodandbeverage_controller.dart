@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/controller/image_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
@@ -113,6 +114,7 @@ class FoodandBeverageController extends BaseController {
   }
 
   void filter() {
+    ImageController imageController = Get.find();
     String food = "";
     if (serviceKhaivi.value.isNotEmpty) {
       serviceKhaivi.value.clear();
@@ -127,6 +129,9 @@ class FoodandBeverageController extends BaseController {
     for (var element in serviceListFood.value) {
       if (element.status == true) {
         food = element.majorGroup.toString();
+        element.image = (imageController.getImageById("service_${element.id}"));
+        // debugPrint(
+        //     "F&B: ${(imageController.getImageById("service_${element.id}"))}");
         switch (food) {
           case "appetizer": //appetizer
             serviceKhaivi.value.add(element);
@@ -160,6 +165,7 @@ class FoodandBeverageController extends BaseController {
     for (var element in serviceListDrink.value) {
       if (element.status == true) {
         drink = element.majorGroup.toString();
+        element.image = (imageController.getImageById("service_${element.id}"));
         switch (drink) {
           case "coffee": //coffee
             serviceCafe.value.add(element);

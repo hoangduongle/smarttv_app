@@ -23,8 +23,8 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(body: Obx(
-      () {
+    return Scaffold(body: GetBuilder<HomeController>(
+      builder: (controller) {
         return SizedBox(
             child: Column(
           children: [

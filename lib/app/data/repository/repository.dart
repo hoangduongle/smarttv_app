@@ -2,6 +2,7 @@ import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
 import 'package:smarttv_app/app/core/model/customer_feedback.dart';
 import 'package:smarttv_app/app/core/model/feedback_content.dart';
+import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/message_content.dart';
 import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_content.dart';
@@ -16,7 +17,7 @@ import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/model/vnpay.dart';
 
 abstract class Repository {
-  // Future<List<ImageContent>> getListImageByType(String type);
+  Future<List<ImageContent>> getListImage();
 //========================Service=============================================
   Future<List<ServiceCategoryContent>> getListServiceCate();
   Future<List<ServiceContent>> getListServiceContentByCateId(int cateId);

@@ -21,7 +21,6 @@ class PromotionDialog extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        List<String> arrDescription = newsContent.description!.split("+");
         return Dialog(
           elevation: 2,
           backgroundColor: AppColors.background,
@@ -162,23 +161,21 @@ class PromotionDialog extends StatelessWidget {
                             SizedBox(
                               height: 5.h,
                             ),
-                            for (var description in arrDescription)
-                              if (description != '')
-                                SizedBox(
-                                  width: 360.w,
-                                  // height: 40.h,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 6.h),
-                                    child: Text(
-                                      "+ $description",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.normal,
-                                          color: AppColors.greyColor),
-                                    ),
-                                  ),
+                            SizedBox(
+                              width: 360.w,
+                              // height: 40.h,
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 6.h),
+                                child: Text(
+                                  "${newsContent.detailInformation}",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.normal,
+                                      color: AppColors.greyColor),
                                 ),
+                              ),
+                            ),
                           ],
                         ),
                       ),

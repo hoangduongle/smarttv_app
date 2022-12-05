@@ -74,7 +74,8 @@ class _CardEachServiceState extends State<CardEachService> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.r),
                     child: CachedNetworkImage(
-                      imageUrl: "${widget.mayjorContent.image}",
+                      imageUrl:
+                          "${widget.mayjorContent.image.isEmpty ? "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg" : widget.mayjorContent.image}",
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           alignment: Alignment.topCenter,

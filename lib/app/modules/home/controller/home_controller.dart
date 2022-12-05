@@ -12,6 +12,8 @@ import 'package:smarttv_app/app/modules/service/controller/service_controller.da
 class HomeController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
   Rx<List<OverviewContent>> overviewList = Rx<List<OverviewContent>>([]);
+  var currentInt = 0.obs;
+
   @override
   void onInit() {
     getall();
@@ -23,24 +25,33 @@ class HomeController extends BaseController {
   }
 
   void getall() {
-    Future.delayed(
-      const Duration(seconds: 10),
-      () {
-        ServiceController serviceController = Get.find();
-        List<ServiceCategoryContent> serviceCateList =
-            serviceController.serviceCateList.value;
-        for (int i = 0; i < serviceCateList.length; i++) {
-          overviewList.value.add(OverviewContent(
-              id: i,
-              imageUrl: serviceCateList[i].images![0].pictureUrl,
-              description: "${serviceCateList[i].description}.",
-              title: serviceCateList[i].name));
-        }
-      },
-    );
-  }
+    ServiceController serviceController = Get.find();
+    if (serviceController.serviceCateList.value.isEmpty) {
+      Future.delayed(const Duration(seconds: 2), () {
+        return getall();
+      });
+    } else {
+      Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          if (overviewList.value.isNotEmpty) {
+            overviewList.value.clear();
+          }
+          List<ServiceCategoryContent> serviceCateList =
+              serviceController.serviceCateList.value;
+          for (int i = 0; i < serviceCateList.length; i++) {
+            overviewList.value.add(OverviewContent(
+                id: i,
+                imageUrl: serviceCateList[i].images![0].pictureUrl,
+                description: "${serviceCateList[i].description}.",
+                title: serviceCateList[i].name));
+          }
+        },
+      );
+    }
 
-  var currentInt = 0.obs;
+    update();
+  }
 }
 
 

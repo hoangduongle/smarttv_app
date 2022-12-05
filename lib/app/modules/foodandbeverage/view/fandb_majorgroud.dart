@@ -72,6 +72,12 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
 
         break;
     }
+    /*
+      return Obx(
+      () {
+          return GetBuilder<FoodandBeverageController>(
+      builder: (controller) {
+    */
     return Obx(
       () {
         return Scaffold(

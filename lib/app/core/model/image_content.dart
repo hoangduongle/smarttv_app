@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_collection_literals, unnecessary_this
-
 class ImageContent {
   int? id;
   String? pictureType;
@@ -17,11 +15,16 @@ class ImageContent {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = this.id;
-    data['pictureType'] = this.pictureType;
-    data['pictureDescription'] = this.pictureDescription;
-    data['pictureUrl'] = this.pictureUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['pictureType'] = pictureType;
+    data['pictureDescription'] = pictureDescription;
+    data['pictureUrl'] = pictureUrl;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'ImageContent(id: $id, pictureType: $pictureType, pictureDescription: $pictureDescription, pictureUrl: $pictureUrl)';
   }
 }

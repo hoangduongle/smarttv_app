@@ -19,7 +19,7 @@ class DioProvider {
       return _instance!;
     } else {
       // _instance!.interceptors.clear(); // For debug
-      // _instance!.interceptors.add(DioDebug()); // For debug
+      _instance!.interceptors.add(DioDebug()); // For debug
       return _instance!;
     }
   }
@@ -34,6 +34,6 @@ class DioProvider {
     _instance ??= httpDio;
     _instance!.interceptors.clear();
     _instance!.interceptors.add(TokenManager.instance);
-    // _instance!.interceptors.add(DioDebug()); // For debug
+    _instance!.interceptors.add(DioDebug()); // For debug
   }
 }

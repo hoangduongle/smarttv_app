@@ -8,13 +8,13 @@ import 'package:get/get.dart';
 
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/taxi/controller/taxi_controller.dart';
 import 'package:smarttv_app/app/modules/taxi/widget/taxi_dialog.dart';
 
 class BuildTaxi extends StatefulWidget {
   int index;
-
   ServiceContent serviceContent;
   BuildTaxi({
     Key? key,
@@ -62,7 +62,7 @@ class _BuildTaxiState extends State<BuildTaxi> {
                       borderRadius: BorderRadius.circular(10.r),
                       child: CachedNetworkImage(
                         imageUrl:
-                            "${widget.serviceContent.image![0].pictureUrl}",
+                            "${widget.serviceContent.image == null ? AppAssets.loadImageNetWork : widget.serviceContent.image?.pictureUrl}",
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             height: 135.h,

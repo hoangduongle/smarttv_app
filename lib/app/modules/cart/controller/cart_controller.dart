@@ -53,15 +53,18 @@ class CartController extends BaseController {
               fontWeight: FontWeight.bold),
         ),
         backgroundColor: AppColors.focus.withOpacity(.8),
-        duration: const Duration(milliseconds: 1000));
+        duration: const Duration(milliseconds: 2000));
+    update();
   }
 
   void removeSerivce(ServiceContent serviceContent) {
     _service.remove(serviceContent);
+    update();
   }
 
   void removeAllSerivce() {
     if (_service.isNotEmpty) _service.clear();
+    update();
   }
 
   void updateService(ServiceContent serviceContent, int quantity) {
@@ -70,6 +73,7 @@ class CartController extends BaseController {
     } else {
       removeSerivce(serviceContent);
     }
+    update();
   }
 
   get services => _service;
@@ -172,5 +176,6 @@ class CartController extends BaseController {
       Get.back();
       const DialogCart().showFailDialog(Get.context!);
     }
+    update();
   }
 }

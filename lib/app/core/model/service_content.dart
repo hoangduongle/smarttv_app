@@ -10,7 +10,7 @@ class ServiceContent {
   String? description;
   bool? status;
   String? majorGroup;
-  List<ImageContent>? image;
+  ImageContent? image;
   String? createDate;
   String? updateDate;
   String? createBy;
@@ -38,12 +38,7 @@ class ServiceContent {
     description = json['description'];
     status = json['status'];
     majorGroup = json['majorGroup'];
-    if (json['image'] != null) {
-      image = <ImageContent>[];
-      json['image'].forEach((v) {
-        image!.add(ImageContent.fromJson(v));
-      });
-    }
+    image = json['image'];
     createDate = json['createDate'];
     updateDate = json['updateDate'];
     createBy = json['createBy'];
@@ -61,9 +56,7 @@ class ServiceContent {
     data['description'] = this.description;
     data['status'] = this.status;
     data['majorGroup'] = this.majorGroup;
-    if (this.image != null) {
-      data['image'] = this.image!.map((v) => v.toJson()).toList();
-    }
+    data['image'] = this.image;
     data['createDate'] = this.createDate;
     data['updateDate'] = this.updateDate;
     data['createBy'] = this.createBy;

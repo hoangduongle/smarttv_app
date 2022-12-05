@@ -16,6 +16,8 @@ class ServiceController extends BaseController {
   Rx<List<ServiceCategoryContent>> serviceCateListTMP =
       Rx<List<ServiceCategoryContent>>([]);
 
+  bool isLoading = true;
+
   @override
   Future<void> onInit() async {
     fetchServiceCategory();
@@ -33,6 +35,9 @@ class ServiceController extends BaseController {
       servicecate,
       onSuccess: (List<ServiceCategoryContent> response) {
         result = response;
+      },
+      onStart: () {
+        isLoading = true;
       },
       onError: ((dioError) {}),
     );
@@ -63,5 +68,6 @@ class ServiceController extends BaseController {
         }
       }
     }
+    isLoading = false;
   }
 }

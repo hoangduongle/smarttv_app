@@ -169,16 +169,27 @@ class _ListOrderScreenState extends State<ListOrderScreen> {
                       flex: 3,
                       child: Container(),
                     ),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(NumberUtils.vnd(controller.total),
-                            style: AppStyles.h4.copyWith(
-                                fontSize: 20.sp,
-                                color: AppColors.white,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ),
+                    controller.isLoading
+                        ? Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text("",
+                                  style: AppStyles.h4.copyWith(
+                                      fontSize: 20.sp,
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          )
+                        : Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(NumberUtils.vnd(controller.total),
+                                  style: AppStyles.h4.copyWith(
+                                      fontSize: 20.sp,
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
                   ],
                 ),
                 SizedBox(
