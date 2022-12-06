@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
@@ -35,77 +36,86 @@ class MayjorEachService extends StatelessWidget {
               index: index,
             ).showServiceDialog(context, serviceContent);
           },
-          child: Container(
-            margin: EdgeInsets.all(2.r),
-            decoration: BoxDecoration(
-                color: AppColors.navigabackground,
-                borderRadius: BorderRadius.circular(10.r)),
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 0.h),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.r),
-                    child: CachedNetworkImage(
-                      imageUrl: serviceContent.image == null
-                          ? "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"
-                          : "${serviceContent.image?.pictureUrl}",
-                      imageBuilder: (context, imageProvider) {
-                        return Container(
-                          alignment: Alignment.topCenter,
-                          height: 105.h,
-                          width: 148.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
-                      placeholder: (context, url) {
-                        return Container(
-                          alignment: Alignment.topCenter,
-                          height: 105.h,
-                          width: 148.w,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
-                            image: const DecorationImage(
-                              image: NetworkImage(AppAssets.loadImageNetWork),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
+          child: Stack(
+            children: [
+              Container(
+                margin: EdgeInsets.all(2.r),
+                decoration: BoxDecoration(
+                    color: AppColors.navigabackground,
+                    borderRadius: BorderRadius.circular(10.r)),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 0.h),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.r),
+                        child: CachedNetworkImage(
+                          imageUrl: serviceContent.image == null
+                              ? "https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg"
+                              : "${serviceContent.image?.pictureUrl}",
+                          imageBuilder: (context, imageProvider) {
+                            return Container(
+                              alignment: Alignment.topCenter,
+                              height: 105.h,
+                              width: 148.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.r),
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                          placeholder: (context, url) {
+                            return Container(
+                              alignment: Alignment.topCenter,
+                              height: 105.h,
+                              width: 148.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.r),
+                                image: const DecorationImage(
+                                  image:
+                                      NetworkImage(AppAssets.loadImageNetWork),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ),
-                  ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      serviceContent.name.toString(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.white),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      NumberUtils.vnd(
+                          serviceContent.price), //<------ set controller
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.normal,
+                          color: AppColors.white),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Text(
-                  serviceContent.name.toString(),
-                  //
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.normal,
-                      color: AppColors.white),
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Text(
-                  NumberUtils.vnd(
-                      serviceContent.price), //<------ set controller
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.normal,
-                      color: AppColors.white),
-                ),
-              ],
-            ),
+              ),
+              serviceContent.isBestsale == true
+                  ? Align(
+                      alignment: Alignment(1.1.w, -1.2.h),
+                      child: Lottie.asset(AppAssets.bestsale, width: 50.w))
+                  : const Align(),
+            ],
           ),
         ),
       ),

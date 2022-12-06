@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, unrelated_type_equality_checks
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -27,14 +27,16 @@ class FoodandBeverageController extends BaseController {
   Rx<List<ServiceContent>> serviceNuocmocktails = Rx<List<ServiceContent>>([]);
   Rx<List<ServiceContent>> serviceBia = Rx<List<ServiceContent>>([]);
 //=============================================================================
-  Rx<List<ImageContent>> imageFandB = Rx<List<ImageContent>>([]);
   List<MayjorContent> mayjorFood = [];
   List<MayjorContent> mayjorDrink = [];
+
+  Rx<List<String>> serviceTop = Rx<List<String>>([]);
 
   var numberSelected = 0.obs;
 
   @override
   void onInit() async {
+    fetchServicesTop();
     _loadData();
     createMajor();
     await Future.wait([
@@ -49,6 +51,29 @@ class FoodandBeverageController extends BaseController {
     if (!TokenManager.instance.hasToken) {
       TokenManager.instance.init();
     }
+  }
+
+  Future<void> fetchServicesTop() async {
+    var services = _repository.serviceTop();
+    List<String> result = [];
+    await callDataService(
+      services,
+      onSuccess: (List<String> response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+    serviceTop(result);
+  }
+
+  bool getBestSale(int id) {
+    bool result = false;
+    for (var top in serviceTop.value) {
+      if (top == "$id") {
+        result = true;
+      }
+    }
+    return result;
   }
 
   Future<void> fetchServicesFood() async {
@@ -130,8 +155,9 @@ class FoodandBeverageController extends BaseController {
       if (element.status == true) {
         food = element.majorGroup.toString();
         element.image = (imageController.getImageById("service_${element.id}"));
-        // debugPrint(
-        //     "F&B: ${(imageController.getImageById("service_${element.id}"))}");
+        element.isBestsale = getBestSale(element.id!);
+        // debugPrint("${element.id!}:${getBestSale(element.id!)}");
+
         switch (food) {
           case "appetizer": //appetizer
             serviceKhaivi.value.add(element);
@@ -166,6 +192,9 @@ class FoodandBeverageController extends BaseController {
       if (element.status == true) {
         drink = element.majorGroup.toString();
         element.image = (imageController.getImageById("service_${element.id}"));
+        element.isBestsale = getBestSale(element.id!);
+        // debugPrint("${element.id!}:${getBestSale(element.id!)}");
+
         switch (drink) {
           case "coffee": //coffee
             serviceCafe.value.add(element);

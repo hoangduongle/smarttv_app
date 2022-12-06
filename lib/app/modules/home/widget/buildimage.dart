@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smarttv_app/app/core/model/overview_content.dart';
 import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
-import 'package:smarttv_app/app/data/data.dart';
 
 class ImageBuild extends StatelessWidget {
   OverviewContent overviewContent;

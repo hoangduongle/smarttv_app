@@ -580,4 +580,25 @@ class RepositoryImpl extends BaseRepository implements Repository {
       rethrow;
     }
   }
+
+  @override
+  Future<List<String>> serviceTop() async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/serviceTop";
+    var result = <ImageContent>[];
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <String>[];
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(element);
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

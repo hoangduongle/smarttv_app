@@ -6,7 +6,6 @@ import 'package:smarttv_app/app/core/controller/image_controller.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
-import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class AbtractionController extends BaseController {

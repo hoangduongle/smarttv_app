@@ -16,6 +16,7 @@ class ServiceContent {
   String? createBy;
   String? lastModifyBy;
   ServiceCategoryContent? serviceCategory;
+  bool? isBestsale;
 
   ServiceContent(
       {this.id,
@@ -29,7 +30,8 @@ class ServiceContent {
       this.updateDate,
       this.createBy,
       this.lastModifyBy,
-      this.serviceCategory});
+      this.serviceCategory,
+      this.isBestsale});
 
   ServiceContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];

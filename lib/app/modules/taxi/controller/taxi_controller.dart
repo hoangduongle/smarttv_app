@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/controller/image_controller.dart';
 import 'package:smarttv_app/app/core/model/orderRequest.dart';
-import 'package:smarttv_app/app/core/model/order_content.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
@@ -22,6 +21,7 @@ class TaxiController extends BaseController {
   List<bool> statusTaxi = [false, false];
 
   bool checkbox = false;
+  @override
   bool isLoading = true;
 
   @override

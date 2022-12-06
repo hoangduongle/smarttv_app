@@ -64,4 +64,6 @@ abstract class Repository {
   Future<List<CustomerFeedback>> insertCustomerFeedback(
       CustomerFeedback customerFeedback);
   Future<int> updateCustomerFeedback(CustomerFeedback customerFeedback);
+//=================================Top 3 Sale Service=====================================
+  Future<List<String>> serviceTop();
 }

@@ -12,6 +12,7 @@ class AppAssets {
   static const String logoforeground = imagePath + 'logo_foreground.png';
   // jpg file
   static const String home_masterWelcome = imagePath + 'home_master.jpg';
+  //lottie
   static const String lottiesPath = 'assets/lotties/';
   static const String loadingDongHo = '${lottiesPath}loadingdongho.json';
   static const String loadingImage = '${lottiesPath}loadingImage.json';
@@ -19,6 +20,9 @@ class AppAssets {
   static const String alarm = '${lottiesPath}alarm.json';
   static const String done = '${lottiesPath}done.json';
   static const String uncheck = '${lottiesPath}uncheck.json';
+  static const String bestsale = '${lottiesPath}bestsale.json';
+  static const String hot = '${lottiesPath}hot.json';
+
   //svg file
   static const String svgPath = 'assets/svg/';
   static const String markerRed = '${svgPath}marker_red.svg';
