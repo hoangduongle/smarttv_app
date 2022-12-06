@@ -9,18 +9,17 @@ class ServiceCategoryContent {
   bool? foodAndBeverage;
   bool? ordered;
   bool? status;
-  List<ImageContent>? images;
-  int? hotelId;
+  ImageContent? image;
 
-  ServiceCategoryContent(
-      {this.id,
-      this.name,
-      this.description,
-      this.foodAndBeverage,
-      this.ordered,
-      this.status,
-      this.images,
-      this.hotelId});
+  ServiceCategoryContent({
+    this.id,
+    this.name,
+    this.description,
+    this.foodAndBeverage,
+    this.ordered,
+    this.status,
+    this.image,
+  });
 
   ServiceCategoryContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -29,13 +28,6 @@ class ServiceCategoryContent {
     foodAndBeverage = json['foodAndBeverage'];
     ordered = json['ordered'];
     status = json['status'];
-    if (json['images'] != null) {
-      images = <ImageContent>[];
-      json['images'].forEach((v) {
-        images!.add(ImageContent.fromJson(v));
-      });
-    }
-    hotelId = json['hotel_Id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -46,10 +38,6 @@ class ServiceCategoryContent {
     data['foodAndBeverage'] = this.foodAndBeverage;
     data['ordered'] = this.ordered;
     data['status'] = this.status;
-    if (this.images != null) {
-      data['images'] = this.images!.map((v) => v.toJson()).toList();
-    }
-    data['hotel_Id'] = this.hotelId;
     return data;
   }
 }

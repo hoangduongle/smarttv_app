@@ -42,7 +42,7 @@ class HomeController extends BaseController {
           for (int i = 0; i < serviceCateList.length; i++) {
             overviewList.value.add(OverviewContent(
                 id: i,
-                imageUrl: serviceCateList[i].images![0].pictureUrl,
+                imageUrl: serviceCateList[i].image!.pictureUrl,
                 description: "${serviceCateList[i].description}.",
                 title: serviceCateList[i].name));
           }

@@ -44,9 +44,6 @@ const seconds_Promotion = 10;
 const seconds_News = 10;
 const seconds_Orders = 10;
 
-const urlLoadingImage =
-    'https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png';
-
 const wellcomeAbtraction = 'https://i.ibb.co/L69PWnr/local.png';
 const wellcomeNews = 'https://i.ibb.co/F3FN8vx/promotion.png';
 const wellcomeHomePage =

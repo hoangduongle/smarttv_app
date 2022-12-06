@@ -30,8 +30,8 @@ class ImageBuild extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.r),
                 child: CachedNetworkImage(
-                  imageUrl:
-                      "${overviewContent.imageUrl!.isNotEmpty ? overviewContent.imageUrl : urlLoadingImage}", //urlLoadingImage
+                  imageUrl: overviewContent.imageUrl ??
+                      AppAssets.loadImageNetWork, //urlLoadingImage
                   imageBuilder: (context, imageProvider) {
                     return Container(
                       width: 1000.w,
@@ -48,7 +48,7 @@ class ImageBuild extends StatelessWidget {
                       width: 1000.w,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(AppAssets.loadImage),
+                          image: NetworkImage(AppAssets.loadImageNetWork),
                           fit: BoxFit.cover,
                         ),
                       ),

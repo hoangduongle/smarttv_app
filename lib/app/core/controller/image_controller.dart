@@ -32,6 +32,6 @@ class ImageController extends BaseController {
       onError: ((dioError) {}),
     );
     imageContent(result);
-    debugPrint("${imageContent.toString()}");
+    // debugPrint("${imageContent.toString()}");
   }
 }

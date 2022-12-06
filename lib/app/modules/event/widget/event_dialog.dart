@@ -3,6 +3,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
 
@@ -36,7 +37,7 @@ class EventDialog extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.r),
                     child: CachedNetworkImage(
                       imageUrl:
-                          "${newsContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : newsContent.images![0].pictureUrl}",
+                          "${newsContent.image == null ? AppAssets.loadImageNetWork : newsContent.image!.pictureUrl}",
                       imageBuilder: (context, imageProvider) {
                         return Container(
                           height: 200.h,

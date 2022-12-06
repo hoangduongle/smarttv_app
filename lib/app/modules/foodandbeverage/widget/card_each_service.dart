@@ -98,7 +98,8 @@ class _CardEachServiceState extends State<CardEachService> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.r),
                             image: DecorationImage(
-                              image: AssetImage(AppAssets.loadImage),
+                              image:
+                                  NetworkImage("${AppAssets.loadImageNetWork}"),
                               fit: BoxFit.cover,
                             ),
                           ),

@@ -6,12 +6,13 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:smarttv_app/app/core/controller/smart_map_controller.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/modules/abtraction/widget/abtraction_dialog.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 
 class AbtractionCard extends StatelessWidget {
-  AbtractionContent abtractionContent;
+  AbstractionsContent abtractionContent;
   int index;
   SmartMapController mapController;
   AbtractionCard({
@@ -54,7 +55,7 @@ class AbtractionCard extends StatelessWidget {
               ClipRRect(
                 child: CachedNetworkImage(
                   imageUrl:
-                      "${abtractionContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : abtractionContent.images![0].pictureUrl}",
+                      "${abtractionContent.image == null ? AppAssets.loadImageNetWork : abtractionContent.image!.pictureUrl}",
                   imageBuilder: (context, imageProvider) {
                     return Container(
                       height: 120.h,

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/controller/image_controller.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
@@ -11,7 +12,7 @@ class PromotionController extends BaseController {
 
   @override
   Future<void> onInit() async {
-    await fetchNewsPromotion();
+    fetchNewsPromotion();
     super.onInit();
   }
 
@@ -32,6 +33,25 @@ class PromotionController extends BaseController {
       onError: ((dioError) {}),
     );
     promotionList(result);
+    addImage();
     debugPrint("Promotion ${DateTimeUtils.currentDateTimeSecond()}");
+  }
+
+  void addImage() {
+    ImageController imageController = Get.find();
+    if (imageController.imageContent.value.isEmpty) {
+      Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          return addImage();
+        },
+      );
+    } else {
+      for (int i = 0; i < promotionList.value.length; i++) {
+        promotionList.value[i].image =
+            imageController.getImageById("new_${promotionList.value[i].id}");
+      }
+    }
+    update();
   }
 }

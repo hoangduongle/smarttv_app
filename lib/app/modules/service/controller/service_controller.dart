@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
+import 'package:smarttv_app/app/core/controller/image_controller.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
@@ -15,8 +16,6 @@ class ServiceController extends BaseController {
       Rx<List<ServiceCategoryContent>>([]);
   Rx<List<ServiceCategoryContent>> serviceCateListTMP =
       Rx<List<ServiceCategoryContent>>([]);
-
-  bool isLoading = true;
 
   @override
   Future<void> onInit() async {
@@ -36,19 +35,31 @@ class ServiceController extends BaseController {
       onSuccess: (List<ServiceCategoryContent> response) {
         result = response;
       },
-      onStart: () {
-        isLoading = true;
-      },
       onError: ((dioError) {}),
     );
     serviceCateListTMP(result);
+    addImage();
     debugPrint("Service Category ${DateTimeUtils.currentDateTimeSecond()}");
     fandB();
     return result;
   }
 
-  void timeOut() {
-    //het thoi gian lam viec
+  void addImage() {
+    ImageController imageController = Get.find();
+    if (imageController.imageContent.value.isEmpty) {
+      Future.delayed(
+        const Duration(seconds: 2),
+        () {
+          return addImage();
+        },
+      );
+    } else {
+      for (int i = 0; i < serviceCateListTMP.value.length; i++) {
+        serviceCateListTMP.value[i].image = imageController
+            .getImageById("serviceCategory_${serviceCateListTMP.value[i].id}");
+      }
+    }
+    update();
   }
 
   void fandB() {
@@ -61,13 +72,12 @@ class ServiceController extends BaseController {
             id: 1,
             description: element.description,
             name: "Thức ăn và đồ uống",
-            images: element.images));
+            image: element.image));
       } else if (element.id != 1 && element.id != 2 && element.id != 12) {
         if (element.status == true) {
           serviceCateList.value.add(element);
         }
       }
     }
-    isLoading = false;
   }
 }

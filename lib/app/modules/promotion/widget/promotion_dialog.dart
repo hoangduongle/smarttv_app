@@ -38,7 +38,7 @@ class PromotionDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.r),
                         child: CachedNetworkImage(
                           imageUrl:
-                              "${newsContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : newsContent.images![0].pictureUrl}",
+                              "${newsContent.image == null ? AppAssets.loadImageNetWork : newsContent.image!.pictureUrl}",
                           imageBuilder: (context, imageProvider) {
                             return Container(
                               height: 330.h,
@@ -59,7 +59,8 @@ class PromotionDialog extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.r),
                                 image: const DecorationImage(
-                                  image: AssetImage(AppAssets.loadImage),
+                                  image:
+                                      NetworkImage(AppAssets.loadImageNetWork),
                                   fit: BoxFit.fill,
                                 ),
                               ),

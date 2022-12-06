@@ -16,8 +16,7 @@ class NewsContent {
   String? newType;
   String? status;
   int? numberOfView;
-  int? hotelId;
-  List<ImageContent>? images;
+  ImageContent? image;
 
   NewsContent(
       {this.id,
@@ -33,8 +32,7 @@ class NewsContent {
       this.newType,
       this.status,
       this.numberOfView,
-      this.hotelId,
-      this.images});
+      this.image});
 
   NewsContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -50,13 +48,6 @@ class NewsContent {
     newType = json['newType'];
     status = json['status'];
     numberOfView = json['numberOfView'];
-    hotelId = json['hotel_Id'];
-    if (json['images'] != null) {
-      images = <ImageContent>[];
-      json['images'].forEach((v) {
-        images!.add(ImageContent.fromJson(v));
-      });
-    }
   }
 
   Map<String, dynamic> toJson() {
@@ -75,10 +66,6 @@ class NewsContent {
     data['newType'] = this.newType;
     data['status'] = this.status;
     data['numberOfView'] = this.numberOfView;
-    data['hotel_Id'] = this.hotelId;
-    if (this.images != null) {
-      data['images'] = this.images!.map((v) => v.toJson()).toList();
-    }
     return data;
   }
 }

@@ -151,7 +151,7 @@ class TaxiController extends BaseController {
       onError: ((dioError) {}),
     );
     taxiContent(result);
-    debugPrint("Taxii ${taxiContent.toString()}");
+    // debugPrint("Taxii ${taxiContent.toString()}");
     addImage();
     debugPrint("Taxi ${DateTimeUtils.currentDateTimeSecond()}");
   }
@@ -171,9 +171,7 @@ class TaxiController extends BaseController {
             imageController.getImageById("service_${taxiContent.value[i].id}");
       }
     }
-
     isLoading = false;
-
     update();
   }
 }

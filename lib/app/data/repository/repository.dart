@@ -24,7 +24,7 @@ abstract class Repository {
 //=========================News===============================================
   Future<List<NewsContent>> getListNewsByType(String type);
 //===========================Abtraction=========================================
-  Future<List<AbtractionContent>> getListAbtraction();
+  Future<List<AbstractionsContent>> getListAbtraction();
 //==============================Order============================================
   Future<List<OrderContent>> getOrderByBookingId(int bookingId);
   Future<OrderContent> getOrderId(int id);

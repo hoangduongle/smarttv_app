@@ -115,7 +115,7 @@ class _CardCategoryState extends State<CardCategory> {
                           : BorderRadius.circular(10.r),
                       child: CachedNetworkImage(
                         imageUrl:
-                            "${widget.serviceCategory.images!.isNotEmpty ? widget.serviceCategory.images![0].pictureUrl : urlLoadingImage}", //urlLoadingImage
+                            "${widget.serviceCategory.image == null ? AppAssets.loadImageNetWork : widget.serviceCategory.image!.pictureUrl}",
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             height: naController.select ? 180.h : 160.h,
@@ -139,8 +139,9 @@ class _CardCategoryState extends State<CardCategory> {
                               borderRadius: widget.focusNode.hasFocus
                                   ? BorderRadius.circular(0.r)
                                   : BorderRadius.circular(10.r),
-                              image: DecorationImage(
-                                image: AssetImage(AppAssets.loadImage),
+                              image: const DecorationImage(
+                                image: NetworkImage(
+                                    "${AppAssets.loadImageNetWork}"),
                                 fit: BoxFit.cover,
                               ),
                             ),

@@ -12,7 +12,6 @@ class BookingController extends BaseController {
   @override
   void onInit() async {
     fetchBooking(roomId);
-
     super.onInit();
   }
 

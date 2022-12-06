@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/model/news_content.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/core/values/app_styles.dart';
@@ -189,7 +190,7 @@ class _EventScreenState extends State<EventScreen> {
           borderRadius: BorderRadius.circular(10.r),
           child: CachedNetworkImage(
             imageUrl:
-                "${newsContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : newsContent.images![0].pictureUrl}", //
+                "${newsContent.image == null ? AppAssets.loadImageNetWork : newsContent.image!.pictureUrl}",
             imageBuilder: (context, imageProvider) {
               return Container(
                 margin: EdgeInsets.all(2.r),

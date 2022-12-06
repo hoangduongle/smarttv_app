@@ -71,7 +71,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<AbtractionContent>> getListAbtraction() async {
+  Future<List<AbstractionsContent>> getListAbtraction() async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
@@ -79,10 +79,10 @@ class RepositoryImpl extends BaseRepository implements Repository {
     var dioCall = dioTokenClient.get(endpoint);
     try {
       return callApi(dioCall).then((response) {
-        var result = <AbtractionContent>[];
+        var result = <AbstractionsContent>[];
 
         for (var element in (response.data as List<dynamic>)) {
-          result.add(AbtractionContent.fromJson(element));
+          result.add(AbstractionsContent.fromJson(element));
         }
         return result;
       });

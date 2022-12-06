@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
+import 'package:smarttv_app/app/core/values/app_assets.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
 
@@ -15,7 +16,7 @@ class AbtractionDialog extends StatelessWidget {
   }
 
   void showAbtractionDialog(
-      BuildContext context, AbtractionContent abtractionContent) {
+      BuildContext context, AbstractionsContent abtractionContent) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -60,7 +61,7 @@ class AbtractionDialog extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.r),
                           child: CachedNetworkImage(
                             imageUrl:
-                                "${abtractionContent.images!.isEmpty ? "https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png" : abtractionContent.images![0].pictureUrl}",
+                                "${abtractionContent.image == null ? AppAssets.loadImageNetWork : abtractionContent.image!.pictureUrl}",
                             imageBuilder: (context, imageProvider) {
                               return Container(
                                 height: 250.h,
