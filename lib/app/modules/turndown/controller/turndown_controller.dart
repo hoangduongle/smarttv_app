@@ -10,6 +10,7 @@ import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/request_service.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/turndown/widget/dialog.dart';
@@ -41,7 +42,7 @@ class TurndownController extends BaseController {
         await fetchRequest(
             "${DateTimeUtils.currentDate()} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
             "Dọn phòng nhanh",
-            TURNDOWN);
+            AppConstants.TURNDOWN);
         Get.back();
         if (result == 200) {
           const TurndownDialogWidget()
@@ -88,8 +89,8 @@ class TurndownController extends BaseController {
   }
 
   Future<void> fetchRequest(String dateTime, String name, String type) async {
-    var overview =
-        _repository.requestService(bookingId, dateTime, 0, name, type, BOOKED);
+    var overview = _repository.requestService(
+        bookingId, dateTime, 0, name, type, AppConstants.BOOKED);
     await callDataService(
       overview,
       onSuccess: (int response) {

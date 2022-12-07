@@ -14,6 +14,7 @@ import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/core/values/app_colors.dart';
+import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/cart/widget/dialog.dart';
@@ -148,12 +149,12 @@ class CartController extends BaseController {
         OrderRequest orderRequest = OrderRequest(
             orderPaymentId: null,
             bookingId: bookingId,
-            createBy: "Duong",
+            createBy: "LHDuong",
             createDate: DateTimeUtils.currentDate(),
             id: 0,
-            lastModifyBy: "Duong",
+            lastModifyBy: "LHDuong",
             lorderDetailRequests: listlorderDetailRequests,
-            status: BOOKED,
+            status: AppConstants.BOOKED,
             totalAmount: total,
             updateDate: DateTimeUtils.currentDate());
         int result = await insertOrderRequest(orderRequest);

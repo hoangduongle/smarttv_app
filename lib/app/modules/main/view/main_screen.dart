@@ -3,7 +3,6 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/modules/abtraction/controller/abtraction_controller.dart';
 import 'package:smarttv_app/app/modules/alarm/view/alarm_screen.dart';
 import 'package:smarttv_app/app/modules/event/controller/event_controller.dart';
@@ -349,8 +348,8 @@ class _MainScreenState extends State<MainScreen> {
                                                     ]);
                                                     Future.delayed(
                                                       Duration(
-                                                          seconds:
-                                                              seconds_ServiceCate),
+                                                          seconds: AppConstants
+                                                              .seconds_ServiceCate),
                                                       () {
                                                         waitonTap = true;
                                                       },
@@ -372,8 +371,8 @@ class _MainScreenState extends State<MainScreen> {
                                                     ]);
                                                     Future.delayed(
                                                       Duration(
-                                                          seconds:
-                                                              seconds_ServiceCate),
+                                                          seconds: AppConstants
+                                                              .seconds_ServiceCate),
                                                       () {
                                                         waitonTap = true;
                                                       },
@@ -394,8 +393,8 @@ class _MainScreenState extends State<MainScreen> {
                                                     ]);
                                                     Future.delayed(
                                                       Duration(
-                                                          seconds:
-                                                              seconds_ServiceCate),
+                                                          seconds: AppConstants
+                                                              .seconds_ServiceCate),
                                                       () {
                                                         waitonTap = true;
                                                       },
@@ -417,8 +416,8 @@ class _MainScreenState extends State<MainScreen> {
                                                     ]);
                                                     Future.delayed(
                                                       Duration(
-                                                          seconds:
-                                                              seconds_ServiceCate),
+                                                          seconds: AppConstants
+                                                              .seconds_ServiceCate),
                                                       () {
                                                         waitonTap = true;
                                                       },
@@ -440,8 +439,8 @@ class _MainScreenState extends State<MainScreen> {
                                                     ]);
                                                     Future.delayed(
                                                       Duration(
-                                                          seconds:
-                                                              seconds_ServiceCate),
+                                                          seconds: AppConstants
+                                                              .seconds_ServiceCate),
                                                       () {
                                                         waitonTap = true;
                                                       },
@@ -462,8 +461,8 @@ class _MainScreenState extends State<MainScreen> {
                                                     ]);
                                                     Future.delayed(
                                                       Duration(
-                                                          seconds:
-                                                              seconds_ServiceCate),
+                                                          seconds: AppConstants
+                                                              .seconds_ServiceCate),
                                                       () {
                                                         waitonTap = true;
                                                       },

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:smarttv_app/app/bindings/initia_bindings.dart';
 import 'package:smarttv_app/app/core/controller/network_controller.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
+import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/core/utils/messages_translation.dart';
 import 'package:smarttv_app/config/build_config.dart';
@@ -13,11 +14,9 @@ import 'package:smarttv_app/config/map_config.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MapConfig mapConfig = MapConfig(
-    mapboxUrlTemplate:
-        'https://api.mapbox.com/styles/v1/lehhoangduong/cl9xnm59q00j714o2ltpm3mdp/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ',
-    mapboxAccessToken:
-        'pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ',
-    mapboxId: 'mapbox.mapbox-streets-v8',
+    mapboxUrlTemplate: AppConstants.mapboxUrlTemplate,
+    mapboxAccessToken: AppConstants.mapboxAccessToken,
+    mapboxId: AppConstants.mapboxId,
   );
 
   BuildConfig(

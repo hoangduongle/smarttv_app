@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 class FontFamily {
   static final Roboto = 'Roboto';
-  static final Rochester = 'Rochester';
   static final Arvo = 'Arvo';
-  static final sen = 'Sen';
 }
 
 class AppStyles {

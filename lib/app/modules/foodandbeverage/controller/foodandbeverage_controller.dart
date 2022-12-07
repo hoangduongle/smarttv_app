@@ -9,6 +9,7 @@ import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
+import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
 class FoodandBeverageController extends BaseController {
@@ -66,7 +67,7 @@ class FoodandBeverageController extends BaseController {
     serviceTop(result);
   }
 
-  bool getBestSale(int id) {
+  bool getTopBestSale(int id) {
     bool result = false;
     for (var top in serviceTop.value) {
       if (top == "$id") {
@@ -87,7 +88,6 @@ class FoodandBeverageController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceListFood(result);
-    debugPrint("Food ${DateTimeUtils.currentDateTimeSecond()}");
   }
 
   Future<void> fetchServicesDrink() async {
@@ -101,46 +101,33 @@ class FoodandBeverageController extends BaseController {
       onError: ((dioError) {}),
     );
     serviceListDrink(result);
-    debugPrint("Drink ${DateTimeUtils.currentDateTimeSecond()}");
   }
 
   void createMajor() {
     mayjorFood = [
       MayjorContent(
-          id: 0,
-          name: "Món khai vị",
-          image: "https://i.ibb.co/1XrSCCn/khaivi.jpg"),
-      //imageFandB.value[0].pictureUrl!
+          id: 0, name: "Món khai vị", image: AppConstants.mayjorAppetizer),
       MayjorContent(
-          id: 1,
-          name: "Món chính",
-          image: "https://i.ibb.co/FXxCjRs/monchinh.jpg"),
+          id: 1, name: "Món chính", image: AppConstants.mayjorMain_Dishes),
       MayjorContent(
-          id: 2,
-          name: "Món tráng miệng",
-          image: "https://i.ibb.co/VCdGJd5/trangmieng.jpg"),
+          id: 2, name: "Món tráng miệng", image: AppConstants.mayjorDessert),
     ];
     mayjorDrink = [
-      MayjorContent(
-          id: 3, name: "Cà phê", image: "https://i.ibb.co/rkKPj6d/coffee.jpg"),
-      MayjorContent(
-          id: 4, name: "Nước trà", image: "https://i.ibb.co/S57jQwN/tea.jpg"),
+      MayjorContent(id: 3, name: "Cà phê", image: AppConstants.mayjorCoffee),
+      MayjorContent(id: 4, name: "Nước trà", image: AppConstants.mayjorTea),
       MayjorContent(
           id: 5,
           name: "Nước suối và nước ngọt",
-          image: "https://i.ibb.co/hy50Vj5/nuocngot.jpg"),
+          image: AppConstants.mayjorWater_And_Soft_Drink),
       MayjorContent(
-          id: 6,
-          name: "Nước mocktails",
-          image: "https://i.ibb.co/3BkkL5L/mocktails.jpg"),
-      MayjorContent(
-          id: 7, name: "Bia", image: "https://i.ibb.co/2k5QHCB/bia.png"),
+          id: 6, name: "Nước mocktails", image: AppConstants.mayjorMocktails),
+      MayjorContent(id: 7, name: "Bia", image: AppConstants.mayjorBeer),
     ];
   }
 
   void filter() {
     ImageController imageController = Get.find();
-    String food = "";
+
     if (serviceKhaivi.value.isNotEmpty) {
       serviceKhaivi.value.clear();
     }
@@ -150,28 +137,25 @@ class FoodandBeverageController extends BaseController {
     if (serviceTrangmieng.value.isNotEmpty) {
       serviceTrangmieng.value.clear();
     }
-
+    String food = "";
     for (var element in serviceListFood.value) {
       if (element.status == true) {
         food = element.majorGroup.toString();
         element.image = (imageController.getImageById("service_${element.id}"));
-        element.isBestsale = getBestSale(element.id!);
-        // debugPrint("${element.id!}:${getBestSale(element.id!)}");
-
+        element.isBestsale = getTopBestSale(element.id!);
         switch (food) {
-          case "appetizer": //appetizer
+          case "appetizer":
             serviceKhaivi.value.add(element);
             break;
-          case "main_dishes": //main_dishes
+          case "main_dishes":
             serviceMonchinh.value.add(element);
             break;
-          case "dessert": //dessert
+          case "dessert":
             serviceTrangmieng.value.add(element);
             break;
         }
       }
     }
-    String drink = "";
     if (serviceCafe.value.isNotEmpty) {
       serviceCafe.value.clear();
     }
@@ -187,29 +171,26 @@ class FoodandBeverageController extends BaseController {
     if (serviceBia.value.isNotEmpty) {
       serviceBia.value.clear();
     }
-
+    String drink = "";
     for (var element in serviceListDrink.value) {
       if (element.status == true) {
         drink = element.majorGroup.toString();
         element.image = (imageController.getImageById("service_${element.id}"));
-        element.isBestsale = getBestSale(element.id!);
-        // debugPrint("${element.id!}:${getBestSale(element.id!)}");
-
+        element.isBestsale = getTopBestSale(element.id!);
         switch (drink) {
-          case "coffee": //coffee
+          case "coffee":
             serviceCafe.value.add(element);
-            // debugPrint(element.toString());
             break;
-          case "tea": //tea
+          case "tea":
             serviceNuoctra.value.add(element);
             break;
-          case "water_and_soft_drink": //water_and_soft_drink
+          case "water_and_soft_drink":
             serviceNuocsuoi.value.add(element);
             break;
-          case "mocktails": //mocktails
+          case "mocktails":
             serviceNuocmocktails.value.add(element);
             break;
-          case "beer": //beer
+          case "beer":
             serviceBia.value.add(element);
             break;
         }

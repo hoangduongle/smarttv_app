@@ -7,6 +7,7 @@ import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/core/utils/number_utils.dart';
+import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/checkout/widget/dialog.dart';
@@ -47,8 +48,8 @@ class CheckoutController extends BaseController {
   }
 
   Future<void> fetchRequest(String dateTime, String name, String type) async {
-    var overview =
-        _repository.requestService(bookingId, dateTime, 0, name, type, BOOKED);
+    var overview = _repository.requestService(
+        bookingId, dateTime, 0, name, type, AppConstants.BOOKED);
     await callDataService(
       overview,
       onSuccess: (int response) {

@@ -9,6 +9,7 @@ import 'package:smarttv_app/app/core/model/orderRequest.dart';
 import 'package:smarttv_app/app/core/model/order_detail_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
+import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/modules/order/controller/order_controller.dart';
@@ -66,7 +67,7 @@ class TaxiController extends BaseController {
           id: 0,
           lastModifyBy: "Duong",
           lorderDetailRequests: listlorderDetailRequests,
-          status: BOOKED,
+          status: AppConstants.BOOKED,
           totalAmount: service.price,
           updateDate: DateTimeUtils.currentDate());
       statusTaxi[index] = true;

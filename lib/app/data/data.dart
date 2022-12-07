@@ -15,7 +15,6 @@ import 'package:smarttv_app/app/core/values/app_const.dart';
 const hotelId = 1;
 const roomId = 4;
 const bookId = "bookingId";
-const departualDateBooking = "DepartualDateBooking";
 
 const userNameApi = '123';
 const passwordApi = '123';
@@ -30,32 +29,6 @@ DeviceContent device = DeviceContent(
     description: "TV Sony",
     status: true,
     room: null);
-
-const mapboxUrlTemplate =
-    'https://api.mapbox.com/styles/v1/lehhoangduong/cl9xnm59q00j714o2ltpm3mdp/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ';
-const mapboxAccessToken =
-    'pk.eyJ1IjoibGVoaG9hbmdkdW9uZyIsImEiOiJjbDl4cGExdjkwMjFuM25xcW00eXI2aXVmIn0.KIUtgALNKjfp1fWry_3vwQ';
-const mapboxId = 'mapbox.mapbox-streets-v8';
-
-const SECONDS = 10;
-const seconds_ServiceCate = 10;
-const seconds_Event = 10;
-const seconds_Promotion = 10;
-const seconds_News = 10;
-const seconds_Orders = 10;
-
-const wellcomeAbtraction = 'https://i.ibb.co/L69PWnr/local.png';
-const wellcomeNews = 'https://i.ibb.co/F3FN8vx/promotion.png';
-const wellcomeHomePage =
-    'https://www.saigonprincehotel.com/files/images/page/1/tmiads.vn-entrance-home-1538966188.jpg';
-const wellcomeService =
-    'https://www.evenement.com/wp-content/uploads/2022/08/restaurant-interior-758x534.jpg';
-const wellcomeEvent =
-    'https://seaevent.vn/wp-content/uploads/2019/12/welcome-to-sea-event-banner.jpg';
-
-const BOOKED = 'BOOKED';
-const DONE = 'DONE';
-const TURNDOWN = 'TURN DOWN';
 
 const List<NavigationContent> listNavigationContent = [
   NavigationContent(
