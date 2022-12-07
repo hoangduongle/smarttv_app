@@ -32,7 +32,6 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
     var endpoint = "${DioProvider.baseUrl}/serviceCategories";
     var dioCall = dioTokenClient.get(endpoint);
-
     try {
       return callApi(dioCall).then((response) {
         var result = <ServiceCategoryContent>[];
@@ -118,13 +117,14 @@ class RepositoryImpl extends BaseRepository implements Repository {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/booking";
+    var endpoint = "${DioProvider.baseUrl}/bookingByRoomId";
     var data = {"room_id": roomId};
+    var fromData = FormData.fromMap(data);
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
     try {
       return callApi(dioCall).then((response) {
         var result = <BookingContent>[];
-        return BookingContent.fromJson(response.data[0]);
+        return BookingContent.fromJson(response.data);
       });
     } catch (e) {
       rethrow;

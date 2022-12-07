@@ -63,7 +63,8 @@ class WellcomeController extends BaseController {
       content = "Phòng hiện tại chưa được Check-In";
     } else {
       nameCus =
-          "${bookingContent.value?.customerStayBooking![0].gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customerStayBooking![0].lastName}";
+          // "${bookingContent.value?.customerStayBooking![0].gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customerStayBooking![0].lastName}";
+          "${bookingContent.value?.customer!.gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customer!.lastName}";
       if (formattedHours >= 00) {
         timeforsession = 'buổi sáng';
       }
@@ -77,14 +78,16 @@ class WellcomeController extends BaseController {
         timeforsession = 'buổi tối';
       }
       title = welcomeContent + timeforsession + nameCus;
-      String? birthday = bookingContent.value?.customerStayBooking![0].birthDate
+      String? birthday = bookingContent.value?.customer!.birthDate
+          // String? birthday = bookingContent.value?.customerStayBooking![0].birthDate
           ?.substring(0, 5);
       if (birthday == currentDay) {
         title = birthdayContent + nameCus;
         audio();
       }
       content =
-          "Chúc ${bookingContent.value?.customerStayBooking![0].gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
+          // "Chúc ${bookingContent.value?.customerStayBooking![0].gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
+          "Chúc ${bookingContent.value?.customer!.gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
     }
   }
 
@@ -121,7 +124,7 @@ class WellcomeController extends BaseController {
   void getWeather() async {
     double lat = 10.7683;
     double lon = 106.6758;
-    WeatherFactory wf = WeatherFactory("856822fd8e22db5e1ba48c0e7d69844a",
+    WeatherFactory wf = WeatherFactory("08859c8600e11096805eb8c503819e29",
         language: Language.VIETNAMESE);
     Weather w = await wf.currentWeatherByLocation(lat, lon);
     weatherCelsius = w.temperature!.celsius ?? 0;
