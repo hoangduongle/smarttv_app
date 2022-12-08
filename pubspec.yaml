@@ -51,7 +51,6 @@ dependencies:
   audioplayers: ^0.20.1
   lottie: ^1.4.3
   qr_flutter: ^4.0.0
-  weather: ^2.0.1
   flutter_native_splash: ^2.2.13
   flutter_map: ^3.0.0
   latlong2: ^0.8.1

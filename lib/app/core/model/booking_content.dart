@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_collection_literals, unnecessary_this
 
 import 'package:smarttv_app/app/core/model/customer_content.dart';
-import 'package:smarttv_app/app/core/model/customer_stay_booking.dart';
-import 'package:smarttv_app/app/core/model/request_service.dart';
 
 class BookingContent {
   int? id;
@@ -25,32 +23,29 @@ class BookingContent {
   int? hotelId;
   int? roomId;
   CustomerContent? customer;
-  List<RequestServiceContent>? requestServices;
-  List<CustomerStayBooking>? customerStayBooking;
 
-  BookingContent(
-      {this.id,
-      this.confirmationNo,
-      this.arrivalDate,
-      this.actualArrivalDate,
-      this.departureDate,
-      this.actualDepartureDate,
-      this.numOfAdult,
-      this.numOfChildren,
-      this.totalAmount,
-      this.roomPayment,
-      this.specialNote,
-      this.status,
-      this.createDate,
-      this.updateDate,
-      this.createBy,
-      this.lastModifyBy,
-      this.roomTypeId,
-      this.hotelId,
-      this.roomId,
-      this.customer,
-      this.requestServices,
-      this.customerStayBooking});
+  BookingContent({
+    this.id,
+    this.confirmationNo,
+    this.arrivalDate,
+    this.actualArrivalDate,
+    this.departureDate,
+    this.actualDepartureDate,
+    this.numOfAdult,
+    this.numOfChildren,
+    this.totalAmount,
+    this.roomPayment,
+    this.specialNote,
+    this.status,
+    this.createDate,
+    this.updateDate,
+    this.createBy,
+    this.lastModifyBy,
+    this.roomTypeId,
+    this.hotelId,
+    this.roomId,
+    this.customer,
+  });
 
   BookingContent.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -75,18 +70,6 @@ class BookingContent {
     customer = json['customer'] != null
         ? CustomerContent.fromJson(json['customer'])
         : null;
-    if (json['requestServices'] != null) {
-      requestServices = <RequestServiceContent>[];
-      json['requestServices'].forEach((v) {
-        requestServices!.add(RequestServiceContent.fromJson(v));
-      });
-    }
-    if (json['customerStayBooking'] != null) {
-      customerStayBooking = <CustomerStayBooking>[];
-      json['customerStayBooking'].forEach((v) {
-        customerStayBooking!.add(CustomerStayBooking.fromJson(v));
-      });
-    }
   }
 
   Map<String, dynamic> toJson() {
@@ -112,14 +95,6 @@ class BookingContent {
     data['room_Id'] = this.roomId;
     if (this.customer != null) {
       data['customer'] = this.customer!.toJson();
-    }
-    if (this.requestServices != null) {
-      data['requestServices'] =
-          this.requestServices!.map((v) => v.toJson()).toList();
-    }
-    if (this.customerStayBooking != null) {
-      data['customerStayBooking'] =
-          this.customerStayBooking!.map((v) => v.toJson()).toList();
     }
     return data;
   }

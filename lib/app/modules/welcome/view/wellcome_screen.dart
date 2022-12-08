@@ -27,127 +27,102 @@ class _WelcomePageState extends State<WelcomePage> {
     Size size = MediaQuery.of(context).size;
     return GetBuilder<WellcomeController>(
       builder: (controller) {
-        return controller.url == ""
-            ? Container(
-                height: size.height.h,
-                width: size.width.w,
-                decoration: const BoxDecoration(
-                  color: AppColors.color1414,
-                  image: DecorationImage(
-                      image: AssetImage(AppAssets.home_masterWelcome),
-                      fit: BoxFit.cover,
-                      opacity: 0.2),
-                ),
-              )
-            : Scaffold(
-                backgroundColor: AppColors.white,
-                body: Container(
-                    height: size.height.h,
-                    width: size.width.w,
-                    decoration: const BoxDecoration(
-                      color: AppColors.color1414,
-                      image: DecorationImage(
-                          image: AssetImage(AppAssets.home_masterWelcome),
-                          fit: BoxFit.cover,
-                          opacity: 0.2),
-                    ),
-                    child: Column(
+        return Scaffold(
+          backgroundColor: AppColors.white,
+          body: Container(
+              height: size.height.h,
+              width: size.width.w,
+              decoration: const BoxDecoration(
+                color: AppColors.color1414,
+                image: DecorationImage(
+                    image: AssetImage(AppAssets.home_masterWelcome),
+                    fit: BoxFit.cover,
+                    opacity: 0.2),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(20.r),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.all(20.r),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    controller.formattedTime.toString(),
-                                    style: TextStyle(
-                                        fontSize: 25.sp,
-                                        color: AppColors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: FontFamily.Arvo),
-                                  ),
-                                  Text(
-                                    controller.formattedDate.toString(),
-                                    style: TextStyle(
-                                      fontSize: 20.sp,
-                                      color: AppColors.white,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Image.network(controller.url, height: 55),
-                                  Text(
-                                    "${controller.weatherCelsius!.toStringAsFixed(0)} \u2103",
-                                    style: TextStyle(
-                                        fontSize: 25.sp,
-                                        color: AppColors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: FontFamily.Arvo),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        Column(
                           children: [
-                            Image.asset(AppAssets.logoforeground, height: 40),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 5.h),
+                            Text(
+                              controller.formattedTime.toString(),
+                              style: TextStyle(
+                                  fontSize: 25.sp,
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: FontFamily.Arvo),
                             ),
                             Text(
-                              AppConstants.title,
+                              controller.formattedDate.toString(),
                               style: TextStyle(
+                                fontSize: 20.sp,
                                 color: AppColors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 35.sp,
+                                fontWeight: FontWeight.normal,
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 35.h),
-                          child: Text(
-                            controller.title,
-                            style: AppStyles.h4.copyWith(
-                                color: AppColors.white, fontSize: 40.sp),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 35.h),
-                          child: Text(
-                            controller.content,
-                            style: AppStyles.h4.copyWith(
-                                color: AppColors.greyColor, fontSize: 20.sp),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50.h,
-                        ),
-                        SizedBox(
-                          width: size.width.w,
-                          height: 200.h,
-                          child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              padding: EdgeInsets.symmetric(horizontal: 85.w),
-                              itemBuilder: (context, index) {
-                                return WellcomeBuild(index: index);
-                              },
-                              separatorBuilder: (context, index) => SizedBox(
-                                    width: 40.w,
-                                  ),
-                              itemCount: 5),
-                        )
                       ],
-                    )),
-              );
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(AppAssets.logoforeground, height: 40),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.h),
+                      ),
+                      Text(
+                        AppConstants.title,
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 35.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 35.h),
+                    child: Text(
+                      controller.title.trim(),
+                      style: AppStyles.h4
+                          .copyWith(color: AppColors.white, fontSize: 40.sp),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 35.h),
+                    child: Text(
+                      controller.content.trim(),
+                      style: AppStyles.h4.copyWith(
+                          color: AppColors.greyColor, fontSize: 20.sp),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50.h,
+                  ),
+                  SizedBox(
+                    width: size.width.w,
+                    height: 200.h,
+                    child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        padding: EdgeInsets.symmetric(horizontal: 85.w),
+                        itemBuilder: (context, index) {
+                          return WellcomeBuild(index: index);
+                        },
+                        separatorBuilder: (context, index) => SizedBox(
+                              width: 40.w,
+                            ),
+                        itemCount: 5),
+                  )
+                ],
+              )),
+        );
       },
     );
   }

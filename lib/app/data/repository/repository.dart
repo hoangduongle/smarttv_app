@@ -1,5 +1,6 @@
 import 'package:smarttv_app/app/core/model/abtraction_content.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
+import 'package:smarttv_app/app/core/model/customer_content.dart';
 import 'package:smarttv_app/app/core/model/customer_feedback.dart';
 import 'package:smarttv_app/app/core/model/feedback_content.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
@@ -35,6 +36,7 @@ abstract class Repository {
   Future<OrderPaymentContent> getOrderPaymentByOrderId(int orderId);
 //===============================Booking========================================
   Future<BookingContent> getBookingByRoomId(int roomId);
+  Future<CustomerContent> getPrimaryCustomerByBookingId(int bookingId);
 //===============================Notification===================================
   Future<List<MessageContent>> getListMessage(int bookingId);
 //==============================================================================

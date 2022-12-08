@@ -9,16 +9,15 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
+import 'package:smarttv_app/app/core/model/customer_content.dart';
 import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
-import 'package:weather/weather.dart';
 
 class WellcomeController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
   Rx<BookingContent?> bookingContent = Rx<BookingContent?>(null);
+  Rx<CustomerContent?> primaryCustomerContent = Rx<CustomerContent?>(null);
   late Timer _timer;
-  double? weatherCelsius = 0;
-  String url = "";
   var formattedTime = "".obs;
   var formattedDate = "".obs;
 
@@ -34,7 +33,6 @@ class WellcomeController extends BaseController {
   void onInit() async {
     timing();
     await fetchBooking(roomId);
-    loadTitle();
     super.onInit();
   }
 
@@ -44,7 +42,6 @@ class WellcomeController extends BaseController {
     ByteData bytes = await rootBundle.load(audioasset);
     audiobytes =
         bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
-    // debugPrint(audiobytes.toString());
     debugPrint("Bytes: ${bytes.toString()}");
     player.setVolume(40);
     await player.playBytes(audiobytes);
@@ -54,17 +51,30 @@ class WellcomeController extends BaseController {
     player.stop();
   }
 
+  String getGender(int number) {
+    String result = "";
+    switch (number) {
+      case 0:
+        result = "Chị";
+        break;
+      case 1:
+        result = "Anh";
+        break;
+      case 2:
+        result = "Chị";
+        break;
+    }
+    return result;
+  }
+
   void loadTitle() {
-    //chỉnh lại so sánh day month không so sánh thêm year
     String currentDay = DateFormat('dd/MM').format(DateTime.now());
     int formattedHours = int.parse(DateFormat('HH').format(DateTime.now()));
-    if (bookingContent.value == null) {
-      title = "Hiện tại phòng này chưa có Booking";
-      content = "Phòng hiện tại chưa được Check-In";
-    } else {
+    if (bookingContent.value != null) {
       nameCus =
           // "${bookingContent.value?.customerStayBooking![0].gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customerStayBooking![0].lastName}";
-          "${bookingContent.value?.customer!.gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customer!.lastName}";
+          // "${bookingContent.value?.customer!.gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customer!.lastName}";
+          "${getGender(primaryCustomerContent.value!.gender!)} ${primaryCustomerContent.value!.lastName}";
       if (formattedHours >= 00) {
         timeforsession = 'buổi sáng';
       }
@@ -72,13 +82,14 @@ class WellcomeController extends BaseController {
         timeforsession = 'buổi trưa';
       }
       if (formattedHours >= 13) {
-        timeforsession = 'buổi chiều';
+        timeforsession = 'buổi chiều ';
       }
       if (formattedHours >= 18) {
         timeforsession = 'buổi tối';
       }
       title = welcomeContent + timeforsession + nameCus;
-      String? birthday = bookingContent.value?.customer!.birthDate
+      String? birthday = primaryCustomerContent.value?.birthDate
+          // bookingContent.value?.customer!.birthDate
           // String? birthday = bookingContent.value?.customerStayBooking![0].birthDate
           ?.substring(0, 5);
       if (birthday == currentDay) {
@@ -87,19 +98,33 @@ class WellcomeController extends BaseController {
       }
       content =
           // "Chúc ${bookingContent.value?.customerStayBooking![0].gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
-          "Chúc ${bookingContent.value?.customer!.gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
+          // "Chúc ${bookingContent.value?.customer!.gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
+          "Chúc ${getGender(primaryCustomerContent.value!.gender!)} có một kỳ nghỉ tuyệt vời";
     }
   }
 
   Future<void> fetchBooking(int roomId) async {
     var overview = _repository.getBookingByRoomId(roomId);
-    await callDataService(
-      overview,
-      onSuccess: (BookingContent response) {
-        bookingContent(response);
-      },
-      onError: ((dioError) {}),
-    );
+    await callDataService(overview,
+        onSuccess: (BookingContent response) {
+          bookingContent(response);
+        },
+        onError: ((dioError) {}),
+        onComplete: () async {
+          await getPrimaryCustomerByBookingId(bookingContent.value!.id!);
+        });
+  }
+
+  Future<void> getPrimaryCustomerByBookingId(int bookingId) async {
+    var overview = _repository.getPrimaryCustomerByBookingId(bookingId);
+    await callDataService(overview,
+        onSuccess: (CustomerContent response) {
+          primaryCustomerContent(response);
+        },
+        onError: ((dioError) {}),
+        onComplete: () {
+          loadTitle();
+        });
   }
 
   void timing() async {
@@ -107,7 +132,6 @@ class WellcomeController extends BaseController {
       const Duration(milliseconds: 500),
       (timer) {
         updateTime();
-        getWeather();
       },
     );
   }
@@ -118,19 +142,6 @@ class WellcomeController extends BaseController {
     formattedTime = DateFormat('hh:mm a').format(DateTime.now()).obs;
     Intl.defaultLocale = 'vi_VN';
     formattedDate = DateFormat('EEEE, dd/MM/y').format(DateTime.now()).obs;
-    update();
-  }
-
-  void getWeather() async {
-    double lat = 10.7683;
-    double lon = 106.6758;
-    WeatherFactory wf = WeatherFactory("08859c8600e11096805eb8c503819e29",
-        language: Language.VIETNAMESE);
-    Weather w = await wf.currentWeatherByLocation(lat, lon);
-    weatherCelsius = w.temperature!.celsius ?? 0;
-    String weatherIcon = w.weatherIcon!;
-    url = "http://openweathermap.org/img/wn/$weatherIcon@2x.png";
-
     update();
   }
 }

@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smarttv_app/app/core/base/base_repository.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
 import 'package:smarttv_app/app/core/model/alarm_content.dart';
+import 'package:smarttv_app/app/core/model/customer_content.dart';
 import 'package:smarttv_app/app/core/model/customer_feedback.dart';
 import 'package:smarttv_app/app/core/model/feedback_content.dart';
 import 'package:smarttv_app/app/core/model/image_content.dart';
@@ -596,6 +597,23 @@ class RepositoryImpl extends BaseRepository implements Repository {
           result.add(element);
         }
         return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<CustomerContent> getPrimaryCustomerByBookingId(int bookingId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint =
+        "${DioProvider.baseUrl}/getPrimaryCustomerByBookingId?booking_id=${bookingId}";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        return CustomerContent.fromJson(response.data);
       });
     } catch (e) {
       rethrow;
