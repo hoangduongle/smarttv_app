@@ -16,10 +16,10 @@ class NotificationController extends BaseController {
 
   @override
   Future<void> onInit() async {
-    // final prefs = await SharedPreferences.getInstance();
-    // var bookingId = await prefs.getInt(bookId);
-    // fetchMessages(bookingId!);
-    // refreshMessage();
+    final prefs = await SharedPreferences.getInstance();
+    var bookingId = await prefs.getInt(bookId);
+    fetchMessages(bookingId!);
+    refreshMessage();
     super.onInit();
   }
 

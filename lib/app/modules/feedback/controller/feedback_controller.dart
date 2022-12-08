@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, await_only_futures
+// ignore_for_file: unused_local_variable, await_only_futures, prefer_typing_uninitialized_variables
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,89 +22,38 @@ class FeedbackController extends BaseController {
 
   FeedbackState state = FeedbackState.normal;
   List<FeedbackState> list = [FeedbackState.normal];
-  bool checkLoadingApi = true;
+  bool checkLoading = true;
+  var bookingId;
+
   @override
   void onInit() async {
     for (int i = 0; i < 9; i++) {
       list.add(state);
     }
-    fetchFeedback();
-
+    await fetchFeedback();
     super.onInit();
   }
 
-  // @override
-  // void onReady() async {
-  //   // await insertAllFeedback();
-  //   super.onReady();
-  // }
-
-  void updateFeedback() async {
-    if (checkLoadingApi) {
-      showThanksDialog(Get.context!);
-      checkLoadingApi = false;
-      insertAllFeedback();
-      // final prefs = await SharedPreferences.getInstance();
-      // var bookingId = await prefs.getInt(bookId);
-      // for (int i = 0; i < listFeedback.value.length; i++) {
-      //   CustomerFeedback customerFeedback = CustomerFeedback(
-      //     booking: customerFeedBack.value[i].booking,
-      //     dateTime: DateTimeUtils.currentDateTime(),
-      //     feedbackContent: listFeedback.value[i],
-      //     id: customerFeedBack.value[i].id,
-      //     rating: list[i].index + 1,
-      //   );
-      //   await updateCustomerFeedBack(customerFeedback);
-      // }
-      // checkLoadingApi = true;
-      Future.delayed(const Duration(seconds: 2), () => Get.back());
-      Future.delayed(const Duration(minutes: 10), () => checkLoadingApi = true);
-    } else {
-      showWaitDialog(Get.context!);
-      Future.delayed(const Duration(seconds: 2), () => Get.back());
-    }
-  }
-
-  Future<void> insertAllFeedback() async {
+  @override
+  void onReady() async {
     final prefs = await SharedPreferences.getInstance();
-    var bookingId = await prefs.getInt(bookId);
-    for (int i = 0; i < listFeedback.value.length; i++) {
-      CustomerFeedback customerFeedback = CustomerFeedback(
-        booking: BookingContent(id: bookingId),
-        dateTime: DateTimeUtils.currentDateTime(),
-        feedbackContent: listFeedback.value[i],
-        id: 0,
-        rating: list[i].index + 1,
-      );
-      insertCustomerFeedBack(customerFeedback);
-    }
+    bookingId = await prefs.getInt(bookId);
+    await fetchListCustomerFeedback(bookingId);
+    checkExitFeedBack();
+    super.onReady();
   }
 
-  Future<void> insertCustomerFeedBack(CustomerFeedback customerFeedback) async {
-    var overview = _repository.insertCustomerFeedback(customerFeedback);
+  Future<void> fetchListCustomerFeedback(int bookingId) async {
+    var overview = _repository.getListCustomerFeedback(bookingId);
     List<CustomerFeedback> result = [];
-
     await callDataService(
       overview,
-      onSuccess: (response) {
+      onSuccess: (List<CustomerFeedback> response) {
         result = response;
       },
       onError: ((dioError) {}),
     );
     customerFeedBack(result);
-  }
-
-  Future<int> updateCustomerFeedBack(CustomerFeedback customerFeedback) async {
-    var overview = _repository.updateCustomerFeedback(customerFeedback);
-    int result = 0;
-    await callDataService(
-      overview,
-      onSuccess: (response) {
-        result = response;
-      },
-      onError: ((dioError) {}),
-    );
-    return result;
   }
 
   Future<void> fetchFeedback() async {
@@ -118,6 +67,78 @@ class FeedbackController extends BaseController {
       onError: ((dioError) {}),
     );
     listFeedback(result);
+  }
+
+  void checkExitFeedBack() {
+    if (customerFeedBack.value.isEmpty) {
+      insertAllFeedback();
+    } else {
+      debugPrint("Not Empty");
+    }
+  }
+
+  Future<void> insertAllFeedback() async {
+    for (int i = 0; i < listFeedback.value.length; i++) {
+      CustomerFeedback customerFeedback = CustomerFeedback(
+        booking: BookingContent(id: bookingId),
+        dateTime: DateTimeUtils.currentDateTime(),
+        feedbackContent: listFeedback.value[i],
+        id: 0,
+        rating: list[i].index + 1,
+      );
+      insertCustomerFeedBack(customerFeedback);
+    }
+    fetchListCustomerFeedback(bookingId);
+  }
+
+  Future<void> insertCustomerFeedBack(CustomerFeedback customerFeedback) async {
+    var overview = _repository.insertCustomerFeedback(customerFeedback);
+
+    int result = -1;
+    await callDataService(
+      overview,
+      onSuccess: (response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+  }
+
+  void updateFeedback() async {
+    if (customerFeedBack.value.isNotEmpty) {
+      if (checkLoading) {
+        showThanksDialog(Get.context!);
+        checkLoading = false;
+        for (int i = 0; i < customerFeedBack.value.length; i++) {
+          CustomerFeedback customerFeedback = CustomerFeedback(
+            booking: BookingContent(id: bookingId),
+            dateTime: DateTimeUtils.currentDateTime(),
+            feedbackContent: listFeedback.value[i],
+            id: customerFeedBack.value[i].id,
+            rating: list[i].index + 1,
+          );
+          updateCustomerFeedBack(customerFeedback);
+        }
+        Future.delayed(const Duration(seconds: 2), () => Get.back());
+        Future.delayed(const Duration(minutes: 10), () => checkLoading = true);
+      } else {
+        showWaitDialog(Get.context!);
+        Future.delayed(const Duration(seconds: 2), () => Get.back());
+      }
+    }
+  }
+
+  Future<int> updateCustomerFeedBack(CustomerFeedback customerFeedback) async {
+    var overview = _repository.updateCustomerFeedback(customerFeedback);
+    int result = 0;
+    await callDataService(
+      overview,
+      onSuccess: (response) {
+        result = response;
+      },
+      onError: ((dioError) {}),
+    );
+    return result;
   }
 
   void showThanksDialog(BuildContext context) {

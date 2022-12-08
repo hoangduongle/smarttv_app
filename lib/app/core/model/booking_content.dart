@@ -98,4 +98,9 @@ class BookingContent {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'BookingContent(id: $id, confirmationNo: $confirmationNo, arrivalDate: $arrivalDate, actualArrivalDate: $actualArrivalDate, departureDate: $departureDate, actualDepartureDate: $actualDepartureDate, numOfAdult: $numOfAdult, numOfChildren: $numOfChildren, totalAmount: $totalAmount, roomPayment: $roomPayment, specialNote: $specialNote, status: $status, createDate: $createDate, updateDate: $updateDate, createBy: $createBy, lastModifyBy: $lastModifyBy, roomTypeId: $roomTypeId, hotelId: $hotelId, roomId: $roomId, customer: $customer)';
+  }
 }

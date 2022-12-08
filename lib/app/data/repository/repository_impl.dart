@@ -26,6 +26,30 @@ import 'package:smarttv_app/app/data/repository/repository.dart';
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 
 class RepositoryImpl extends BaseRepository implements Repository {
+//=========================================================================Image
+  @override
+  Future<List<ImageContent>> getListImage() async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/getImageByImageTypeContain";
+    var data = {'type': 'img'};
+    var result = <ImageContent>[];
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <ImageContent>[];
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(ImageContent.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//=======================================================================Service
   @override
   Future<List<ServiceCategoryContent>> getListServiceCate() async {
     if (!TokenManager.instance.hasToken) {
@@ -70,96 +94,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
   }
 
-  @override
-  Future<List<AbstractionsContent>> getListAbtraction() async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-    var endpoint = "${DioProvider.baseUrl}/abstractions";
-    var dioCall = dioTokenClient.get(endpoint);
-    try {
-      return callApi(dioCall).then((response) {
-        var result = <AbstractionsContent>[];
-
-        for (var element in (response.data as List<dynamic>)) {
-          result.add(AbstractionsContent.fromJson(element));
-        }
-        return result;
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<MomoContent> momoPayment(double amount, List<String> orderId) async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-    var endpoint = "${DioProvider.baseUrl}/momo";
-    var data = {
-      "amount": amount,
-      "orderId": orderId,
-    };
-    // var fromData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: data);
-    try {
-      return callApi(dioCall).then((response) {
-        var result = <MomoContent>[];
-        return MomoContent.fromJson(response.data);
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<BookingContent> getBookingByRoomId(int roomId) async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-    var endpoint = "${DioProvider.baseUrl}/bookingByRoomId";
-    var data = {"room_id": roomId};
-    var fromData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
-    try {
-      return callApi(dioCall).then((response) {
-        var result = <BookingContent>[];
-        return BookingContent.fromJson(response.data);
-      });
-    } catch (e) {
-      rethrow;
-    }
-    // throw UnimplementedError();
-  }
-
-  @override
-  Future<int> requestService(int bookingId, String dateTime, int id,
-      String name, String type, String status) async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-    var endpoint = "${DioProvider.baseUrl}/requestService";
-    var data = {
-      "booking_Id": bookingId,
-      "dateTime": dateTime,
-      "id": id,
-      "requestServiceName": name,
-      "requestServiceType": type,
-      "status": status
-    };
-    // var fromData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: data);
-    try {
-      return callApi(dioCall).then((response) {
-        var result = <RequestServiceContent>[];
-        return response.statusCode ?? 0;
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
+//==========================================================================News
   @override
   Future<List<NewsContent>> getListNewsByType(String type) async {
     if (!TokenManager.instance.hasToken) {
@@ -181,12 +116,35 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
   }
 
+//====================================================================Abtraction
+  @override
+  Future<List<AbstractionsContent>> getListAbtraction() async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/abstractions";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <AbstractionsContent>[];
+
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(AbstractionsContent.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//=========================================================================Order
   @override
   Future<List<OrderContent>> getOrderByBookingId(int bookingId) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/orderByBooking";
+    var endpoint = "${DioProvider.baseUrl}/order/orderByBooking";
     var data = {'booking_id': bookingId};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
     try {
@@ -296,22 +254,75 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<RequestServiceContent> getRequestService(int bookingId) async {
+  Future<OrderPaymentContent> getOrderPaymentByOrderId(int orderId) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/requestService";
-    var data = {"bookingId": bookingId};
-    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    var endpoint = "${DioProvider.baseUrl}/billPayment/${orderId}";
+    var dioCall = dioTokenClient.get(endpoint);
     try {
       return callApi(dioCall).then((response) {
-        return RequestServiceContent.fromJson(response.data);
+        return OrderPaymentContent.fromJson(response.data);
       });
     } catch (e) {
       rethrow;
     }
   }
 
+  @override
+  Future<OrderContent> getOrderId(int id) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/order/${id}";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        return OrderContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//=======================================================================Booking
+  @override
+  Future<BookingContent> getBookingByRoomId(int roomId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/booking/bookingByRoomId";
+    var data = {"room_id": roomId};
+    var fromData = FormData.fromMap(data);
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <BookingContent>[];
+        return BookingContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<CustomerContent> getPrimaryCustomerByBookingId(int bookingId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint =
+        "${DioProvider.baseUrl}/getPrimaryCustomerByBookingId?booking_id=${bookingId}";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        return CustomerContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//==================================================================Notification
   @override
   Future<List<MessageContent>> getListMessage(int bookingId) async {
     if (!TokenManager.instance.hasToken) {
@@ -334,7 +345,98 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
   }
 
-//ALARM
+//=======================================================================Payment
+  @override
+  Future<MomoContent> momoPayment(double amount, List<String> orderId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/momo";
+    var data = {
+      "amount": amount,
+      "orderId": orderId,
+    };
+    var dioCall = dioTokenClient.post(endpoint, data: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <MomoContent>[];
+        return MomoContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<VNPayContent> vnPayPayment(int orderId, double amount) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/vnpay";
+    var data = {
+      "vnp_BankCode": "VnPayQR",
+      "vnp_IpAddr": "192.168.1.1",
+      "vnp_Locale": "vn",
+      "vnp_OrderInfo": "Thanh toán VNPay",
+      "vnp_amount": amount,
+      "orderId": orderId,
+    };
+    var dioCall = dioTokenClient.post(endpoint, data: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <VNPayContent>[];
+        return VNPayContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//===============================================================Request Service
+  @override
+  Future<int> requestService(int bookingId, String dateTime, int id,
+      String name, String type, String status) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/requestService";
+    var data = {
+      "booking_Id": bookingId,
+      "dateTime": dateTime,
+      "id": id,
+      "requestServiceName": name,
+      "requestServiceType": type,
+      "status": status
+    };
+    var dioCall = dioTokenClient.post(endpoint, data: data);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <RequestServiceContent>[];
+        return response.statusCode ?? 0;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<RequestServiceContent> getRequestService(int bookingId) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint = "${DioProvider.baseUrl}/requestService";
+    var data = {"bookingId": bookingId};
+    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
+    try {
+      return callApi(dioCall).then((response) {
+        return RequestServiceContent.fromJson(response.data);
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//=========================================================================Alarm
   @override
   Future<AlarmContent> insertAlarm(AlarmContent alarmContent) async {
     if (!TokenManager.instance.hasToken) {
@@ -417,31 +519,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
     }
   }
 
-  @override
-  Future<VNPayContent> vnPayPayment(int orderId, double amount) async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-    var endpoint = "${DioProvider.baseUrl}/vnpay";
-    var data = {
-      "vnp_BankCode": "VnPayQR",
-      "vnp_IpAddr": "192.168.1.1",
-      "vnp_Locale": "vn",
-      "vnp_OrderInfo": "Thanh toán VNPay",
-      "vnp_amount": amount,
-      "orderId": orderId,
-    };
-    var dioCall = dioTokenClient.post(endpoint, data: data);
-    try {
-      return callApi(dioCall).then((response) {
-        var result = <VNPayContent>[];
-        return VNPayContent.fromJson(response.data);
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
+//=======================================================================FeedBack
   @override
   Future<List<FeedbackContent>> getListFeedbackContent() async {
     if (!TokenManager.instance.hasToken) {
@@ -464,21 +542,37 @@ class RepositoryImpl extends BaseRepository implements Repository {
   }
 
   @override
-  Future<List<CustomerFeedback>> insertCustomerFeedback(
-      CustomerFeedback customerFeedback) async {
+  Future<List<CustomerFeedback>> getListCustomerFeedback(int bookingIid) async {
+    if (!TokenManager.instance.hasToken) {
+      await TokenManager.instance.init();
+    }
+    var endpoint =
+        "${DioProvider.baseUrl}/customerFeedbackByBooking?booking_id=$bookingIid";
+    var dioCall = dioTokenClient.get(endpoint);
+    try {
+      return callApi(dioCall).then((response) {
+        var result = <CustomerFeedback>[];
+        for (var element in (response.data as List<dynamic>)) {
+          result.add(CustomerFeedback.fromJson(element));
+        }
+        return result;
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<int> insertCustomerFeedback(CustomerFeedback customerFeedback) async {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
     var endpoint = "${DioProvider.baseUrl}/customerFeedBack";
     var data = customerFeedback.toJson();
-    var result = <CustomerFeedback>[];
     var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
-        for (var element in (response.data as List<dynamic>)) {
-          result.add(CustomerFeedback.fromJson(element));
-        }
-        return result;
+        return response.statusCode ?? -1;
       });
     } catch (e) {
       rethrow;
@@ -491,7 +585,13 @@ class RepositoryImpl extends BaseRepository implements Repository {
       await TokenManager.instance.init();
     }
     var endpoint = "${DioProvider.baseUrl}/customerFeedBack";
-    var data = customerFeedback.toJson();
+    var data = {
+      'booking_Id': customerFeedback.booking?.id,
+      'dateTime': customerFeedback.dateTime,
+      'feedbackContent_Id': customerFeedback.feedbackContent?.id,
+      'id': customerFeedback.id,
+      'rating': customerFeedback.rating
+    };
     var dioCall = dioTokenClient.put(endpoint, data: data);
     try {
       return callApi(dioCall).then((response) {
@@ -501,86 +601,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
       rethrow;
     }
   }
-
-  @override
-  Future<int> queryTransaction(String partnerCode, int requestId, int orderId,
-      String lang, String signature) async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-    var endpoint = "https://test-payment.momo.vn/v2/gateway/api/query";
-    var data = {
-      "partnerCode": partnerCode,
-      "requestId": requestId,
-      "orderId": orderId,
-      "lang": lang,
-      "signature": signature
-    };
-    var fromData = FormData.fromMap(data);
-    var dioCall = dioTokenClient.post(endpoint, data: fromData);
-    try {
-      return callApi(dioCall).then((response) {
-        return response.data['resultCode'] ?? 0;
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<OrderContent> getOrderId(int id) async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-    var endpoint = "${DioProvider.baseUrl}/order/${id}";
-    var dioCall = dioTokenClient.get(endpoint);
-    try {
-      return callApi(dioCall).then((response) {
-        return OrderContent.fromJson(response.data);
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<OrderPaymentContent> getOrderPaymentByOrderId(int orderId) async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-    var endpoint = "${DioProvider.baseUrl}/billPayment/${orderId}";
-    var dioCall = dioTokenClient.get(endpoint);
-    try {
-      return callApi(dioCall).then((response) {
-        return OrderPaymentContent.fromJson(response.data);
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<List<ImageContent>> getListImage() async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-
-    var endpoint = "${DioProvider.baseUrl}/getImageByImageTypeContain";
-    var data = {'type': 'img'};
-    var result = <ImageContent>[];
-    var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
-    try {
-      return callApi(dioCall).then((response) {
-        var result = <ImageContent>[];
-        for (var element in (response.data as List<dynamic>)) {
-          result.add(ImageContent.fromJson(element));
-        }
-        return result;
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
+//=============================================================Top 3 Sale Service
 
   @override
   Future<List<String>> serviceTop() async {
@@ -597,23 +618,6 @@ class RepositoryImpl extends BaseRepository implements Repository {
           result.add(element);
         }
         return result;
-      });
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<CustomerContent> getPrimaryCustomerByBookingId(int bookingId) async {
-    if (!TokenManager.instance.hasToken) {
-      await TokenManager.instance.init();
-    }
-    var endpoint =
-        "${DioProvider.baseUrl}/getPrimaryCustomerByBookingId?booking_id=${bookingId}";
-    var dioCall = dioTokenClient.get(endpoint);
-    try {
-      return callApi(dioCall).then((response) {
-        return CustomerContent.fromJson(response.data);
       });
     } catch (e) {
       rethrow;

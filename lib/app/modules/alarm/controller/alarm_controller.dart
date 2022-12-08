@@ -34,9 +34,9 @@ class AlarmController extends BaseController {
 
   @override
   void onInit() async {
-    // timing();
-    // timingGetAlarm();
-    // getListRoomAlarm();
+    timing();
+    timingGetAlarm();
+    getListRoomAlarm();
     await AndroidAlarmManager.initialize();
     super.onInit();
   }

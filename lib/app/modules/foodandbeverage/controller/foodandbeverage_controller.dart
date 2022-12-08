@@ -37,14 +37,14 @@ class FoodandBeverageController extends BaseController {
 
   @override
   void onInit() async {
-    fetchServicesTop();
-    _loadData();
-    createMajor();
+    // fetchServicesTop();
+    // _loadData();
+    // createMajor();
     await Future.wait([
-      fetchServicesFood(),
-      fetchServicesDrink(),
+      // fetchServicesFood(),
+      // fetchServicesDrink(),
     ]);
-    filter();
+    // filter();
     super.onInit();
   }
 

@@ -72,8 +72,6 @@ class WellcomeController extends BaseController {
     int formattedHours = int.parse(DateFormat('HH').format(DateTime.now()));
     if (bookingContent.value != null) {
       nameCus =
-          // "${bookingContent.value?.customerStayBooking![0].gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customerStayBooking![0].lastName}";
-          // "${bookingContent.value?.customer!.gender == 0 ? ' Chị' : ' Anh'} ${bookingContent.value?.customer!.lastName}";
           "${getGender(primaryCustomerContent.value!.gender!)} ${primaryCustomerContent.value!.lastName}";
       if (formattedHours >= 00) {
         timeforsession = 'buổi sáng';
@@ -88,17 +86,13 @@ class WellcomeController extends BaseController {
         timeforsession = 'buổi tối';
       }
       title = welcomeContent + timeforsession + nameCus;
-      String? birthday = primaryCustomerContent.value?.birthDate
-          // bookingContent.value?.customer!.birthDate
-          // String? birthday = bookingContent.value?.customerStayBooking![0].birthDate
-          ?.substring(0, 5);
+      String? birthday =
+          primaryCustomerContent.value?.birthDate?.substring(0, 5);
       if (birthday == currentDay) {
         title = birthdayContent + nameCus;
         audio();
       }
       content =
-          // "Chúc ${bookingContent.value?.customerStayBooking![0].gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
-          // "Chúc ${bookingContent.value?.customer!.gender == 0 ? 'Chị' : 'Anh'} có một kỳ nghỉ tuyệt vời";
           "Chúc ${getGender(primaryCustomerContent.value!.gender!)} có một kỳ nghỉ tuyệt vời";
     }
   }
