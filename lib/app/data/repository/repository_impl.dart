@@ -32,7 +32,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/getImageByImageTypeContain";
+    var endpoint = "${DioProvider.baseUrl}/image/getImageByImageTypeContain";
     var data = {'type': 'img'};
     var result = <ImageContent>[];
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
@@ -212,7 +212,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/orderService";
+    var endpoint = "${DioProvider.baseUrl}/order/orderService";
     var data = orderRequest.toJson();
     var dioCall = dioTokenClient.post(endpoint, data: data);
     try {
@@ -311,7 +311,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
       await TokenManager.instance.init();
     }
     var endpoint =
-        "${DioProvider.baseUrl}/getPrimaryCustomerByBookingId?booking_id=${bookingId}";
+        "${DioProvider.baseUrl}/customer/getPrimaryCustomerByBookingId?booking_id=${bookingId}";
     var dioCall = dioTokenClient.get(endpoint);
     try {
       return callApi(dioCall).then((response) {
@@ -547,7 +547,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
       await TokenManager.instance.init();
     }
     var endpoint =
-        "${DioProvider.baseUrl}/customerFeedbackByBooking?booking_id=$bookingIid";
+        "${DioProvider.baseUrl}/customerFeedBack/customerFeedbackByBooking?booking_id=$bookingIid";
     var dioCall = dioTokenClient.get(endpoint);
     try {
       return callApi(dioCall).then((response) {
@@ -609,7 +609,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
       await TokenManager.instance.init();
     }
     var endpoint = "${DioProvider.baseUrl}/serviceTop";
-    var result = <ImageContent>[];
+    var result = <String>[];
     var dioCall = dioTokenClient.get(endpoint);
     try {
       return callApi(dioCall).then((response) {

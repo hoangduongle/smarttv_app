@@ -55,13 +55,13 @@ class WellcomeController extends BaseController {
     String result = "";
     switch (number) {
       case 0:
-        result = "Chị";
+        result = " Chị";
         break;
       case 1:
-        result = "Anh";
+        result = " Anh";
         break;
       case 2:
-        result = "Chị";
+        result = " Chị";
         break;
     }
     return result;
