@@ -9,7 +9,6 @@ import 'package:smarttv_app/app/core/values/app_styles.dart';
 import 'package:smarttv_app/app/modules/cart/controller/cart_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
 import 'package:smarttv_app/app/modules/main/controller/main_controller.dart';
-import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
 import 'package:smarttv_app/app/routes/app_pages.dart';
 import 'package:smarttv_app/app/widget/navigator_back.dart';
@@ -26,16 +25,8 @@ class _FandBScreenState extends State<FandBScreen> {
   @override
   Widget build(BuildContext context) {
     CartController caController = Get.find();
-    NavigatorController naController =
-        Get.find(tag: (NavigatorController).toString());
     MainController maController = Get.find();
     FoodandBeverageController controller = Get.find();
-    /*
-      return Obx(
-      () {
-        return GetBuilder<FoodandBeverageController>(
-      builder: (controller) {
-    */
     return Obx(
       () {
         return Scaffold(

@@ -37,41 +37,7 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
     Rx<List<ServiceContent>> serviceContent = Rx<List<ServiceContent>>([]);
     ScrollController scrollControllerFANDB = ScrollController();
     int length = 0;
-    switch (widget.mayjorId) {
-      case 0:
-        serviceContent = controller.serviceKhaivi;
-        length = controller.serviceKhaivi.value.length;
-        break;
-      case 1:
-        serviceContent = controller.serviceMonchinh;
-        length = controller.serviceMonchinh.value.length;
-        break;
-      case 2:
-        serviceContent = controller.serviceTrangmieng;
-        length = controller.serviceTrangmieng.value.length;
-        break;
-      case 3:
-        serviceContent = controller.serviceCafe;
-        length = controller.serviceCafe.value.length;
-        break;
-      case 4:
-        serviceContent = controller.serviceNuoctra;
-        length = controller.serviceNuoctra.value.length;
-        break;
-      case 5:
-        serviceContent = controller.serviceNuocsuoi;
-        length = controller.serviceNuocsuoi.value.length;
-        break;
-      case 6:
-        serviceContent = controller.serviceNuocmocktails;
-        length = controller.serviceNuocmocktails.value.length;
-        break;
-      case 7:
-        serviceContent = controller.serviceBia;
-        length = controller.serviceBia.value.length;
 
-        break;
-    }
     /*
       return Obx(
       () {
@@ -80,6 +46,40 @@ class _FandBMayjorScreenState extends State<FandBMayjorScreen> {
     */
     return Obx(
       () {
+        switch (widget.mayjorId) {
+          case 0:
+            serviceContent = controller.serviceKhaivi;
+            length = controller.serviceKhaivi.value.length;
+            break;
+          case 1:
+            serviceContent = controller.serviceMonchinh;
+            length = controller.serviceMonchinh.value.length;
+            break;
+          case 2:
+            serviceContent = controller.serviceTrangmieng;
+            length = controller.serviceTrangmieng.value.length;
+            break;
+          case 3:
+            serviceContent = controller.serviceCafe;
+            length = controller.serviceCafe.value.length;
+            break;
+          case 4:
+            serviceContent = controller.serviceNuoctra;
+            length = controller.serviceNuoctra.value.length;
+            break;
+          case 5:
+            serviceContent = controller.serviceNuocsuoi;
+            length = controller.serviceNuocsuoi.value.length;
+            break;
+          case 6:
+            serviceContent = controller.serviceNuocmocktails;
+            length = controller.serviceNuocmocktails.value.length;
+            break;
+          case 7:
+            serviceContent = controller.serviceBia;
+            length = controller.serviceBia.value.length;
+            break;
+        }
         return Scaffold(
           floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
           floatingActionButton: Stack(

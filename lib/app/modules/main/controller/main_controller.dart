@@ -46,9 +46,7 @@ class MainController extends BaseController {
         initializeDateFormatting();
         formattedTime = DateFormat('hh:mm a').format(DateTime.now()).obs;
         if (DateTime.now().minute == 30 && DateTime.now().second == 1) {
-          debugPrint("${DateTime.now().minute}:${DateTime.now().second}");
-          // debugPrint("Time to refesh fetch Api");
-          fetchAllApi();
+          // fetchAllApi();
         } else {
           if (DateTime.now().minute == 55 && DateTime.now().second == 1) {
             if (!TokenManager.instance.hasToken) {

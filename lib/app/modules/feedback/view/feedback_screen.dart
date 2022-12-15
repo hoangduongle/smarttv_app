@@ -33,16 +33,6 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TitleScreen(name: "Đánh giá"),
-                // Container(
-                //   alignment: Alignment.center,
-                //   padding: EdgeInsets.symmetric(vertical: 10.h),
-                //   child: Text(
-                //     "Đánh giá của quý khách sẽ được lưu lại khi thực hiện chech-out",
-                //     style: TextStyle(
-                //         color: AppColors.orangeColor.withOpacity(0.8),
-                //         fontSize: 17.sp),
-                //   ),
-                // ),
                 Expanded(
                     child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -88,96 +78,11 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       flex: 4,
                                       child: Column(
                                         children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                TitleFeedback(
-                                                  name: "Rất hài lòng",
-                                                ),
-                                                TitleFeedback(
-                                                  name: "Hài lòng",
-                                                ),
-                                                TitleFeedback(
-                                                  name: "Bình thường",
-                                                ),
-                                                TitleFeedback(
-                                                  name: "Không hài lòng",
-                                                ),
-                                                SizedBox(
-                                                  width: 45.w,
-                                                  child: TitleFeedback(
-                                                    name: "Tệ",
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Container(
-                                                height: 30.h,
-                                                decoration: BoxDecoration(
-                                                    color: AppColors
-                                                        .navigabackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.r)),
-                                                child: ListRadio(
-                                                    controller: controller,
-                                                    index: 0)),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Container(
-                                                height: 30.h,
-                                                decoration: BoxDecoration(
-                                                    color: AppColors
-                                                        .navigabackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.r)),
-                                                child: ListRadio(
-                                                    controller: controller,
-                                                    index: 1)),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Container(
-                                              height: 30.h,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors
-                                                      .navigabackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.r)),
-                                              child: ListRadio(
-                                                  controller: controller,
-                                                  index: 2),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Container(
-                                              height: 30.h,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors
-                                                      .navigabackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.r)),
-                                              child: ListRadio(
-                                                  controller: controller,
-                                                  index: 3),
-                                            ),
-                                          ),
+                                          rate(),
+                                          radio(controller, 0),
+                                          radio(controller, 1),
+                                          radio(controller, 2),
+                                          radio(controller, 3),
                                         ],
                                       ),
                                     ),
@@ -223,112 +128,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       flex: 4,
                                       child: Column(
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10.h),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                TitleFeedback(
-                                                  name: "Rất hài lòng",
-                                                ),
-                                                TitleFeedback(
-                                                  name: "Hài lòng",
-                                                ),
-                                                TitleFeedback(
-                                                  name: "Bình thường",
-                                                ),
-                                                TitleFeedback(
-                                                  name: "Không hài lòng",
-                                                ),
-                                                SizedBox(
-                                                  width: 45.w,
-                                                  child: TitleFeedback(
-                                                    name: "Tệ",
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Container(
-                                                height: 30.h,
-                                                decoration: BoxDecoration(
-                                                    color: AppColors
-                                                        .navigabackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.r)),
-                                                child: ListRadio(
-                                                    controller: controller,
-                                                    index: 4)),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Container(
-                                                height: 30.h,
-                                                decoration: BoxDecoration(
-                                                    color: AppColors
-                                                        .navigabackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.r)),
-                                                child: ListRadio(
-                                                    controller: controller,
-                                                    index: 5)),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Container(
-                                              height: 30.h,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors
-                                                      .navigabackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.r)),
-                                              child: ListRadio(
-                                                  controller: controller,
-                                                  index: 6),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Container(
-                                              height: 30.h,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors
-                                                      .navigabackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.r)),
-                                              child: ListRadio(
-                                                  controller: controller,
-                                                  index: 7),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 5.h),
-                                            child: Container(
-                                              height: 30.h,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors
-                                                      .navigabackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.r)),
-                                              child: ListRadio(
-                                                  controller: controller,
-                                                  index: 8),
-                                            ),
-                                          ),
+                                          rate(),
+                                          radio(controller, 4),
+                                          radio(controller, 5),
+                                          radio(controller, 6),
+                                          radio(controller, 7),
+                                          radio(controller, 8),
                                         ],
                                       ),
                                     ),
@@ -368,6 +173,48 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
           ),
         );
       },
+    );
+  }
+
+  Padding radio(FeedbackController controller, int index) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 5.h),
+      child: Container(
+          height: 30.h,
+          decoration: BoxDecoration(
+              color: AppColors.navigabackground,
+              borderRadius: BorderRadius.circular(10.r)),
+          child: ListRadio(controller: controller, index: index)),
+    );
+  }
+
+  Padding rate() {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 10.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 25.w),
+            width: 25.w,
+            child: TitleFeedback(
+              name: "Tệ",
+            ),
+          ),
+          TitleFeedback(
+            name: "Không hài lòng",
+          ),
+          TitleFeedback(
+            name: "Bình thường",
+          ),
+          TitleFeedback(
+            name: "Hài lòng",
+          ),
+          TitleFeedback(
+            name: "Rất hài lòng",
+          ),
+        ],
+      ),
     );
   }
 }
