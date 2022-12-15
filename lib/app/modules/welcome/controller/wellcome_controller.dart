@@ -1,6 +1,7 @@
 // ignore_for_file: unused_field, prefer_typing_uninitialized_variables, unused_local_variable
 
 import 'dart:async';
+import 'dart:convert';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/model/booking_content.dart';
 import 'package:smarttv_app/app/core/model/customer_content.dart';
+import 'package:smarttv_app/app/core/model/setting_content.dart';
 import 'package:smarttv_app/app/data/data.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
@@ -17,14 +19,15 @@ class WellcomeController extends BaseController {
   final Repository _repository = Get.find(tag: (Repository).toString());
   Rx<BookingContent?> bookingContent = Rx<BookingContent?>(null);
   Rx<CustomerContent?> primaryCustomerContent = Rx<CustomerContent?>(null);
+
+  Rx<SettingContent?> setting = Rx<SettingContent?>(null);
+
   late Timer _timer;
   var formattedTime = "".obs;
   var formattedDate = "".obs;
 
   var nameCus;
-  var welcomeContent = "Xin chào ";
   var timeforsession = "";
-  var birthdayContent = "Chúc mừng sinh nhật ";
   var title = "";
   var content = "";
   AudioPlayer player = AudioPlayer();
@@ -32,19 +35,26 @@ class WellcomeController extends BaseController {
   @override
   void onInit() async {
     timing();
+    readJson();
     await fetchBooking(roomId);
     super.onInit();
+  }
+
+  Future<void> readJson() async {
+    final String response =
+        await rootBundle.loadString('assets/models/setting-screen.json');
+    final data = await json.decode(response);
+    setting(SettingContent.fromJson(data));
   }
 
   void audio() async {
     String audioasset = "assets/audios/audio.mp3";
     Uint8List? audiobytes;
     ByteData bytes = await rootBundle.load(audioasset);
+
     audiobytes =
         bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
-    debugPrint("Bytes: ${bytes.toString()}");
-    player.setVolume(40);
-    await player.playBytes(audiobytes);
+    await player.playBytes(audiobytes, volume: 20);
   }
 
   void stopAudio() {
@@ -53,16 +63,34 @@ class WellcomeController extends BaseController {
 
   String getGender(int number) {
     String result = "";
+    List<String>? gender = setting.value!.gender?.split("/");
     switch (number) {
-      case 0:
-        result = " Chị";
+      case 0: //female
+        result = gender![1];
         break;
-      case 1:
-        result = " Anh";
+      case 1: //male
+        result = gender![0];
         break;
-      case 2:
-        result = " Chị";
+      case 2: //other
+        result = gender![1];
         break;
+    }
+    return result;
+  }
+
+  String timeSession(int formattedHours) {
+    String result = "";
+    if (formattedHours >= 00) {
+      result = 'buổi sáng';
+    }
+    if (formattedHours >= 12) {
+      result = 'buổi trưa';
+    }
+    if (formattedHours >= 13) {
+      result = 'buổi chiều';
+    }
+    if (formattedHours >= 18) {
+      result = 'buổi tối';
     }
     return result;
   }
@@ -70,30 +98,20 @@ class WellcomeController extends BaseController {
   void loadTitle() {
     String currentDay = DateFormat('dd/MM').format(DateTime.now());
     int formattedHours = int.parse(DateFormat('HH').format(DateTime.now()));
+
     if (bookingContent.value != null) {
       nameCus =
           "${getGender(primaryCustomerContent.value!.gender!)} ${primaryCustomerContent.value!.lastName}";
-      if (formattedHours >= 00) {
-        timeforsession = 'buổi sáng';
-      }
-      if (formattedHours >= 12) {
-        timeforsession = 'buổi trưa';
-      }
-      if (formattedHours >= 13) {
-        timeforsession = 'buổi chiều ';
-      }
-      if (formattedHours >= 18) {
-        timeforsession = 'buổi tối';
-      }
-      title = welcomeContent + timeforsession + nameCus;
+      timeforsession = timeSession(formattedHours);
+      title = "${setting.value?.welcome} $timeforsession $nameCus";
       String? birthday =
           primaryCustomerContent.value?.birthDate?.substring(0, 5);
       if (birthday == currentDay) {
-        title = birthdayContent + nameCus;
+        title = "${setting.value?.birthday} $nameCus";
         audio();
       }
       content =
-          "Chúc ${getGender(primaryCustomerContent.value!.gender!)} có một kỳ nghỉ tuyệt vời";
+          "${setting.value?.wish1} ${getGender(primaryCustomerContent.value!.gender!)} ${setting.value?.wish2}";
     }
   }
 

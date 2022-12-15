@@ -328,7 +328,7 @@ class RepositoryImpl extends BaseRepository implements Repository {
     if (!TokenManager.instance.hasToken) {
       await TokenManager.instance.init();
     }
-    var endpoint = "${DioProvider.baseUrl}/messagesByBooking";
+    var endpoint = "${DioProvider.baseUrl}/message/messagesByBooking";
     var data = {"booking_id": bookingId};
     var dioCall = dioTokenClient.get(endpoint, queryParameters: data);
     try {
