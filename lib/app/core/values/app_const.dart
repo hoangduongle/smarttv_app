@@ -39,4 +39,5 @@ class AppConstants {
   static const BOOKED = 'BOOKED';
   static const DONE = 'DONE';
   static const TURNDOWN = 'TURN DOWN';
+  static const CHECKOUT = 'CHECK OUT';
 }

@@ -12,9 +12,11 @@ import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 
 import 'package:smarttv_app/app/core/model/service_category_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
+import 'package:smarttv_app/app/modules/foodandbeverage/controller/foodandbeverage_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/view/fandb_majorgroud.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/dialog.dart';
 import 'package:smarttv_app/app/modules/navigation/controller/navigator_controller.dart';
+import 'package:smarttv_app/app/widget/loading_dialog.dart';
 import 'package:smarttv_app/app/widget/skeleton_loading.dart';
 import 'package:smarttv_app/app/modules/service/controller/service_controller.dart';
 import 'package:smarttv_app/app/modules/foodandbeverage/widget/card_each_service.dart';
@@ -41,7 +43,7 @@ class _CardEachServiceState extends State<CardEachService> {
   Widget build(BuildContext context) {
     NavigatorController naController =
         Get.find(tag: (NavigatorController).toString());
-    return GetBuilder<ServiceController>(
+    return GetBuilder<FoodandBeverageController>(
       builder: (controller) {
         return Material(
           color: AppColors.transparent,

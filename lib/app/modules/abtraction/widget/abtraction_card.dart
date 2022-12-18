@@ -54,8 +54,10 @@ class AbtractionCard extends StatelessWidget {
             children: [
               ClipRRect(
                 child: CachedNetworkImage(
-                  imageUrl:
-                      "${abtractionContent.image == null ? AppAssets.loadImageNetWork : abtractionContent.image!.pictureUrl}",
+                  imageUrl: abtractionContent.image == null
+                      ? AppAssets.loadImageNetWork
+                      : abtractionContent.image!.pictureUrl ??
+                          AppAssets.loadImageNetWork,
                   imageBuilder: (context, imageProvider) {
                     return Container(
                       height: 120.h,

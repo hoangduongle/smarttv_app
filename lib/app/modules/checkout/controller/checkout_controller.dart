@@ -31,14 +31,14 @@ class CheckoutController extends BaseController {
       const LoadingDialog().showLoadingDialog(Get.context!);
       DateTime dateTime = DateTime.now();
       await fetchRequest(
-          "${DateTimeUtils.currentDate()} ${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}:00",
-          "Check out tại phòng",
-          "CHECK OUT");
+        "${DateTimeUtils.currentDate()} ${NumberUtils.time(dateTime.hour)}:${NumberUtils.time(dateTime.minute)}:00",
+        "Check out tại phòng",
+      );
       Get.back();
       if (result == 200) {
         const CheckoutDialogWidget().showCheckoutDialog(Get.context!);
-      } else {
-        const CheckoutDialogWidget().showUncheckDialog(Get.context!);
+      } else if (result == 208) {
+        const CheckoutDialogWidget().showCheckoutDialogBooked(Get.context!);
       }
     } catch (e) {
       debugPrint("Error Checkout: ${e.toString()}");
@@ -47,9 +47,9 @@ class CheckoutController extends BaseController {
     }
   }
 
-  Future<void> fetchRequest(String dateTime, String name, String type) async {
-    var overview = _repository.requestService(
-        bookingId, dateTime, 0, name, type, AppConstants.BOOKED);
+  Future<void> fetchRequest(String dateTime, String name) async {
+    var overview = _repository.requestService(bookingId, dateTime, 0, name,
+        AppConstants.CHECKOUT, AppConstants.BOOKED);
     await callDataService(
       overview,
       onSuccess: (int response) {

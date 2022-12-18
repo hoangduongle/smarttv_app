@@ -39,7 +39,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         child: Column(
                           children: [
                             SizedBox(
-                                height: 200.h,
+                                height: 210.h,
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -47,6 +47,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
                                           Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 5.h),
@@ -78,6 +81,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                       flex: 4,
                                       child: Column(
                                         children: [
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
                                           rate(),
                                           radio(controller, 0),
                                           radio(controller, 1),
@@ -89,7 +95,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                   ],
                                 )),
                             SizedBox(
-                                height: 235.h,
+                                height: 210.h,
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -105,7 +111,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                               isBig: true,
                                             ),
                                           ),
-                                          for (int i = 4; i < 9; i++)
+                                          for (int i = 4; i < 8; i++)
                                             controller
                                                     .listFeedback.value.isEmpty
                                                 ? Container()
@@ -133,15 +139,14 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                           radio(controller, 5),
                                           radio(controller, 6),
                                           radio(controller, 7),
-                                          radio(controller, 8),
                                         ],
                                       ),
                                     ),
                                   ],
                                 )),
                             SizedBox(
-                              width: 80.w,
-                              height: 25.h,
+                              width: 100.w,
+                              height: 40.h,
                               child: Material(
                                 color: AppColors.focus,
                                 borderRadius: BorderRadius.circular(10.r),
@@ -155,7 +160,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'Gửi',
+                                        'Gửi đánh giá',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15.sp,

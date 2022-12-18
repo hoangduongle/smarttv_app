@@ -4,11 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:smarttv_app/app/core/base/base_controller.dart';
 import 'package:smarttv_app/app/core/controller/image_controller.dart';
-import 'package:smarttv_app/app/core/model/image_content.dart';
 import 'package:smarttv_app/app/core/model/mayjor_content.dart';
 import 'package:smarttv_app/app/core/model/service_content.dart';
 import 'package:smarttv_app/app/core/dio/dio_token_manager.dart';
-import 'package:smarttv_app/app/core/utils/date_time_utils.dart';
 import 'package:smarttv_app/app/core/values/app_const.dart';
 import 'package:smarttv_app/app/data/repository/repository.dart';
 
@@ -34,6 +32,8 @@ class FoodandBeverageController extends BaseController {
   Rx<List<String>> serviceTop = Rx<List<String>>([]);
 
   var numberSelected = 0.obs;
+  @override
+  bool isLoading = true;
 
   @override
   void onInit() async {
@@ -82,6 +82,9 @@ class FoodandBeverageController extends BaseController {
     List<ServiceContent> result = [];
     await callDataService(
       services,
+      onStart: () {
+        isLoading = true;
+      },
       onSuccess: (List<ServiceContent> response) {
         result = response;
       },
@@ -95,6 +98,9 @@ class FoodandBeverageController extends BaseController {
     List<ServiceContent> result = [];
     await callDataService(
       services,
+      onStart: () {
+        isLoading = true;
+      },
       onSuccess: (List<ServiceContent> response) {
         result = response;
       },
@@ -196,6 +202,6 @@ class FoodandBeverageController extends BaseController {
         }
       }
     }
-    update();
+    isLoading = false;
   }
 }

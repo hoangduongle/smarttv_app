@@ -347,9 +347,7 @@ class _MainScreenState extends State<MainScreen> {
                                                       homeController.reload(),
                                                     ]);
                                                     Future.delayed(
-                                                      Duration(
-                                                          seconds: AppConstants
-                                                              .seconds_ServiceCate),
+                                                      Duration(seconds: 1),
                                                       () {
                                                         waitonTap = true;
                                                       },

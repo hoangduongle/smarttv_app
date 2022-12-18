@@ -189,8 +189,9 @@ class _EventScreenState extends State<EventScreen> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.r),
           child: CachedNetworkImage(
-            imageUrl:
-                "${newsContent.image == null ? AppAssets.loadImageNetWork : newsContent.image!.pictureUrl}",
+            imageUrl: newsContent.image == null
+                ? AppAssets.loadImageNetWork
+                : newsContent.image!.pictureUrl ?? AppAssets.loadImageNetWork,
             imageBuilder: (context, imageProvider) {
               return Container(
                 margin: EdgeInsets.all(2.r),

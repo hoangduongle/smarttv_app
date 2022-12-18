@@ -14,12 +14,12 @@ Widget SkeletonLoadingServiceConponentScreen() {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
         child: GridView.builder(
-          itemCount: 8,
+          itemCount: 15,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            crossAxisSpacing: 60,
-            mainAxisSpacing: 36,
-            mainAxisExtent: 210,
+            mainAxisExtent: 180,
+            crossAxisCount: 5,
+            crossAxisSpacing: 0.w,
+            mainAxisSpacing: 16.h,
           ),
           itemBuilder: (context, index) {
             return CardServiceSkeleton();

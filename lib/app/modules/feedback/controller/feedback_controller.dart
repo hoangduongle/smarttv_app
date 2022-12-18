@@ -105,6 +105,7 @@ class FeedbackController extends BaseController {
   }
 
   void updateFeedback() async {
+    debugPrint(customerFeedBack.value.isNotEmpty.toString());
     if (customerFeedBack.value.isNotEmpty) {
       if (checkLoading) {
         showThanksDialog(Get.context!);

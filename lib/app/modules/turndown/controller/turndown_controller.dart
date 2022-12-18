@@ -40,9 +40,9 @@ class TurndownController extends BaseController {
       try {
         const LoadingDialog().showLoadingDialog(Get.context!);
         await fetchRequest(
-            "${DateTimeUtils.currentDate()} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
-            "Dọn phòng nhanh",
-            AppConstants.TURNDOWN);
+          "${DateTimeUtils.currentDate()} ${NumberUtils.time(hours)}:${NumberUtils.time(minutes)}:00",
+          "Dọn phòng nhanh",
+        );
         Get.back();
         if (result == 200) {
           const TurndownDialogWidget()
@@ -88,9 +88,9 @@ class TurndownController extends BaseController {
     });
   }
 
-  Future<void> fetchRequest(String dateTime, String name, String type) async {
-    var overview = _repository.requestService(
-        bookingId, dateTime, 0, name, type, AppConstants.BOOKED);
+  Future<void> fetchRequest(String dateTime, String name) async {
+    var overview = _repository.requestService(bookingId, dateTime, 0, name,
+        AppConstants.TURNDOWN, AppConstants.BOOKED);
     await callDataService(
       overview,
       onSuccess: (int response) {

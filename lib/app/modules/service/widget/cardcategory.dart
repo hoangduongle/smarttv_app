@@ -114,8 +114,10 @@ class _CardCategoryState extends State<CardCategory> {
                               topRight: Radius.circular(10.r))
                           : BorderRadius.circular(10.r),
                       child: CachedNetworkImage(
-                        imageUrl:
-                            "${widget.serviceCategory.image == null ? AppAssets.loadImageNetWork : widget.serviceCategory.image!.pictureUrl}",
+                        imageUrl: widget.serviceCategory.image == null
+                            ? AppAssets.loadImageNetWork
+                            : widget.serviceCategory.image!.pictureUrl ??
+                                AppAssets.loadImageNetWork,
                         imageBuilder: (context, imageProvider) {
                           return Container(
                             height: naController.select ? 180.h : 160.h,
